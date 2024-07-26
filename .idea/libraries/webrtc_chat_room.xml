@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="webrtc-chat-room">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/学习资料/webrtc-chat-room.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
