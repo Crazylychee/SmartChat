@@ -1,97 +1,86 @@
-<script setup lang="ts">
-import Versions from './components/Versions.vue'
-</script>
-
 <template>
-  <Versions></Versions>
-
-  <svg class="hero-logo" viewBox="0 0 900 300">
-    <use xlink:href="./assets/icons.svg#electron" />
-  </svg>
-  <h2 class="hero-text">You've successfully created an Electron project with Vue and TypeScript</h2>
-  <p class="hero-tagline">Please try pressing <code>F12</code> to open the devTool</p>
-
-  <div class="links">
-    <div class="link-item">
-      <a target="_blank" href="https://electron-vite.org">Documentation</a>
+  <a-config-provider :theme="{
+    token: {
+      colorPrimary: '#07c160',
+    },
+  }">
+    <div class="wrapper" @click="handleWechatClick" @contextmenu="handleWrapperContextMenu">
+      <WeChat @click="handleWechatClick" @contextmenu="handleWechatContextMenu" :style="{zIndex: wechatIndex}" />
+      <TaskBar />
     </div>
-    <div class="link-item link-dot">•</div>
-    <div class="link-item">
-      <a target="_blank" href="https://github.com/alex8088/electron-vite">Getting Help</a>
-    </div>
-    <div class="link-item link-dot">•</div>
-    <div class="link-item">
-      <a
-        target="_blank"
-        href="https://github.com/alex8088/quick-start/tree/master/packages/create-electron"
-      >
-        create-electron
-      </a>
-    </div>
-  </div>
-
-  <div class="features">
-    <div class="feature-item">
-      <article>
-        <h2 class="title">Configuring</h2>
-        <p class="detail">
-          Config with <span>electron.vite.config.ts</span> and refer to the
-          <a target="_blank" href="https://electron-vite.org/config">config guide</a>.
-        </p>
-      </article>
-    </div>
-    <div class="feature-item">
-      <article>
-        <h2 class="title">HMR</h2>
-        <p class="detail">
-          Edit <span>src/renderer</span> files to test HMR. See
-          <a target="_blank" href="https://electron-vite.org/guide/hmr.html">docs</a>.
-        </p>
-      </article>
-    </div>
-    <div class="feature-item">
-      <article>
-        <h2 class="title">Hot Reloading</h2>
-        <p class="detail">
-          Run <span>'electron-vite dev --watch'</span> to enable. See
-          <a target="_blank" href="https://electron-vite.org/guide/hot-reloading.html">docs</a>.
-        </p>
-      </article>
-    </div>
-    <div class="feature-item">
-      <article>
-        <h2 class="title">Debugging</h2>
-        <p class="detail">
-          Check out <span>.vscode/launch.json</span>. See
-          <a target="_blank" href="https://electron-vite.org/guide/debugging.html">docs</a>.
-        </p>
-      </article>
-    </div>
-    <div class="feature-item">
-      <article>
-        <h2 class="title">Source Code Protection</h2>
-        <p class="detail">
-          Supported via built-in plugin <span>bytecodePlugin</span>. See
-          <a target="_blank" href="https://electron-vite.org/guide/source-code-protection.html">
-            docs
-          </a>
-          .
-        </p>
-      </article>
-    </div>
-    <div class="feature-item">
-      <article>
-        <h2 class="title">Packaging</h2>
-        <p class="detail">
-          Use
-          <a target="_blank" href="https://www.electron.build">electron-builder</a>
-          and pre-configured to pack your app.
-        </p>
-      </article>
-    </div>
-  </div>
+  </a-config-provider>
 </template>
 
-<style lang="less">
-@import './assets/css/styles.less';
+<script setup>
+import { ref, watch } from "vue";
+import { useWindowFocus } from '@vueuse/core';
+import useStore from './store';
+const { useContextMenuStore, useSystemStore } = useStore();
+import WeChat from './components/WeChat.vue';
+import TaskBar from './components/layout/TaskBar/Index.vue';
+
+const windowFocused = useWindowFocus()
+watch(windowFocused, newVal => {
+  if (!newVal) {
+    // 浏览器失焦时，隐藏菜单
+    doHide()
+  }
+})
+
+const handleWechatClick = () => {
+  // 点击wechat任意位置移除系统默认右键菜单
+  doHide()
+}
+
+const handleWechatContextMenu = (e) => {
+  // 点击wechat任意位置屏蔽系统默认右键菜单
+  e.preventDefault()
+  // 如果已展示自定义菜单，则隐藏
+  doHide()
+}
+const handleWrapperContextMenu = (e) => {
+  doHide()
+}
+
+const doHide = () => {
+  useContextMenuStore.menuVisible && useContextMenuStore.hideContextMenu()
+}
+
+// 监听是否置顶Wechat
+const wechatIndex = ref('auto')
+watch(() => useSystemStore.windowState.isTop, (newVal) => {
+  wechatIndex.value = newVal ? 99 : 'auto'
+}, {
+  immediate: true,
+  deep: true,
+})
+
+const showGitee = ref(true);
+watch(() => useSystemStore.windowState.status, (newVal) => {
+  showGitee.value = newVal !== "maximize"
+}, {
+  immediate: true,
+  deep: true,
+})
+</script>
+<style scoped>
+@import url(//at.alicdn.com/t/c/font_4200334_7n3az5gz1m6.css);
+
+#app {
+  height: 100vh;
+  background: url(@/assets/bg.jpg) no-repeat center / cover;
+  overflow: hidden;
+  user-select: none;
+
+  .wrapper {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.widget {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
 </style>
