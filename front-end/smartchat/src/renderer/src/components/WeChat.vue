@@ -40,10 +40,12 @@ const wechatStyle = ref({});
 wechatStyle.value = Object.assign(
   {},
   {
-    width: `60px`,
-    height: `50px`,
-    left: `100px`,
-    top: `50px`,
+    overflow: "hidden",
+    transition: "all 0s",
+    width: "100vw",
+    height: "calc(100vh - 30px)",
+    left: "0px",
+    top: "0px",
   }
 );
 
@@ -73,17 +75,17 @@ watch(
   () => useSystemStore.windowState.status,
   (newVal, oldVal) => {
     if (newVal === "minimize") {
-      wechatStyle.value = Object.assign(
-        {},
-        {
-          overflow: "hidden",
-          transition: "all .12s cubic-bezier(0.5, 0, 0.9, 1)",
-          width: "0",
-          height: "0",
-          left: "54px",
-          bottom: "15px",
-        }
-      );
+      // wechatStyle.value = Object.assign(
+      //   {},
+      //   {
+      //     overflow: "hidden",
+      //     transition: "all .12s cubic-bezier(0.5, 0, 0.9, 1)",
+      //     width: "0",
+      //     height: "0",
+      //     left: "54px",
+      //     bottom: "15px",
+      //   }
+      // );
     } else if (newVal === "maximize") {
       wechatStyle.value = Object.assign(
         {},
@@ -97,17 +99,17 @@ watch(
         }
       );
     } else if (newVal === "closed") {
-      wechatStyle.value = Object.assign(
-        {},
-        {
-          overflow: "hidden",
-          transition: "all .12s cubic-bezier(0.5, 0, 0.9, 1)",
-          width: "0",
-          height: "0",
-          right: "90px",
-          bottom: "15px",
-        }
-      );
+      // wechatStyle.value = Object.assign(
+      //   {},
+      //   {
+      //     overflow: "hidden",
+      //     transition: "all .12s cubic-bezier(0.5, 0, 0.9, 1)",
+      //     width: "0",
+      //     height: "0",
+      //     right: "90px",
+      //     bottom: "15px",
+      //   }
+      // );
     } else {
       wechatStyle.value = Object.assign(
         {},
