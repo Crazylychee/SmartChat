@@ -1,5 +1,5 @@
 <template>
-  <div class="wechat" :style="wechatStyle">
+  <div class="wechat" >
 <!--    <ToolBar v-if="toolbarVisible" />-->
 <!--    <ListWrapper v-if="listWrapperVisible" />-->
     <ToolBar />
@@ -42,8 +42,8 @@ wechatStyle.value = Object.assign(
   {
     overflow: "hidden",
     transition: "all 0s",
-    width: "100vw",
-    height: "calc(100vh - 30px)",
+    width: "901px",
+    height: "673px",
     left: "0px",
     top: "0px",
   }
@@ -220,7 +220,9 @@ if (useAddressBookStore.addressBookList.length === 0) {
   position: fixed;
   display: flex;
   box-shadow: 0 0 4px #333;
-  width: 300px; /* 设置你想要的宽度 */
-  height: 200px; /* 设置你想要的高度 */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 </style>

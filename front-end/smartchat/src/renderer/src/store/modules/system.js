@@ -5,10 +5,10 @@ export const useSystemStore = defineStore("system", {
     return {
       activeMenu: "chat", // 当前聚焦的工具栏目
       windows: { // 窗口信息
-        top: 0,
-        left: 0,
-        width: 850,
-        height: 660,
+        top: -0.5,
+        left: -0.5,
+        width: 901,
+        height: 673,
         minWidth: 700,
         minHeight: 500,
       },

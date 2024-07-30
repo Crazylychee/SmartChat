@@ -5,6 +5,7 @@
   <link rel="icon" href="/wechat.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wechat</title>
+  <div class="draggable">Drag me to move the window</div>
   <style>
     .visual-loading-container {
       position: fixed;
@@ -72,6 +73,14 @@
         transform: rotate(1turn);
         /* 旋转1圈 */
       }
+    }
+
+    .draggable {
+      -webkit-app-region: drag;
+      width: 85%; /* 调整宽度为百分比 */
+      height: 50px;
+      background-color: lightgray;
+      margin-left: 0; /* 确保元素靠左对齐 */
     }
   </style>
 </head>

@@ -1,7 +1,7 @@
 <template>
 
     <div class="wrapper" @click="handleWechatClick" @contextmenu="handleWrapperContextMenu">
-      <WeChat @click="handleWechatClick" @contextmenu="handleWechatContextMenu" :style="{zIndex: wechatIndex}" />
+      <WeChat @click="handleWechatClick" :style="{zIndex: wechatIndex}" @contextmenu="handleWechatContextMenu" />
     </div>
 
 </template>
