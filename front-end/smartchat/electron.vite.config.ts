@@ -12,9 +12,11 @@ export default defineConfig({
   renderer: {
     resolve: {
       alias: {
-        '@/*': resolve('src/renderer/src/*')
+        // '@/*': resolve(__dirname,'src/renderer/src/*')
+        '@': resolve(__dirname, './src/renderer/src')
       }
     },
     plugins: [vue()]
   }
 })
+
