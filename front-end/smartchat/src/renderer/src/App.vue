@@ -1,14 +1,9 @@
 <template>
-  <a-config-provider :theme="{
-    token: {
-      colorPrimary: '#07c160',
-    },
-  }">
+
     <div class="wrapper" @click="handleWechatClick" @contextmenu="handleWrapperContextMenu">
-      <WeChat @click="handleWechatClick" @contextmenu="handleWechatContextMenu" :style="{zIndex: wechatIndex}" />
-      <TaskBar />
+      <WeChat @click="handleWechatClick" :style="{zIndex: wechatIndex}" @contextmenu="handleWechatContextMenu" />
     </div>
-  </a-config-provider>
+
 </template>
 
 <script setup>
