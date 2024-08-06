@@ -9,15 +9,26 @@
           v-for="(chat, index) in chatContent"
           :key="index"
         >
-          <div class="chat-time"><span>{{friendTime(chat.createTime, 'datetime')}}</span></div>
+          <div class="chat-time">
+            <span>{{friendTime(chat.createTime, 'datetime')}}</span>
+          </div>
           <div class="chat-info">
-            <img
-              v-if="chat.type !== 'send'"
-              v-lazyload="chat.avatar"
-              @click="showUserInfo"
-            />
-            <img v-else v-lazyload="useUserInfoStore?.user?.avatar" @click="showUserInfo" />
-            <p class="chat-content" @contextmenu.stop="handleContentContextmenu">{{ chat.content }}</p>
+            <img v-if="chat.type !== 'send'" v-lazyload="friendInfo.avatar" @click="showSendInfo" />
+            <img v-else v-lazyload="useUserInfoStore?.user?.avatar" @click="showUserInfo(e)" />
+            <p class="chat-content" @contextmenu.stop="handleContentContextmenu" v-if="!chat.File">{{ chat.content }}</p>
+              <p class="chat-content"  v-else> 
+          <a-tooltip :title="chat.File.name">
+            <span class="upload-name-view">{{ chat.File.name }}</span>
+          </a-tooltip>
+          <i class="wechatfont wechat-folder" ></i></p>
+            <!-- <div class="file-list-box" v-else>
+         <i class="wechatfont wechat-folder" title="发送文件"></i>
+          <a-tooltip :title="chat.File.name">
+            <span class="upload-name-view">{{ chat.File.name }}</span>
+          </a-tooltip>
+  
+         
+        </div> -->
           </div>
         </div>
       </div>
@@ -25,18 +36,42 @@
     <div class="input-box">
       <div class="input-control">
         <div>
-          <i class="wechatfont wechat-emoji" title="表情"></i>
-          <i class="wechatfont wechat-folder" title="发送文件"></i>
-          <i class="wechatfont wechat-cropping" title="截图(Alt+A)"></i>
-          <i class="wechatfont wechat-history_message" title="聊天记录"></i>
+          
+         <a-button class="file-btn"> <i class="wechatfont wechat-emoji" title="表情" @click="showDrawer"></i></a-button>
+            <a-upload
+   
+      list-type="picture"
+      :max-count="1"
+      @change="handleChange"
+     :showUploadList="false"
+    >
+      <a-button class="file-btn">
+       <i class="wechatfont wechat-folder" title="发送文件"></i>
+      </a-button>
+    </a-upload>
+        <a-button class="file-btn">  <i class="wechatfont wechat-cropping" title="截图(Alt+A)"></i></a-button>
+        <a-button class="file-btn">    <i class="wechatfont wechat-history_message" title="聊天记录"></i></a-button>
+        
         </div>
         <div>
-          <i class="wechatfont wechat-audio_chat" title="语音聊天"></i>
-          <i class="wechatfont wechat-video_chat" title="视频聊天"></i>
+            <a-button class="file-btn">   <i class="wechatfont wechat-audio_chat" title="语音聊天"></i></a-button>
+            <a-button class="file-btn"> <i class="wechatfont wechat-video_chat" title="视频聊天"></i></a-button>
+       
+         
         </div>
       </div>
       <div class="input-area">
-        <a-textarea class="scroll-no-bar" ref="input" v-model:value="inputText" placeholder="请输入" @focus="handletextareaFocus" @blur="handletextareaBlur" @pressEnter="handlePressEnter" />
+        <a-textarea
+          class="scroll-no-bar"
+          ref="input"
+          v-model:value="inputText"
+          placeholder="请输入"
+          @focus="handletextareaFocus"
+          @blur="handletextareaBlur"
+          @pressEnter="handlePressEnter"
+       
+          
+        />
       </div>
       <div class="input-btn">
         <a-tooltip placement="topRight" trigger="click">
@@ -44,6 +79,9 @@
           <button @click="sendMsg">发送(S)</button>
         </a-tooltip>
       </div>
+      <a-drawer class="drawer" title="Emojis" placement="bottom" :open="open" @close="onClose">
+ <Vue3EmojiPicker class="emoji-picker" :native="false" v-model="selectedEmoji" @select="onEmojiSelect" :hide-search="true" :hide-group-icons="true" :hide-group-names="true"/>
+  </a-drawer>
     </div>
   </template>
   <RelativeBox :visible="infoVisible" @close="infoVisible = false">
@@ -52,16 +90,17 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch, nextTick } from "vue";
-import { useFocus } from '@vueuse/core';
-import RelativeBox from "../../../components/common/RelativeBox/Index.vue";
-import UserInfo from "../../../components/common/UserInfo/Index.vue";
-import useStore from "../../../store";
-const { useChatStore, useContextMenuStore, useUserInfoStore, useRelativeBoxStore } = useStore();
-import { friendTime } from "../../../utils/utils";
-import eventBus from '../../../utils/eventBus';
+import { onMounted, ref, watch, nextTick } from 'vue'
+import { useFocus } from '@vueuse/core'
+import RelativeBox from '../../../components/common/RelativeBox/Index.vue'
+import UserInfo from '../../../components/common/UserInfo/Index.vue'
+import useStore from '../../../store'
+const { useChatStore, useContextMenuStore, useUserInfoStore, useRelativeBoxStore } = useStore()
+import { friendTime } from '../../../utils/utils'
+import eventBus from '../../../utils/eventBus'
+// import BoxEmoji from "./BoxEmoji.vue"
 
-// const chatContent = reactive([
+// const chatContent = ref([
 //   {
 //     id: 1,
 //     type: "send",
@@ -76,55 +115,67 @@ import eventBus from '../../../utils/eventBus';
 //   },
 // ]);
 
+
+
 // 点击头像展示信息
-const infoVisible = ref(false);
+const infoVisible = ref(false)
 const userInfo = ref({})
-const showUserInfo = (e) => {
-  infoVisible.value = true;
-  userInfo.value = useUserInfoStore.user;
-  useRelativeBoxStore.showBox(e.clientY, e.clientX);
+
+const showSendInfo  = (e) => {
+  infoVisible.value = true
+  userInfo.value = friendInfo.value
+  useRelativeBoxStore.showBox(e.clientY, e.clientX)
 }
+
+
+const showUserInfo = (e) => {
+  infoVisible.value = true
+    userInfo.value = useUserInfoStore.user
+  useRelativeBoxStore.showBox(e.clientY, e.clientX)
+}
+
+
 
 // 右键聊天文本
-const handleContentContextmenu = (e) => {
-  e.preventDefault();
-  const selection = window.getSelection().toString();
-  if (selection) {
-    // 如果已选择文本的情况下右键
-    // 展示小菜单：复制、多选、搜一搜
-    useContextMenuStore.showContextMenu(e.clientX, e.clientY, "chatSelectSome");
-  } else {
-    // 直接右键聊天文本
-    // 全选文本并展示大菜单：复制、翻译、转发、收藏、多选、引用、搜一搜、删除
-    const node = e.target.childNodes[0]
-    selectText(node, 0, node.length); // 选择文本
-    useContextMenuStore.showContextMenu(e.clientX, e.clientY, "chatSelectAll");
-  }
-  // 选择指定范围的文本
-  function selectText(element, start, end) {
-    var range = document.createRange(); // 创建一个 Range 对象
-    range.setStart(element, start); // 设置起始位置
-    range.setEnd(element, end); // 设置结束位置
+// const handleContentContextmenu = (e) => {
+//   e.preventDefault();
+//   const selection = window.getSelection().toString();
+//   if (selection) {
+//     // 如果已选择文本的情况下右键
+//     // 展示小菜单：复制、多选、搜一搜
+//     useContextMenuStore.showContextMenu(e.clientX, e.clientY, "chatSelectSome");
+//   } else {
+//     // 直接右键聊天文本
+//     // 全选文本并展示大菜单：复制、翻译、转发、收藏、多选、引用、搜一搜、删除
+//     const node = e.target.childNodes[0]
+//     selectText(node, 0, node.length); // 选择文本
+//     useContextMenuStore.showContextMenu(e.clientX, e.clientY, "chatSelectAll");
+//   }
+//   // 选择指定范围的文本
+//   function selectText(element, start, end) {
+//     var range = document.createRange(); // 创建一个 Range 对象
+//     range.setStart(element, start); // 设置起始位置
+//     range.setEnd(element, end); // 设置结束位置
 
-    let selection = window.getSelection(); // 获取当前选择对象
-    selection.removeAllRanges(); // 清空已有的选择范围
-    selection.addRange(range); // 添加新的选择范围
-  }
-}
+//     let selection = window.getSelection(); // 获取当前选择对象
+//     selection.removeAllRanges(); // 清空已有的选择范围
+//     selection.addRange(range); // 添加新的选择范围
+//   }
+// }
 
 const perfectScrollbarRef = ref(null)
 onMounted(() => {
-  autoScrollBottom();
+  autoScrollBottom()
   // setInterval(() => {
   //   chatContent.value.push({
   //     id: 4,
-  //     type: Math.random() > 0.5 ? "receive" : "send",
-  //     content: "132456",
-  //     createTime: "2023-08-10 12:17:12",
+  //     type: Math.random() > 0.5 ? 'receive' : 'send',
+  //     content: '132456',
+  //     createTime: '2023-08-10 12:17:12'
   //   })
-  //   autoScrollBottom();
-  // }, 1000)
-});
+  //   autoScrollBottom()
+  // }, 6000)
+})
 
 // 自动滚动至底部
 const autoScrollBottom = () => {
@@ -136,63 +187,129 @@ const autoScrollBottom = () => {
 }
 
 // 监听当聊天对象切换时，展示对应的聊天内容
-const noSelect = ref(true);
-const chatContent = ref([]);
-const input = ref();
-const { focused: inputFocus } = useFocus(input, { initialValue: true });
+const noSelect = ref(true)
+const chatContent = ref([])
+const input = ref()
+const { focused: inputFocus } = useFocus(input, { initialValue: true })
+const friendInfo = ref({})
 watch(
   () => useChatStore.activeChat,
   (newVal) => {
-    noSelect.value = !newVal;
-    inputFocus.value = true;
+    noSelect.value = !newVal
+    inputFocus.value = true
     if (newVal) {
+      //   console.log(newVal,"newVal")
+      //   console.log(useChatStore.chatInfos[newVal])
+      //   console.log(chatContent.value)
       chatContent.value = useChatStore.chatInfos[newVal]
+      const findChatByFriendId = (friendId) => {
+  for (const chat of useChatStore.chatList) {
+    if (chat.friendId === friendId) {
+      return chat; // 如果找到匹配的 friendId，返回该对象
     }
-    autoScrollBottom();
+  }
+  return null; // 如果没有找到，返回 null
+};
+ friendInfo.value = findChatByFriendId(newVal);
+    }
+    autoScrollBottom()
   },
   {
     immediate: true,
-    deep: true,
+    deep: true
   }
-);
+)
 
-// 监听输入框聚焦失焦，方便ctrl+enter快捷发送信息
-const handletextareaFocus = () => {
-  useChatStore.isFocusSendArea = true;
-}
-const handletextareaBlur = () => {
-  useChatStore.isFocusSendArea = false;
-}
+// // 监听输入框聚焦失焦，方便ctrl+enter快捷发送信息
+// const handletextareaFocus = () => {
+//   useChatStore.isFocusSendArea = true;
+// }
+// const handletextareaBlur = () => {
+//   useChatStore.isFocusSendArea = false;
+// }
 
 // 发送聊天信息
-const inputText = ref("");
+const inputText = ref('')
 const sendMsg = () => {
   if (!inputText.value) {
-    return;
+    return
   }
   // 将文本添加至聊天记录
   useChatStore.sendChatMsg(useChatStore.activeChat, inputText.value)
   // 将聊天前移
-  useChatStore.forwardChat(useChatStore.activeChat, inputText.value);
+  useChatStore.forwardChat(useChatStore.activeChat, inputText.value)
   // 清空输入框
-  inputText.value = "";
+  inputText.value = ''
   // 聊天记录自动滚动到底部
-  autoScrollBottom();
-};
-
-const handlePressEnter = (e) => {
-  if (!e.ctrlKey && useChatStore.sendMethods === "enter") {
-    e.preventDefault();
-    sendMsg();
-  }
+  autoScrollBottom()
 }
 
-eventBus.on("sendMsgEvent", () => {
-  sendMsg();
-});
+//发送文件
+// const fileList = ref([]);
+
+    const handleChange =(file)=>{
+     const currentFile = file.file;
+  
+      if(!currentFile){
+        return;
+      }
+
+   if( currentFile.status === 'error') {
+   
+ // 将文件添加至聊天记录
+  useChatStore.sendChatMsg(useChatStore.activeChat, currentFile)
+  // 将聊天前移
+  useChatStore.forwardChat(useChatStore.activeChat, currentFile)
+  // 聊天记录自动滚动到底部
+  autoScrollBottom()
+   }
+ 
+    }
+//表情包
+const open = ref(false);
+
+const showDrawer = () => {
+  open.value = true;
+};
+const onClose = () => {
+  open.value = false;
+};
+    function handletextareaBlur(event) {
+      // 更新文本区域内容
+      const currentText = event.target.value;
+      console.log(event.target.value);
+      inputText.value = currentText;
+    }
+    function onEmojiSelect(emoji) {
+      console.log(emoji);
+      // 当用户选择emoji时，将其插入到textarea中
+      if (emoji) {
+         const text = inputText.value;
+            const {i} = emoji
+        inputText.value = `${text}${i}`;
+      }
+      onClose();
+    }
+
+
+// const handlePressEnter = (e) => {
+//   if (!e.ctrlKey && useChatStore.sendMethods === "enter") {
+//     e.preventDefault();
+//     sendMsg();
+//   }
+// }
+
+
+// eventBus.on("sendMsgEvent", () => {
+//   sendMsg();
+// });
 </script>
 
 <style lang="less" scoped>
+.ps {
+  height: 400px;
+}
+
 .chat-box {
   flex: 1;
   padding: 20px 30px;
@@ -239,7 +356,7 @@ eventBus.on("sendMsgEvent", () => {
         user-select: text;
 
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           width: 0;
           height: 0;
@@ -307,7 +424,9 @@ eventBus.on("sendMsgEvent", () => {
     height: 36px;
     line-height: 36px;
     padding: 0 18px;
-
+   div{
+     display: flex;
+   }
     i {
       font-size: 22px;
       margin: 0 6px;
@@ -356,5 +475,13 @@ eventBus.on("sendMsgEvent", () => {
       }
     }
   }
+}
+.file-btn{
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  background-color: transparent;
 }
 </style>

@@ -25,7 +25,7 @@ export const useSystemStore = defineStore("system", {
     };
   },
   persist: {
-    enabled: true,
+    // enabled: true,
     strategies: [
       {
         storage: localStorage,

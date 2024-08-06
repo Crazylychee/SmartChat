@@ -9,6 +9,7 @@
         @click="handleChatClick(chat)"
         @contextmenu.stop="e => rightClicked(e, chat)"
       >
+      
         <a-badge :count="chat.unReadCount || 0" title="">
           <img :src="chat.avatar" alt="" class="chat-avatar" />
         </a-badge>
@@ -56,8 +57,11 @@ const rightClicked = (e, chat) => {
 };
 
 const chatLists = computed(() => {
+  // console.log(useChatStore.chatList);
   let chatList = [...useChatStore.chatList.filter(chat => chat.isTop), ...useChatStore.chatList.filter(chat => !chat.isTop)]
-  return chatList.filter(chat => chat.name.indexOf(useSystemStore.listSearchText) >= 0)
+  let result = chatList.filter(chat => chat.name.indexOf(useSystemStore.listSearchText) >= 0);
+  // console.log(result,result);
+  return result;
 })
 </script>
 

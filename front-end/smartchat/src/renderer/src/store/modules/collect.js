@@ -102,7 +102,7 @@ export const useCollectStore = defineStore("collect", {
   //   deleteChat() {},
   // },
   persist: {
-    enabled: true,
+    // enabled: true,
     strategies: [
       {
         storage: localStorage,

@@ -1,7 +1,6 @@
 <template>
   <div class="chat">
     <BoxHeader />
-
     <BoxLocked v-if="useSystemStore.isLocked" />
     <BoxLoading v-else-if="useSystemStore.isLoading" />
     <BoxChat v-else-if="useSystemStore.activeMenu === 'chat'" />

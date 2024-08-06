@@ -2,6 +2,7 @@
 
     <div class="wrapper" @click="handleWechatClick" @contextmenu="handleWrapperContextMenu">
       <WeChat @click="handleWechatClick" :style="{zIndex: wechatIndex}" @contextmenu="handleWechatContextMenu" />
+<!-- <Edit/> -->
     </div>
 
 </template>
@@ -13,6 +14,8 @@ import useStore from './store';
 const { useContextMenuStore, useSystemStore } = useStore();
 import WeChat from './components/WeChat.vue';
 import TaskBar from './components/layout/TaskBar/Index.vue';
+import Edit from './components/Edit.vue'
+
 
 const windowFocused = useWindowFocus()
 watch(windowFocused, newVal => {

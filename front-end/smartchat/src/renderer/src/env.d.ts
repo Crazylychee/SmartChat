@@ -1,3 +1,5 @@
+import EmojiPicker from 'vue3-emoji-picker'
+import 'vue3-emoji-picker/css'
 /// <reference types="vite/client" />
 
 declare module '*.vue' {
