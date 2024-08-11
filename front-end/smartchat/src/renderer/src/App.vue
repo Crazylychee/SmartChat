@@ -10,6 +10,7 @@
 </template>
 
 <script setup>
+
 import TurmsClient from 'turms-client-js'
 import DeviceType from 'turms-client-js'
 import { ref, watch } from 'vue'
