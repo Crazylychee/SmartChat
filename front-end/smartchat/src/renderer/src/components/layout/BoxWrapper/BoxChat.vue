@@ -10,17 +10,24 @@
           :key="index"
         >
           <div class="chat-time">
-            <span>{{friendTime(chat.createTime, 'datetime')}}</span>
+            <span>{{ friendTime(chat.createTime, 'datetime') }}</span>
           </div>
           <div class="chat-info">
             <img v-if="chat.type !== 'send'" v-lazyload="friendInfo.avatar" @click="showSendInfo" />
             <img v-else v-lazyload="useUserInfoStore?.user?.avatar" @click="showUserInfo(e)" />
-            <p class="chat-content" @contextmenu.stop="handleContentContextmenu" v-if="!chat.File">{{ chat.content }}</p>
-              <p class="chat-content"  v-else> 
-          <a-tooltip :title="chat.File.name">
-            <span class="upload-name-view">{{ chat.File.name }}</span>
-          </a-tooltip>
-          <i class="wechatfont wechat-folder" ></i></p>
+            <p class="chat-content" @contextmenu.stop="handleContentContextmenu" v-if="!chat.File">
+              {{ chat.content }}
+            </p>
+            <!-- <p class="chat-image" v-else-if="chat.base64Url">
+              <img src="chat.base64Url?chat.base64Url:''" alt="">
+            </p> -->
+            <p class="chat-content" v-else>
+              <a-tooltip :title="chat.File.name">
+                <span class="upload-name-view">{{ chat.File.name }}</span>
+              </a-tooltip>
+              <i class="wechatfont wechat-folder"></i>
+            </p>
+            
             <!-- <div class="file-list-box" v-else>
          <i class="wechatfont wechat-folder" title="发送文件"></i>
           <a-tooltip :title="chat.File.name">
@@ -36,28 +43,34 @@
     <div class="input-box">
       <div class="input-control">
         <div>
-          
-         <a-button class="file-btn"> <i class="wechatfont wechat-emoji" title="表情" @click="showDrawer"></i></a-button>
-            <a-upload
-   
-      list-type="picture"
-      :max-count="1"
-      @change="handleChange"
-     :showUploadList="false"
-    >
-      <a-button class="file-btn">
-       <i class="wechatfont wechat-folder" title="发送文件"></i>
-      </a-button>
-    </a-upload>
-        <a-button class="file-btn">  <i class="wechatfont wechat-cropping" title="截图(Alt+A)"></i></a-button>
-        <a-button class="file-btn">    <i class="wechatfont wechat-history_message" title="聊天记录"></i></a-button>
-        
+          <a-button class="file-btn">
+            <i class="wechatfont wechat-emoji" title="表情" @click="showDrawer"></i
+          ></a-button>
+          <a-upload
+            accept="image/*,text/*,application/*"
+            list-type="picture"
+            :max-count="1"
+            @change="handleChange"
+            :showUploadList="false"
+          >
+            <a-button class="file-btn">
+              <i class="wechatfont wechat-folder" title="发送文件"></i>
+            </a-button>
+          </a-upload>
+          <a-button class="file-btn">
+            <i class="wechatfont wechat-cropping" title="截图(Alt+A)"></i
+          ></a-button>
+          <a-button class="file-btn">
+            <i class="wechatfont wechat-history_message" title="聊天记录"></i
+          ></a-button>
         </div>
         <div>
-            <a-button class="file-btn">   <i class="wechatfont wechat-audio_chat" title="语音聊天"></i></a-button>
-            <a-button class="file-btn"> <i class="wechatfont wechat-video_chat" title="视频聊天"></i></a-button>
-       
-         
+          <a-button class="file-btn">
+            <i class="wechatfont wechat-audio_chat" title="语音聊天"></i
+          ></a-button>
+          <a-button class="file-btn">
+            <i class="wechatfont wechat-video_chat" title="视频聊天"></i
+          ></a-button>
         </div>
       </div>
       <div class="input-area">
@@ -69,8 +82,6 @@
           @focus="handletextareaFocus"
           @blur="handletextareaBlur"
           @pressEnter="handlePressEnter"
-       
-          
         />
       </div>
       <div class="input-btn">
@@ -80,8 +91,16 @@
         </a-tooltip>
       </div>
       <a-drawer class="drawer" title="Emojis" placement="bottom" :open="open" @close="onClose">
- <Vue3EmojiPicker class="emoji-picker" :native="false" v-model="selectedEmoji" @select="onEmojiSelect" :hide-search="true" :hide-group-icons="true" :hide-group-names="true"/>
-  </a-drawer>
+        <Vue3EmojiPicker
+          class="emoji-picker"
+          :native="false"
+          v-model="selectedEmoji"
+          @select="onEmojiSelect"
+          :hide-search="true"
+          :hide-group-icons="true"
+          :hide-group-names="true"
+        />
+      </a-drawer>
     </div>
   </template>
   <RelativeBox :visible="infoVisible" @close="infoVisible = false">
@@ -115,26 +134,21 @@ import eventBus from '../../../utils/eventBus'
 //   },
 // ]);
 
-
-
 // 点击头像展示信息
 const infoVisible = ref(false)
 const userInfo = ref({})
 
-const showSendInfo  = (e) => {
+const showSendInfo = (e) => {
   infoVisible.value = true
   userInfo.value = friendInfo.value
   useRelativeBoxStore.showBox(e.clientY, e.clientX)
 }
 
-
 const showUserInfo = (e) => {
   infoVisible.value = true
-    userInfo.value = useUserInfoStore.user
+  userInfo.value = useUserInfoStore.user
   useRelativeBoxStore.showBox(e.clientY, e.clientX)
 }
-
-
 
 // 右键聊天文本
 // const handleContentContextmenu = (e) => {
@@ -203,14 +217,14 @@ watch(
       //   console.log(chatContent.value)
       chatContent.value = useChatStore.chatInfos[newVal]
       const findChatByFriendId = (friendId) => {
-  for (const chat of useChatStore.chatList) {
-    if (chat.friendId === friendId) {
-      return chat; // 如果找到匹配的 friendId，返回该对象
-    }
-  }
-  return null; // 如果没有找到，返回 null
-};
- friendInfo.value = findChatByFriendId(newVal);
+        for (const chat of useChatStore.chatList) {
+          if (chat.friendId === friendId) {
+            return chat // 如果找到匹配的 friendId，返回该对象
+          }
+        }
+        return null // 如果没有找到，返回 null
+      }
+      friendInfo.value = findChatByFriendId(newVal)
     }
     autoScrollBottom()
   },
@@ -245,52 +259,48 @@ const sendMsg = () => {
 }
 
 //发送文件
-// const fileList = ref([]);
+let count = 0
 
-    const handleChange =(file)=>{
-     const currentFile = file.file;
-  
-      if(!currentFile){
-        return;
-      }
+const handleChange = (file) => {
+  if (!file.file) {
+    return
+  }
 
-   if( currentFile.status === 'error') {
-   
- // 将文件添加至聊天记录
-  useChatStore.sendChatMsg(useChatStore.activeChat, currentFile)
-  // 将聊天前移
-  useChatStore.forwardChat(useChatStore.activeChat, currentFile)
-  // 聊天记录自动滚动到底部
-  autoScrollBottom()
-   }
- 
-    }
+  if (file.file.status === 'error') {
+    console.log(count++)
+    // 将文件添加至聊天记录
+    useChatStore.sendChatMsg(useChatStore.activeChat, file.file)
+    // 将聊天前移
+    useChatStore.forwardChat(useChatStore.activeChat, file.file)
+    // 聊天记录自动滚动到底部
+    autoScrollBottom()
+  }
+}
 //表情包
-const open = ref(false);
+const open = ref(false)
 
 const showDrawer = () => {
-  open.value = true;
-};
+  open.value = true
+}
 const onClose = () => {
-  open.value = false;
-};
-    function handletextareaBlur(event) {
-      // 更新文本区域内容
-      const currentText = event.target.value;
-      console.log(event.target.value);
-      inputText.value = currentText;
-    }
-    function onEmojiSelect(emoji) {
-      console.log(emoji);
-      // 当用户选择emoji时，将其插入到textarea中
-      if (emoji) {
-         const text = inputText.value;
-            const {i} = emoji
-        inputText.value = `${text}${i}`;
-      }
-      onClose();
-    }
-
+  open.value = false
+}
+function handletextareaBlur(event) {
+  // 更新文本区域内容
+  const currentText = event.target.value
+  console.log(event.target.value)
+  inputText.value = currentText
+}
+function onEmojiSelect(emoji) {
+  console.log(emoji)
+  // 当用户选择emoji时，将其插入到textarea中
+  if (emoji) {
+    const text = inputText.value
+    const { i } = emoji
+    inputText.value = `${text}${i}`
+  }
+  onClose()
+}
 
 // const handlePressEnter = (e) => {
 //   if (!e.ctrlKey && useChatStore.sendMethods === "enter") {
@@ -298,7 +308,6 @@ const onClose = () => {
 //     sendMsg();
 //   }
 // }
-
 
 // eventBus.on("sendMsgEvent", () => {
 //   sendMsg();
@@ -424,9 +433,9 @@ const onClose = () => {
     height: 36px;
     line-height: 36px;
     padding: 0 18px;
-   div{
-     display: flex;
-   }
+    div {
+      display: flex;
+    }
     i {
       font-size: 22px;
       margin: 0 6px;
@@ -476,7 +485,7 @@ const onClose = () => {
     }
   }
 }
-.file-btn{
+.file-btn {
   border: none;
   display: flex;
   align-items: center;

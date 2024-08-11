@@ -1,8 +1,8 @@
 <template>
 
     <div class="wrapper" @click="handleWechatClick" @contextmenu="handleWrapperContextMenu">
-      <WeChat @click="handleWechatClick" :style="{zIndex: wechatIndex}" @contextmenu="handleWechatContextMenu" />
-<!-- <Edit/> -->
+      <!-- <WeChat @click="handleWechatClick" :style="{zIndex: wechatIndex}" @contextmenu="handleWechatContextMenu" /> -->
+<Edit/>
     </div>
 
 </template>

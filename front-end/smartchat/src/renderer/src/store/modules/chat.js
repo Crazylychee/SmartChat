@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import dayjs from "dayjs";
 import { guid } from "../../utils/utils";
+import { message } from 'ant-design-vue';
+
 
 export const useChatStore = defineStore("chat", {
   state: () => {
@@ -10,8 +12,8 @@ export const useChatStore = defineStore("chat", {
           "id": 1,
           "friendId": "user123",
           "name": "张三",
-          "phone":"wevDvi67",
-          "address":"广州深圳",
+          "phone": "wevDvi67",
+          "address": "广州深圳",
           "avatar": "https://gd-hbimg.huaban.com/031f5d3bd63f279dad59f01c60a55c663f2a697b1717d-WCfqyf_fw480webp",
           "lastChatTime": "2024-08-02T15:20:00Z",
           "lastChatContent": "你好，很高兴认识你！",
@@ -57,87 +59,82 @@ export const useChatStore = defineStore("chat", {
           "isGroup": false
         }
       ], // 聊天列表
-      chatInfos: 
-       
-        {
-          "user123": [
-            {
-              id: 1,
-              type: "send",
-              content: "你是谁",
-              createTime: "2023-08-10 12:12:12",
-            },
-            {
-              id: 2,
-              type: "receive",
-              content: "我是Vite",
-              createTime: "2023-08-10 12:15:12",
-            },
-            {
-              id: 3,
-              type: "send",
-              content: "你是谁",
-              createTime: "2023-08-10 12:12:12",
-            },
-            {
-              id: 4,
-              type: "receive",
-              content: "我是Vite",
-              createTime: "2023-08-10 12:15:12",
-            },
-            {
-              id: 5,
-              type: "send",
-              content: "你是谁",
-              createTime: "2023-08-10 12:12:12",
-            },
-            {
-              id: 6,
-              type: "receive",
-              content: "最新信息",
-              createTime: "2023-08-10 12:15:12",
-            },
-          ],
-          "user124": [
-            {
-              id: 1,
-              type: "send",
-              content: "很高兴认识你",
-              createTime: "2023-08-10 12:12:12",
-            },
-            {
-              id: 2,
-              type: "receive",
-              content: "我也是！",
-            }
-          ],
-          "user125": [
-            {
-              id: 1,
-              type: "send",
-              content: "大家好",
-              createTime: "2023-08-10 12:12:12",
-            },
-            {
-              id: 2,
-              type: "receive",
-              content: "大家好",
-            }
-          ],
-          "user126": [
-            {
-              id: 1,
-              type: "send",
-              content: "你好",
-              createTime: "2023-08-10 12:12:12",  
-            }
-              
-            
-          ]
-         
-        
+      chatInfos:
+      {
+        "user123": [
+          {
+            id: 1,
+            type: "send",
+            content: "你是谁",
+            createTime: "2023-08-10 12:12:12",
+          },
+          {
+            id: 2,
+            type: "receive",
+            content: "我是Vite",
+            createTime: "2023-08-10 12:15:12",
+          },
+          {
+            id: 3,
+            type: "send",
+            content: "你是谁",
+            createTime: "2023-08-10 12:12:12",
+          },
+          {
+            id: 4,
+            type: "receive",
+            content: "我是Vite",
+            createTime: "2023-08-10 12:15:12",
+          },
+          {
+            id: 5,
+            type: "send",
+            content: "你是谁",
+            createTime: "2023-08-10 12:12:12",
+          },
+          {
+            id: 6,
+            type: "receive",
+            content: "最新信息",
+            createTime: "2023-08-10 12:15:12",
+          },
+        ],
+        "user124": [
+          {
+            id: 1,
+            type: "send",
+            content: "很高兴认识你",
+            createTime: "2023-08-10 12:12:12",
+          },
+          {
+            id: 2,
+            type: "receive",
+            content: "我也是！",
+          }
+        ],
+      "user125": [
+  {
+    id: 1,
+    type: "send",
+    content: "大家好",
+    createTime: "2023-08-10 12:12:12",
+  },
+  {
+    id: 2,
+    type: "receive",
+    content: "大家好",
+  }
+],
+  "user126": [
+    {
+      id: 1,
+      type: "send",
+      content: "你好",
+      createTime: "2023-08-10 12:12:12",
+    }
+  ]
       },
-       // 聊天记录
+      // 聊天记录
       activeChat: "", // 当前聚焦的聊天对象id
       isFocusSendArea: false,
       sendMethods: 'enter', // 发送消息方式
@@ -155,9 +152,7 @@ export const useChatStore = defineStore("chat", {
         avatar: '',
       })
     },
-    editChat() {
-
-    },
+    editChat() { },
     deleteChat() { },
     /**
      * 将文本添加至聊天记录
@@ -165,18 +160,53 @@ export const useChatStore = defineStore("chat", {
      * @param {string} content 发送的信息
      */
     sendChatMsg(activeChat, content) {
-   console.log(content, 'content')
-      if (content.uid){
-        console.log(this.chatInfos[activeChat], 'this.chatInfos[activeChat]')
-      
-        this.chatInfos[activeChat].push({
-          id: guid(),
-          type: "send",
-          File: content,
-          createTime: dayjs().format("YYYY-MM-DD HH:mm:ss"),
-        });
-        console.log(this.chatInfos[activeChat], 'this.chatInfos[activeChat]')
-      }else{
+      console.log(content, 'content')
+      if (content.uid) {
+        const typeStart = content.type.toLowerCase()
+         if (typeStart.startsWith('image/')) {
+          message.error('图片！');
+          //转化图片地址base64
+          const getBase64 = (file) => {
+            return new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.readAsDataURL(file);
+              reader.onload = () => resolve(reader.result);
+              reader.onerror = error => reject(error);
+            });
+          }
+
+          const that = this;
+          async function setBase64Url(file) {
+            try {
+              const base64Url = await getBase64(file);
+              // 由于使用了 await，base64Url 现在包含了结果
+              console.log(base64Url);
+              that.chatInfos[activeChat].push({
+                id: guid(),
+                type: "send",
+                File: content,
+                base64Url: base64Url,
+                createTime: dayjs().format("YYYY-MM-DD HH:mm:ss"),
+              });
+            } catch (error) {
+              console.error('Error converting file to base64 URL:', error);
+            }
+          }
+
+          // 调用异步函数
+          setBase64Url(content.originFileObj);
+
+
+
+        } else{
+           this.chatInfos[activeChat].push({
+             id: guid(),
+             type: "send",
+             File: content,
+             createTime: dayjs().format("YYYY-MM-DD HH:mm:ss"),
+           });
+        }
+      } else {
         this.chatInfos[activeChat].push({
           id: guid(),
           type: "send",
@@ -184,7 +214,7 @@ export const useChatStore = defineStore("chat", {
           createTime: dayjs().format("YYYY-MM-DD HH:mm:ss"),
         });
       }
-   
+      console.log(this.chatInfos[activeChat], 'this.chatInfos[activeChat]')
     },
     /**
      * 将聊天前移
@@ -208,3 +238,5 @@ export const useChatStore = defineStore("chat", {
     ],
   },
 });
+
+
