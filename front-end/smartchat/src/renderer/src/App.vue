@@ -1,24 +1,47 @@
 <template>
-
-    <div class="wrapper" @click="handleWechatClick" @contextmenu="handleWrapperContextMenu">
-      <!-- <WeChat @click="handleWechatClick" :style="{zIndex: wechatIndex}" @contextmenu="handleWechatContextMenu" /> -->
-<Edit/>
-    </div>
-
+  <div class="wrapper" @click="handleWechatClick" @contextmenu="handleWrapperContextMenu">
+    <WeChat
+      @click="handleWechatClick"
+      :style="{ zIndex: wechatIndex }"
+      @contextmenu="handleWechatContextMenu"
+    />
+    <!-- <Edit/> -->
+  </div>
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
-import { useWindowFocus } from '@vueuse/core';
-import useStore from './store';
-const { useContextMenuStore, useSystemStore } = useStore();
-import WeChat from './components/WeChat.vue';
-import TaskBar from './components/layout/TaskBar/Index.vue';
-import Edit from './components/Edit.vue'
+import TurmsClient from 'turms-client-js'
+import DeviceType from 'turms-client-js'
+import { ref, watch } from 'vue'
+import { useWindowFocus } from '@vueuse/core'
+import useStore from '@/store'
 
+const { useContextMenuStore, useSystemStore } = useStore()
+import WeChat from '@/components/WeChat.vue'
+import TaskBar from './components/layout/TaskBar/Index.vue'
+import Edit from './components/Edit.vue'
+///////////////////////////////////////////////
+// On the first tab of the same origin
+// The client will create a new WebSocket connection
+const client = new TurmsClient({
+  wsUrl: 'ws://47.113.224.195:31115',
+  connectionTimeout: 10000,
+  requestTimeout: 5000,
+  minRequestInterval: 100,
+  heartbeatInterval: 30000,
+  useSharedContext: false
+});
+client.userService.login({
+  userId: 1,
+  password: "123",
+  deviceType: DeviceType.BROWSER
+});
+
+
+//////////////////////////////////////////////
 
 const windowFocused = useWindowFocus()
-watch(windowFocused, newVal => {
+watch(windowFocused, (newVal) => {
   if (!newVal) {
     // 浏览器失焦时，隐藏菜单
     doHide()
@@ -46,20 +69,28 @@ const doHide = () => {
 
 // 监听是否置顶Wechat
 const wechatIndex = ref('auto')
-watch(() => useSystemStore.windowState.isTop, (newVal) => {
-  wechatIndex.value = newVal ? 99 : 'auto'
-}, {
-  immediate: true,
-  deep: true,
-})
+watch(
+  () => useSystemStore.windowState.isTop,
+  (newVal) => {
+    wechatIndex.value = newVal ? 99 : 'auto'
+  },
+  {
+    immediate: true,
+    deep: true
+  }
+)
 
-const showGitee = ref(true);
-watch(() => useSystemStore.windowState.status, (newVal) => {
-  showGitee.value = newVal !== "maximize"
-}, {
-  immediate: true,
-  deep: true,
-})
+const showGitee = ref(true)
+watch(
+  () => useSystemStore.windowState.status,
+  (newVal) => {
+    showGitee.value = newVal !== 'maximize'
+  },
+  {
+    immediate: true,
+    deep: true
+  }
+)
 </script>
 <style scoped>
 @import url(//at.alicdn.com/t/c/font_4200334_7n3az5gz1m6.css);

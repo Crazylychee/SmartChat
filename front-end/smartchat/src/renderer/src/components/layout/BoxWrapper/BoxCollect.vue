@@ -1,8 +1,13 @@
 <template>
   <perfect-scrollbar v-if="useCollectStore.collectList.length">
     <div class="collect-box">
-      <div class="collect-item" v-for="collect in useCollectStore.collectList" :key="collect.id"
-        @click="collectClick(collect)" @contextmenu.stop="rightClicked">
+      <div
+        class="collect-item"
+        v-for="collect in useCollectStore.collectList"
+        :key="collect.id"
+        @click="collectClick(collect)"
+        @contextmenu.stop="rightClicked"
+      >
         <div class="collect-info">
           <div>
             <p class="title">{{ collect.title }}</p>
@@ -25,31 +30,29 @@
 </template>
 
 <script setup>
-import { getCollectList } from "../../../api/manage";
-import useStore from "../../../store";
-const { useCollectStore, useContextMenuStore } = useStore();
-import BoxNoMore from "./BoxNoMore.vue"
+import { getCollectList } from '../../../api/manage'
+import useStore from '../../../store'
+const { useCollectStore, useContextMenuStore } = useStore()
+import BoxNoMore from './BoxNoMore.vue'
 
 if (useCollectStore.collectList.length === 0) {
   // 如果已经初始化过，就不重新渲染了
   getCollectList().then((res) => {
-    const { data } = res.data;
-    if (data.length == 0) return;
+    const { data } = res.data
+    if (data.length == 0) return
 
     // 初始化收藏列表
-    useCollectStore.collectList = data;
+    useCollectStore.collectList = data
   })
 }
 
 // 点击单个收藏
-const collectClick = (collect) => {
-
-}
+const collectClick = (collect) => {}
 
 // 点击右键，展示自定义菜单
 const rightClicked = (e) => {
-  e.preventDefault();
-  useContextMenuStore.showContextMenu(e.clientX, e.clientY, "collect");
+  e.preventDefault()
+  useContextMenuStore.showContextMenu(e.clientX, e.clientY, 'collect')
 }
 </script>
 
@@ -64,7 +67,7 @@ const rightClicked = (e) => {
     padding: 16px 18px;
 
     &:active {
-      background-color: #E6E6E6;
+      background-color: #e6e6e6;
     }
 
     .collect-info {

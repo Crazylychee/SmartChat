@@ -2,12 +2,8 @@
   <div class="set-files">
     <div class="config">
       <WeLabel label="文件设置" label-width="80">
-        <a-checkbox v-model:checked="formState.checked1"
-          >开启文件自动下载（200MB以内）</a-checkbox
-        >
-        <a-checkbox v-model:checked="formState.checked2"
-          >以只读的方式打开聊天中的文件</a-checkbox
-        >
+        <a-checkbox v-model:checked="formState.checked1">开启文件自动下载（200MB以内）</a-checkbox>
+        <a-checkbox v-model:checked="formState.checked2">以只读的方式打开聊天中的文件</a-checkbox>
         <p>开启后，可保护聊天中的文件不被修改。</p>
       </WeLabel>
       <WeLabel label="文件管理" label-width="80" style="margin-top: 12px">
@@ -21,25 +17,25 @@
 </template>
 
 <script setup>
-import { toast } from "../../../../utils/feedback";
+import { toast } from '../../../../utils/feedback'
 
-import { reactive } from "vue";
+import { reactive } from 'vue'
 const formState = reactive({
   checked1: true,
-  checked2: false,
-});
+  checked2: false
+})
 
 const handleChangeSavePosition = () => {
   toast({
-    content: "更改",
-  });
-};
+    content: '更改'
+  })
+}
 
 const handleOpenFolder = () => {
   toast({
-    content: "打开文件夹",
-  });
-};
+    content: '打开文件夹'
+  })
+}
 </script>
 
 <style lang="less" scoped>

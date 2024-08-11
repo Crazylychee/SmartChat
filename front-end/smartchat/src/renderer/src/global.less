@@ -60,7 +60,9 @@ img {
   mask-size: 100% 20000px;
   -webkit-mask-position: left bottom;
   mask-position: left bottom;
-  transition: mask-position 0.3s, -webkit-mask-position 0.3s;
+  transition:
+    mask-position 0.3s,
+    -webkit-mask-position 0.3s;
 
   &:hover {
     -webkit-mask-position: left top;
@@ -73,10 +75,17 @@ img {
   overflow-y: hidden;
 }
 
-.ps .ps__rail-x:hover, .ps .ps__rail-y:hover, .ps .ps__rail-x:focus, .ps .ps__rail-y:focus, .ps .ps__rail-x.ps--clicking, .ps .ps__rail-y.ps--clicking {
+.ps .ps__rail-x:hover,
+.ps .ps__rail-y:hover,
+.ps .ps__rail-x:focus,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-x.ps--clicking,
+.ps .ps__rail-y.ps--clicking {
   background-color: transparent !important;
 }
 
-.ps__rail-y:hover > .ps__thumb-y, .ps__rail-y:focus > .ps__thumb-y, .ps__rail-y.ps--clicking .ps__thumb-y {
+.ps__rail-y:hover > .ps__thumb-y,
+.ps__rail-y:focus > .ps__thumb-y,
+.ps__rail-y.ps--clicking .ps__thumb-y {
   width: 8px !important;
 }

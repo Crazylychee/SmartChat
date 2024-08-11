@@ -3,19 +3,11 @@
     <div class="box" :class="{ fade: visible }" :style="style">
       <div class="header" ref="el">
         <div class="header-left">设置</div>
-        <i
-          class="wechatfont wechat-close"
-          title="关闭"
-          @click.stop="emit('close')"
-        ></i>
+        <i class="wechatfont wechat-close" title="关闭" @click.stop="emit('close')"></i>
       </div>
       <div class="setting-wrapper">
         <a-tabs v-model:activeKey="activeKey" tab-position="left" animated>
-          <a-tab-pane
-            :tab="comp.label"
-            v-for="comp in compLists"
-            :key="comp.label"
-          >
+          <a-tab-pane :tab="comp.label" v-for="comp in compLists" :key="comp.label">
             <component :is="comp.value" />
           </a-tab-pane>
         </a-tabs>
@@ -25,59 +17,59 @@
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
-import { useDraggable } from "@vueuse/core";
-import SetAccount from "./SetAccount.vue";
-import SetMessage from "./SetMessage.vue";
-import SetCommon from "./SetCommon.vue";
-import SetFiles from "./SetFiles.vue";
-import SetShortcutKeys from "./SetShortcutKeys.vue";
-import About from "./About.vue";
+import { reactive, ref } from 'vue'
+import { useDraggable } from '@vueuse/core'
+import SetAccount from './SetAccount.vue'
+import SetMessage from './SetMessage.vue'
+import SetCommon from './SetCommon.vue'
+import SetFiles from './SetFiles.vue'
+import SetShortcutKeys from './SetShortcutKeys.vue'
+import About from './About.vue'
 
-const emit = defineEmits();
+const emit = defineEmits()
 const props = defineProps({
   visible: {
     type: Boolean,
-    default: true,
-  },
-});
+    default: true
+  }
+})
 
-const el = ref();
+const el = ref()
 const { x, y, style } = useDraggable(el, {
   initialValue: {
     x: window.innerWidth / 2 - 275,
-    y: window.innerHeight / 2 - 235,
-  },
-});
+    y: window.innerHeight / 2 - 235
+  }
+})
 
 const compLists = reactive([
   {
     value: SetAccount,
-    label: "账号设置",
+    label: '账号设置'
   },
   {
     value: SetMessage,
-    label: "消息通知",
+    label: '消息通知'
   },
   {
     value: SetCommon,
-    label: "通用设置",
+    label: '通用设置'
   },
   {
     value: SetFiles,
-    label: "文件设置",
+    label: '文件设置'
   },
   {
     value: SetShortcutKeys,
-    label: "快捷键",
+    label: '快捷键'
   },
   {
     value: About,
-    label: "关于微信",
-  },
-]);
+    label: '关于微信'
+  }
+])
 
-const activeKey = ref("账号设置");
+const activeKey = ref('账号设置')
 </script>
 
 <style lang="less" scoped>

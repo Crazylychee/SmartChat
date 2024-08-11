@@ -24,27 +24,23 @@
 </template>
 
 <script setup>
-import { friendTime } from "@/utils/utils";
-import useStore from "../../../store";
-const {
-  useChatStore,
-  useSystemStore,
-  useContextMenuStore,
-} = useStore();
+import { friendTime } from '@/utils/utils'
+import useStore from '../../../store'
+const { useChatStore, useSystemStore, useContextMenuStore } = useStore()
 
 // 点击聊天列表
 const handleChatClick = (chat) => {
   // 展示聊天内容
-  useChatStore.activeChat = chat.friendId;
+  useChatStore.activeChat = chat.friendId
   // 展示聊天标题
-  useSystemStore.boxTitleText = chat.name;
-};
+  useSystemStore.boxTitleText = chat.name
+}
 
 // 点击右键展示自定义菜单
 const rightClicked = (e, chat) => {
-  e.preventDefault();
-  useContextMenuStore.showContextMenu(e.clientX, e.clientY, "chat", chat);
-};
+  e.preventDefault()
+  useContextMenuStore.showContextMenu(e.clientX, e.clientY, 'chat', chat)
+}
 </script>
 
 <style lang="less" scoped>

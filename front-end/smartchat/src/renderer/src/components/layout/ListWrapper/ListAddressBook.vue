@@ -7,23 +7,33 @@
       <div class="user-box">
         <div class="user-title">新的朋友</div>
         <div class="custom-item user-item">
-          <img alt="" class="user-avatar">
+          <img alt="" class="user-avatar" />
           <p class="user-name">新的朋友</p>
         </div>
       </div>
       <div class="user-box">
         <div class="user-title">群聊</div>
-        <div v-for="group in groupList" :key="group.id" class="custom-item user-item" @contextmenu.stop="rightClicked($event)">
-          <img v-lazyload="group.avatar" alt="" class="user-avatar">
+        <div
+          v-for="group in groupList"
+          :key="group.id"
+          class="custom-item user-item"
+          @contextmenu.stop="rightClicked($event)"
+        >
+          <img v-lazyload="group.avatar" alt="" class="user-avatar" />
           <p class="user-name">{{ group.name }}</p>
         </div>
       </div>
       <div class="user-box" v-for="friends in addressBookLists" :key="friends.letter">
-        <div class="user-title">{{friends.letter}}</div>
-        <div v-for="friend in friends.list" :key="friend.id" class="custom-item user-item"
+        <div class="user-title">{{ friends.letter }}</div>
+        <div
+          v-for="friend in friends.list"
+          :key="friend.id"
+          class="custom-item user-item"
           :class="[useAddressBookStore.activeAddressBook === friend.id ? 'active' : '']"
-          @contextmenu.stop="rightClicked($event)" @click="friendClick(friend)">
-          <img v-lazyload="friend.avatar" alt="" class="user-avatar">
+          @contextmenu.stop="rightClicked($event)"
+          @click="friendClick(friend)"
+        >
+          <img v-lazyload="friend.avatar" alt="" class="user-avatar" />
           <p class="user-name">{{ friend.name }}</p>
         </div>
       </div>
@@ -35,14 +45,14 @@
 import { reactive, computed } from 'vue'
 import useStore from '../../../store'
 const { useAddressBookStore, useContextMenuStore, useSystemStore } = useStore()
-import { listSortByPinyin } from "../../../utils/utils";
+import { listSortByPinyin } from '../../../utils/utils'
 
 const groupList = reactive([
   {
-    id: "1",
-    name: "测试群组1测试群组1测试群组1测试群组1测试群组1测试群组1",
-    type: "group",
-    avatar: "http://img.adoutu.com/article/1606320535770.gif",
+    id: '1',
+    name: '测试群组1测试群组1测试群组1测试群组1测试群组1测试群组1',
+    type: 'group',
+    avatar: 'http://img.adoutu.com/article/1606320535770.gif'
   }
 ])
 
@@ -53,19 +63,21 @@ const friendClick = (info) => {
 
 // 点击右键，展示自定义菜单
 const rightClicked = (e) => {
-  e.preventDefault();
-  useContextMenuStore.showContextMenu(e.clientX, e.clientY, "friend");
+  e.preventDefault()
+  useContextMenuStore.showContextMenu(e.clientX, e.clientY, 'friend')
 }
 
 const addressBookLists = computed(() => {
-  let addressBookList = useAddressBookStore.flatAddressBookList.filter(chat => chat.name.indexOf(useSystemStore.listSearchText) >= 0)
+  let addressBookList = useAddressBookStore.flatAddressBookList.filter(
+    (chat) => chat.name.indexOf(useSystemStore.listSearchText) >= 0
+  )
   return listSortByPinyin(addressBookList)
 })
 </script>
 
 <style lang="less" scoped>
 .user-list {
-  background-color: #E7E6E5;
+  background-color: #e7e6e5;
 
   .user-manage {
     padding: 14px;
@@ -74,7 +86,7 @@ const addressBookLists = computed(() => {
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #FFFFFF;
+      background-color: #ffffff;
       height: 38px;
       line-height: 38px;
       text-align: center;
@@ -89,7 +101,7 @@ const addressBookLists = computed(() => {
   }
 
   .user-box {
-    border-bottom: 1px solid #E0DDDB;
+    border-bottom: 1px solid #e0dddb;
 
     .user-title {
       font-size: 12px;

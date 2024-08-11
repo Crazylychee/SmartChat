@@ -1,57 +1,96 @@
 <template>
   <div>
-    <WeDragBox class="chat-title-box" :style="{borderBottom: titleVisible ? '1px solid #e7e7e7' : 'none'}">
+    <WeDragBox
+      class="chat-title-box"
+      :style="{ borderBottom: titleVisible ? '1px solid #e7e7e7' : 'none' }"
+    >
       <div class="chat-title">
         <p v-if="titleVisible">{{ boxTitleText }}</p>
       </div>
       <div class="chat-ctrl">
         <div class="chat-ctrl-icon no-drag">
-          <i class="wechatfont wechat-regular" :class="{active: useSystemStore.windowState.isTop}" title="置顶" @click.stop="handleToggleTop"></i>
+          <i
+            class="wechatfont wechat-regular"
+            :class="{ active: useSystemStore.windowState.isTop }"
+            title="置顶"
+            @click.stop="handleToggleTop"
+          ></i>
           <!-- 取消置顶 -->
           <i class="wechatfont wechat-minimize" title="最小化" @click.stop="handleMinimize"></i>
-          <i class="wechatfont" :class="[useSystemStore.windowState.status === 'normal' ? 'wechat-maximize' : 'wechat-restore_down']" :title="useSystemStore.windowState.status === 'normal' ? '最大化' : '向下还原'" @click.stop="handleToggleMaximize"></i>
+          <i
+            class="wechatfont"
+            :class="[
+              useSystemStore.windowState.status === 'normal'
+                ? 'wechat-maximize'
+                : 'wechat-restore_down'
+            ]"
+            :title="useSystemStore.windowState.status === 'normal' ? '最大化' : '向下还原'"
+            @click.stop="handleToggleMaximize"
+          ></i>
           <!-- wechat-restore_down 向下还原 -->
           <i class="wechatfont wechat-close" title="关闭" @click.stop="handleClose"></i>
         </div>
-        <ellipsis-outlined class="chat-more no-drag" title="聊天信息" v-if="titleVisible && useSystemStore.activeMenu === 'chat'" />
+        <ellipsis-outlined
+          class="chat-more no-drag"
+          title="聊天信息"
+          v-if="titleVisible && useSystemStore.activeMenu === 'chat'"
+        />
       </div>
     </WeDragBox>
   </div>
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
-import { EllipsisOutlined } from "@ant-design/icons-vue";
-import useStore from "../../../store";
-const { useSystemStore, useChatStore, useCollectStore } = useStore();
+import { ref, watch } from 'vue'
+import { EllipsisOutlined } from '@ant-design/icons-vue'
+import useStore from '../../../store'
+const { useSystemStore, useChatStore, useCollectStore } = useStore()
 
 // 判断是否显示窗体标题
 const titleVisible = ref(false)
 const boxTitleText = ref('')
-watch(() => [useSystemStore.activeMenu, useChatStore.activeChat, useCollectStore.activeCollectType], () => {
-  if ((useSystemStore.activeMenu === 'chat' && useChatStore.activeChat) || (useSystemStore.activeMenu === 'collect' && useCollectStore.activeCollectType)) {
-    titleVisible.value = true
-    if (useSystemStore.activeMenu === 'chat' && useChatStore.activeChat) {
-      boxTitleText.value = useChatStore.chatList.find(item => item.friendId === useChatStore.activeChat)?.name
-    } else if (useSystemStore.activeMenu === 'collect' && useCollectStore.activeCollectType) {
-      boxTitleText.value = useCollectStore.typeList.find(item => item.searchType === useCollectStore.activeCollectType)['title']
+watch(
+  () => [useSystemStore.activeMenu, useChatStore.activeChat, useCollectStore.activeCollectType],
+  () => {
+    if (
+      (useSystemStore.activeMenu === 'chat' && useChatStore.activeChat) ||
+      (useSystemStore.activeMenu === 'collect' && useCollectStore.activeCollectType)
+    ) {
+      titleVisible.value = true
+      if (useSystemStore.activeMenu === 'chat' && useChatStore.activeChat) {
+        boxTitleText.value = useChatStore.chatList.find(
+          (item) => item.friendId === useChatStore.activeChat
+        )?.name
+      } else if (useSystemStore.activeMenu === 'collect' && useCollectStore.activeCollectType) {
+        boxTitleText.value = useCollectStore.typeList.find(
+          (item) => item.searchType === useCollectStore.activeCollectType
+        )['title']
+      }
+    } else {
+      titleVisible.value = false
     }
-  } else {
-    titleVisible.value = false
+  },
+  {
+    immediate: true,
+    deep: true
   }
-}, {
-  immediate: true,
-  deep: true,
-})
+)
 
-watch(() => useSystemStore.isLocked, (newVal) => {
-  if ((useSystemStore.activeMenu === 'chat' && useChatStore.activeChat) || (useSystemStore.activeMenu === 'collect' && useCollectStore.activeCollectType)) {
-    titleVisible.value = true
+watch(
+  () => useSystemStore.isLocked,
+  (newVal) => {
+    if (
+      (useSystemStore.activeMenu === 'chat' && useChatStore.activeChat) ||
+      (useSystemStore.activeMenu === 'collect' && useCollectStore.activeCollectType)
+    ) {
+      titleVisible.value = true
+    }
+  },
+  {
+    immediate: true,
+    deep: true
   }
-}, {
-  immediate: true,
-  deep: true,
-})
+)
 
 // 切换置顶
 const handleToggleTop = () => {
@@ -65,10 +104,10 @@ const handleMinimize = () => {
     width: `${width}px`,
     height: `${height}px`,
     left: `${left}px`,
-    top: `${top}px`,
+    top: `${top}px`
   }
   useSystemStore.windowState.prevStatus = useSystemStore.windowState.status
-  useSystemStore.windowState.status = "minimize"
+  useSystemStore.windowState.status = 'minimize'
 }
 // 切换是否最大化
 const handleToggleMaximize = () => {
@@ -77,10 +116,11 @@ const handleToggleMaximize = () => {
     width: `${width}px`,
     height: `${height}px`,
     left: `${left}px`,
-    top: `${top}px`,
+    top: `${top}px`
   }
   useSystemStore.windowState.prevStatus = useSystemStore.windowState.status
-  useSystemStore.windowState.status = useSystemStore.windowState.status === "maximize" ? "normal" : "maximize"
+  useSystemStore.windowState.status =
+    useSystemStore.windowState.status === 'maximize' ? 'normal' : 'maximize'
 }
 // 关闭
 const handleClose = () => {
@@ -89,10 +129,10 @@ const handleClose = () => {
     width: `${width}px`,
     height: `${height}px`,
     left: `${left}px`,
-    top: `${top}px`,
+    top: `${top}px`
   }
   useSystemStore.windowState.prevStatus = useSystemStore.windowState.status
-  useSystemStore.windowState.status = "closed";
+  useSystemStore.windowState.status = 'closed'
 }
 </script>
 
@@ -137,27 +177,27 @@ const handleClose = () => {
 
         &.wechat-regular.active {
           color: #07c160;
-          background-color: #E2E2E2;
+          background-color: #e2e2e2;
 
           &:active {
-            background-color: #D1D1D1;
+            background-color: #d1d1d1;
           }
         }
 
         &:hover {
-          background-color: #E2E2E2;
+          background-color: #e2e2e2;
 
           &:nth-last-of-type(1) {
-            background-color: #FB7373;
-            color: #FFFFFF;
+            background-color: #fb7373;
+            color: #ffffff;
           }
         }
 
         &:active {
-          background-color: #D1D1D1;
+          background-color: #d1d1d1;
 
           &:nth-last-of-type(1) {
-            background-color: #E14848;
+            background-color: #e14848;
           }
         }
       }

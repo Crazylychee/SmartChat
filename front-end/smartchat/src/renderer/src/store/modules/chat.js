@@ -4,7 +4,7 @@ import { guid } from "../../utils/utils";
 import { message } from 'ant-design-vue';
 
 
-export const useChatStore = defineStore("chat", {
+export const useChatStore = defineStore('chat', {
   state: () => {
     return {
       chatList: [
@@ -20,43 +20,47 @@ export const useChatStore = defineStore("chat", {
           "unReadCount": 6,
           "isTop": false,
           "isGroup": false
+         
         },
         {
-          "id": 2,
-          "friendId": "user124",
-          "name": "张三",
-          "phone": "wevDvi11",
-          "address": "广州珠海",
-          "avatar": "https://gd-hbimg.huaban.com/f6c7acbca39dc564a5ab96838025ed54e44270374817f-cJymqZ_fw480webp",
-          "lastChatTime": "2024-08-02T15:21:00Z",
-          "lastChatContent": "你好！",
-          "unReadCount": 0,
-          "isTop": false,
-          "isGroup": false
+          id: 2,
+          friendId: 'user124',
+          name: '张三',
+          phone: 'wevDvi11',
+          address: '广州珠海',
+          avatar:
+            'https://gd-hbimg.huaban.com/f6c7acbca39dc564a5ab96838025ed54e44270374817f-cJymqZ_fw480webp',
+          lastChatTime: '2024-08-02T15:21:00Z',
+          lastChatContent: '你好！',
+          unReadCount: 0,
+          isTop: false,
+          isGroup: false
         },
         {
-          "id": 3,
-          "friendId": "user125",
-          "name": "群聊1",
-          "avatar": "https://gd-hbimg.huaban.com/e9a8611330775adc688738ecbfde875bc2c2e6fc13348-2VJc6U_fw480webp",
-          "lastChatTime": "2024-08-02T15:22:00Z",
-          "lastChatContent": "你好，很高兴认识你！",
-          "unReadCount": 9,
-          "isTop": false,
-          "isGroup": true
+          id: 3,
+          friendId: 'user125',
+          name: '群聊1',
+          avatar:
+            'https://gd-hbimg.huaban.com/e9a8611330775adc688738ecbfde875bc2c2e6fc13348-2VJc6U_fw480webp',
+          lastChatTime: '2024-08-02T15:22:00Z',
+          lastChatContent: '你好，很高兴认识你！',
+          unReadCount: 9,
+          isTop: false,
+          isGroup: true
         },
         {
-          "id": 4,
-          "friendId": "user126",
-          "name": "里斯",
-          "phone": "wevDvi11",
-          "address": "广州珠海",
-          "avatar": "https://gd-hbimg.huaban.com/8424977b522ffcf85937b1d68a1352954198e8f03b4ee-rMEHQM_fw480webp",
-          "lastChatTime": "2024-08-02T15:23:00Z",
-          "lastChatContent": "你好，很高兴认识你！",
-          "unReadCount": 4,
-          "isTop": false,
-          "isGroup": false
+          id: 4,
+          friendId: 'user126',
+          name: '里斯',
+          phone: 'wevDvi11',
+          address: '广州珠海',
+          avatar:
+            'https://gd-hbimg.huaban.com/8424977b522ffcf85937b1d68a1352954198e8f03b4ee-rMEHQM_fw480webp',
+          lastChatTime: '2024-08-02T15:23:00Z',
+          lastChatContent: '你好，很高兴认识你！',
+          unReadCount: 4,
+          isTop: false,
+          isGroup: false
         }
       ], // 聊天列表
       chatInfos:
@@ -137,8 +141,8 @@ export const useChatStore = defineStore("chat", {
       // 聊天记录
       activeChat: "", // 当前聚焦的聊天对象id
       isFocusSendArea: false,
-      sendMethods: 'enter', // 发送消息方式
-    };
+      sendMethods: 'enter' // 发送消息方式
+    }
   },
   actions: {
     addChat() {
@@ -149,7 +153,7 @@ export const useChatStore = defineStore("chat", {
         lastChatTime: '',
         lastChatContnt: '',
         lastChatContntType: '',
-        avatar: '',
+        avatar: ''
       })
     },
     editChat() { },
@@ -206,13 +210,22 @@ export const useChatStore = defineStore("chat", {
              createTime: dayjs().format("YYYY-MM-DD HH:mm:ss"),
            });
         }
+        console.log(this.chatInfos[activeChat], 'this.chatInfos[activeChat]')
+
+        this.chatInfos[activeChat].push({
+          id: guid(),
+          type: 'send',
+          File: content,
+          createTime: dayjs().format('YYYY-MM-DD HH:mm:ss')
+        })
+        console.log(this.chatInfos[activeChat], 'this.chatInfos[activeChat]')
       } else {
         this.chatInfos[activeChat].push({
           id: guid(),
-          type: "send",
+          type: 'send',
           content: content,
-          createTime: dayjs().format("YYYY-MM-DD HH:mm:ss"),
-        });
+          createTime: dayjs().format('YYYY-MM-DD HH:mm:ss')
+        })
       }
       console.log(this.chatInfos[activeChat], 'this.chatInfos[activeChat]')
     },
@@ -222,12 +235,12 @@ export const useChatStore = defineStore("chat", {
      * @param {string} content 发送的信息
      */
     forwardChat(activeChat, content) {
-      const targetIndex = this.chatList.findIndex(item => item.friendId === activeChat);
-      const targetItem = this.chatList.splice(targetIndex, 1)[0];
-      targetItem.lastChatContent = content;
-      targetItem.lastChatTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
-      this.chatList.unshift(targetItem);
-    },
+      const targetIndex = this.chatList.findIndex((item) => item.friendId === activeChat)
+      const targetItem = this.chatList.splice(targetIndex, 1)[0]
+      targetItem.lastChatContent = content
+      targetItem.lastChatTime = dayjs().format('YYYY-MM-DD HH:mm:ss')
+      this.chatList.unshift(targetItem)
+    }
   },
   persist: {
     // enabled: true,

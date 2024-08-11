@@ -6,18 +6,22 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
-import { LoadingOutlined } from '@ant-design/icons-vue';
-import useStore from "../../../store";
-const { useSystemStore } = useStore();
+import { ref, watch } from 'vue'
+import { LoadingOutlined } from '@ant-design/icons-vue'
+import useStore from '../../../store'
+const { useSystemStore } = useStore()
 
 const isLocked = ref(false)
-watch(() => useSystemStore.isLocked, (newVal) => {
-  isLocked.value = newVal
-}, {
-  immediate: true,
-  deep: true,
-})
+watch(
+  () => useSystemStore.isLocked,
+  (newVal) => {
+    isLocked.value = newVal
+  },
+  {
+    immediate: true,
+    deep: true
+  }
+)
 </script>
 
 <style lang="less" scoped>
@@ -44,7 +48,7 @@ watch(() => useSystemStore.isLocked, (newVal) => {
   }
 
   span {
-    color: #07C160;
+    color: #07c160;
   }
 
   .ant-input-password {

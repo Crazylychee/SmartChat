@@ -5,7 +5,9 @@
         <a-image :src="userInfo.avatar" alt="" :previewMask="false" />
       </a-image-preview-group>
       <div class="info-detail">
-        <p class="name">{{ userInfo.name }}<i class="wechatfont" :class="['wechat-' + userInfo.gender]"></i></p>
+        <p class="name">
+          {{ userInfo.name }}<i class="wechatfont" :class="['wechat-' + userInfo.gender]"></i>
+        </p>
         <p>微信号：{{ userInfo.phone }}</p>
         <p>地区：{{ userInfo.address }}</p>
       </div>
@@ -17,28 +19,32 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue"
-import useStore from '../../../store';
-const { useRelativeBoxStore } = useStore();
+import { ref, watch } from 'vue'
+import useStore from '../../../store'
+const { useRelativeBoxStore } = useStore()
 const emit = defineEmits()
 const props = defineProps({
   user: {
     type: Object,
-    default: () => { },
+    default: () => {}
   },
   type: {
     type: String,
-    default: "own",
+    default: 'own'
   }
 })
 
 const userInfo = ref({})
-watch(() => props.user, (newVal) => {
-  userInfo.value = newVal;
-}, {
-  immediate: true,
-  deep: true,
-})
+watch(
+  () => props.user,
+  (newVal) => {
+    userInfo.value = newVal
+  },
+  {
+    immediate: true,
+    deep: true
+  }
+)
 
 const sendMessage = () => {
   emit('send')

@@ -10,15 +10,15 @@
 </template>
 
 <script setup>
-import BoxHeader from './BoxHeader.vue';
-import BoxChat from './BoxChat.vue';
-import BoxAddressBook from './BoxAddressBook.vue';
-import BoxCollect from './BoxCollect.vue';
-import BoxLocked from "./BoxLocked.vue";
-import BoxLoading from "./BoxLoading.vue";
+import BoxHeader from './BoxHeader.vue'
+import BoxChat from './BoxChat.vue'
+import BoxAddressBook from './BoxAddressBook.vue'
+import BoxCollect from './BoxCollect.vue'
+import BoxLocked from './BoxLocked.vue'
+import BoxLoading from './BoxLoading.vue'
 
-import useStore from "../../../store";
-const { useSystemStore } = useStore();
+import useStore from '../../../store'
+const { useSystemStore } = useStore()
 </script>
 
 <style lang="less" scoped>

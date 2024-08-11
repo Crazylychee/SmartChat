@@ -1,69 +1,73 @@
-import { useChatStore } from "../store/modules/chat";
-import { useSystemStore } from "../store/modules/system";
-import eventBus from './eventBus';
+import { useChatStore } from '../store/modules/chat'
+import { useSystemStore } from '../store/modules/system'
+import eventBus from './eventBus'
 
 const ctrlKey = 17,
   commandKey = 91, // mac command
   enterKey = 13, // 发送enter
-  lKey = 76; // 锁定l
+  lKey = 76 // 锁定l
 
 // 把这几个的Ctrl+组合键屏蔽掉，影响体验，具体看本文件底部的keyCodes键盘字典
-const ignoreKeyMap = [73, 77, 79, 80, 83, 85];
+const ignoreKeyMap = [73, 77, 79, 80, 83, 85]
 // i, m, o, p, s, u
 
 const keymap = {
   [enterKey]: send,
-  [lKey]: lock,
-};
+  [lKey]: lock
+}
 
-let isCtrlOrCommandDown = false;
+let isCtrlOrCommandDown = false
 // 全局监听按键操作并执行相应命令
 export function listenGlobalKeyDown() {
   window.onkeydown = (e) => {
-    const { keyCode } = e;
+    const { keyCode } = e
     if (keyCode === ctrlKey || keyCode === commandKey) {
       // 按下Ctrl || Command
-      isCtrlOrCommandDown = true;
+      isCtrlOrCommandDown = true
     } else if (isCtrlOrCommandDown) {
       if (ignoreKeyMap.includes(keyCode)) {
         // 移除ignoreKeyMap的默认事件
-        e.preventDefault();
+        e.preventDefault()
       }
       if (keymap[keyCode]) {
         // 执行
-        e.preventDefault();
-        keymap[keyCode]();
+        e.preventDefault()
+        keymap[keyCode]()
       }
     }
-  };
+  }
 
   // 键盘抬起
   window.onkeyup = (e) => {
     if (e.keyCode === ctrlKey || e.keyCode === commandKey) {
-      isCtrlOrCommandDown = false;
+      isCtrlOrCommandDown = false
     }
-  };
+  }
 
   // 监听鼠标滑轮滚动
-  window.addEventListener('wheel', e => {
-    if (e.ctrlKey) {
-      // 禁止鼠标滚轮缩放浏览器事件
-      e.preventDefault();
-    }
-  }, { passive: false })
+  window.addEventListener(
+    'wheel',
+    (e) => {
+      if (e.ctrlKey) {
+        // 禁止鼠标滚轮缩放浏览器事件
+        e.preventDefault()
+      }
+    },
+    { passive: false }
+  )
 }
 
 // 发送消息
 function send() {
   if (useChatStore().isFocusSendArea && useChatStore().sendMethods === 'ctrlEnter') {
     // 发送事件
-    eventBus.emit("sendMsgEvent");
+    eventBus.emit('sendMsgEvent')
   }
 }
 
 // 执行锁屏
 function lock() {
-  useSystemStore().isLocked = true;
+  useSystemStore().isLocked = true
 }
 
 // 键盘按键字典
@@ -159,5 +163,5 @@ const keyCodes = {
   numpad6: 102,
   numpad7: 103,
   numpad8: 104,
-  numpad9: 105,
-};
+  numpad9: 105
+}

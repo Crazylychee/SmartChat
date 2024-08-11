@@ -3,9 +3,7 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
 <style lang="less">
@@ -14,28 +12,28 @@ export default {
   width: 70px;
   padding: 0.5px 0;
   margin: 30px auto;
-  background-color: #E4E4E4;
+  background-color: #e4e4e4;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: -11px;
     left: 24px;
     width: 22px;
     height: 22px;
     border-radius: 22px;
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     top: -3px;
     left: 32px;
     width: 6px;
     height: 6px;
     border-radius: 6px;
-    background-color: #E4E4E4;
+    background-color: #e4e4e4;
   }
 }
 </style>

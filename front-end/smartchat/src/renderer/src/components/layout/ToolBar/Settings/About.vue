@@ -13,15 +13,15 @@
 </template>
 
 <script setup>
-import useStore from "../../../../store";
-const { useSystemStore } = useStore();
+import useStore from '../../../../store'
+const { useSystemStore } = useStore()
 
 const handleCheckVersion = () => {
-  window.open(useSystemStore.qqGroupLink, "_blank")
-};
+  window.open(useSystemStore.qqGroupLink, '_blank')
+}
 const handleViewHelp = () => {
-  window.open(useSystemStore.qqGroupLink, "_blank")
-};
+  window.open(useSystemStore.qqGroupLink, '_blank')
+}
 </script>
 
 <style lang="less" scoped>

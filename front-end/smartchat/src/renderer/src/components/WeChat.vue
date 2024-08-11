@@ -1,9 +1,9 @@
 <template>
-  <div class="wechat" >
-<!--    <ToolBar v-if="toolbarVisible" />-->
-<!--    <ListWrapper v-if="listWrapperVisible" />-->
+  <div class="wechat">
+    <!--    <ToolBar v-if="toolbarVisible" />-->
+    <!--    <ListWrapper v-if="listWrapperVisible" />-->
     <ToolBar />
-    <ListWrapper  />
+    <ListWrapper />
     <BoxWrapper />
     <ContextMenu />
     <ResizeContainer />
@@ -11,43 +11,45 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from "vue";
-import _ from "lodash";
-import dayjs from "dayjs";
-import Mock from "mockjs";
-import { listenGlobalKeyDown } from "../utils/shortcutKey";
-import { getFriendList, getUserInfo } from "../api/manage";
-import useStore from "../store/index";
-const { useSystemStore, useChatStore, useAddressBookStore, useUserInfoStore } = useStore();
-import { listSortByPinyin } from "../utils/utils";
-import ToolBar from "./layout/ToolBar/Index.vue";
-import ListWrapper from "./layout/ListWrapper/Index.vue";
-import BoxWrapper from "./layout/BoxWrapper/Index.vue";
-import ContextMenu from "./common/ContextMenu/Index.vue";
-import ResizeContainer from "./common/ResizeContainer/Index.vue";
+import { onMounted, ref, watch } from 'vue'
+import _ from 'lodash'
+import dayjs from 'dayjs'
+import Mock from 'mockjs'
+import { listenGlobalKeyDown } from '../utils/shortcutKey'
+import { getFriendList, getUserInfo } from '../api/manage'
+import useStore from '../store/index'
+const { useSystemStore, useChatStore, useAddressBookStore, useUserInfoStore } = useStore()
+import { listSortByPinyin } from '../utils/utils'
+import ToolBar from './layout/ToolBar/Index.vue'
+import ListWrapper from './layout/ListWrapper/Index.vue'
+import BoxWrapper from './layout/BoxWrapper/Index.vue'
+import ContextMenu from './common/ContextMenu/Index.vue'
+import ResizeContainer from './common/ResizeContainer/Index.vue'
 
 // 监听全局键盘事件
 onMounted(() => {
-  listenGlobalKeyDown();
+  listenGlobalKeyDown()
 })
 
-const { innerWidth, innerHeight } = window;
-useSystemStore.windows.left = useSystemStore.windows.left || (innerWidth - useSystemStore.windows.width) / 2
-useSystemStore.windows.top = useSystemStore.windows.top || (innerHeight - useSystemStore.windows.height) / 2
+const { innerWidth, innerHeight } = window
+useSystemStore.windows.left =
+  useSystemStore.windows.left || (innerWidth - useSystemStore.windows.width) / 2
+useSystemStore.windows.top =
+  useSystemStore.windows.top || (innerHeight - useSystemStore.windows.height) / 2
 // 初始化窗口样式
-const wechatStyle = ref({});
+const wechatStyle = ref({})
 
 wechatStyle.value = Object.assign(
   {},
   {
-    overflow: "hidden",
-    transition: "all 0s",
-    width: "901px",
-    height: "673px",
-    left: "0px",
-    top: "0px",
+    overflow: 'hidden',
+    transition: 'all 0s',
+    width: '901px',
+    height: '673px',
+    left: '0px',
+    top: '0px'
   }
-);
+)
 
 // 监听窗口变化并赋值
 watch(
@@ -60,21 +62,21 @@ watch(
         width: `${width}px`,
         height: `${height}px`,
         left: `${left}px`,
-        top: `${top}px`,
+        top: `${top}px`
       }
-    );
+    )
   },
   {
     immediate: true,
-    deep: true,
+    deep: true
   }
-);
+)
 
 // 监听窗口最小化并赋值
 watch(
   () => useSystemStore.windowState.status,
   (newVal, oldVal) => {
-    if (newVal === "minimize") {
+    if (newVal === 'minimize') {
       // wechatStyle.value = Object.assign(
       //   {},
       //   {
@@ -86,19 +88,19 @@ watch(
       //     bottom: "15px",
       //   }
       // );
-    } else if (newVal === "maximize") {
+    } else if (newVal === 'maximize') {
       wechatStyle.value = Object.assign(
         {},
         {
-          overflow: "hidden",
-          transition: oldVal === "minimize" ? "all 0s" : "all .12s",
-          width: "100vw",
-          height: "calc(100vh - 30px)",
-          left: "0px",
-          top: "0px",
+          overflow: 'hidden',
+          transition: oldVal === 'minimize' ? 'all 0s' : 'all .12s',
+          width: '100vw',
+          height: 'calc(100vh - 30px)',
+          left: '0px',
+          top: '0px'
         }
-      );
-    } else if (newVal === "closed") {
+      )
+    } else if (newVal === 'closed') {
       // wechatStyle.value = Object.assign(
       //   {},
       //   {
@@ -113,28 +115,32 @@ watch(
     } else {
       wechatStyle.value = Object.assign(
         {},
-        {...wechatStyle.value},
-        {...useSystemStore.windowState.prevWindows},
-        {transition: "all 0s",}
-      );
+        { ...wechatStyle.value },
+        { ...useSystemStore.windowState.prevWindows },
+        { transition: 'all 0s' }
+      )
     }
   },
   {
     immediate: true,
-    deep: true,
+    deep: true
   }
-);
+)
 
 // 监听界面锁定
 const toolbarVisible = ref(true)
 const listWrapperVisible = ref(true)
-watch(() => [useSystemStore.isLocked, useSystemStore.isLoading], (newVal) => {
-  const [isLocked, isLoading] = newVal
-  toolbarVisible.value = listWrapperVisible.value = !isLocked && !isLoading
-}, {
-  immediate: true,
-  deep: true,
-})
+watch(
+  () => [useSystemStore.isLocked, useSystemStore.isLoading],
+  (newVal) => {
+    const [isLocked, isLoading] = newVal
+    toolbarVisible.value = listWrapperVisible.value = !isLocked && !isLoading
+  },
+  {
+    immediate: true,
+    deep: true
+  }
+)
 
 // 初始化系统数据
 
@@ -148,7 +154,7 @@ watch(() => [useSystemStore.isLocked, useSystemStore.isLoading], (newVal) => {
 // 在这里调取通讯录数据
 if (useAddressBookStore.addressBookList.length === 0) {
   // useSystemStore.isLoading = true;
-  useSystemStore.isLoading = false;
+  useSystemStore.isLoading = false
   // 如果已经初始化过，就不重新渲染了 TODO
   // getFriendList().then((res) => {
   //   const { data } = res.data;

@@ -1,4 +1,4 @@
-import { onUpdated, onMounted } from "vue";
+import { onUpdated, onMounted } from 'vue'
 
 /**
  * 执行本方法可以让盒子自动滚动至底
@@ -6,15 +6,15 @@ import { onUpdated, onMounted } from "vue";
  */
 export default function useAutoScrollBottom(component) {
   onUpdated(() => {
-    toBottom();
-  });
+    toBottom()
+  })
 
   onMounted(() => {
-    toBottom();
-  });
+    toBottom()
+  })
 
   const toBottom = () => {
-    if (!component || !component.value) return;
-    component.value.scrollTop = component.value.scrollHeight;
-  };
+    if (!component || !component.value) return
+    component.value.scrollTop = component.value.scrollHeight
+  }
 }

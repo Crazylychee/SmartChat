@@ -21,7 +21,15 @@ export default ({ title, text, closable, confirmText, confirmColor }) => {
     // 1. 渲染组件
     // 2. 点击确认按钮，触发resolve同时销毁组件
     // 3. 点击取消按钮，触发reject同时销毁组件
-    const vnode = createVNode(WeConfirm, { title, text, closable, confirmText, confirmColor, submitCallback, cancelCallback })
+    const vnode = createVNode(WeConfirm, {
+      title,
+      text,
+      closable,
+      confirmText,
+      confirmColor,
+      submitCallback,
+      cancelCallback
+    })
     render(vnode, div)
   })
 }

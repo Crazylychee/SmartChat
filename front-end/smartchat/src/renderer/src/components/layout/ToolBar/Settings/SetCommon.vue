@@ -11,9 +11,7 @@
       </WeLabel>
       <WeLabel label="通用" style="margin-top: 20px">
         <div class="common">
-          <a-checkbox v-model:checked="formState.checked1"
-            >有更新时自动升级微信</a-checkbox
-          >
+          <a-checkbox v-model:checked="formState.checked1">有更新时自动升级微信</a-checkbox>
           <a-checkbox v-model:checked="formState.checked2">开机时自动打开微信</a-checkbox>
           <a-checkbox v-model:checked="formState.checked3">保留聊天记录</a-checkbox>
           <a-checkbox v-model:checked="formState.checked4">显示[最近在搜]</a-checkbox>
@@ -29,82 +27,85 @@
 </template>
 
 <script setup>
-import { reactive, watch } from "vue";
-import Confirm from "../../../../components/libs/confirm";
-import { toast } from "../../../../utils/feedback";
-import useStore from "../../../../store";
-const { useChatStore } = useStore();
+import { reactive, watch } from 'vue'
+import Confirm from '../../../../components/libs/confirm'
+import { toast } from '../../../../utils/feedback'
+import useStore from '../../../../store'
+const { useChatStore } = useStore()
 
 const languages = reactive([
   {
-    value: "zh-cn",
-    label: "简体中文",
+    value: 'zh-cn',
+    label: '简体中文'
   },
   {
-    value: "en",
-    label: "English",
+    value: 'en',
+    label: 'English'
   },
   {
-    value: "zh-tw",
-    label: "繁體中文",
-  },
-]);
+    value: 'zh-tw',
+    label: '繁體中文'
+  }
+])
 
 const formState = reactive({
-  language: "zh-cn",
+  language: 'zh-cn',
   checked1: true,
   checked2: true,
   checked3: true,
   checked4: true,
   checked5: true,
   checked6: false,
-  checked7: true,
-});
-
-let lastLaguage = ""
-watch(() => formState.language, (newVal, oldVal) => {
-  lastLaguage = oldVal
+  checked7: true
 })
+
+let lastLaguage = ''
+watch(
+  () => formState.language,
+  (newVal, oldVal) => {
+    lastLaguage = oldVal
+  }
+)
 
 const handleLanguageChange = (e) => {
   Confirm({
-    text: "更改语言需重新登录才能生效，是否确定更改？",
+    text: '更改语言需重新登录才能生效，是否确定更改？',
     closable: false,
-    confirmText: "确定",
-    confirmColor: "#FF3333",
+    confirmText: '确定',
+    confirmColor: '#FF3333'
   })
     .then(() => {
       toast({
-        content: "执行切换语言",
-      });
+        content: '执行切换语言'
+      })
     })
     .catch(() => {
       formState.language = lastLaguage
       toast({
-        content: "取消切换语言",
-      });
-    });
+        content: '取消切换语言'
+      })
+    })
 }
 
 const handleClear = () => {
   Confirm({
-    text: "将删除所有个人和群的聊天记录",
+    text: '将删除所有个人和群的聊天记录',
     closable: false,
-    confirmText: "确定",
-    confirmColor: "#FF3333",
+    confirmText: '确定',
+    confirmColor: '#FF3333'
   })
     .then(() => {
-      useChatStore.chatList = [];
-      useChatStore.chatInfos = {};
-      useChatStore.activeChat = "";
+      useChatStore.chatList = []
+      useChatStore.chatInfos = {}
+      useChatStore.activeChat = ''
     })
-    .catch(() => {});
-};
+    .catch(() => {})
+}
 
 const handleManage = () => {
   toast({
-    content: "打开储存空间",
-  });
+    content: '打开储存空间'
+  })
 }
 </script>
 
