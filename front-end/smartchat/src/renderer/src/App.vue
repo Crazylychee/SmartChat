@@ -10,9 +10,9 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useWindowFocus } from '@vueuse/core';
-import useStore from './store';
+import useStore from '@/store';
 const { useContextMenuStore, useSystemStore } = useStore();
-import WeChat from './components/WeChat.vue';
+import WeChat from '@/components/WeChat.vue';
 import TaskBar from './components/layout/TaskBar/Index.vue';
 import Edit from './components/Edit.vue'
 
