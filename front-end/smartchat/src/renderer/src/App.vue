@@ -10,6 +10,8 @@
 </template>
 
 <script setup>
+import TurmsClient from 'turms-client-js'
+import DeviceType from 'turms-client-js'
 import { ref, watch } from 'vue'
 import { useWindowFocus } from '@vueuse/core'
 import useStore from '@/store'
@@ -18,6 +20,25 @@ const { useContextMenuStore, useSystemStore } = useStore()
 import WeChat from '@/components/WeChat.vue'
 import TaskBar from './components/layout/TaskBar/Index.vue'
 import Edit from './components/Edit.vue'
+///////////////////////////////////////////////
+// On the first tab of the same origin
+// The client will create a new WebSocket connection
+const client = new TurmsClient({
+  wsUrl: 'ws://47.113.224.195:31115',
+  connectionTimeout: 10000,
+  requestTimeout: 5000,
+  minRequestInterval: 100,
+  heartbeatInterval: 30000,
+  useSharedContext: false
+});
+client.userService.login({
+  userId: 1,
+  password: "123",
+  deviceType: DeviceType.BROWSER
+});
+
+
+//////////////////////////////////////////////
 
 const windowFocused = useWindowFocus()
 watch(windowFocused, (newVal) => {

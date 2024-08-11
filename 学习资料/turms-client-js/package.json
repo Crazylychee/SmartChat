@@ -1,0 +1,82 @@
+{
+  "name": "turms-client-js",
+  "version": "0.10.0-SNAPSHOT",
+  "description": "turms-client-js is a library to communicate with turms servers.",
+  "main": "dist/turms-client.cjs.js",
+  "module": "dist/turms-client.esm.js",
+  "types": "dist/turms-client.d.ts",
+  "sideEffects": false,
+  "files": [
+    "src",
+    "dist",
+    "types"
+  ],
+  "scripts": {
+    "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
+    "lint": "eslint --ext .ts src tests",
+    "lint:fix": "eslint --fix --ext .ts src tests",
+    "protoc:compile": "node protoc.js compile",
+    "protoc:install": "node protoc.js install",
+    "fullbuild": "npm i && npm run protoc:install && npm run protoc:compile && npm run build",
+    "quickbuild": "npm i && npm run build",
+    "test": "jest --runInBand --bail",
+    "upgrade": "npx npm-check-updates -u"
+  },
+  "keywords": [
+    "turms"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/turms-im/turms.git"
+  },
+  "author": "James Chen <eurekajameschen@gmail.com>",
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/turms-im/turms/issues"
+  },
+  "homepage": "https://github.com/turms-im/turms#readme",
+  "dependencies": {
+    "protobufjs": "^7.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.8",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.24.7",
+    "@babel/preset-env": "^7.24.8",
+    "@babel/preset-typescript": "^7.24.7",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/jest": "^29.5.12",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
+    "core-js": "^3.37.1",
+    "dts-bundle": "^0.7.3",
+    "eslint": "^8.57.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "glob": "^11.0.0",
+    "jest": "^29.7.0",
+    "rollup": "^4.18.1",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-filesize": "^10.0.0",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "ts-jest": "^29.2.2",
+    "ts-proto": "^1.181.1",
+    "tslib": "^2.6.3",
+    "typescript": "^5.5.3"
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "IE 11"
+  ]
+}
