@@ -1,9 +1,6 @@
 <template>
   <div class="we-label-box">
-    <p
-      class="we-label"
-      :style="{ width: labelWidth + 'px', textAlign: labelAlign }"
-    >
+    <p class="we-label" :style="{ width: labelWidth + 'px', textAlign: labelAlign }">
       {{ label }}
     </p>
     <div class="slot">
@@ -16,17 +13,17 @@
 const props = defineProps({
   label: {
     type: String,
-    default: "",
+    default: ''
   },
   labelWidth: {
     type: Number,
-    default: 108,
+    default: 108
   },
   labelAlign: {
     type: String,
-    default: "center",
-  },
-});
+    default: 'center'
+  }
+})
 </script>
 
 <style lang="less" scoped>

@@ -7,9 +7,8 @@
         class="custom-item chat-item"
         :class="{ active: useChatStore.activeChat === chat.friendId, top: chat.isTop }"
         @click="handleChatClick(chat)"
-        @contextmenu.stop="e => rightClicked(e, chat)"
+        @contextmenu.stop="(e) => rightClicked(e, chat)"
       >
-      
         <a-badge :count="chat.unReadCount || 0" title="">
           <img :src="chat.avatar" alt="" class="chat-avatar" />
         </a-badge>
@@ -22,46 +21,45 @@
         </div>
       </div>
     </div>
-    <WeNoData v-if="!chatLists.length" text="无结果" :imageStyle="{color:'#ccc'}" />
+    <WeNoData v-if="!chatLists.length" text="无结果" :imageStyle="{ color: '#ccc' }" />
   </perfect-scrollbar>
 </template>
 
 <script setup>
-import { friendTime } from "../../../utils/utils";
-import useStore from "../../../store";
-import { computed } from "vue";
-const {
-  useChatStore,
-  useSystemStore,
-  useContextMenuStore,
-} = useStore();
+import { friendTime } from '../../../utils/utils'
+import useStore from '../../../store'
+import { computed } from 'vue'
+const { useChatStore, useSystemStore, useContextMenuStore } = useStore()
 
 // 点击聊天列表
 const handleChatClick = (chat) => {
   // 展示聊天内容
-  useChatStore.activeChat = chat.friendId;
-  useChatStore.chatList.map(item => {
+  useChatStore.activeChat = chat.friendId
+  useChatStore.chatList.map((item) => {
     if (item.friendId === chat.friendId) {
-      item['unReadCount'] = 0;
+      item['unReadCount'] = 0
     }
   })
   // 展示聊天标题
-  useSystemStore.boxTitleText = chat.name;
-  useSystemStore.listSearchText = "";
-};
+  useSystemStore.boxTitleText = chat.name
+  useSystemStore.listSearchText = ''
+}
 
 // 点击右键展示自定义菜单
 const rightClicked = (e, chat) => {
-  e.preventDefault();
-  useContextMenuStore.showContextMenu(e.clientX, e.clientY, "chat", chat);
-};
+  e.preventDefault()
+  useContextMenuStore.showContextMenu(e.clientX, e.clientY, 'chat', chat)
+}
 
 const chatLists = computed(() => {
   // console.log(useChatStore.chatList);
-  let chatList = [...useChatStore.chatList.filter(chat => chat.isTop), ...useChatStore.chatList.filter(chat => !chat.isTop)]
-  let result = chatList.filter(chat => chat.name.indexOf(useSystemStore.listSearchText) >= 0);
+  let chatList = [
+    ...useChatStore.chatList.filter((chat) => chat.isTop),
+    ...useChatStore.chatList.filter((chat) => !chat.isTop)
+  ]
+  let result = chatList.filter((chat) => chat.name.indexOf(useSystemStore.listSearchText) >= 0)
   // console.log(result,result);
-  return result;
+  return result
 })
 </script>
 
@@ -74,12 +72,12 @@ const chatLists = computed(() => {
     padding: 12px;
 
     &.top {
-      background-color: #DCDCDC;
+      background-color: #dcdcdc;
       &:hover {
-        background-color: #D6D6D6;
+        background-color: #d6d6d6;
       }
       &.active {
-        background-color: #C9C9C9;
+        background-color: #c9c9c9;
       }
     }
 
@@ -137,7 +135,8 @@ const chatLists = computed(() => {
       line-height: 16px !important;
       box-shadow: none !important;
       font-size: 12px !important;
-      .ant-scroll-number-only, .ant-scroll-number-only-unit {
+      .ant-scroll-number-only,
+      .ant-scroll-number-only-unit {
         height: 16px !important;
       }
     }

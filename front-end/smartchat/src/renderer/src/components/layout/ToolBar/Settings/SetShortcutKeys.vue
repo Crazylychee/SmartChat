@@ -19,7 +19,9 @@
         <div class="shortcut-key" @click="changeShortcutKey">Ctrl + L</div>
       </WeLabel>
       <WeLabel label="检测快捷键" label-width="114" label-align="left" style="margin-top: 28px">
-        <a-checkbox v-model:checked="formState.conflictReminder">快捷键与其他软件冲突时提醒</a-checkbox>
+        <a-checkbox v-model:checked="formState.conflictReminder"
+          >快捷键与其他软件冲突时提醒</a-checkbox
+        >
         <span class="button" @click="handleReset">恢复默认设置</span>
       </WeLabel>
     </div>
@@ -27,45 +29,45 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
-import { toast } from "../../../../utils/feedback";
-import useStore from "../../../../store";
-const { useChatStore } = useStore();
+import { reactive } from 'vue'
+import { toast } from '../../../../utils/feedback'
+import useStore from '../../../../store'
+const { useChatStore } = useStore()
 
 const sendMethods = reactive([
   {
-    value: "enter",
-    label: "Enter",
+    value: 'enter',
+    label: 'Enter'
   },
   {
-    value: "ctrlEnter",
-    label: "Ctrl + Enter",
-  },
-]);
+    value: 'ctrlEnter',
+    label: 'Ctrl + Enter'
+  }
+])
 
 const formState = reactive({
   sendMethod: useChatStore.sendMethods,
-  conflictReminder: true,
-});
+  conflictReminder: true
+})
 
 const handleLanguageChange = (e) => {
-  useChatStore.sendMethods = e;
+  useChatStore.sendMethods = e
 }
 
 const changeShortcutKey = () => {
   toast({
-    type: "warning",
-    content: "不支持哦~",
-  });
+    type: 'warning',
+    content: '不支持哦~'
+  })
 }
 
 const handleReset = () => {
-  formState.sendMethod = useChatStore.sendMethods = "enter";
-  formState.conflictReminder = true;
+  formState.sendMethod = useChatStore.sendMethods = 'enter'
+  formState.conflictReminder = true
   toast({
-    content: "恢复默认设置",
-  });
-};
+    content: '恢复默认设置'
+  })
+}
 </script>
 
 <style lang="less" scoped>
@@ -84,13 +86,13 @@ const handleReset = () => {
       text-align: center;
       font-size: 14px;
       background-color: #fff;
-      border: 1px solid #DBDBDB;
+      border: 1px solid #dbdbdb;
       padding: 6px;
       line-height: 1.2;
       border-radius: 6px;
       cursor: pointer;
       &:hover {
-        border: 1px solid #A7A7A7;
+        border: 1px solid #a7a7a7;
       }
     }
     .button {

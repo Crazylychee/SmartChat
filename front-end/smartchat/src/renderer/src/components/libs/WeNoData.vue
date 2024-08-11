@@ -1,7 +1,7 @@
 <template>
   <WeDragBox>
     <div class="box-no-selected">
-      <i class="wechatfont wechat-weixin" :style="{...defaultImageStyle, ...imageStyle}"></i>
+      <i class="wechatfont wechat-weixin" :style="{ ...defaultImageStyle, ...imageStyle }"></i>
       <p :style="textStyle">{{ text }}</p>
     </div>
   </WeDragBox>
@@ -13,8 +13,8 @@ const props = defineProps({
     type: Object,
     default: () => {
       return {
-        color: "#ebebeb",
-        fontSize: "88px",
+        color: '#ebebeb',
+        fontSize: '88px'
       }
     }
   },
@@ -22,19 +22,19 @@ const props = defineProps({
     type: Object,
     default: () => {
       return {
-        color: "#999",
-        fontSize: "16px",
+        color: '#999',
+        fontSize: '16px'
       }
     }
   },
   text: {
     type: String,
-    default: "",
+    default: ''
   }
 })
 const defaultImageStyle = {
-  color: "#ebebeb",
-  fontSize: "88px",
+  color: '#ebebeb',
+  fontSize: '88px'
 }
 </script>
 

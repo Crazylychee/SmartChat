@@ -32,6 +32,7 @@ $ npm run build:mac
 # For Linux
 $ npm run build:linux
 ```
+
 #### 安装py的命令
 
 ```shell
@@ -46,10 +47,6 @@ scoop search python3
 
 scoop install python38
 ```
-
-
-
-
 
 页面原型如下：
 

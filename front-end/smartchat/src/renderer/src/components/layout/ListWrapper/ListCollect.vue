@@ -9,7 +9,7 @@
           v-for="(menu, index) in collectTypeList"
           :key="index"
           class="custom-item collect-item"
-          :class="{active: useCollectStore.activeCollectType === menu.searchType}"
+          :class="{ active: useCollectStore.activeCollectType === menu.searchType }"
           @click="handleCollectTypeClick(menu)"
         >
           <i class="wechatfont" :class="'wechat-' + menu.searchType"></i>
@@ -30,7 +30,7 @@
           v-for="(tag, index) in collectTagList"
           :key="index"
           class="custom-item collect-item tag-item"
-          :class="{active: useCollectStore.activeCollectType === tag.searchType}"
+          :class="{ active: useCollectStore.activeCollectType === tag.searchType }"
           @click="handleCollectTypeClick(tag)"
         >
           <p class="collect-name">{{ tag.title }}</p>
@@ -42,39 +42,40 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from "vue";
-import _ from "lodash";
-import { DownOutlined, UpOutlined } from "@ant-design/icons-vue";
-import useStore from "../../../store";
-const { useCollectStore, useSystemStore } = useStore();
-import { getUsedLocalStorageSize } from "../../../utils/utils";
+import { computed, onMounted, ref, watch } from 'vue'
+import _ from 'lodash'
+import { DownOutlined, UpOutlined } from '@ant-design/icons-vue'
+import useStore from '../../../store'
+const { useCollectStore, useSystemStore } = useStore()
+import { getUsedLocalStorageSize } from '../../../utils/utils'
 
 // todo 完善收藏模块
 onMounted(() => {
-  useCollectStore.activeCollectType = useCollectStore.activeCollectType || "all";
-  useSystemStore.boxTitleText = useCollectStore.typeList.find(menu => menu.searchType === useCollectStore.activeCollectType)['title']
-});
+  useCollectStore.activeCollectType = useCollectStore.activeCollectType || 'all'
+  useSystemStore.boxTitleText = useCollectStore.typeList.find(
+    (menu) => menu.searchType === useCollectStore.activeCollectType
+  )['title']
+})
 
-const tagsVisivle = ref(false);
+const tagsVisivle = ref(false)
 const toggleTags = () => {
-  tagsVisivle.value = !tagsVisivle.value;
-};
-
+  tagsVisivle.value = !tagsVisivle.value
+}
 
 const collectTypeList = computed(() => {
-  return useCollectStore.typeList.filter(item => item.collectType === "type");
+  return useCollectStore.typeList.filter((item) => item.collectType === 'type')
 })
 
 const collectTagList = computed(() => {
-  return useCollectStore.typeList.filter(item => item.collectType === "tag");
+  return useCollectStore.typeList.filter((item) => item.collectType === 'tag')
 })
 
 const handleCollectTypeClick = (menu) => {
-  useCollectStore.activeCollectType = menu.searchType || menu.title;
-  useSystemStore.boxTitleText = menu.title;
+  useCollectStore.activeCollectType = menu.searchType || menu.title
+  useSystemStore.boxTitleText = menu.title
 }
 
-const totalSize = getUsedLocalStorageSize();
+const totalSize = getUsedLocalStorageSize()
 </script>
 
 <style lang="less" scoped>

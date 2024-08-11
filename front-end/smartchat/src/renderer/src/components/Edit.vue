@@ -2,50 +2,41 @@
   <div style="display: inline-block">
     <div>
       <a-upload
-      v-model:file-list="fileList"
-      list-type="picture"
-      :max-count="1"
-      @change ="handleChange"
-     :showUploadList="false"
-    >
-      <a-button>
-        <upload-outlined></upload-outlined>
-   Upload (Max: 1)
-      </a-button>
-    </a-upload>
+        v-model:file-list="fileList"
+        list-type="picture"
+        :max-count="1"
+        @change="handleChange"
+        :showUploadList="false"
+      >
+        <a-button>
+          <upload-outlined></upload-outlined>
+          Upload (Max: 1)
+        </a-button>
+      </a-upload>
       <template v-if="fileList.length">
         <div v-for="(item, index) in fileList" :key="index" class="file-list-box">
-         <i class="wechatfont wechat-folder" title="发送文件"></i>
+          <i class="wechatfont wechat-folder" title="发送文件"></i>
           <a-tooltip :title="item.name">
             <span class="upload-name-view">{{ item.name }}</span>
           </a-tooltip>
-  
-         
         </div>
       </template>
-   
     </div>
- 
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-  
-const fileList = ref([]);
+const fileList = ref([])
 
-
-  
-    const handleDelete = (file) =>{
-      fileList = fileList.filter((item) => item.uid!== file.uid)
-    }
-    const handleChange =(file)=>{
-console.log(fileList)
-console.log(file)
-    }
-   
-
+const handleDelete = (file) => {
+  fileList = fileList.filter((item) => item.uid !== file.uid)
+}
+const handleChange = (file) => {
+  console.log(fileList)
+  console.log(file)
+}
 </script>
 
 <style scoped>
@@ -85,4 +76,3 @@ console.log(file)
   box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
 }
 </style>
-

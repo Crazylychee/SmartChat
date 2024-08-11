@@ -1,7 +1,11 @@
 <template>
   <WeDragBox class="tool-bar">
     <div class="tool-box tool-top">
-      <img :src="useUserInfoStore?.user?.avatar" class="avatar no-drag" @click.stop="handleAvatarClick" />
+      <img
+        :src="useUserInfoStore?.user?.avatar"
+        class="avatar no-drag"
+        @click.stop="handleAvatarClick"
+      />
       <template v-for="menu in menuTop" :key="menu.icon">
         <a-badge :count="menu.unReadCount || 0" title="" :offset="[-16, 10]">
           <i
@@ -10,7 +14,7 @@
             :class="[
               useSystemStore.activeMenu === menu.icon
                 ? `active wechat-${menu.icon}`
-                : `wechat-${menu.icon}`,
+                : `wechat-${menu.icon}`
             ]"
             @click="handleMenuClick(menu.icon)"
           ></i>
@@ -30,13 +34,22 @@
       ></i> -->
     </div>
     <div class="tool-box tool-bottom">
-      <div class="tool-bottom-item" :class="[`tool-${menu.icon}`]" v-for="menu in menuBottom" :key="menu.icon" @click="handleMenuClick(menu.icon)">
-        <i
-        :class="[`no-drag wechatfont wechat-${menu.icon}`]"
-        :title="menu.title"></i>
+      <div
+        class="tool-bottom-item"
+        :class="[`tool-${menu.icon}`]"
+        v-for="menu in menuBottom"
+        :key="menu.icon"
+        @click="handleMenuClick(menu.icon)"
+      >
+        <i :class="[`no-drag wechatfont wechat-${menu.icon}`]" :title="menu.title"></i>
         <div class="tool-item-box" ref="toolHandler" v-if="activeToolBox === menu.icon">
           <template v-if="activeToolBox === 'applet'">
-            <img src="https://tucdn.wpon.cn/2023/08/25/c4a2e28062909.png" class="applet" alt="" srcset="">
+            <img
+              src="https://tucdn.wpon.cn/2023/08/25/c4a2e28062909.png"
+              class="applet"
+              alt=""
+              srcset=""
+            />
             <!-- <img src="https://tucdn.wpon.cn/2023/08/25/dcc370d45d42f.png" class="applet" alt="" srcset=""> -->
             <p>使用微信 扫码体验</p>
           </template>
@@ -45,7 +58,14 @@
             <p class="phone phone-button"><i class="wechatfont wechat-files"></i>文件传输助手</p>
           </template>
           <template v-else>
-            <div v-for="menu in menus" class="menu-item" :key="menu.value" @click.stop="handleMenuClick(menu.value)">{{ menu.label }}</div>
+            <div
+              v-for="menu in menus"
+              class="menu-item"
+              :key="menu.value"
+              @click.stop="handleMenuClick(menu.value)"
+            >
+              {{ menu.label }}
+            </div>
           </template>
         </div>
       </div>
@@ -59,95 +79,103 @@
 </template>
 
 <script setup>
-import { reactive, ref, watch } from "vue";
-import { onClickOutside } from "@vueuse/core";
-import RelativeBox from "../../../components/common/RelativeBox/Index.vue"
-import UserInfo from "../../../components/common/UserInfo/Index.vue"
-import Timeline from "./Timeline.vue"
-import Settings from "./Settings/Index.vue"
-import { toast, notify } from "../../../utils/feedback";
-import useStore from "../../../store";
-const { useSystemStore, useRelativeBoxStore, useUserInfoStore, useChatStore } = useStore();
+import { reactive, ref, watch } from 'vue'
+import { onClickOutside } from '@vueuse/core'
+import RelativeBox from '../../../components/common/RelativeBox/Index.vue'
+import UserInfo from '../../../components/common/UserInfo/Index.vue'
+import Timeline from './Timeline.vue'
+import Settings from './Settings/Index.vue'
+import { toast, notify } from '../../../utils/feedback'
+import useStore from '../../../store'
+const { useSystemStore, useRelativeBoxStore, useUserInfoStore, useChatStore } = useStore()
 
-const infoVisible = ref(false);
+const infoVisible = ref(false)
 // 点击头像，展示信息
 const handleAvatarClick = (e) => {
-  infoVisible.value = true;
-  useRelativeBoxStore.showBox(e.clientY, e.clientX);
+  infoVisible.value = true
+  useRelativeBoxStore.showBox(e.clientY, e.clientX)
 }
 
 // 工具栏顶部菜单
 const menuTop = reactive([
   {
-    icon: "chat",
-    title: "聊天",
+    icon: 'chat',
+    title: '聊天'
   },
   {
-    icon: "users",
-    title: "通讯录",
+    icon: 'users',
+    title: '通讯录'
   },
   {
-    icon: "collect",
-    title: "收藏",
+    icon: 'collect',
+    title: '收藏'
   },
   {
-    icon: "files",
-    title: "聊天文件",
+    icon: 'files',
+    title: '聊天文件'
   },
   {
-    icon: "timeline",
-    title: "朋友圈",
-  },
-]);
+    icon: 'timeline',
+    title: '朋友圈'
+  }
+])
 
 // 获取聊天未读数
-watch(() => useChatStore.chatList, (newVal) => {
-  const chatUnReadCount = newVal.reduce((p, n) => {
-    n.unReadCount = n.unReadCount || 0
-    return p + n.unReadCount;
-  }, 0)
-  menuTop[0]['unReadCount'] = chatUnReadCount;
-}, {
-  immediate: true,
-  deep: true,
-})
+watch(
+  () => useChatStore.chatList,
+  (newVal) => {
+    const chatUnReadCount = newVal.reduce((p, n) => {
+      n.unReadCount = n.unReadCount || 0
+      return p + n.unReadCount
+    }, 0)
+    menuTop[0]['unReadCount'] = chatUnReadCount
+  },
+  {
+    immediate: true,
+    deep: true
+  }
+)
 
 // 工具栏底部菜单
 const menuBottom = reactive([
   {
-    icon: "applet",
-    title: "小程序面板",
+    icon: 'applet',
+    title: '小程序面板'
   },
   {
-    icon: "phone",
-    title: "手机",
+    icon: 'phone',
+    title: '手机'
   },
   {
-    icon: "menu",
-    title: "设置及其他",
-  },
-]);
+    icon: 'menu',
+    title: '设置及其他'
+  }
+])
 
-const activeToolBox = ref("")
+const activeToolBox = ref('')
 const toolHandler = ref(null)
 onClickOutside(toolHandler, (event) => {
-  activeToolBox.value = ""
+  activeToolBox.value = ''
 })
 
 const menus = reactive([
   {
     label: '视频号直播工具',
     value: 'videoAccountLiveStreamingTool'
-  },{
+  },
+  {
     label: '迁移与备份',
     value: 'migrationAndBackup'
-  },{
+  },
+  {
     label: '锁定',
     value: 'lock'
-  },{
+  },
+  {
     label: '意见反馈',
     value: 'feedback'
-  },{
+  },
+  {
     label: '设置',
     value: 'setting'
   }
@@ -156,26 +184,26 @@ const menus = reactive([
 const timelineVisible = ref(false)
 // 点击工具栏icon
 const handleMenuClick = (type) => {
-  if (["chat", "users", "collect"].includes(type)) {
+  if (['chat', 'users', 'collect'].includes(type)) {
     // 打开对应面板
-    useSystemStore.activeMenu = type;
+    useSystemStore.activeMenu = type
   } else if (type === 'timeline') {
     // 打开朋友圈
     timelineVisible.value = true
-  } else if (["applet", "phone", "menu"].includes(type)) {
+  } else if (['applet', 'phone', 'menu'].includes(type)) {
     // 点击小程序面板、手机、设置及其他弹出小菜单
     activeToolBox.value = type
-  } else if (["lock", "feedback", "setting"].includes(type)) {
+  } else if (['lock', 'feedback', 'setting'].includes(type)) {
     // 点击小菜单条目
-    activeToolBox.value = ""
+    activeToolBox.value = ''
     if (type === 'lock') {
       toast({
-        type: "info",
-        content: "已锁定，请输入密码解锁",
-      });
+        type: 'info',
+        content: '已锁定，请输入密码解锁'
+      })
       useSystemStore.isLocked = true
     } else if (type === 'feedback') {
-      window.open(useSystemStore.qqGroupLink, "_blank")
+      window.open(useSystemStore.qqGroupLink, '_blank')
     } else {
       settingsVisible.value = true
       // notify({
@@ -185,11 +213,11 @@ const handleMenuClick = (type) => {
     }
   } else {
     notify({
-      type: "info",
-      content: "相关功能开发中...",
-    });
+      type: 'info',
+      content: '相关功能开发中...'
+    })
   }
-};
+}
 
 const closeTimeline = () => {
   timelineVisible.value = false
@@ -265,7 +293,7 @@ const closeSettings = () => {
         position: absolute;
         min-width: 136px;
         min-height: 100px;
-        background-color: #2E2E2E;
+        background-color: #2e2e2e;
         left: 36px;
         bottom: 0;
       }
@@ -280,7 +308,7 @@ const closeSettings = () => {
           justify-content: center;
           align-items: center;
           // color: #1FF3FD;
-          color: #AB7548;
+          color: #ab7548;
 
           .applet {
             max-width: 80%;
@@ -293,7 +321,7 @@ const closeSettings = () => {
         .tool-item-box {
           width: 242px;
           border-radius: 0 6px 6px 0;
-          color: #FFF;
+          color: #fff;
           font-size: 13px;
           line-height: 1.4;
           overflow: hidden;
@@ -318,7 +346,7 @@ const closeSettings = () => {
               height: 40px;
               line-height: 40px;
               border-radius: 40px;
-              background-color: #07C160;
+              background-color: #07c160;
               font-size: 18px;
               margin-right: 12px;
             }
@@ -337,7 +365,7 @@ const closeSettings = () => {
             font-size: 14px;
             cursor: pointer;
             &:hover {
-              background-color: #2F3033;
+              background-color: #2f3033;
             }
           }
         }
@@ -380,7 +408,8 @@ const closeSettings = () => {
       line-height: 16px !important;
       box-shadow: none !important;
       font-size: 12px !important;
-      .ant-scroll-number-only, .ant-scroll-number-only-unit {
+      .ant-scroll-number-only,
+      .ant-scroll-number-only-unit {
         height: 16px !important;
       }
     }

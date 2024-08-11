@@ -23,13 +23,13 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { reactive } from 'vue'
 
 const form = reactive({
   messageNotice: true,
   voiceNotice: true,
   timelineMark: true,
-  lookMark: false,
+  lookMark: false
 })
 </script>
 
@@ -53,7 +53,7 @@ const form = reactive({
       flex: 1;
     }
     :deep(.ant-switch) {
-      background: #E5E5E5;
+      background: #e5e5e5;
       min-width: 40px;
     }
     :deep(.ant-switch-checked) {

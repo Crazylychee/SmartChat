@@ -1,24 +1,26 @@
 <template>
-
-    <div class="wrapper" @click="handleWechatClick" @contextmenu="handleWrapperContextMenu">
-      <WeChat @click="handleWechatClick" :style="{zIndex: wechatIndex}" @contextmenu="handleWechatContextMenu" />
-<!-- <Edit/> -->
-    </div>
-
+  <div class="wrapper" @click="handleWechatClick" @contextmenu="handleWrapperContextMenu">
+    <WeChat
+      @click="handleWechatClick"
+      :style="{ zIndex: wechatIndex }"
+      @contextmenu="handleWechatContextMenu"
+    />
+    <!-- <Edit/> -->
+  </div>
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
-import { useWindowFocus } from '@vueuse/core';
-import useStore from '@/store';
-const { useContextMenuStore, useSystemStore } = useStore();
-import WeChat from '@/components/WeChat.vue';
-import TaskBar from './components/layout/TaskBar/Index.vue';
+import { ref, watch } from 'vue'
+import { useWindowFocus } from '@vueuse/core'
+import useStore from '@/store'
+
+const { useContextMenuStore, useSystemStore } = useStore()
+import WeChat from '@/components/WeChat.vue'
+import TaskBar from './components/layout/TaskBar/Index.vue'
 import Edit from './components/Edit.vue'
 
-
 const windowFocused = useWindowFocus()
-watch(windowFocused, newVal => {
+watch(windowFocused, (newVal) => {
   if (!newVal) {
     // 浏览器失焦时，隐藏菜单
     doHide()
@@ -46,20 +48,28 @@ const doHide = () => {
 
 // 监听是否置顶Wechat
 const wechatIndex = ref('auto')
-watch(() => useSystemStore.windowState.isTop, (newVal) => {
-  wechatIndex.value = newVal ? 99 : 'auto'
-}, {
-  immediate: true,
-  deep: true,
-})
+watch(
+  () => useSystemStore.windowState.isTop,
+  (newVal) => {
+    wechatIndex.value = newVal ? 99 : 'auto'
+  },
+  {
+    immediate: true,
+    deep: true
+  }
+)
 
-const showGitee = ref(true);
-watch(() => useSystemStore.windowState.status, (newVal) => {
-  showGitee.value = newVal !== "maximize"
-}, {
-  immediate: true,
-  deep: true,
-})
+const showGitee = ref(true)
+watch(
+  () => useSystemStore.windowState.status,
+  (newVal) => {
+    showGitee.value = newVal !== 'maximize'
+  },
+  {
+    immediate: true,
+    deep: true
+  }
+)
 </script>
 <style scoped>
 @import url(//at.alicdn.com/t/c/font_4200334_7n3az5gz1m6.css);

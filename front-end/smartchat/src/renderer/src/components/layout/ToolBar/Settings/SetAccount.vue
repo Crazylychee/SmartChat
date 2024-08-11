@@ -11,11 +11,11 @@
     </div>
     <div class="config">
       <WeLabel label="自动登录">
-        <div style="margin-top:5px;">
-          <span v-if="formState.autoLogin">{{
-            formState.autoLogin ? "已开启" : "开启"
+        <div style="margin-top: 5px">
+          <span v-if="formState.autoLogin">{{ formState.autoLogin ? '已开启' : '开启' }}</span>
+          <span class="switch" @click="handleClose">{{
+            formState.autoLogin ? '关闭' : '开启'
           }}</span>
-          <span class="switch" @click="handleClose">{{ formState.autoLogin ? "关闭" : "开启" }}</span>
           <p>开启后，在本机登录微信将无需手机确认。</p>
           <p>可在手机和电脑上关闭</p>
         </div>
@@ -26,15 +26,15 @@
 </template>
 
 <script setup>
-import useStore from "../../../../store";
-const { useUserInfoStore } = useStore();
-import Confirm from '../../../../components/libs/confirm';
-import { toast } from "../../../../utils/feedback";
+import useStore from '../../../../store'
+const { useUserInfoStore } = useStore()
+import Confirm from '../../../../components/libs/confirm'
+import { toast } from '../../../../utils/feedback'
 
-import { reactive } from "vue";
+import { reactive } from 'vue'
 const formState = reactive({
-  autoLogin: true,
-});
+  autoLogin: true
+})
 
 const handleClose = () => {
   Confirm({
@@ -42,11 +42,13 @@ const handleClose = () => {
     closable: false,
     confirmText: '确定',
     confirmColor: '#FF3333'
-  }).then(() => {
-    toast({
-      content: "执行关闭"
+  })
+    .then(() => {
+      toast({
+        content: '执行关闭'
+      })
     })
-  }).catch(() => {})
+    .catch(() => {})
 }
 
 // 执行退出登录
@@ -56,11 +58,13 @@ const handleLogout = () => {
     closable: false,
     confirmText: '确定',
     confirmColor: '#FF3333'
-  }).then(() => {
-    // 清空缓存并刷新页面重新拉取信息
-    localStorage.clear();
-    location.reload()
-  }).catch(() => {})
+  })
+    .then(() => {
+      // 清空缓存并刷新页面重新拉取信息
+      localStorage.clear()
+      location.reload()
+    })
+    .catch(() => {})
 }
 </script>
 
@@ -120,14 +124,14 @@ const handleLogout = () => {
     width: 110px;
     height: 32px;
     line-height: 32px;
-    background-color: #E9E9E9;
+    background-color: #e9e9e9;
     border-radius: 4px;
     cursor: pointer;
     &:hover {
-      background-color: #D2D2D2;
+      background-color: #d2d2d2;
     }
     &:active {
-      background-color: #C6C6C6;
+      background-color: #c6c6c6;
     }
   }
 }

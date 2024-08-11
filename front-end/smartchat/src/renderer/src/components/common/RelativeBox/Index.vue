@@ -5,7 +5,7 @@
     ref="target"
     :style="{
       top: useRelativeBoxStore.boxTop + 'px',
-      left: useRelativeBoxStore.boxLeft + 'px',
+      left: useRelativeBoxStore.boxLeft + 'px'
     }"
     @click.stop
   >
@@ -16,15 +16,15 @@
 <script setup>
 import { ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
-import useStore from "../../../store";
-const { useRelativeBoxStore } = useStore();
+import useStore from '../../../store'
+const { useRelativeBoxStore } = useStore()
 const emit = defineEmits()
 
 const props = defineProps({
   visible: {
     type: Boolean,
-    default: false,
-  },
+    default: false
+  }
 })
 
 const target = ref(null)
@@ -41,7 +41,7 @@ onClickOutside(target, (event) => {
   width: 280px;
   padding: 24px;
   background-color: #fff;
-  border: 1px solid #E5E5E5;
+  border: 1px solid #e5e5e5;
   box-sizing: border-box;
   box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.12);
   z-index: 9999;

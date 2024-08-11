@@ -1,7 +1,15 @@
 <template>
   <div class="users" ref="users">
     <WeDragBox class="search-box">
-      <a-input size="small" v-model:value="useSystemStore.listSearchText" placeholder="搜索" class="no-drag" @focus="handleSearchFocus" @blur="handleSearchBlur" @change="handleSearchChange">
+      <a-input
+        size="small"
+        v-model:value="useSystemStore.listSearchText"
+        placeholder="搜索"
+        class="no-drag"
+        @focus="handleSearchFocus"
+        @blur="handleSearchBlur"
+        @change="handleSearchChange"
+      >
         <template #prefix>
           <SearchOutlined style="color: #ccc" />
         </template>
@@ -9,8 +17,16 @@
           <CloseCircleOutlined v-if="isSearching" style="color: #ccc" @click="handleSearchClear" />
         </template>
       </a-input>
-      <i class="wechatfont wechat-add no-drag" @click="handleInitGroup" v-if="useSystemStore.activeMenu === 'chat'"></i>
-      <i class="wechatfont wechat-adduser no-drag" @click="handleAddFriend" v-if="useSystemStore.activeMenu === 'users'"></i>
+      <i
+        class="wechatfont wechat-add no-drag"
+        @click="handleInitGroup"
+        v-if="useSystemStore.activeMenu === 'chat'"
+      ></i>
+      <i
+        class="wechatfont wechat-adduser no-drag"
+        @click="handleAddFriend"
+        v-if="useSystemStore.activeMenu === 'users'"
+      ></i>
     </WeDragBox>
     <div class="list-box">
       <ListChat v-show="useSystemStore.activeMenu === 'chat'" />
@@ -21,15 +37,15 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { SearchOutlined, CloseCircleOutlined } from "@ant-design/icons-vue";
-import ListChat from "./ListChat.vue";
-import ListAddressBook from "./ListAddressBook.vue";
-import ListCollect from "./ListCollect.vue";
-import useStore from "../../../store";
-const { useSystemStore } = useStore();
-import { toast } from "../../../utils/feedback"
-import useDetectOutsideClick from "../../../hooks/useDetectOutsideClick";
+import { ref } from 'vue'
+import { SearchOutlined, CloseCircleOutlined } from '@ant-design/icons-vue'
+import ListChat from './ListChat.vue'
+import ListAddressBook from './ListAddressBook.vue'
+import ListCollect from './ListCollect.vue'
+import useStore from '../../../store'
+const { useSystemStore } = useStore()
+import { toast } from '../../../utils/feedback'
+import useDetectOutsideClick from '../../../hooks/useDetectOutsideClick'
 
 const isSearching = ref(false)
 // 搜索框文本修改时
@@ -37,42 +53,42 @@ const handleSearchChange = (e) => {
   const { type } = e
   if (type === 'input') {
     // 立即检索
-    isSearching.value = true;
+    isSearching.value = true
   } else {
     // 点击了清空按钮
-    isSearching.value = false;
+    isSearching.value = false
   }
 }
 
 // 当点击非用户列表时
-const users = ref();
+const users = ref()
 useDetectOutsideClick(users, () => {
-  isSearching.value = false;
-  useSystemStore.listSearchText = "";
-});
+  isSearching.value = false
+  useSystemStore.listSearchText = ''
+})
 
 // 搜索框聚焦时
 const handleSearchFocus = () => {
-  isSearching.value = true;
+  isSearching.value = true
 }
 
 // 清空搜索列表时
 const handleSearchClear = () => {
-  isSearching.value = false;
-  useSystemStore.listSearchText = "";
+  isSearching.value = false
+  useSystemStore.listSearchText = ''
 }
 
 // 发起群聊
 const handleInitGroup = () => {
   toast({
-    content: "发起群聊"
+    content: '发起群聊'
   })
 }
 
 // 添加好友
 const handleAddFriend = () => {
   toast({
-    content: "添加好友"
+    content: '添加好友'
   })
 }
 </script>
@@ -95,12 +111,12 @@ const handleAddFriend = () => {
     padding: 24px 10px 10px 10px;
 
     :deep(.ant-input-affix-wrapper) {
-      background-color: #E2E2E2;
+      background-color: #e2e2e2;
       border: none;
       box-shadow: none;
 
       &.ant-input-affix-wrapper-focused {
-        background-color: #FFFFFF;
+        background-color: #ffffff;
       }
 
       .ant-input {

@@ -1,34 +1,39 @@
 <template>
-  <div class="resize-border" :class="[border]" v-for="border in borderLists" :key="border"
-    @mousedown="e => startResize(border, e)"></div>
+  <div
+    class="resize-border"
+    :class="[border]"
+    v-for="border in borderLists"
+    :key="border"
+    @mousedown="(e) => startResize(border, e)"
+  ></div>
 </template>
 
 <script setup>
-import { reactive, watch } from "vue";
-import useStore from "../../../store";
-const { useSystemStore } = useStore();
+import { reactive, watch } from 'vue'
+import useStore from '../../../store'
+const { useSystemStore } = useStore()
 
-const diff = "4px";
-const backgroundColor = "rgba(0, 0, 0, 0)";
+const diff = '4px'
+const backgroundColor = 'rgba(0, 0, 0, 0)'
 // let resizing = false;
 // let resizeType = "";
 // let startX = 0;
 // let startY = 0;
-const minWidth = useSystemStore.windows.minWidth;
-const minHeight = useSystemStore.windows.minHeight;
-let width = 901;
-let height = 673;
-let top = -0.5;
-let left = -0.5;
+const minWidth = useSystemStore.windows.minWidth
+const minHeight = useSystemStore.windows.minHeight
+let width = 901
+let height = 673
+let top = -0.5
+let left = -0.5
 const borderLists = reactive([
-  "top",
-  "bottom",
-  "left",
-  "right",
-  "top-left",
-  "top-right",
-  "bottom-left",
-  "bottom-right",
+  'top',
+  'bottom',
+  'left',
+  'right',
+  'top-left',
+  'top-right',
+  'bottom-left',
+  'bottom-right'
 ])
 
 // watch(() => useSystemStore.windows, (newVal) => {
@@ -114,7 +119,7 @@ const borderLists = reactive([
 //     // 限制窗口的最小宽度和最小高度
 //     width = Math.max(width, minWidth);
 //     height = Math.max(height, minHeight);
-    useSystemStore.windows.top = top
+useSystemStore.windows.top = top
 //     useSystemStore.windows.left = left
 //     useSystemStore.windows.width = width
 //     useSystemStore.windows.height = height

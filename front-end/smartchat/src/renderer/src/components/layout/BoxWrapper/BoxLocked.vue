@@ -3,37 +3,41 @@
     <LockOutlined class="lock-icon" />
     <p class="title">Windows 微信已被锁定</p>
     <p>你可以在下方输入框里输入 <span>123456</span> 解锁</p>
-    <a-input-password autocomplete="new-password" v-model:value="password" placeholder="请输入解锁密码" />
+    <a-input-password
+      autocomplete="new-password"
+      v-model:value="password"
+      placeholder="请输入解锁密码"
+    />
     <a-button type="primary" @click.prevent="handleUnlock">立即解锁</a-button>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { LockOutlined } from '@ant-design/icons-vue';
-import useStore from "../../../store";
-const { useSystemStore } = useStore();
-import { toast } from "../../../utils/feedback";
+import { ref } from 'vue'
+import { LockOutlined } from '@ant-design/icons-vue'
+import useStore from '../../../store'
+const { useSystemStore } = useStore()
+import { toast } from '../../../utils/feedback'
 
-const password = ref("")
+const password = ref('')
 
 const handleUnlock = () => {
   if (!password.value) {
     toast({
-      type: "warning",
-      content: "请输入解锁密码"
+      type: 'warning',
+      content: '请输入解锁密码'
     })
     return
   }
-  if (password.value !== "123456") {
+  if (password.value !== '123456') {
     toast({
-      type: "warning",
-      content: "解锁密码错误"
+      type: 'warning',
+      content: '解锁密码错误'
     })
     return
   }
   toast({
-    content: "解锁成功"
+    content: '解锁成功'
   })
   useSystemStore.isLocked = false
 }
@@ -63,7 +67,7 @@ const handleUnlock = () => {
   }
 
   span {
-    color: #07C160;
+    color: #07c160;
   }
 
   .ant-input-password {
