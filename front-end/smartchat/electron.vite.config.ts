@@ -14,7 +14,7 @@ export default defineConfig({
       alias: {
         // '@/*': resolve(__dirname,'src/renderer/src/*')
         '@': resolve(__dirname, './src/renderer/src'),
-        // 'turms-client-js': 'file:A:/client-js/turms/turms-client-js'
+        'turms-client-js': 'file:D:/client-js/turms/turms-client-js'
       }
     },
     plugins: [vue()]
