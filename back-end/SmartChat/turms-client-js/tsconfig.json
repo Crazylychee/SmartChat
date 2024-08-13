@@ -1,0 +1,47 @@
+// https://www.typescriptlang.org/tsconfig
+{
+  "compilerOptions": {
+    // type checking
+    "noImplicitAny": false,
+    "noImplicitOverride": true,
+    "strict": true,
+    "strictNullChecks": false,
+
+    // modules
+    // Do not set to "CommonJS", or rollup won't be able to tree-shake
+    "module": "ES2015",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+
+    // emit
+    // We have used rollup to generate a bundled definition file,
+    // and publish the TypeScript files under the "src" folder,
+    // so we don't need these separate definition files for users anymore.
+    "declaration": false,
+    "outDir": "dist",
+    "removeComments": true,
+    "sourceMap": true,
+
+    // interop constraints
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+
+    // language and environment
+    "lib": [
+      "dom",
+      "WebWorker",
+      "ES2020"
+    ],
+    "target": "es5",
+
+    // completeness
+    "skipLibCheck": true
+  },
+  "include": [
+    // Added for eslint to lint ".eslintrc.js"
+    ".eslintrc.js",
+    "rollup.config.ts",
+    "src/**/*",
+    "tests/**/*"
+  ]
+}

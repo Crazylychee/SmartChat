@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: turms
+  netty:
+    leak-detection: simple
+  profiles:
+    active: dev
+    group:
+      dev:
+        - dev
+        - dev-latest
+      test:
+        - test
+        - test-latest
+      prod:
+        - prod
+        - prod-latest
+  codec:
+    max-in-memory-size: 64KB
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
+      - org.springframework.boot.autoconfigure.mongo.MongoReactiveAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisReactiveAutoConfiguration
+
+############################### Turms ###############################
+
+turms:
+  cluster:
+    id: turms
+    connection:
+      client:
+        ssl:
+          enabled: false # Enable SSL if needed
+          enabled-protocols: TLSv1.2,TLSv1.3
+          key-store: classpath:keystore-test.p12 # keytool -genkeypair -keyalg RSA -keysize 2048 -validity 3650 -alias turms -keystore keystore-test.p12 -storetype PKCS12 -storepass imturms
+          key-store-type: PKCS12
+          key-store-password: imturms
+          key-alias: turms
+      server:
+        ssl:
+          enabled: false # Enable SSL if needed
+          enabled-protocols: TLSv1.2,TLSv1.3
+          key-store: classpath:keystore-test.p12 # keytool -genkeypair -keyalg RSA -keysize 2048 -validity 3650 -alias turms -keystore keystore-test.p12 -storetype PKCS12 -storepass imturms
+          key-store-type: PKCS12
+          key-store-password: imturms
+          key-alias: turms

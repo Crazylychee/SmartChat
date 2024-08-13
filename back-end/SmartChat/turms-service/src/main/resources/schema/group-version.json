@@ -1,0 +1,32 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "invt",
+      "jq",
+      "jr",
+      "bl",
+      "mbr"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "long"
+      },
+      "invt": {
+        "bsonType": "date"
+      },
+      "jq": {
+        "bsonType": "date"
+      },
+      "jr": {
+        "bsonType": "date"
+      },
+      "bl": {
+        "bsonType": "date"
+      },
+      "mbr": {
+        "bsonType": "date"
+      }
+    }
+  }
+}

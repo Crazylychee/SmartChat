@@ -1,0 +1,1047 @@
+2024-08-13 02:43:33.679  INFO S ohzemlta                     main im.turms.service.TurmsServiceApplication : Starting TurmsServiceApplication using Java 21.0.4 with PID 41148 (A:\usr\JavaProject\turms\turms-service\target\classes started by usr in A:\usr\JavaProject\turms)
+2024-08-13 02:43:33.707  INFO S ohzemlta                     main im.turms.service.TurmsServiceApplication : The following 2 profiles are active: "dev", "dev-latest"
+2024-08-13 02:43:34.098  WARN S ohzemlta                     main      o.s.c.a.AnnotationBeanNameGenerator : Support for convention-based stereotype names is deprecated and will be removed in a future version of the framework. Please annotate the 'value' attribute in @im.turms.server.common.access.admin.web.annotation.RestController with @AliasFor(annotation=Component.class) to declare an explicit alias for @Component's 'value' attribute.
+2024-08-13 02:43:35.846  WARN S ohzemlta                     main      i.t.s.c.i.a.TurmsApplicationContext : The property "spring.config.location" is empty
+2024-08-13 02:43:35.849  WARN S ohzemlta                     main      i.t.s.c.i.a.TurmsApplicationContext : Could not find the file (git.properties), fall back to the default version 0.0.0 in non-production environments. Fix it by running "mvn compile"
+2024-08-13 02:43:35.849  INFO S ohzemlta                     main      i.t.s.c.i.a.TurmsApplicationContext : The local node with the build properties {version=0.0.0, commitId=, buildTime=} is running in a non-production environment
+2024-08-13 02:43:36.531  INFO S ohzemlta                     main                org.mongodb.driver.client : MongoClient with metadata {"driver": {"name": "mongo-java-driver|reactive-streams", "version": "5.0.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./21.0.4+7-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=NettyTransportSettings{eventLoopGroup=io.netty.channel.nio.NioEventLoopGroup@3d53e6f7, socketChannelClass=class io.netty.channel.socket.nio.NioSocketChannel, allocator=PooledByteBufAllocator(directByDefault: true), sslContext=null}, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DocumentCodecProvider{}, MapCodecProvider{}, IterableCodecProvider{}, Jsr310CodecProvider{}, BsonCodecProvider{}, im.turms.server.common.storage.mongo.codec.MongoCodecProvider@1de4bee0]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[47.113.224.195:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[im.turms.server.common.storage.mongo.MongoContext$1@3ece79fe]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-08-13 02:43:36.641  INFO S ohzemlta                     cluster-ClusterId{value='66bac858e504df4987f7f668', description='null'}-47.113.224.195:27017               org.mongodb.driver.cluster : Monitor thread successfully connected to server with description ServerDescription{address=47.113.224.195:27017, type=SHARD_ROUTER, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=17, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=55759900}
+2024-08-13 02:43:36.683  INFO S ohzemlta                     main                org.mongodb.driver.client : MongoClient with metadata {"driver": {"name": "mongo-java-driver|reactive-streams", "version": "5.0.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./21.0.4+7-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=NettyTransportSettings{eventLoopGroup=io.netty.channel.nio.NioEventLoopGroup@2e1eb85f, socketChannelClass=class io.netty.channel.socket.nio.NioSocketChannel, allocator=PooledByteBufAllocator(directByDefault: true), sslContext=null}, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DocumentCodecProvider{}, MapCodecProvider{}, IterableCodecProvider{}, Jsr310CodecProvider{}, BsonCodecProvider{}, im.turms.server.common.storage.mongo.codec.MongoCodecProvider@1de4bee0]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[im.turms.server.common.storage.mongo.MongoContext$1@ea7a4c3]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-08-13 02:43:36.691  INFO S ohzemlta                     cluster-ClusterId{value='66bac858e504df4987f7f669', description='null'}-localhost:27017               org.mongodb.driver.cluster : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=6939900}
+2024-08-13 02:43:36.696  WARN S ohzemlta                     main s.c.a.AnnotationConfigApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminApiRateLimitingManager' defined in file [A:\usr\JavaProject\turms\turms-service\target\classes\im\turms\service\access\admin\throttle\AdminApiRateLimitingManager.class]: Failed to instantiate [im.turms.service.access.admin.throttle.AdminApiRateLimitingManager]: Constructor threw exception
+2024-08-13 02:43:36.703  INFO S ohzemlta                     main  s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-08-13 02:43:36.726 ERROR S ohzemlta                     main                  o.s.b.SpringApplication : Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminApiRateLimitingManager' defined in file [A:\usr\JavaProject\turms\turms-service\target\classes\im\turms\service\access\admin\throttle\AdminApiRateLimitingManager.class]: Failed to instantiate [im.turms.service.access.admin.throttle.AdminApiRateLimitingManager]: Constructor threw exception
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:318)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:306)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1357)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at im.turms.server.common.BaseTurmsApplication.bootstrap(BaseTurmsApplication.java:53)
+	at im.turms.service.TurmsServiceApplication.main(TurmsServiceApplication.java:37)
+
+caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [im.turms.service.access.admin.throttle.AdminApiRateLimitingManager]: Constructor threw exception
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:221)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:111)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:315)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:306)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1357)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at im.turms.server.common.BaseTurmsApplication.bootstrap(BaseTurmsApplication.java:53)
+	at im.turms.service.TurmsServiceApplication.main(TurmsServiceApplication.java:37)
+
+caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'mongoDataGenerator' defined in file [A:\usr\JavaProject\turms\turms-service\target\classes\im\turms\service\storage\mongo\MongoCollectionInitializer.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'conferenceMongoClient' defined in class path resource [im/turms/service/storage/mongo/MongoConfig.class]: Failed to instantiate [im.turms.server.common.storage.mongo.TurmsMongoClient]: Factory method 'conferenceMongoClient' threw exception with message: Failed to create the mongo client
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1357)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1337)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1167)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.context.annotation.ContextAnnotationAutowireCandidateResolver$1.getTarget(ContextAnnotationAutowireCandidateResolver.java:103)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
+	at im.turms.server.common.infra.cluster.node.Node$$SpringCGLIB$$0.getSharedProperties(<generated>)
+	at im.turms.server.common.infra.property.TurmsPropertiesManager.getGlobalProperties(TurmsPropertiesManager.java:96)
+	at im.turms.service.access.admin.throttle.AdminApiRateLimitingManager.<init>(AdminApiRateLimitingManager.java:36)
+	at jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:208)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:111)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:315)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:306)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1357)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at im.turms.server.common.BaseTurmsApplication.bootstrap(BaseTurmsApplication.java:53)
+	at im.turms.service.TurmsServiceApplication.main(TurmsServiceApplication.java:37)
+
+caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'conferenceMongoClient' defined in class path resource [im/turms/service/storage/mongo/MongoConfig.class]: Failed to instantiate [im.turms.server.common.storage.mongo.TurmsMongoClient]: Factory method 'conferenceMongoClient' threw exception with message: Failed to create the mongo client
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:648)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1337)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1167)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1357)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1337)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1167)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.context.annotation.ContextAnnotationAutowireCandidateResolver$1.getTarget(ContextAnnotationAutowireCandidateResolver.java:103)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
+	at im.turms.server.common.infra.cluster.node.Node$$SpringCGLIB$$0.getSharedProperties(<generated>)
+	at im.turms.server.common.infra.property.TurmsPropertiesManager.getGlobalProperties(TurmsPropertiesManager.java:96)
+	at im.turms.service.access.admin.throttle.AdminApiRateLimitingManager.<init>(AdminApiRateLimitingManager.java:36)
+	at jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:208)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:111)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:315)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:306)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1357)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at im.turms.server.common.BaseTurmsApplication.bootstrap(BaseTurmsApplication.java:53)
+	at im.turms.service.TurmsServiceApplication.main(TurmsServiceApplication.java:37)
+
+caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [im.turms.server.common.storage.mongo.TurmsMongoClient]: Factory method 'conferenceMongoClient' threw exception with message: Failed to create the mongo client
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1337)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1167)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1357)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1337)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1167)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.context.annotation.ContextAnnotationAutowireCandidateResolver$1.getTarget(ContextAnnotationAutowireCandidateResolver.java:103)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
+	at im.turms.server.common.infra.cluster.node.Node$$SpringCGLIB$$0.getSharedProperties(<generated>)
+	at im.turms.server.common.infra.property.TurmsPropertiesManager.getGlobalProperties(TurmsPropertiesManager.java:96)
+	at im.turms.service.access.admin.throttle.AdminApiRateLimitingManager.<init>(AdminApiRateLimitingManager.java:36)
+	at jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:208)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:111)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:315)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:306)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1357)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at im.turms.server.common.BaseTurmsApplication.bootstrap(BaseTurmsApplication.java:53)
+	at im.turms.service.TurmsServiceApplication.main(TurmsServiceApplication.java:37)
+
+caused by: java.lang.RuntimeException: Failed to create the mongo client
+	at im.turms.server.common.storage.mongo.BaseMongoConfig.lambda$getMongoClient$0(BaseMongoConfig.java:73)
+	at java.util.HashMap.compute(HashMap.java:1324)
+	at im.turms.server.common.storage.mongo.BaseMongoConfig.getMongoClient(BaseMongoConfig.java:64)
+	at im.turms.service.storage.mongo.MongoConfig.conferenceMongoClient(MongoConfig.java:177)
+	at im.turms.service.storage.mongo.MongoConfig$$SpringCGLIB$$0.CGLIB$conferenceMongoClient$1(<generated>)
+	at im.turms.service.storage.mongo.MongoConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:348)
+	at im.turms.service.storage.mongo.MongoConfig$$SpringCGLIB$$0.conferenceMongoClient(<generated>)
+	at jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1337)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1167)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1357)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1337)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1167)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.context.annotation.ContextAnnotationAutowireCandidateResolver$1.getTarget(ContextAnnotationAutowireCandidateResolver.java:103)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
+	at im.turms.server.common.infra.cluster.node.Node$$SpringCGLIB$$0.getSharedProperties(<generated>)
+	at im.turms.server.common.infra.property.TurmsPropertiesManager.getGlobalProperties(TurmsPropertiesManager.java:96)
+	at im.turms.service.access.admin.throttle.AdminApiRateLimitingManager.<init>(AdminApiRateLimitingManager.java:36)
+	at jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:208)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:111)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:315)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:306)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1357)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at im.turms.server.common.BaseTurmsApplication.bootstrap(BaseTurmsApplication.java:53)
+	at im.turms.service.TurmsServiceApplication.main(TurmsServiceApplication.java:37)
+
+caused by: im.turms.server.common.storage.mongo.exception.IncompatibleMongoException: The cluster types for the mongo client "conference" must be one of the types: [SHARDED, LOAD_BALANCED]
+	at im.turms.server.common.storage.mongo.TurmsMongoClient.verifyServers(TurmsMongoClient.java:171)
+	at im.turms.server.common.storage.mongo.TurmsMongoClient.lambda$new$0(TurmsMongoClient.java:94)
+	at im.turms.server.common.storage.mongo.MongoContext$1.clusterDescriptionChanged(MongoContext.java:96)
+	at com.mongodb.internal.event.ClusterListenerMulticaster.clusterDescriptionChanged(ClusterListenerMulticaster.java:74)
+	at com.mongodb.internal.connection.AsynchronousClusterEventListener.lambda$clusterDescriptionChanged$2(AsynchronousClusterEventListener.java:102)
+	at com.mongodb.internal.connection.AsynchronousClusterEventListener.lambda$addClusterEventInvocation$9(AsynchronousClusterEventListener.java:137)
+	at com.mongodb.internal.connection.AsynchronousClusterEventListener.publishEvents(AsynchronousClusterEventListener.java:168)
+	at java.lang.Thread.run(Thread.java:1583)
+
+	suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:146)
+		at reactor.core.publisher.Mono.block(Mono.java:1807)
+		at im.turms.server.common.storage.mongo.BaseMongoConfig.lambda$getMongoClient$0(BaseMongoConfig.java:71)
+		at java.util.HashMap.compute(HashMap.java:1324)
+		at im.turms.server.common.storage.mongo.BaseMongoConfig.getMongoClient(BaseMongoConfig.java:64)
+		at im.turms.service.storage.mongo.MongoConfig.conferenceMongoClient(MongoConfig.java:177)
+		at im.turms.service.storage.mongo.MongoConfig$$SpringCGLIB$$0.CGLIB$conferenceMongoClient$1(<generated>)
+		at im.turms.service.storage.mongo.MongoConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+		at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+		at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:348)
+		at im.turms.service.storage.mongo.MongoConfig$$SpringCGLIB$$0.conferenceMongoClient(<generated>)
+		at jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+		at java.lang.reflect.Method.invoke(Method.java:580)
+		at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140)
+		at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644)
+		at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1337)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1167)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+		at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+		at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+		at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+		at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+		at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
+		at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
+		at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1357)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+		at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+		at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1337)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1167)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+		at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+		at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+		at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+		at org.springframework.context.annotation.ContextAnnotationAutowireCandidateResolver$1.getTarget(ContextAnnotationAutowireCandidateResolver.java:103)
+		at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
+		at im.turms.server.common.infra.cluster.node.Node$$SpringCGLIB$$0.getSharedProperties(<generated>)
+		at im.turms.server.common.infra.property.TurmsPropertiesManager.getGlobalProperties(TurmsPropertiesManager.java:96)
+		at im.turms.service.access.admin.throttle.AdminApiRateLimitingManager.<init>(AdminApiRateLimitingManager.java:36)
+		at jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+		at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+		at java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+		at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:208)
+		at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:111)
+		at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:315)
+		at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:306)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1357)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+		at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+		at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+		at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+		at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+		at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+		at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+		at im.turms.server.common.BaseTurmsApplication.bootstrap(BaseTurmsApplication.java:53)
+		at im.turms.service.TurmsServiceApplication.main(TurmsServiceApplication.java:37)
+
+2024-08-13 02:52:58.089  INFO S egpueohk                     main im.turms.service.TurmsServiceApplication : Starting TurmsServiceApplication using Java 21.0.4 with PID 34920 (A:\usr\JavaProject\turms\turms-service\target\classes started by usr in A:\usr\JavaProject\turms)
+2024-08-13 02:52:58.107  INFO S egpueohk                     main im.turms.service.TurmsServiceApplication : The following 2 profiles are active: "dev", "dev-latest"
+2024-08-13 02:52:58.431  WARN S egpueohk                     main      o.s.c.a.AnnotationBeanNameGenerator : Support for convention-based stereotype names is deprecated and will be removed in a future version of the framework. Please annotate the 'value' attribute in @im.turms.server.common.access.admin.web.annotation.RestController with @AliasFor(annotation=Component.class) to declare an explicit alias for @Component's 'value' attribute.
+2024-08-13 02:52:59.966  WARN S egpueohk                     main      i.t.s.c.i.a.TurmsApplicationContext : The property "spring.config.location" is empty
+2024-08-13 02:52:59.969  WARN S egpueohk                     main      i.t.s.c.i.a.TurmsApplicationContext : Could not find the file (git.properties), fall back to the default version 0.0.0 in non-production environments. Fix it by running "mvn compile"
+2024-08-13 02:52:59.969  INFO S egpueohk                     main      i.t.s.c.i.a.TurmsApplicationContext : The local node with the build properties {version=0.0.0, commitId=, buildTime=} is running in a non-production environment
+2024-08-13 02:53:00.681  INFO S egpueohk                     main                org.mongodb.driver.client : MongoClient with metadata {"driver": {"name": "mongo-java-driver|reactive-streams", "version": "5.0.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./21.0.4+7-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=NettyTransportSettings{eventLoopGroup=io.netty.channel.nio.NioEventLoopGroup@33d60b7e, socketChannelClass=class io.netty.channel.socket.nio.NioSocketChannel, allocator=PooledByteBufAllocator(directByDefault: true), sslContext=null}, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DocumentCodecProvider{}, MapCodecProvider{}, IterableCodecProvider{}, Jsr310CodecProvider{}, BsonCodecProvider{}, im.turms.server.common.storage.mongo.codec.MongoCodecProvider@1fecfaea]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[47.113.224.195:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[im.turms.server.common.storage.mongo.MongoContext$1@4872669f]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-08-13 02:53:00.787  INFO S egpueohk                     cluster-ClusterId{value='66baca8c99f2754357f044b4', description='null'}-47.113.224.195:27017               org.mongodb.driver.cluster : Monitor thread successfully connected to server with description ServerDescription{address=47.113.224.195:27017, type=SHARD_ROUTER, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=17, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=53845000}
+2024-08-13 02:53:00.845  INFO S egpueohk                     main                org.mongodb.driver.client : MongoClient with metadata {"driver": {"name": "mongo-java-driver|reactive-streams", "version": "5.0.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./21.0.4+7-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=NettyTransportSettings{eventLoopGroup=io.netty.channel.nio.NioEventLoopGroup@48268eec, socketChannelClass=class io.netty.channel.socket.nio.NioSocketChannel, allocator=PooledByteBufAllocator(directByDefault: true), sslContext=null}, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DocumentCodecProvider{}, MapCodecProvider{}, IterableCodecProvider{}, Jsr310CodecProvider{}, BsonCodecProvider{}, im.turms.server.common.storage.mongo.codec.MongoCodecProvider@1fecfaea]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[im.turms.server.common.storage.mongo.MongoContext$1@69a024a0]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-08-13 02:53:00.852  INFO S egpueohk                     cluster-ClusterId{value='66baca8c99f2754357f044b5', description='null'}-localhost:27017               org.mongodb.driver.cluster : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=7162000}
+2024-08-13 02:53:00.893  INFO S egpueohk                     main     i.t.s.s.m.MongoCollectionInitializer : Start creating collections
+2024-08-13 02:53:01.314  INFO S egpueohk                     mongo-event-loop-1-4     i.t.s.s.m.MongoCollectionInitializer : All collections are created
+2024-08-13 02:53:01.389  INFO S egpueohk                     mongo-event-loop-1-4     i.t.s.s.m.MongoCollectionInitializer : Deleting the existing tags of the collection: "message"
+2024-08-13 02:53:01.405  INFO S egpueohk                     mongo-event-loop-1-4     i.t.s.s.m.MongoCollectionInitializer : Deleted the existing tags of the collection: "message"
+2024-08-13 02:53:01.405  INFO S egpueohk                     mongo-event-loop-1-4     i.t.s.s.m.MongoCollectionInitializer : Adding shards to zones for the collection: "message"
+2024-08-13 02:53:01.437  INFO S egpueohk                     mongo-event-loop-1-4     i.t.s.s.m.MongoCollectionInitializer : Added the shard "shard01" to the zone "hot"
+2024-08-13 02:53:01.456  INFO S egpueohk                     mongo-event-loop-1-4     i.t.s.s.m.MongoCollectionInitializer : Updated the zone "hot" with the key range: [{"dyd": {"$date": "2024-08-13T00:00:00Z"}}..{"dyd": {"$maxKey": 1}})
+2024-08-13 02:53:01.471  INFO S egpueohk                     mongo-event-loop-1-4     i.t.s.s.m.MongoCollectionInitializer : Added the shard "shard01" to the zone "warm"
+2024-08-13 02:53:01.488  INFO S egpueohk                     mongo-event-loop-1-4     i.t.s.s.m.MongoCollectionInitializer : Updated the zone "warm" with the key range: [{"dyd": {"$date": "2024-06-14T00:00:00Z"}}..{"dyd": {"$date": "2024-08-13T00:00:00Z"}})
+2024-08-13 02:53:01.502  INFO S egpueohk                     mongo-event-loop-1-4     i.t.s.s.m.MongoCollectionInitializer : Added the shard "shard01" to the zone "cold"
+2024-08-13 02:53:01.519  INFO S egpueohk                     mongo-event-loop-1-4     i.t.s.s.m.MongoCollectionInitializer : Updated the zone "cold" with the key range: [{"dyd": {"$date": "2023-09-18T00:00:00Z"}}..{"dyd": {"$date": "2024-06-14T00:00:00Z"}})
+2024-08-13 02:53:01.535  INFO S egpueohk                     mongo-event-loop-1-4     i.t.s.s.m.MongoCollectionInitializer : Added the shard "shard01" to the zone "frozen"
+2024-08-13 02:53:01.551  INFO S egpueohk                     mongo-event-loop-1-4     i.t.s.s.m.MongoCollectionInitializer : Updated the zone "frozen" with the key range: [{"dyd": {"$minKey": 1}}..{"dyd": {"$date": "2023-09-18T00:00:00Z"}})
+2024-08-13 02:53:01.551  INFO S egpueohk                     mongo-event-loop-1-4     i.t.s.s.m.MongoCollectionInitializer : Added shards to zones for the collection: "message"
+2024-08-13 02:53:01.606  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupJoinRequest": {"rqid": 1, "cd": 1}, {"gid": "hashed"}
+2024-08-13 02:53:01.632  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userRelationship": {"_id.oid": "hashed"}, {"_id.rid": "hashed"}
+2024-08-13 02:53:01.654  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userRelationshipGroupMember": {"_id.oid": "hashed"}
+2024-08-13 02:53:01.676  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupBlockedUser": {"_id.gid": 1, "_id.uid": 1}
+2024-08-13 02:53:01.702  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "group": {"oid": "hashed"}, {"dd": 1}
+2024-08-13 02:53:01.728  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupInvitation": {"ieid": 1, "cd": 1}, {"gid": "hashed"}
+2024-08-13 02:53:01.762  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "message": {"dyd": 1, "tid": 1}, {"dd": 1}, {"sip": 1}, {"sip6": 1}
+2024-08-13 02:53:01.785  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupJoinQuestion": {"gid": "hashed"}
+2024-08-13 02:53:01.807  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "conversationSettings": {"_id.oid": "hashed"}
+2024-08-13 02:53:01.829  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "privateConversation": {"_id.oid": "hashed"}
+2024-08-13 02:53:01.849  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userRelationshipGroup": {"_id.oid": "hashed"}
+2024-08-13 02:53:01.872  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userFriendRequest": {"rtid": 1, "cd": 1, "rrid": 1}
+2024-08-13 02:53:01.898  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupMember": {"_id.gid": "hashed"}, {"_id.uid": "hashed"}
+2024-08-13 02:53:01.913  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupJoinRequest": {"rqid": 1, "cd": 1}, {"gid": "hashed"}
+2024-08-13 02:53:01.927  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userRelationship": {"_id.oid": "hashed"}, {"_id.rid": "hashed"}
+2024-08-13 02:53:01.941  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userRelationshipGroupMember": {"_id.oid": "hashed"}
+2024-08-13 02:53:01.955  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupBlockedUser": {"_id.gid": 1, "_id.uid": 1}
+2024-08-13 02:53:01.969  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "group": {"oid": "hashed"}, {"dd": 1}
+2024-08-13 02:53:01.983  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupInvitation": {"ieid": 1, "cd": 1}, {"gid": "hashed"}
+2024-08-13 02:53:01.998  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "message": {"dyd": 1, "tid": 1}, {"dd": 1}, {"sip": 1}, {"sip6": 1}
+2024-08-13 02:53:02.012  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupJoinQuestion": {"gid": "hashed"}
+2024-08-13 02:53:02.026  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "conversationSettings": {"_id.oid": "hashed"}
+2024-08-13 02:53:02.040  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "privateConversation": {"_id.oid": "hashed"}
+2024-08-13 02:53:02.055  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userRelationshipGroup": {"_id.oid": "hashed"}
+2024-08-13 02:53:02.069  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userFriendRequest": {"rtid": 1, "cd": 1, "rrid": 1}
+2024-08-13 02:53:02.082  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupMember": {"_id.gid": "hashed"}, {"_id.uid": "hashed"}
+2024-08-13 02:53:02.097  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupJoinRequest": {"rqid": 1, "cd": 1}, {"gid": "hashed"}
+2024-08-13 02:53:02.111  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userRelationship": {"_id.oid": "hashed"}, {"_id.rid": "hashed"}
+2024-08-13 02:53:02.126  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userRelationshipGroupMember": {"_id.oid": "hashed"}
+2024-08-13 02:53:02.139  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupBlockedUser": {"_id.gid": 1, "_id.uid": 1}
+2024-08-13 02:53:02.153  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "group": {"oid": "hashed"}, {"dd": 1}
+2024-08-13 02:53:02.167  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupInvitation": {"ieid": 1, "cd": 1}, {"gid": "hashed"}
+2024-08-13 02:53:02.182  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "message": {"dyd": 1, "tid": 1}, {"dd": 1}, {"sip": 1}, {"sip6": 1}
+2024-08-13 02:53:02.196  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupJoinQuestion": {"gid": "hashed"}
+2024-08-13 02:53:02.211  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "conversationSettings": {"_id.oid": "hashed"}
+2024-08-13 02:53:02.225  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "privateConversation": {"_id.oid": "hashed"}
+2024-08-13 02:53:02.239  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userRelationshipGroup": {"_id.oid": "hashed"}
+2024-08-13 02:53:02.253  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userFriendRequest": {"rtid": 1, "cd": 1, "rrid": 1}
+2024-08-13 02:53:02.268  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupMember": {"_id.gid": "hashed"}, {"_id.uid": "hashed"}
+2024-08-13 02:53:02.281  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupJoinRequest": {"rqid": 1, "cd": 1}, {"gid": "hashed"}
+2024-08-13 02:53:02.296  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userRelationship": {"_id.oid": "hashed"}, {"_id.rid": "hashed"}
+2024-08-13 02:53:02.310  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userRelationshipGroupMember": {"_id.oid": "hashed"}
+2024-08-13 02:53:02.324  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupBlockedUser": {"_id.gid": 1, "_id.uid": 1}
+2024-08-13 02:53:02.338  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "group": {"oid": "hashed"}, {"dd": 1}
+2024-08-13 02:53:02.352  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupInvitation": {"ieid": 1, "cd": 1}, {"gid": "hashed"}
+2024-08-13 02:53:02.366  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "message": {"dyd": 1, "tid": 1}, {"dd": 1}, {"sip": 1}, {"sip6": 1}
+2024-08-13 02:53:02.381  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupJoinQuestion": {"gid": "hashed"}
+2024-08-13 02:53:02.396  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "conversationSettings": {"_id.oid": "hashed"}
+2024-08-13 02:53:02.411  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "privateConversation": {"_id.oid": "hashed"}
+2024-08-13 02:53:02.425  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userRelationshipGroup": {"_id.oid": "hashed"}
+2024-08-13 02:53:02.439  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userFriendRequest": {"rtid": 1, "cd": 1, "rrid": 1}
+2024-08-13 02:53:02.454  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupMember": {"_id.gid": "hashed"}, {"_id.uid": "hashed"}
+2024-08-13 02:53:02.468  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupJoinRequest": {"rqid": 1, "cd": 1}, {"gid": "hashed"}
+2024-08-13 02:53:02.482  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userRelationship": {"_id.oid": "hashed"}, {"_id.rid": "hashed"}
+2024-08-13 02:53:02.496  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userRelationshipGroupMember": {"_id.oid": "hashed"}
+2024-08-13 02:53:02.510  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupBlockedUser": {"_id.gid": 1, "_id.uid": 1}
+2024-08-13 02:53:02.525  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "group": {"oid": "hashed"}, {"dd": 1}
+2024-08-13 02:53:02.540  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupInvitation": {"ieid": 1, "cd": 1}, {"gid": "hashed"}
+2024-08-13 02:53:02.554  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "message": {"dyd": 1, "tid": 1}, {"dd": 1}, {"sip": 1}, {"sip6": 1}
+2024-08-13 02:53:02.568  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupJoinQuestion": {"gid": "hashed"}
+2024-08-13 02:53:02.582  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "conversationSettings": {"_id.oid": "hashed"}
+2024-08-13 02:53:02.596  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "privateConversation": {"_id.oid": "hashed"}
+2024-08-13 02:53:02.611  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userRelationshipGroup": {"_id.oid": "hashed"}
+2024-08-13 02:53:02.625  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "userFriendRequest": {"rtid": 1, "cd": 1, "rrid": 1}
+2024-08-13 02:53:02.640  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "groupMember": {"_id.gid": "hashed"}, {"_id.uid": "hashed"}
+2024-08-13 02:53:02.654  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Enabled sharding the database: "turms-dev"
+2024-08-13 02:53:02.719  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupJoinRequest" with the shard key: {"rqid": 1}
+2024-08-13 02:53:02.777  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userRelationship" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:02.838  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.user" with the shard key: {"_id": 1}
+2024-08-13 02:53:02.900  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userRelationshipGroupMember" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:02.960  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupBlockedUser" with the shard key: {"_id.gid": 1}
+2024-08-13 02:53:03.017  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.group" with the shard key: {"_id": 1}
+2024-08-13 02:53:03.077  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupVersion" with the shard key: {"_id": 1}
+2024-08-13 02:53:03.134  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupInvitation" with the shard key: {"ieid": 1}
+2024-08-13 02:53:03.194  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.message" with the shard key: {"dyd": 1}
+2024-08-13 02:53:03.252  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupConversation" with the shard key: {"_id": 1}
+2024-08-13 02:53:03.311  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupJoinQuestion" with the shard key: {"gid": "hashed"}
+2024-08-13 02:53:03.367  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.conversationSettings" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:03.427  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.privateConversation" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:03.491  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userRelationshipGroup" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:03.553  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userFriendRequest" with the shard key: {"rtid": 1}
+2024-08-13 02:53:03.620  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupMember" with the shard key: {"_id.gid": "hashed"}
+2024-08-13 02:53:03.677  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userSettings" with the shard key: {"_id": 1}
+2024-08-13 02:53:03.736  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userVersion" with the shard key: {"_id": 1}
+2024-08-13 02:53:03.768  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupJoinRequest" with the shard key: {"rqid": 1}
+2024-08-13 02:53:03.798  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userRelationship" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:03.830  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.user" with the shard key: {"_id": 1}
+2024-08-13 02:53:03.863  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userRelationshipGroupMember" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:03.895  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupBlockedUser" with the shard key: {"_id.gid": 1}
+2024-08-13 02:53:03.926  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.group" with the shard key: {"_id": 1}
+2024-08-13 02:53:03.958  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupVersion" with the shard key: {"_id": 1}
+2024-08-13 02:53:03.987  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupInvitation" with the shard key: {"ieid": 1}
+2024-08-13 02:53:04.020  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.message" with the shard key: {"dyd": 1}
+2024-08-13 02:53:04.054  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupConversation" with the shard key: {"_id": 1}
+2024-08-13 02:53:04.086  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupJoinQuestion" with the shard key: {"gid": "hashed"}
+2024-08-13 02:53:04.119  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.conversationSettings" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:04.152  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.privateConversation" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:04.185  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userRelationshipGroup" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:04.219  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userFriendRequest" with the shard key: {"rtid": 1}
+2024-08-13 02:53:04.249  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupMember" with the shard key: {"_id.gid": "hashed"}
+2024-08-13 02:53:04.285  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userSettings" with the shard key: {"_id": 1}
+2024-08-13 02:53:04.316  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userVersion" with the shard key: {"_id": 1}
+2024-08-13 02:53:04.349  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupJoinRequest" with the shard key: {"rqid": 1}
+2024-08-13 02:53:04.380  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userRelationship" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:04.413  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.user" with the shard key: {"_id": 1}
+2024-08-13 02:53:04.443  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userRelationshipGroupMember" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:04.477  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupBlockedUser" with the shard key: {"_id.gid": 1}
+2024-08-13 02:53:04.509  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.group" with the shard key: {"_id": 1}
+2024-08-13 02:53:04.541  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupVersion" with the shard key: {"_id": 1}
+2024-08-13 02:53:04.575  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupInvitation" with the shard key: {"ieid": 1}
+2024-08-13 02:53:04.609  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.message" with the shard key: {"dyd": 1}
+2024-08-13 02:53:04.642  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupConversation" with the shard key: {"_id": 1}
+2024-08-13 02:53:04.674  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupJoinQuestion" with the shard key: {"gid": "hashed"}
+2024-08-13 02:53:04.706  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.conversationSettings" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:04.739  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.privateConversation" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:04.769  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userRelationshipGroup" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:04.800  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userFriendRequest" with the shard key: {"rtid": 1}
+2024-08-13 02:53:04.831  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupMember" with the shard key: {"_id.gid": "hashed"}
+2024-08-13 02:53:04.862  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userSettings" with the shard key: {"_id": 1}
+2024-08-13 02:53:04.893  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userVersion" with the shard key: {"_id": 1}
+2024-08-13 02:53:04.925  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupJoinRequest" with the shard key: {"rqid": 1}
+2024-08-13 02:53:04.957  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userRelationship" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:04.990  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.user" with the shard key: {"_id": 1}
+2024-08-13 02:53:05.021  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userRelationshipGroupMember" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:05.054  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupBlockedUser" with the shard key: {"_id.gid": 1}
+2024-08-13 02:53:05.085  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.group" with the shard key: {"_id": 1}
+2024-08-13 02:53:05.117  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupVersion" with the shard key: {"_id": 1}
+2024-08-13 02:53:05.152  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupInvitation" with the shard key: {"ieid": 1}
+2024-08-13 02:53:05.185  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.message" with the shard key: {"dyd": 1}
+2024-08-13 02:53:05.216  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupConversation" with the shard key: {"_id": 1}
+2024-08-13 02:53:05.247  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupJoinQuestion" with the shard key: {"gid": "hashed"}
+2024-08-13 02:53:05.280  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.conversationSettings" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:05.313  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.privateConversation" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:05.345  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userRelationshipGroup" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:05.377  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userFriendRequest" with the shard key: {"rtid": 1}
+2024-08-13 02:53:05.410  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupMember" with the shard key: {"_id.gid": "hashed"}
+2024-08-13 02:53:05.442  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userSettings" with the shard key: {"_id": 1}
+2024-08-13 02:53:05.473  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userVersion" with the shard key: {"_id": 1}
+2024-08-13 02:53:05.504  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupJoinRequest" with the shard key: {"rqid": 1}
+2024-08-13 02:53:05.536  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userRelationship" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:05.568  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.user" with the shard key: {"_id": 1}
+2024-08-13 02:53:05.601  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userRelationshipGroupMember" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:05.634  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupBlockedUser" with the shard key: {"_id.gid": 1}
+2024-08-13 02:53:05.666  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.group" with the shard key: {"_id": 1}
+2024-08-13 02:53:05.699  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupVersion" with the shard key: {"_id": 1}
+2024-08-13 02:53:05.729  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupInvitation" with the shard key: {"ieid": 1}
+2024-08-13 02:53:05.761  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.message" with the shard key: {"dyd": 1}
+2024-08-13 02:53:05.793  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupConversation" with the shard key: {"_id": 1}
+2024-08-13 02:53:05.824  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupJoinQuestion" with the shard key: {"gid": "hashed"}
+2024-08-13 02:53:05.854  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.conversationSettings" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:05.887  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.privateConversation" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:05.917  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userRelationshipGroup" with the shard key: {"_id.oid": "hashed"}
+2024-08-13 02:53:05.949  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userFriendRequest" with the shard key: {"rtid": 1}
+2024-08-13 02:53:05.981  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.groupMember" with the shard key: {"_id.gid": "hashed"}
+2024-08-13 02:53:06.013  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userSettings" with the shard key: {"_id": 1}
+2024-08-13 02:53:06.046  INFO S egpueohk                     mongo-event-loop-1-4       i.t.s.c.s.m.o.TurmsMongoOperations : Sharded the collection "turms-dev.userVersion" with the shard key: {"_id": 1}
+2024-08-13 02:53:06.046  INFO S egpueohk                     mongo-event-loop-1-4             i.t.s.s.m.MongoFakingManager : Start faking
+2024-08-13 02:53:07.207  INFO S egpueohk                     boundedElastic-4             i.t.s.s.m.MongoFakingManager : Start faking conversation-related data
+2024-08-13 02:53:07.207  INFO S egpueohk                     boundedElastic-2             i.t.s.s.m.MongoFakingManager : Start faking user-related data
+2024-08-13 02:53:07.207  INFO S egpueohk                     boundedElastic-5             i.t.s.s.m.MongoFakingManager : Start faking message-related data
+2024-08-13 02:53:07.209  INFO S egpueohk                     boundedElastic-3             i.t.s.s.m.MongoFakingManager : Start faking group-related data
+2024-08-13 02:53:07.209  INFO S egpueohk                     boundedElastic-1             i.t.s.s.m.MongoFakingManager : Start faking admin-related data
+2024-08-13 02:53:07.247  INFO S egpueohk                     mongo-event-loop-1-9             i.t.s.s.m.MongoFakingManager : Conversation-related data has been faked
+2024-08-13 02:53:07.270  INFO S egpueohk                     mongo-event-loop-1-5             i.t.s.s.m.MongoFakingManager : Message-related data has been faked
+2024-08-13 02:53:07.333  INFO S egpueohk                     mongo-event-loop-1-1             i.t.s.s.m.MongoFakingManager : Admin-related data has been faked
+2024-08-13 02:53:07.344  INFO S egpueohk                     mongo-event-loop-1-8             i.t.s.s.m.MongoFakingManager : Group-related data has been faked
+2024-08-13 02:53:07.349  INFO S egpueohk                     mongo-event-loop-1-5             i.t.s.s.m.MongoFakingManager : User-related data has been faked
+2024-08-13 02:53:07.349  INFO S egpueohk                     mongo-event-loop-1-5             i.t.s.s.m.MongoFakingManager : All data has been faked
+2024-08-13 02:53:07.546  WARN S egpueohk                     main             i.t.s.c.i.h.CpuHealthChecker : The CPU health checker cannot work because the recent cpu usage for the whole operating environment is unavailable
+2024-08-13 02:53:07.549  WARN S egpueohk                     main          i.t.s.c.i.h.MemoryHealthChecker : The max available memory (31066MB) is larger than the total of the available direct memory (7767MB), the max heap memory (8176MB), and the estimated max non-heap memory (256MB), which indicates that some memory will never be used by the server
+2024-08-13 02:53:07.554  INFO S egpueohk                     main                       i.t.s.c.i.c.n.Node : The local node version is: 0.0.0
+2024-08-13 02:53:07.644  INFO S egpueohk                     main         i.t.s.c.i.c.s.c.ConnectionServer : The local node server started on: 0.0.0.0:7510
+2024-08-13 02:53:07.661  INFO S egpueohk                     main                org.mongodb.driver.client : MongoClient with metadata {"driver": {"name": "mongo-java-driver|reactive-streams", "version": "5.0.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./21.0.4+7-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=NettyTransportSettings{eventLoopGroup=io.netty.channel.nio.NioEventLoopGroup@691567ea, socketChannelClass=class io.netty.channel.socket.nio.NioSocketChannel, allocator=PooledByteBufAllocator(directByDefault: true), sslContext=null}, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DocumentCodecProvider{}, MapCodecProvider{}, IterableCodecProvider{}, Jsr310CodecProvider{}, BsonCodecProvider{}, im.turms.server.common.storage.mongo.codec.MongoCodecProvider@1fecfaea]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[47.113.224.195:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[im.turms.server.common.storage.mongo.MongoContext$1@5cfed0ba]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-08-13 02:53:07.693  INFO S egpueohk                     cluster-ClusterId{value='66baca9399f2754357f044b6', description='null'}-47.113.224.195:27017               org.mongodb.driver.cluster : Monitor thread successfully connected to server with description ServerDescription{address=47.113.224.195:27017, type=SHARD_ROUTER, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=17, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=16147700}
+2024-08-13 02:53:07.898  INFO S egpueohk                     mongo-event-loop-9-3       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "leader": {"renewDate": 1}
+2024-08-13 02:53:07.927  INFO S egpueohk                     mongo-event-loop-9-3       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "member": {"_id.nodeId": 1}, {"status.lastHeartbeatDate": 1}
+2024-08-13 02:53:07.943  INFO S egpueohk                     mongo-event-loop-9-3       i.t.s.c.s.m.o.TurmsMongoOperations : Enabled sharding the database: "turms-config-dev"
+2024-08-13 02:53:07.989  INFO S egpueohk                     main    i.t.s.c.i.c.s.c.SharedPropertyService : Fetching shared properties
+2024-08-13 02:53:08.164  INFO S egpueohk                     mongo-event-loop-9-4    i.t.s.c.i.c.s.c.SharedPropertyService : Fetched shared properties
+2024-08-13 02:53:08.216  INFO S egpueohk                     main         i.t.s.c.i.c.s.d.DiscoveryService : A new member has been added: Member(key=Member.Key(clusterId=turms, nodeId=egpueohk), zone=, name=egpueohk, nodeVersion=0.0.0, nodeType=SERVICE, isSeed=false, registrationDate=Tue Aug 13 02:53:07 UTC 2024, isLeaderEligible=true, priority=0, memberHost=192.168.2.150, memberPort=7510, adminApiAddress=http://192.168.2.150:8510, wsAddress=null, tcpAddress=null, udpAddress=null, status=Member.MemberStatus(hasJoinedCluster=false, isHealthy=true, isActive=true, lastHeartbeatDate=Tue Aug 13 02:53:07 UTC 2024))
+2024-08-13 02:53:08.217  INFO S egpueohk                     main   i.t.s.c.i.c.s.d.LocalNodeStatusManager : Registering the local node as a member
+2024-08-13 02:53:08.234  INFO S egpueohk                     mongo-event-loop-9-6   i.t.s.c.i.c.s.d.LocalNodeStatusManager : Registered the local node as a member
+2024-08-13 02:53:08.250  INFO S egpueohk                     main         i.t.s.c.i.c.s.d.DiscoveryService : The local node has become the first leader
+2024-08-13 02:53:08.791  INFO S egpueohk                     main    i.t.s.c.d.b.m.BlocklistServiceManager : Starting resetting and synchronizing blocked clients
+2024-08-13 02:53:08.815  INFO S egpueohk                     lettuce-nioEventLoop-18-1    i.t.s.c.d.b.m.BlocklistServiceManager : Reset and synchronized blocked clients
+2024-08-13 02:53:08.816  INFO S egpueohk                     main    i.t.s.c.d.b.m.BlocklistServiceManager : Starting resetting and synchronizing blocked clients
+2024-08-13 02:53:08.817  INFO S egpueohk                     lettuce-nioEventLoop-21-1    i.t.s.c.d.b.m.BlocklistServiceManager : Reset and synchronized blocked clients
+2024-08-13 02:53:09.000  INFO S egpueohk                     main             i.t.s.d.g.s.GroupTypeService : Loading all group types
+2024-08-13 02:53:09.031  INFO S egpueohk                     main             i.t.s.d.g.s.GroupTypeService : Loaded all group types
+2024-08-13 02:53:09.126  INFO S egpueohk                     main   i.t.s.d.u.s.UserPermissionGroupService : Loading all user permission groups and adding the default user permission group
+2024-08-13 02:53:09.158  INFO S egpueohk                     main   i.t.s.d.u.s.UserPermissionGroupService : Loaded all user permission groups and added the default user permission group
+2024-08-13 02:53:09.249  INFO S egpueohk                     main       i.t.s.c.d.a.s.BaseAdminRoleService : Loading all admin roles
+2024-08-13 02:53:09.269  INFO S egpueohk                     main       i.t.s.c.d.a.s.BaseAdminRoleService : Loaded all admin roles
+2024-08-13 02:53:09.274  INFO S egpueohk                     main           i.t.s.c.d.a.s.BaseAdminService : Loading all admins
+2024-08-13 02:53:09.396  INFO S egpueohk                     main           i.t.s.c.d.a.s.BaseAdminService : Loaded all admins
+2024-08-13 02:53:09.452  WARN S egpueohk                     main           i.t.s.c.d.d.a.a.s.DebugService : API debug is enabled
+2024-08-13 02:53:10.098  INFO S egpueohk                     main                i.t.s.c.i.p.PluginManager : All plugins are started
+2024-08-13 02:53:10.100  INFO S egpueohk                     main im.turms.service.TurmsServiceApplication : Started TurmsServiceApplication in 12.716 seconds (process running for 13.525)
+2024-08-13 02:53:10.207  INFO S egpueohk                     turms-mongo-change-watcher-1         i.t.s.c.i.c.s.d.DiscoveryService : The leader has changed to: Leader(clusterId=turms, nodeId=egpueohk, renewDate=Tue Aug 13 02:53:08 UTC 2024, generation=1)
+2024-08-13 02:53:15.010  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:53:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:53:45.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:54:00.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:54:15.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:54:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:54:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:55:00.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:55:15.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:55:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:55:45.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:56:00.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:56:15.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:56:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:56:45.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:57:00.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:57:15.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:57:30.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:57:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:58:00.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:58:15.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:58:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:58:45.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:59:00.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:59:15.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:59:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 02:59:45.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:00:00.002  INFO S egpueohk                     turms-task-manager     i.t.s.s.m.MongoCollectionInitializer : Updating the zone range for tiered storage
+2024-08-13 03:00:00.004  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:00:00.034  INFO S egpueohk                     mongo-event-loop-1-11               org.mongodb.driver.cluster : Waiting for server to become available for operation with ID 537. Remaining time: 29999 ms. Selector: ReadPreferenceServerSelector{readPreference=primary}, topology description: {type=UNKNOWN, servers=[{address=47.113.224.195:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketReadException: Exception receiving message}, caused by {java.net.SocketException: Connection reset}}].
+2024-08-13 03:00:00.574  INFO S egpueohk                     cluster-ClusterId{value='66baca8c99f2754357f044b4', description='null'}-47.113.224.195:27017               org.mongodb.driver.cluster : Monitor thread successfully connected to server with description ServerDescription{address=47.113.224.195:27017, type=SHARD_ROUTER, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=17, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=24794800}
+2024-08-13 03:00:00.635  INFO S egpueohk                     mongo-event-loop-1-7     i.t.s.s.m.MongoCollectionInitializer : Updated the zone range for tiered storage
+2024-08-13 03:00:15.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:00:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:00:45.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:01:00.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:01:15.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:01:30.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:01:45.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:02:00.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:02:15.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:02:30.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:02:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:03:00.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:03:15.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:03:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:03:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:04:00.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:04:15.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:04:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:04:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:05:00.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:05:15.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:05:30.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:05:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:06:00.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:06:15.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:06:30.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:06:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:07:00.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:07:15.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:07:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:07:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:08:00.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:08:15.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:08:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:08:45.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:09:00.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:09:15.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:09:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:09:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:10:00.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:10:15.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:10:30.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:10:45.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:11:00.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:11:15.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:11:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:11:45.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:12:00.003  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:12:15.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:12:30.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:12:45.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:13:00.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:13:15.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:13:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:13:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:14:00.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:14:15.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:14:30.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:14:45.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:15:00.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:15:15.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:15:30.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:15:45.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:16:00.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:16:15.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:16:30.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:16:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:17:00.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:17:15.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:17:30.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:17:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:18:00.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:18:15.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:18:30.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:18:45.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:19:00.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:19:15.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:19:30.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:19:45.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:20:00.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:20:15.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:20:30.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:20:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:21:00.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:21:15.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:21:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:21:45.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:22:00.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:22:15.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:22:30.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:22:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:23:00.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:23:15.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:23:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:23:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:24:00.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:24:15.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:24:30.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:24:45.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:25:00.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:25:15.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:25:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:25:45.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:26:00.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:26:15.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:26:30.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:26:45.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:27:00.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:27:15.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:27:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:27:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:28:00.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:28:15.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:28:30.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:28:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:29:00.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:29:15.000  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:29:30.002  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:29:45.001  INFO S egpueohk                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:29:54.110  INFO S egpueohk                     turms-shutdown   i.t.s.c.i.c.s.d.LocalNodeStatusManager : Unregistering the membership and the leadership of the local node
+2024-08-13 03:29:54.113  WARN S egpueohk                     turms-node-connection-keepalive        i.t.s.c.i.c.s.c.ConnectionService : The node keepalive thread has been stopped
+2024-08-13 03:29:54.136  INFO S egpueohk                     mongo-event-loop-9-7   i.t.s.c.i.c.s.d.LocalNodeStatusManager : Unregistered the membership of the local node
+2024-08-13 03:29:54.160  INFO S egpueohk                     mongo-event-loop-9-7   i.t.s.c.i.c.s.d.LocalNodeStatusManager : Unregistered the leadership of the local node
+2024-08-13 03:42:33.370  INFO S gcwzcwcj                     main im.turms.service.TurmsServiceApplication : Starting TurmsServiceApplication using Java 21.0.4 with PID 43552 (A:\usr\SmartChat\back-end\SmartChat\turms-service\target\classes started by usr in A:\usr\SmartChat\back-end\SmartChat)
+2024-08-13 03:42:33.452  INFO S gcwzcwcj                     main im.turms.service.TurmsServiceApplication : The following 2 profiles are active: "dev", "dev-latest"
+2024-08-13 03:42:36.481  WARN S gcwzcwcj                     main      o.s.c.a.AnnotationBeanNameGenerator : Support for convention-based stereotype names is deprecated and will be removed in a future version of the framework. Please annotate the 'value' attribute in @im.turms.server.common.access.admin.web.annotation.RestController with @AliasFor(annotation=Component.class) to declare an explicit alias for @Component's 'value' attribute.
+2024-08-13 03:42:47.338  WARN S gcwzcwcj                     main      i.t.s.c.i.a.TurmsApplicationContext : The property "spring.config.location" is empty
+2024-08-13 03:42:47.341  WARN S gcwzcwcj                     main      i.t.s.c.i.a.TurmsApplicationContext : Could not find the file (git.properties), fall back to the default version 0.0.0 in non-production environments. Fix it by running "mvn compile"
+2024-08-13 03:42:47.341  INFO S gcwzcwcj                     main      i.t.s.c.i.a.TurmsApplicationContext : The local node with the build properties {version=0.0.0, commitId=, buildTime=} is running in a non-production environment
+2024-08-13 03:42:47.978  INFO S gcwzcwcj                     main                org.mongodb.driver.client : MongoClient with metadata {"driver": {"name": "mongo-java-driver|reactive-streams", "version": "5.0.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./21.0.4+7-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=NettyTransportSettings{eventLoopGroup=io.netty.channel.nio.NioEventLoopGroup@4872669f, socketChannelClass=class io.netty.channel.socket.nio.NioSocketChannel, allocator=PooledByteBufAllocator(directByDefault: true), sslContext=null}, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DocumentCodecProvider{}, MapCodecProvider{}, IterableCodecProvider{}, Jsr310CodecProvider{}, BsonCodecProvider{}, im.turms.server.common.storage.mongo.codec.MongoCodecProvider@483f286e]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[47.113.224.195:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[im.turms.server.common.storage.mongo.MongoContext$1@4bb147ec]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-08-13 03:42:48.066  INFO S gcwzcwcj                     cluster-ClusterId{value='66bad6372d4e7674fc2e4aee', description='null'}-47.113.224.195:27017               org.mongodb.driver.cluster : Monitor thread successfully connected to server with description ServerDescription{address=47.113.224.195:27017, type=SHARD_ROUTER, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=17, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=46303000}
+2024-08-13 03:42:48.121  INFO S gcwzcwcj                     main                org.mongodb.driver.client : MongoClient with metadata {"driver": {"name": "mongo-java-driver|reactive-streams", "version": "5.0.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./21.0.4+7-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=NettyTransportSettings{eventLoopGroup=io.netty.channel.nio.NioEventLoopGroup@4bf80c29, socketChannelClass=class io.netty.channel.socket.nio.NioSocketChannel, allocator=PooledByteBufAllocator(directByDefault: true), sslContext=null}, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DocumentCodecProvider{}, MapCodecProvider{}, IterableCodecProvider{}, Jsr310CodecProvider{}, BsonCodecProvider{}, im.turms.server.common.storage.mongo.codec.MongoCodecProvider@483f286e]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[im.turms.server.common.storage.mongo.MongoContext$1@2d7637e6]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-08-13 03:42:48.128  INFO S gcwzcwcj                     cluster-ClusterId{value='66bad6382d4e7674fc2e4aef', description='null'}-localhost:27017               org.mongodb.driver.cluster : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=5902900}
+2024-08-13 03:42:48.287  INFO S gcwzcwcj                     main     i.t.s.s.m.MongoCollectionInitializer : Start creating collections
+2024-08-13 03:42:48.558  INFO S gcwzcwcj                     mongo-event-loop-1-10     i.t.s.s.m.MongoCollectionInitializer : All collections are created
+2024-08-13 03:42:48.773  WARN S gcwzcwcj                     main             i.t.s.c.i.h.CpuHealthChecker : The CPU health checker cannot work because the recent cpu usage for the whole operating environment is unavailable
+2024-08-13 03:42:48.776  WARN S gcwzcwcj                     main          i.t.s.c.i.h.MemoryHealthChecker : The max available memory (31066MB) is larger than the total of the available direct memory (7767MB), the max heap memory (8176MB), and the estimated max non-heap memory (256MB), which indicates that some memory will never be used by the server
+2024-08-13 03:42:48.782  INFO S gcwzcwcj                     main                       i.t.s.c.i.c.n.Node : The local node version is: 0.0.0
+2024-08-13 03:42:48.860  INFO S gcwzcwcj                     main         i.t.s.c.i.c.s.c.ConnectionServer : The local node server started on: 0.0.0.0:7510
+2024-08-13 03:42:48.876  INFO S gcwzcwcj                     main                org.mongodb.driver.client : MongoClient with metadata {"driver": {"name": "mongo-java-driver|reactive-streams", "version": "5.0.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./21.0.4+7-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=NettyTransportSettings{eventLoopGroup=io.netty.channel.nio.NioEventLoopGroup@350da119, socketChannelClass=class io.netty.channel.socket.nio.NioSocketChannel, allocator=PooledByteBufAllocator(directByDefault: true), sslContext=null}, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DocumentCodecProvider{}, MapCodecProvider{}, IterableCodecProvider{}, Jsr310CodecProvider{}, BsonCodecProvider{}, im.turms.server.common.storage.mongo.codec.MongoCodecProvider@483f286e]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[47.113.224.195:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[im.turms.server.common.storage.mongo.MongoContext$1@6a09484c]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-08-13 03:42:48.900  INFO S gcwzcwcj                     cluster-ClusterId{value='66bad6382d4e7674fc2e4af0', description='null'}-47.113.224.195:27017               org.mongodb.driver.cluster : Monitor thread successfully connected to server with description ServerDescription{address=47.113.224.195:27017, type=SHARD_ROUTER, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=17, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=13326800}
+2024-08-13 03:42:49.032  INFO S gcwzcwcj                     mongo-event-loop-9-3       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "leader": {"renewDate": 1}
+2024-08-13 03:42:49.047  INFO S gcwzcwcj                     mongo-event-loop-9-3       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "member": {"_id.nodeId": 1}, {"status.lastHeartbeatDate": 1}
+2024-08-13 03:42:49.066  INFO S gcwzcwcj                     mongo-event-loop-9-3       i.t.s.c.s.m.o.TurmsMongoOperations : Enabled sharding the database: "turms-config-dev"
+2024-08-13 03:42:49.108  INFO S gcwzcwcj                     main    i.t.s.c.i.c.s.c.SharedPropertyService : Fetching shared properties
+2024-08-13 03:42:49.260  INFO S gcwzcwcj                     mongo-event-loop-9-4    i.t.s.c.i.c.s.c.SharedPropertyService : Fetched shared properties
+2024-08-13 03:42:49.322  INFO S gcwzcwcj                     main         i.t.s.c.i.c.s.d.DiscoveryService : A new member has been added: Member(key=Member.Key(clusterId=turms, nodeId=gcwzcwcj), zone=, name=gcwzcwcj, nodeVersion=0.0.0, nodeType=SERVICE, isSeed=false, registrationDate=Tue Aug 13 03:42:49 UTC 2024, isLeaderEligible=true, priority=0, memberHost=192.168.2.150, memberPort=7510, adminApiAddress=http://192.168.2.150:8510, wsAddress=null, tcpAddress=null, udpAddress=null, status=Member.MemberStatus(hasJoinedCluster=false, isHealthy=true, isActive=true, lastHeartbeatDate=Tue Aug 13 03:42:49 UTC 2024))
+2024-08-13 03:42:49.323  INFO S gcwzcwcj                     main   i.t.s.c.i.c.s.d.LocalNodeStatusManager : Registering the local node as a member
+2024-08-13 03:42:49.371  INFO S gcwzcwcj                     mongo-event-loop-9-6   i.t.s.c.i.c.s.d.LocalNodeStatusManager : Registered the local node as a member
+2024-08-13 03:42:49.392  INFO S gcwzcwcj                     main         i.t.s.c.i.c.s.d.DiscoveryService : The local node has become the first leader
+2024-08-13 03:42:49.933  INFO S gcwzcwcj                     main    i.t.s.c.d.b.m.BlocklistServiceManager : Starting resetting and synchronizing blocked clients
+2024-08-13 03:42:49.951  INFO S gcwzcwcj                     lettuce-nioEventLoop-18-1    i.t.s.c.d.b.m.BlocklistServiceManager : Reset and synchronized blocked clients
+2024-08-13 03:42:49.952  INFO S gcwzcwcj                     main    i.t.s.c.d.b.m.BlocklistServiceManager : Starting resetting and synchronizing blocked clients
+2024-08-13 03:42:49.953  INFO S gcwzcwcj                     lettuce-nioEventLoop-21-1    i.t.s.c.d.b.m.BlocklistServiceManager : Reset and synchronized blocked clients
+2024-08-13 03:42:50.173  INFO S gcwzcwcj                     main             i.t.s.d.g.s.GroupTypeService : Loading all group types
+2024-08-13 03:42:50.191  INFO S gcwzcwcj                     main             i.t.s.d.g.s.GroupTypeService : Loaded all group types
+2024-08-13 03:42:50.287  INFO S gcwzcwcj                     main   i.t.s.d.u.s.UserPermissionGroupService : Loading all user permission groups and adding the default user permission group
+2024-08-13 03:42:50.307  INFO S gcwzcwcj                     main   i.t.s.d.u.s.UserPermissionGroupService : Loaded all user permission groups and added the default user permission group
+2024-08-13 03:42:50.409  INFO S gcwzcwcj                     main       i.t.s.c.d.a.s.BaseAdminRoleService : Loading all admin roles
+2024-08-13 03:42:50.425  INFO S gcwzcwcj                     main       i.t.s.c.d.a.s.BaseAdminRoleService : Loaded all admin roles
+2024-08-13 03:42:50.428  INFO S gcwzcwcj                     main           i.t.s.c.d.a.s.BaseAdminService : Loading all admins
+2024-08-13 03:42:50.583  INFO S gcwzcwcj                     main           i.t.s.c.d.a.s.BaseAdminService : Loaded all admins
+2024-08-13 03:42:50.628  WARN S gcwzcwcj                     main           i.t.s.c.d.d.a.a.s.DebugService : API debug is enabled
+2024-08-13 03:42:51.146  INFO S gcwzcwcj                     main                i.t.s.c.i.p.PluginManager : All plugins are started
+2024-08-13 03:42:51.148  INFO S gcwzcwcj                     main im.turms.service.TurmsServiceApplication : Started TurmsServiceApplication in 18.677 seconds (process running for 19.846)
+2024-08-13 03:42:51.323  INFO S gcwzcwcj                     turms-mongo-change-watcher-1         i.t.s.c.i.c.s.d.DiscoveryService : The leader has changed to: Leader(clusterId=turms, nodeId=gcwzcwcj, renewDate=Tue Aug 13 03:42:49 UTC 2024, generation=1)
+2024-08-13 03:43:00.023  INFO S gcwzcwcj                     turms-task-manager            i.t.s.d.o.s.StatisticsService : The current online users number is: 0
+2024-08-13 03:43:02.539  INFO S gcwzcwcj                     turms-shutdown   i.t.s.c.i.c.s.d.LocalNodeStatusManager : Unregistering the membership and the leadership of the local node
+2024-08-13 03:43:02.541  WARN S gcwzcwcj                     turms-node-connection-keepalive        i.t.s.c.i.c.s.c.ConnectionService : The node keepalive thread has been stopped
+2024-08-13 03:43:02.562  INFO S gcwzcwcj                     mongo-event-loop-9-7   i.t.s.c.i.c.s.d.LocalNodeStatusManager : Unregistered the membership of the local node
+2024-08-13 03:43:02.582  INFO S gcwzcwcj                     mongo-event-loop-9-7   i.t.s.c.i.c.s.d.LocalNodeStatusManager : Unregistered the leadership of the local node
+2024-08-13 03:43:02.639 ERROR S gcwzcwcj                     mongo-event-loop-1-9            org.mongodb.driver.connection : Callback onResult call produced an error
+java.lang.IllegalStateException: state should be: open
+	at com.mongodb.assertions.Assertions.isTrue(Assertions.java:110)
+	at com.mongodb.internal.connection.BaseCluster.selectServerAsync(BaseCluster.java:177)
+	at com.mongodb.internal.connection.SingleServerCluster.selectServerAsync(SingleServerCluster.java:46)
+	at com.mongodb.internal.binding.AsyncClusterBinding.getAsyncClusterBindingConnectionSource(AsyncClusterBinding.java:146)
+	at com.mongodb.internal.binding.AsyncClusterBinding.getReadConnectionSource(AsyncClusterBinding.java:111)
+	at com.mongodb.reactivestreams.client.internal.ClientSessionBinding.getConnectionSource(ClientSessionBinding.java:109)
+	at com.mongodb.reactivestreams.client.internal.ClientSessionBinding.getReadConnectionSource(ClientSessionBinding.java:89)
+	at com.mongodb.internal.operation.AsyncOperationHelper.withAsyncReadConnectionSource(AsyncOperationHelper.java:98)
+	at com.mongodb.internal.operation.AsyncChangeStreamBatchCursor.retryOperation(AsyncChangeStreamBatchCursor.java:215)
+	at com.mongodb.internal.operation.AsyncChangeStreamBatchCursor.lambda$resumeableOperation$1(AsyncChangeStreamBatchCursor.java:205)
+	at com.mongodb.internal.async.function.AsyncCallbackSupplier.lambda$whenComplete$1(AsyncCallbackSupplier.java:97)
+	at com.mongodb.internal.operation.AsyncCommandBatchCursor$ResourceManager.lambda$executeWithConnection$2(AsyncCommandBatchCursor.java:278)
+	at com.mongodb.internal.operation.AsyncCommandBatchCursor.lambda$getMoreLoop$2(AsyncCommandBatchCursor.java:180)
+	at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47)
+	at com.mongodb.internal.connection.DefaultServer$DefaultServerProtocolExecutor.lambda$executeAsync$0(DefaultServer.java:245)
+	at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47)
+	at com.mongodb.internal.connection.CommandProtocolImpl.lambda$executeAsync$0(CommandProtocolImpl.java:86)
+	at com.mongodb.internal.connection.DefaultConnectionPool$PooledConnection.lambda$sendAndReceiveAsync$1(DefaultConnectionPool.java:774)
+	at com.mongodb.internal.connection.UsageTrackingInternalConnection.lambda$sendAndReceiveAsync$1(UsageTrackingInternalConnection.java:150)
+	at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47)
+	at com.mongodb.internal.connection.InternalStreamConnection.lambda$sendCommandMessageAsync$0(InternalStreamConnection.java:513)
+	at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback.onResult(InternalStreamConnection.java:773)
+	at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback.onResult(InternalStreamConnection.java:763)
+	at com.mongodb.internal.connection.InternalStreamConnection$3.failed(InternalStreamConnection.java:654)
+	at com.mongodb.internal.connection.netty.NettyStream.readAsync(NettyStream.java:327)
+	at com.mongodb.internal.connection.netty.NettyStream.handleReadResponse(NettyStream.java:357)
+	at com.mongodb.internal.connection.netty.NettyStream.access$1100(NettyStream.java:112)
+	at com.mongodb.internal.connection.netty.NettyStream$OpenChannelFutureListener.lambda$operationComplete$0(NettyStream.java:520)
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:590)
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:557)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:492)
+	at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:636)
+	at io.netty.util.concurrent.DefaultPromise.setSuccess0(DefaultPromise.java:625)
+	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:105)
+	at io.netty.channel.DefaultChannelPromise.trySuccess(DefaultChannelPromise.java:84)
+	at io.netty.channel.AbstractChannel$CloseFuture.setClosed(AbstractChannel.java:1161)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.doClose0(AbstractChannel.java:753)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.close(AbstractChannel.java:729)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.close(AbstractChannel.java:619)
+	at io.netty.channel.nio.NioEventLoop.closeAll(NioEventLoop.java:838)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:595)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:994)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:1583)
+
+2024-08-13 03:43:02.639 ERROR S gcwzcwcj                     mongo-event-loop-1-10            org.mongodb.driver.connection : Callback onResult call produced an error
+java.lang.IllegalStateException: state should be: open
+	at com.mongodb.assertions.Assertions.isTrue(Assertions.java:110)
+	at com.mongodb.internal.connection.BaseCluster.selectServerAsync(BaseCluster.java:177)
+	at com.mongodb.internal.connection.SingleServerCluster.selectServerAsync(SingleServerCluster.java:46)
+	at com.mongodb.internal.binding.AsyncClusterBinding.getAsyncClusterBindingConnectionSource(AsyncClusterBinding.java:146)
+	at com.mongodb.internal.binding.AsyncClusterBinding.getReadConnectionSource(AsyncClusterBinding.java:111)
+	at com.mongodb.reactivestreams.client.internal.ClientSessionBinding.getConnectionSource(ClientSessionBinding.java:109)
+	at com.mongodb.reactivestreams.client.internal.ClientSessionBinding.getReadConnectionSource(ClientSessionBinding.java:89)
+	at com.mongodb.internal.operation.AsyncOperationHelper.withAsyncReadConnectionSource(AsyncOperationHelper.java:98)
+	at com.mongodb.internal.operation.AsyncChangeStreamBatchCursor.retryOperation(AsyncChangeStreamBatchCursor.java:215)
+	at com.mongodb.internal.operation.AsyncChangeStreamBatchCursor.lambda$resumeableOperation$1(AsyncChangeStreamBatchCursor.java:205)
+	at com.mongodb.internal.async.function.AsyncCallbackSupplier.lambda$whenComplete$1(AsyncCallbackSupplier.java:97)
+	at com.mongodb.internal.operation.AsyncCommandBatchCursor$ResourceManager.lambda$executeWithConnection$2(AsyncCommandBatchCursor.java:278)
+	at com.mongodb.internal.operation.AsyncCommandBatchCursor.lambda$getMoreLoop$2(AsyncCommandBatchCursor.java:180)
+	at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47)
+	at com.mongodb.internal.connection.DefaultServer$DefaultServerProtocolExecutor.lambda$executeAsync$0(DefaultServer.java:245)
+	at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47)
+	at com.mongodb.internal.connection.CommandProtocolImpl.lambda$executeAsync$0(CommandProtocolImpl.java:86)
+	at com.mongodb.internal.connection.DefaultConnectionPool$PooledConnection.lambda$sendAndReceiveAsync$1(DefaultConnectionPool.java:774)
+	at com.mongodb.internal.connection.UsageTrackingInternalConnection.lambda$sendAndReceiveAsync$1(UsageTrackingInternalConnection.java:150)
+	at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47)
+	at com.mongodb.internal.connection.InternalStreamConnection.lambda$sendCommandMessageAsync$0(InternalStreamConnection.java:513)
+	at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback.onResult(InternalStreamConnection.java:773)
+	at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback.onResult(InternalStreamConnection.java:763)
+	at com.mongodb.internal.connection.InternalStreamConnection$3.failed(InternalStreamConnection.java:654)
+	at com.mongodb.internal.connection.netty.NettyStream.readAsync(NettyStream.java:327)
+	at com.mongodb.internal.connection.netty.NettyStream.handleReadResponse(NettyStream.java:357)
+	at com.mongodb.internal.connection.netty.NettyStream.access$1100(NettyStream.java:112)
+	at com.mongodb.internal.connection.netty.NettyStream$OpenChannelFutureListener.lambda$operationComplete$0(NettyStream.java:520)
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:590)
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:557)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:492)
+	at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:636)
+	at io.netty.util.concurrent.DefaultPromise.setSuccess0(DefaultPromise.java:625)
+	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:105)
+	at io.netty.channel.DefaultChannelPromise.trySuccess(DefaultChannelPromise.java:84)
+	at io.netty.channel.AbstractChannel$CloseFuture.setClosed(AbstractChannel.java:1161)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.doClose0(AbstractChannel.java:753)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.close(AbstractChannel.java:729)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.close(AbstractChannel.java:619)
+	at io.netty.channel.nio.NioEventLoop.closeAll(NioEventLoop.java:838)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:595)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:994)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:1583)
+
+2024-08-13 03:43:02.640 ERROR S gcwzcwcj                     mongo-event-loop-1-7            org.mongodb.driver.connection : Callback onResult call produced an error
+java.lang.IllegalStateException: state should be: open
+	at com.mongodb.assertions.Assertions.isTrue(Assertions.java:110)
+	at com.mongodb.internal.connection.BaseCluster.selectServerAsync(BaseCluster.java:177)
+	at com.mongodb.internal.connection.SingleServerCluster.selectServerAsync(SingleServerCluster.java:46)
+	at com.mongodb.internal.binding.AsyncClusterBinding.getAsyncClusterBindingConnectionSource(AsyncClusterBinding.java:146)
+	at com.mongodb.internal.binding.AsyncClusterBinding.getReadConnectionSource(AsyncClusterBinding.java:111)
+	at com.mongodb.reactivestreams.client.internal.ClientSessionBinding.getConnectionSource(ClientSessionBinding.java:109)
+	at com.mongodb.reactivestreams.client.internal.ClientSessionBinding.getReadConnectionSource(ClientSessionBinding.java:89)
+	at com.mongodb.internal.operation.AsyncOperationHelper.withAsyncReadConnectionSource(AsyncOperationHelper.java:98)
+	at com.mongodb.internal.operation.AsyncChangeStreamBatchCursor.retryOperation(AsyncChangeStreamBatchCursor.java:215)
+	at com.mongodb.internal.operation.AsyncChangeStreamBatchCursor.lambda$resumeableOperation$1(AsyncChangeStreamBatchCursor.java:205)
+	at com.mongodb.internal.async.function.AsyncCallbackSupplier.lambda$whenComplete$1(AsyncCallbackSupplier.java:97)
+	at com.mongodb.internal.operation.AsyncCommandBatchCursor$ResourceManager.lambda$executeWithConnection$2(AsyncCommandBatchCursor.java:278)
+	at com.mongodb.internal.operation.AsyncCommandBatchCursor.lambda$getMoreLoop$2(AsyncCommandBatchCursor.java:180)
+	at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47)
+	at com.mongodb.internal.connection.DefaultServer$DefaultServerProtocolExecutor.lambda$executeAsync$0(DefaultServer.java:245)
+	at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47)
+	at com.mongodb.internal.connection.CommandProtocolImpl.lambda$executeAsync$0(CommandProtocolImpl.java:86)
+	at com.mongodb.internal.connection.DefaultConnectionPool$PooledConnection.lambda$sendAndReceiveAsync$1(DefaultConnectionPool.java:774)
+	at com.mongodb.internal.connection.UsageTrackingInternalConnection.lambda$sendAndReceiveAsync$1(UsageTrackingInternalConnection.java:150)
+	at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47)
+	at com.mongodb.internal.connection.InternalStreamConnection.lambda$sendCommandMessageAsync$0(InternalStreamConnection.java:513)
+	at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback.onResult(InternalStreamConnection.java:773)
+	at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback.onResult(InternalStreamConnection.java:763)
+	at com.mongodb.internal.connection.InternalStreamConnection$3.failed(InternalStreamConnection.java:654)
+	at com.mongodb.internal.connection.netty.NettyStream.readAsync(NettyStream.java:327)
+	at com.mongodb.internal.connection.netty.NettyStream.handleReadResponse(NettyStream.java:357)
+	at com.mongodb.internal.connection.netty.NettyStream.access$1100(NettyStream.java:112)
+	at com.mongodb.internal.connection.netty.NettyStream$OpenChannelFutureListener.lambda$operationComplete$0(NettyStream.java:520)
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:590)
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:557)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:492)
+	at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:636)
+	at io.netty.util.concurrent.DefaultPromise.setSuccess0(DefaultPromise.java:625)
+	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:105)
+	at io.netty.channel.DefaultChannelPromise.trySuccess(DefaultChannelPromise.java:84)
+	at io.netty.channel.AbstractChannel$CloseFuture.setClosed(AbstractChannel.java:1161)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.doClose0(AbstractChannel.java:753)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.close(AbstractChannel.java:729)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.close(AbstractChannel.java:619)
+	at io.netty.channel.nio.NioEventLoop.closeAll(NioEventLoop.java:838)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:595)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:994)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:1583)
+
+2024-08-13 03:43:02.639 ERROR S gcwzcwcj                     mongo-event-loop-1-4            org.mongodb.driver.connection : Callback onResult call produced an error
+java.lang.IllegalStateException: state should be: open
+	at com.mongodb.assertions.Assertions.isTrue(Assertions.java:110)
+	at com.mongodb.internal.connection.BaseCluster.selectServerAsync(BaseCluster.java:177)
+	at com.mongodb.internal.connection.SingleServerCluster.selectServerAsync(SingleServerCluster.java:46)
+	at com.mongodb.internal.binding.AsyncClusterBinding.getAsyncClusterBindingConnectionSource(AsyncClusterBinding.java:146)
+	at com.mongodb.internal.binding.AsyncClusterBinding.getReadConnectionSource(AsyncClusterBinding.java:111)
+	at com.mongodb.reactivestreams.client.internal.ClientSessionBinding.getConnectionSource(ClientSessionBinding.java:109)
+	at com.mongodb.reactivestreams.client.internal.ClientSessionBinding.getReadConnectionSource(ClientSessionBinding.java:89)
+	at com.mongodb.internal.operation.AsyncOperationHelper.withAsyncReadConnectionSource(AsyncOperationHelper.java:98)
+	at com.mongodb.internal.operation.AsyncChangeStreamBatchCursor.retryOperation(AsyncChangeStreamBatchCursor.java:215)
+	at com.mongodb.internal.operation.AsyncChangeStreamBatchCursor.lambda$resumeableOperation$1(AsyncChangeStreamBatchCursor.java:205)
+	at com.mongodb.internal.async.function.AsyncCallbackSupplier.lambda$whenComplete$1(AsyncCallbackSupplier.java:97)
+	at com.mongodb.internal.operation.AsyncCommandBatchCursor$ResourceManager.lambda$executeWithConnection$2(AsyncCommandBatchCursor.java:278)
+	at com.mongodb.internal.operation.AsyncCommandBatchCursor.lambda$getMoreLoop$2(AsyncCommandBatchCursor.java:180)
+	at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47)
+	at com.mongodb.internal.connection.DefaultServer$DefaultServerProtocolExecutor.lambda$executeAsync$0(DefaultServer.java:245)
+	at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47)
+	at com.mongodb.internal.connection.CommandProtocolImpl.lambda$executeAsync$0(CommandProtocolImpl.java:86)
+	at com.mongodb.internal.connection.DefaultConnectionPool$PooledConnection.lambda$sendAndReceiveAsync$1(DefaultConnectionPool.java:774)
+	at com.mongodb.internal.connection.UsageTrackingInternalConnection.lambda$sendAndReceiveAsync$1(UsageTrackingInternalConnection.java:150)
+	at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47)
+	at com.mongodb.internal.connection.InternalStreamConnection.lambda$sendCommandMessageAsync$0(InternalStreamConnection.java:513)
+	at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback.onResult(InternalStreamConnection.java:773)
+	at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback.onResult(InternalStreamConnection.java:763)
+	at com.mongodb.internal.connection.InternalStreamConnection$3.failed(InternalStreamConnection.java:654)
+	at com.mongodb.internal.connection.netty.NettyStream.readAsync(NettyStream.java:327)
+	at com.mongodb.internal.connection.netty.NettyStream.handleReadResponse(NettyStream.java:357)
+	at com.mongodb.internal.connection.netty.NettyStream.access$1100(NettyStream.java:112)
+	at com.mongodb.internal.connection.netty.NettyStream$OpenChannelFutureListener.lambda$operationComplete$0(NettyStream.java:520)
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:590)
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:557)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:492)
+	at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:636)
+	at io.netty.util.concurrent.DefaultPromise.setSuccess0(DefaultPromise.java:625)
+	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:105)
+	at io.netty.channel.DefaultChannelPromise.trySuccess(DefaultChannelPromise.java:84)
+	at io.netty.channel.AbstractChannel$CloseFuture.setClosed(AbstractChannel.java:1161)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.doClose0(AbstractChannel.java:753)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.close(AbstractChannel.java:729)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.close(AbstractChannel.java:619)
+	at io.netty.channel.nio.NioEventLoop.closeAll(NioEventLoop.java:838)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:595)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:994)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:1583)
+

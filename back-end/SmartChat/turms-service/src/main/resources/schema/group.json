@@ -1,0 +1,49 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "cd",
+      "lud",
+      "ac",
+      "ms",
+      "oid",
+      "tid",
+      "cid"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "long"
+      },
+      "cd": {
+        "bsonType": "date"
+      },
+      "lud": {
+        "bsonType": "date"
+      },
+      "ac": {
+        "bsonType": "bool"
+      },
+      "ms": {
+        "bsonType": "int"
+      },
+      "intro": {
+        "bsonType": "string"
+      },
+      "oid": {
+        "bsonType": "long"
+      },
+      "tid": {
+        "bsonType": "long"
+      },
+      "n": {
+        "bsonType": "string"
+      },
+      "annt": {
+        "bsonType": "string"
+      },
+      "cid": {
+        "bsonType": "long"
+      }
+    }
+  }
+}

@@ -51,3 +51,6 @@ scoop install python38
 页面原型如下：
 
 ![image-20240727100712492](README/image-20240727100712492.png)
+
+
+

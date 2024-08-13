@@ -1,0 +1,99 @@
+{
+  "name": "turms-admin",
+  "version": "0.10.0-SNAPSHOT",
+  "description": "",
+  "repository": {
+    "type": ""
+  },
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "build": "npm run build:admin",
+    "build:admin": "vite build",
+    "build:client": "npm run --prefix ../turms-client-js quickbuild",
+    "build:client-ast": "node script/generate-client-ast.js",
+    "cypress": "cypress open",
+    "delete": "pm2 delete server/ecosystem.config.js",
+    "eslint": "eslint --fix --ext .js,.ts,.vue server ui",
+    "eslint:print": "eslint --print-config .eslintrc.js",
+    "inspect": "vite inspect",
+    "lint": "npm run eslint && npm run stylelint",
+    "postinstall": "npm run build:client && npm run build:client-ast",
+    "precommit": "npm run lint",
+    "preview": "vite preview",
+    "quickstart": "npm install && npm run build && npm run start",
+    "reload": "pm2 reload server/ecosystem.config.js",
+    "report": "cross-env REPORT=true npm run build",
+    "restart": "pm2 restart server/ecosystem.config.js",
+    "serve": "vite serve --port 6510",
+    "start": "pm2 start server/ecosystem.config.js --env production",
+    "stop": "pm2 stop server/ecosystem.config.js",
+    "stylelint": "stylelint --fix ui/**/*.{vue,css,sss,less,scss,sass}",
+    "test": "cypress run",
+    "upgrade": "npx npm-check-updates -u"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit"
+    }
+  },
+  "browserslist": [
+    "> 1%"
+  ],
+  "dependencies": {
+    "@antv/g2": "^4.2.11",
+    "ant-design-vue": "^4.2.3",
+    "axios": "^1.7.2",
+    "buffer": "^6.0.3",
+    "compression": "^1.7.4",
+    "connect-history-api-fallback": "^2.0.0",
+    "dayjs": "^1.11.11",
+    "deep-diff": "^1.0.2",
+    "exceljs": "^4.4.0",
+    "express": "^4.19.2",
+    "file-saver": "^2.0.5",
+    "formatcoords": "^1.1.3",
+    "ip-regex": "^5.0.0",
+    "json-bigint": "^1.0.0",
+    "lodash-es": "^4.17.21",
+    "markdown-it": "^14.1.0",
+    "process": "^0.11.10",
+    "save-svg-as-png": "^1.4.17",
+    "trie-search": "^2.0.0",
+    "turms-client-js": "file:../turms-client-js",
+    "vue": "^3.4.31",
+    "vue-i18n": "^9.13.1",
+    "vue-router": "^4.4.0",
+    "xterm": "^5.3.0",
+    "xterm-addon-fit": "^0.8.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.5",
+    "@vue/eslint-config-typescript": "^13.0.0",
+    "autoprefixer": "^10.4.19",
+    "cross-env": "^7.0.3",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "sass": "^1.77.8",
+    "stylelint": "^16.7.0",
+    "stylelint-config-recess-order": "^5.0.1",
+    "stylelint-config-recommended-vue": "^1.5.0",
+    "stylelint-config-standard": "^36.0.1",
+    "stylelint-config-standard-scss": "^13.1.0",
+    "typescript": "^5.5.3",
+    "unplugin-vue-components": "^0.27.2",
+    "unplugin-vue-markdown": "^0.26.2",
+    "vite": "^5.3.3"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.18.1",
+    "cypress": "^13.13.0",
+    "cypress-intellij-reporter": "^0.0.7",
+    "eslint": "^8.57.0",
+    "eslint-plugin-cypress": "^3.3.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-vue": "^9.27.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
+    "pm2": "^5.4.2"
+  }
+}

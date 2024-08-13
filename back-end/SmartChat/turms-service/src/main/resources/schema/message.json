@@ -1,0 +1,44 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "gm",
+      "dyd",
+      "tid",
+      "sid",
+      "sm"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "long"
+      },
+      "bf": {
+        "bsonType": "int"
+      },
+      "gm": {
+        "bsonType": "bool"
+      },
+      "dyd": {
+        "bsonType": "date"
+      },
+      "tid": {
+        "bsonType": "long"
+      },
+      "sid": {
+        "bsonType": "long"
+      },
+      "sip": {
+        "bsonType": "int"
+      },
+      "sip6": {
+        "bsonType": "binData"
+      },
+      "txt": {
+        "bsonType": "string"
+      },
+      "sm": {
+        "bsonType": "bool"
+      }
+    }
+  }
+}

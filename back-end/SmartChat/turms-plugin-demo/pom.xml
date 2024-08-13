@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.mydomain</groupId>
+    <artifactId>my-plugin</artifactId>
+    <version>1.0.0</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.compilerVersion>21</maven.compiler.compilerVersion>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+        <maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
+        <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
+        <spotless-maven-plugin.eclipse.version>4.31</spotless-maven-plugin.eclipse.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>im.turms</groupId>
+            <artifactId>turms-service</artifactId>
+            <version>0.10.0-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>im.turms</groupId>-->
+<!--            <artifactId>turms-gateway</artifactId>-->
+<!--            <version>0.10.0-SNAPSHOT</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
+    </dependencies>
+
+    <build>
+        <plugins>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                <version>${maven-compiler-plugin.version}</version>-->
+<!--                <configuration>-->
+<!--                    <source>21</source>-->
+<!--                    <target>21</target>-->
+<!--                    <annotationProcessors>-->
+<!--                        <annotationProcessor>lombok.launch.AnnotationProcessorHider$AnnotationProcessor-->
+<!--                        </annotationProcessor>-->
+<!--                    </annotationProcessors>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${maven-shade-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                            <!-- Prevent generating the "original" jar file -->
+                            <finalName>${project.artifactId}-${project.version}</finalName>
+                            <minimizeJar>true</minimizeJar>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>${spotless-maven-plugin.version}</version>
+                <configuration>
+                    <java>
+                        <includes>
+                            <include>src/main/java/**/*.java</include>
+                            <include>src/test/java/**/*.java</include>
+                        </includes>
+                        <eclipse>
+                            <version>${spotless-maven-plugin.eclipse.version}</version>
+                            <file>./codequality/eclipse.xml</file>
+                        </eclipse>
+                        <trimTrailingWhitespace/>
+                        <importOrder>
+                            <!-- 1. An empty string for all the imports that didn't specify explicitly,
+                            2. '|' for joining a group without blank line,
+                            3. '\#' prefix for static imports. -->
+                            <order>java|javax|jakarta,,im.turms,\#java|\#javax|\#jakarta,\#,\#im.turms</order>
+                        </importOrder>
+                        <licenseHeader>
+                            <file>./codequality/java-license-header.txt</file>
+                        </licenseHeader>
+                    </java>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

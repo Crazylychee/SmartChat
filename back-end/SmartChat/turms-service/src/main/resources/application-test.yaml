@@ -1,0 +1,31 @@
+spring:
+  netty:
+    leak-detection: paranoid
+
+############################### Turms ###############################
+
+turms:
+  logging:
+    console:
+      enabled: true
+  plugin:
+    js:
+      debug:
+        enabled: true
+  service:
+    admin-api:
+      debug:
+        enabled: true
+    client-api:
+      logging:
+        included-notification-categories:
+          - category: all
+    fake:
+      enabled: true
+      clear-all-collections-before-faking: true
+    message:
+      check-if-target-active-and-not-deleted: false
+turms-plugin:
+  minio:
+    retry:
+      enabled: false

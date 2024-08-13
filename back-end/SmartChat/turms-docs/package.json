@@ -1,0 +1,27 @@
+{
+  "name": "turms-docs",
+  "version": "0.10.0",
+  "description": "documentation for turms",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev src",
+    "build": "vitepress build src",
+    "upgrade": "npx npm-check-updates -u"
+  },
+  "devDependencies": {
+    "mermaid": "^10.9.1",
+    "sass": "^1.77.2",
+    "vitepress": "^1.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/turms-im/turms.git"
+  },
+  "author": "James Chen",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/turms-im/turms/issues"
+  },
+  "homepage": "https://github.com/turms-im/turms#readme"
+}

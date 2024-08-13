@@ -1,0 +1,503 @@
+# Prerequisites:
+# Make sure the loki driver is installed:
+# docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
+#
+# Ways to Run:
+# docker compose -f docker-compose.standalone.yml up --force-recreate
+#
+# Run in a specific environment (e.g. "dev"):
+# Powershell: $env:ENV="dev";docker compose -f docker-compose.standalone.yml up --force-recreate
+# Unix: ENV=dev docker compose -f docker-compose.standalone.yml up --force-recreate
+#
+# Run with optional monitoring services (Prometheus+Grafana)
+# Run with "--profile monitoring": docker compose -f docker-compose.standalone.yml --profile monitoring up --force-recreate
+#
+
+# Disable loki because it has a critical bug:
+# https://github.com/grafana/loki/issues/2361
+
+x-logging: &logging
+  logging:
+    driver: loki
+    options:
+      loki-url: "http://host.docker.internal:3100/loki/api/v1/push"
+
+x-logging-mongo: &logging-mongo
+  logging:
+    driver: loki
+    options:
+      loki-url: "http://host.docker.internal:3100/loki/api/v1/push"
+      # See https://docs.mongodb.com/manual/reference/log-messages
+      loki-pipeline-stages: |
+        - json:
+            expressions:
+              time: t."$$date"
+        - timestamp:
+            format: RFC3339
+            source: time
+
+x-logging-turms: &logging-turms
+  logging:
+    driver: loki
+    options:
+      loki-url: "http://host.docker.internal:3100/loki/api/v1/push"
+      # The regex has been optimized:
+      # it takes about 50 steps to parse a single log line
+      loki-pipeline-stages: |
+        - multiline:
+            firstline: '^\d{4}-\d{2}-\d{2}\s\d{1,2}\:'
+        - regex:
+            expression: '(?P<time>\d{4}-\d{2}-\d{2}\s\d{1,2}\:\d{2}\:\d{2}\.\d{3})\s+(?P<level>[A-Z]{4,5})\s+(?P<node_type>[A-Z])\s+(?P<node_id>\S*)\s+\[(?P<trace_id>.{19})\]\s+(?P<thread>\S*)\s+(?P<class>\S*)\s+:\s(?P<msg>.*)'
+        - labels:
+            node_type:
+            node_id:
+        - timestamp:
+            format: '2006-01-02 15:04:05.000'
+            source: time
+
+services:
+  # MongoDB
+  mongodb-config:
+    image: mongo:6.0.14-jammy
+#    depends_on:
+#      - loki
+    entrypoint: [ "mongod", "--port", "27017", "--configsvr", "--replSet", "rs-config", "--bind_ip_all" ]
+    healthcheck:
+      # Use "mongo" instead of "mongosh" before v5.0
+      test: [ "CMD", "mongosh", "--quiet", "--eval", "db.runCommand(\"ping\").ok" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    mem_limit: 2g
+#    volumes:
+#      - "./mongodb-config/data/db:/data/db"
+#      - "./mongodb-config/data/logs:/data/logs"
+#    <<: *logging-mongo
+
+  mongodb-shard:
+    image: mongo:6.0.14-jammy
+#    depends_on:
+#      - loki
+    entrypoint: [ "mongod", "--port", "27017", "--shardsvr", "--replSet", "shard01", "--bind_ip_all" ]
+    healthcheck:
+      # Use "mongo" instead of "mongosh" before v5.0
+      test: [ "CMD", "mongosh", "--quiet", "--eval", "db.runCommand(\"ping\").ok" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    mem_limit: 2g
+#    volumes:
+#      - "./mongodb-shard/data/db:/data/db"
+#      - "./mongodb-shard/data/logs:/data/logs"
+#    <<: *logging-mongo
+
+  mongodb-router:
+    image: mongo:6.0.14-jammy
+#    depends_on:
+#      - loki
+    entrypoint: [ "mongos", "--port", "27017", "--configdb", "rs-config/mongodb-config:27017", "--bind_ip_all" ]
+    healthcheck:
+      # Use "mongo" instead of "mongosh" before v5.0
+      test: [ "CMD", "mongosh", "--quiet", "--eval", "db.runCommand(\"ping\").ok" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "27017:27017"
+    mem_limit: 2g
+#    volumes:
+#      - "./mongodb-router/data/db:/data/db"
+#      - "./mongodb-router/data/logs:/data/logs"
+#    <<: *logging-mongo
+
+  mongodb-setup:
+    image: mongo:6.0.14-jammy
+    depends_on:
+      mongodb-config:
+        condition: service_healthy
+      mongodb-shard:
+        condition: service_healthy
+      mongodb-router:
+        condition: service_started
+    # Wait 10s for the replica set to elect their primary
+    # Use "mongo" instead of "mongosh" before v5.0
+    entrypoint:
+      - bash
+      - -c
+      - |
+        mongosh --host mongodb-config:27017 --eval "rs.initiate({_id: 'rs-config', configsvr: true, version: 1, members: [ { _id: 0, host : 'mongodb-config:27017' } ] })"
+        mongosh --host mongodb-shard:27017 --eval "rs.initiate({_id: 'shard01', version: 1, members: [ { _id: 0, host : 'mongodb-shard:27017' } ] })"
+        sleep 10
+        mongosh --host mongodb-router:27017 --eval "sh.addShard('shard01/mongodb-shard:27017')"
+    restart: "no"
+
+  # Redis
+  redis:
+    image: redis:7.2.4-alpine
+#    depends_on:
+#      - loki
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "6379:6379"
+#    volumes:
+#      - "./redis/data:/data"
+#      - "./redis/config/redis.conf:/usr/local/redis/config/redis.conf"
+#    <<: *logging
+
+  # MinIO
+  minio:
+    image: minio/minio:RELEASE.2024-03-21T23-13-43Z
+    # https://min.io/docs/minio/linux/reference/minio-server/minio-server.html#environment-variables
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin}
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    profiles:
+      - storage
+    command: server --console-address ":9001" /data
+    healthcheck:
+      # Don't use the following command because minio has removed "curl" in its image
+      # (Reference: https://github.com/minio/minio/issues/18373) :
+      # test: [ "CMD", "curl", "-f", "http://localhost:9000/minio/health/live" ]
+      test: mc ready local
+      interval: 10s
+      timeout: 5s
+      retries: 5
+#    volumes:
+#      - ./minio_storage:/data
+
+  elasticsearch:
+    image: 'elasticsearch:8.13.0'
+    profiles:
+      - elasticsearch
+    environment:
+      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD:-changeme}
+      bootstrap.memory_lock: true
+      discovery.type: single-node
+      network.host: 0.0.0.0
+      http.port: 9200
+      xpack.security.http.ssl.enabled: false
+      xpack.security.transport.ssl.enabled: false
+#      ES_JAVA_OPTS: -Xms1g -Xmx1g
+#      xpack.security.enabled: false
+
+    # Add the following commands under the "command" block
+    # to install optional analysis plugins.
+
+    # Plugins for Chinese analysis
+    # echo "${PLUGINS}" | grep -q analysis-ik || bin/elasticsearch-plugin install --batch "https://get.infini.cloud/elasticsearch/analysis-ik/8.13.0"
+
+    # Plugins for Japanese analysis
+    # echo "${PLUGINS}" | grep -q analysis-icu || bin/elasticsearch-plugin install analysis-icu
+    # echo "${PLUGINS}" | grep -q analysis-kuromoji || bin/elasticsearch-plugin install analysis-kuromoji
+    command:
+      - /bin/bash
+      - -c
+      - |
+        PLUGINS=$(bin/elasticsearch-plugin list)
+        echo "Installed plugins: ${PLUGINS}"
+        /usr/local/bin/docker-entrypoint.sh
+    ports:
+      - "9200:9200"
+#    volumes:
+#      - ./elasticsearch/plugins:/usr/share/elasticsearch/plugins
+#      - ./elasticsearch/data:/usr/share/elasticsearch/data
+#      - ./elasticsearch/logs:/usr/share/elasticsearch/logs
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    healthcheck:
+      test: [
+        "CMD-SHELL",
+        "curl -u elastic:${ELASTIC_PASSWORD:-changeme} -fsSL http://localhost:9200/_cat/health?h=status | grep -q -E 'green|yellow'"
+      ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 1m
+
+  # LiveKit
+  livekit:
+    image: livekit/livekit-server:v1.6.1
+    command: --config /etc/livekit.yaml
+    ports:
+      - "7880:7880/tcp"
+      - "7881:7881/tcp"
+      - "7882:7882/udp"
+    profiles:
+      - conference
+    depends_on:
+      - redis
+    healthcheck:
+      # language=sh
+      test: wget --no-verbose --spider --tries=1 http://localhost:7880 || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
+#    volumes:
+#      - ./livekit/livekit.yaml:/etc/livekit.yaml
+
+  # Rasa
+  rasa:
+    image: rasa/rasa:3.6.19-full
+    ports:
+      - 5005:5005
+    profiles:
+      - chatbot
+#    volumes:
+#      - "./rasa/models:/app/models"
+#      - "./rasa/logs:/app/logs"
+    command: ["run", "--enable-api", "--cors", "*"]
+
+  # turms servers
+  turms-admin:
+    image: "ghcr.io/turms-im/turms-admin"
+#    pull_policy: always
+    ports:
+      - "6510:6510"
+#    <<: *logging
+
+  turms-gateway:
+    image: "ghcr.io/turms-im/turms-gateway"
+#    pull_policy: always
+    depends_on:
+#      loki:
+#        condition: service_started
+      mongodb-router:
+        condition: service_healthy
+      mongodb-setup:
+        condition: service_started
+      redis:
+        condition: service_healthy
+      # Wait for turms to ensure turms-gateway can fetch data from DB safely after turms has inited collections
+      turms-service:
+        condition: service_healthy
+    environment:
+      TURMS_GATEWAY_JVM_OPTS: >
+        -Dcom.sun.management.jmxremote=true
+        -Dcom.sun.management.jmxremote.authenticate=false
+        -Dcom.sun.management.jmxremote.local.only=false
+        -Dcom.sun.management.jmxremote.port=8849
+        -Dcom.sun.management.jmxremote.rmi.port=8849
+        -Dcom.sun.management.jmxremote.ssl=false
+        -Djava.rmi.server.hostname=localhost
+
+        -Dspring.profiles.active=${ENV}
+
+        -Dturms.cluster.connection.server.port=7610
+        -Dturms.cluster.connection.server.port-auto-increment=false
+
+        -Dturms.cluster.discovery.address.advertise-strategy=advertise_address
+        -Dturms.cluster.discovery.address.advertise-host=turms-gateway
+
+        -Dturms.cluster.shared-config.mongo.uri=mongodb://mongodb-router:27017/turms-standalone?authSource=admin
+        -Dturms.gateway.mongo.admin.uri=mongodb://mongodb-router:27017/turms-standalone?authSource=admin
+        -Dturms.gateway.mongo.user.uri=mongodb://mongodb-router:27017/turms-standalone?authSource=admin
+
+        -Dturms.gateway.redis.session.uri-list[0]=redis://redis:6379
+        -Dturms.gateway.redis.location.uri-list[0]=redis://redis:6379
+        -Dturms.gateway.redis.ip-blocklist.uri=redis://redis:6379
+        -Dturms.gateway.redis.user-id-blocklist.uri=redis://redis:6379
+    healthcheck:
+      test: "curl --fail --silent --user turms:turms turms-gateway:9510/health | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    mem_limit: 2g
+    ports:
+      - "7610:7610" # RPC
+      - "8849:8849" # JMX
+      - "9510:9510" # Metrics APIs + Admin APIs
+      - "10510:10510" # WebSocket
+      - "11510:11510" # TCP
+      - "12510:12510" # UDP
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+#    volumes:
+#      - "./container/turms-gateway/hprof:/opt/turms/turms-gateway/hprof"
+#      - "./container/turms-gateway/jfr:/opt/turms/turms-gateway/jfr"
+#      - "./container/turms-gateway/log:/opt/turms/turms-gateway/log"
+#      - "./container/turms-gateway/config:/opt/turms/turms-gateway/config" # Includes "application.yaml" and "jvm.options"
+#    <<: *logging-turms
+
+  turms-service:
+    image: "ghcr.io/turms-im/turms-service"
+#    pull_policy: always
+    depends_on:
+#      loki:
+#        condition: service_started
+      mongodb-router:
+        condition: service_healthy
+      mongodb-setup:
+        condition: service_started
+      redis:
+        condition: service_healthy
+    environment:
+      TURMS_SERVICE_JVM_OPTS: >
+        -Dcom.sun.management.jmxremote=true
+        -Dcom.sun.management.jmxremote.authenticate=false
+        -Dcom.sun.management.jmxremote.local.only=false
+        -Dcom.sun.management.jmxremote.port=8839
+        -Dcom.sun.management.jmxremote.rmi.port=8839
+        -Dcom.sun.management.jmxremote.ssl=false
+        -Djava.rmi.server.hostname=localhost
+
+        -Dspring.profiles.active=${ENV}
+        -Dturms.security.password.initial-root-password=${INITIAL_ROOT_PASSWORD:-turms}
+
+        -Dturms.cluster.connection.server.port-auto-increment=false
+
+        -Dturms.cluster.discovery.address.advertise-strategy=advertise_address
+        -Dturms.cluster.discovery.address.advertise-host=turms-service
+
+        -Dturms.cluster.shared-config.mongo.uri=mongodb://mongodb-router:27017/turms-standalone?authSource=admin
+        -Dturms.service.mongo.admin.uri=mongodb://mongodb-router:27017/turms-standalone?authSource=admin
+        -Dturms.service.mongo.user.uri=mongodb://mongodb-router:27017/turms-standalone?authSource=admin
+        -Dturms.service.mongo.group.uri=mongodb://mongodb-router:27017/turms-standalone?authSource=admin
+        -Dturms.service.mongo.conversation.uri=mongodb://mongodb-router:27017/turms-standalone?authSource=admin
+        -Dturms.service.mongo.message.uri=mongodb://mongodb-router:27017/turms-standalone?authSource=admin
+        -Dturms.service.mongo.conference.uri=mongodb://mongodb-router:27017/turms-standalone?authSource=admin
+
+        -Dturms.service.redis.sequence-id.uri-list[0]=redis://redis:6379
+        -Dturms.service.redis.session.uri-list[0]=redis://redis:6379
+        -Dturms.service.redis.location.uri-list[0]=redis://redis:6379
+        -Dturms.service.redis.ip-blocklist.uri=redis://redis:6379
+        -Dturms.service.redis.user-id-blocklist.uri=redis://redis:6379
+
+#        -Dturms.plugin.network.plugins[0].url=https://github.com/turms-im/turms/releases/download/v0.10.0-SNAPSHOT/turms-plugin-antispam-0.10.0-SNAPSHOT.jar
+#        -Dturms.plugin.network.plugins[1].url=https://github.com/turms-im/turms/releases/download/v0.10.0-SNAPSHOT/turms-plugin-livekit-0.10.0-SNAPSHOT.jar
+#        -Dturms.plugin.network.plugins[2].url=https://github.com/turms-im/turms/releases/download/v0.10.0-SNAPSHOT/turms-plugin-minio-0.10.0-SNAPSHOT.jar
+#        -Dturms.plugin.network.plugins[3].url=https://github.com/turms-im/turms/releases/download/v0.10.0-SNAPSHOT/turms-plugin-rasa-0.10.0-SNAPSHOT.jar
+    mem_limit: 2g
+    healthcheck:
+      test: "curl --fail --silent --user turms:turms turms-service:8510/health | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "7510:7510" # RPC
+      - "8510:8510" # Metrics APIs + Admin APIs
+      - "8839:8839" # JMX
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    #    volumes:
+    #      - "./container/turms-service/hprof:/opt/turms/turms-service/hprof"
+    #      - "./container/turms-service/jfr:/opt/turms/turms-service/jfr"
+    #      - "./container/turms-service/log:/opt/turms/turms-service/log"
+    #      - "./container/turms-service/config:/opt/turms/turms-service/config" # Includes "application.yaml" and "jvm.options"
+#    <<: *logging-turms
+
+  # optional services for observability - metrics
+
+  grafana:
+    image: grafana/grafana:10.0.12-ubuntu
+    depends_on:
+      - prometheus
+    environment:
+      - GF_SECURITY_ADMIN_USER=turms
+      - GF_SECURITY_ADMIN_PASSWORD=turms
+    ports:
+      - "3000:3000"
+    profiles:
+      - monitoring
+    restart: unless-stopped
+    volumes:
+      - ./ops/grafana/provisioning/:/etc/grafana/provisioning/
+
+  prometheus:
+    image: prom/prometheus:v2.50.1
+    ports:
+      - "9090:9090"
+    profiles:
+      - monitoring
+    restart: unless-stopped
+    volumes:
+      - ./ops/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  node-exporter:
+    image: prom/node-exporter:v1.7.0
+    ports:
+      - "9100:9100"
+    profiles:
+      - monitoring
+
+  cadvisor:
+    # If your server is in China and suffers from the network problem,
+    # try "gcr.lank8s.cn/cadvisor/cadvisor:v0.49.1"
+    # or just comment out "cadvisor"
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
+    ports:
+      - "8080:8080"
+    profiles:
+      - monitoring
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+
+  mongo-exporter:
+    image: percona/mongodb_exporter:0.40.0
+    command:
+      - '--mongodb.uri=mongodb://mongodb-router:27017'
+    ports:
+      - "9216:9216"
+    profiles:
+      - monitoring
+
+  redis-exporter:
+    image: oliver006/redis_exporter:v1.58.0
+    depends_on:
+      - redis
+    environment:
+      - REDIS_ADDR=redis://redis:6379
+    ports:
+      - "9121:9121"
+    profiles:
+      - monitoring
+
+  # Services for observability - logging
+
+#  loki:
+#    image: grafana/loki:2.8.2
+#    ports:
+#      - "3100:3100"
+#    command: -config.file=/etc/loki/local-config.yaml
+  opengauss:
+    image: enmotech/opengauss:latest
+    environment:
+      GS_PASSWORD: Enmo@123
+      TZ: Asia/Shanghai
+    ports:
+      - 5432:5432
+    privileged: true
+    volumes:
+      - /opt/opengauss:/var/lib/opengauss/data
+    restart: always
+
+  opengauss1:
+    image: enmotech/opengauss:latest
+    environment:
+      GS_PASSWORD: Enmo@123
+      TZ: Asia/Shanghai
+    ports:
+      - 5431:5432
+    privileged: true
+    volumes:
+      - /opt/opengauss2:/var/lib/opengauss/data
+    restart: always

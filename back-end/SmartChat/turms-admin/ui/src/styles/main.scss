@@ -1,0 +1,69 @@
+body {
+    overflow-y: hidden;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+/* Targets on Chrome. Avoid "-internal-autofill-selected" style to be applied */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 0s 600000s, color 0s 600000s;
+}
+
+td {
+    word-break: break-all;
+}
+
+.ant-breadcrumb {
+    display: flex;
+    align-items: center;
+}
+
+.ant-form-row {
+    align-items: center !important;
+
+    .ant-form-item-label {
+        white-space: normal !important;
+
+        > label{
+            margin-right: 8px !important;
+            height: unset !important;
+
+            &::after {
+                content: none !important;
+            }
+        }
+    }
+}
+
+.ant-message-notice-content {
+    max-width: 500px;
+}
+
+.ant-table-hide-scrollbar {
+    overflow: hidden !important;
+}
+
+.turms-card {
+    box-shadow: rgb(0 0 0 / 8%) 0 1px 4px;
+}
+
+/* Targets on Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fafafaff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #bfbfbf;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8c8c8c;
+}
