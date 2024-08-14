@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import { friendTime } from '../../../utils/utils'
+import { friendTime } from '../../../utils/Utils'
 import useStore from '../../../store'
 import { computed } from 'vue'
 const { useChatStore, useSystemStore, useContextMenuStore } = useStore()

@@ -45,7 +45,7 @@
 import { reactive, computed } from 'vue'
 import useStore from '../../../store'
 const { useAddressBookStore, useContextMenuStore, useSystemStore } = useStore()
-import { listSortByPinyin } from '../../../utils/utils'
+import { listSortByPinyin } from '../../../utils/Utils'
 
 const groupList = reactive([
   {

@@ -47,7 +47,7 @@ import _ from 'lodash'
 import { DownOutlined, UpOutlined } from '@ant-design/icons-vue'
 import useStore from '../../../store'
 const { useCollectStore, useSystemStore } = useStore()
-import { getUsedLocalStorageSize } from '../../../utils/utils'
+import { getUsedLocalStorageSize } from '../../../utils/Utils'
 
 // todo 完善收藏模块
 onMounted(() => {

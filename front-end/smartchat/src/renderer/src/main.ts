@@ -1,12 +1,14 @@
 import { createApp } from 'vue'
 import pinia from './store/pinia.js'
 import App from './App.vue'
-
+import 'element-plus/dist/index.css'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/reset.css'
 import './global.less'
 import ui from './components/libs/index.js'
-
+import ElementPlus from 'element-plus'
+import router from '@/router'
+import Utils from '@/utils/Utils'
 //引入
 import PerfectScrollbar from 'vue3-perfect-scrollbar'
 import 'perfect-scrollbar/css/perfect-scrollbar.css'
@@ -17,7 +19,12 @@ const app = createApp(App)
 
 app.use(pinia)
 app.use(Antd)
+app.use(ElementPlus)
 app.use(ui)
+app.use(router)
 app.use(PerfectScrollbar)
 app.component('Vue3EmojiPicker', Vue3EmojiPicker)
+app.config.globalProperties.Utils = Utils
+app.config.globalProperties.Request = Request
+
 app.mount('#app')
