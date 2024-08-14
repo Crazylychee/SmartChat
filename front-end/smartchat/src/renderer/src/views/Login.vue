@@ -97,7 +97,7 @@
       </el-form>
     </div>
   </div>
-  <win-op :showSetTop="false" :showMin="false" :showMax="false" :closeType="0"></win-op>
+  <Winbtn :showSetTop="false" :showMin="false" :showMax="false" :closeType="0"></Winbtn>
 </template>
 <script setup >
 import { ref, reactive, getCurrentInstance, nextTick, onMounted } from 'vue'

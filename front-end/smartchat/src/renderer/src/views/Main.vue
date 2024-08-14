@@ -6,6 +6,7 @@
       @contextmenu="handleWechatContextMenu"
     />
     <!-- <Edit/> -->
+    <Winbtn></Winbtn>
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import useStore from '@/store'
 
 const { useContextMenuStore, useSystemStore } = useStore()
 import WeChat from '@/components/WeChat.vue'
+import Winbtn from "../components/Winbtn.vue";
 
 ///////////////////////////////////////////////
 // On the first tab of the same origin
