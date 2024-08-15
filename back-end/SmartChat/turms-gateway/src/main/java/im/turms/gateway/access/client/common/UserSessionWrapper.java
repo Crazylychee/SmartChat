@@ -39,6 +39,10 @@ import im.turms.server.common.infra.thread.NamedThreadFactory;
  *
  * @author James Chen
  */
+
+/**
+ * UserSessionWrapper 类的主要作用是将网络连接和用户会话绑定在一起，并处理会话建立的超时任务。它通过 HashedWheelTimer 来管理超时任务，并在超时发生时关闭连接。
+ */
 @Data
 public class UserSessionWrapper {
 
