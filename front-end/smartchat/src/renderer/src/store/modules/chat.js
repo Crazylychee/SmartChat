@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import dayjs from "dayjs";
-import { guid } from "../../utils/utils";
+import { guid } from "../../utils/Utils";
 import { message } from 'ant-design-vue';
 
 
@@ -20,7 +20,7 @@ export const useChatStore = defineStore('chat', {
           "unReadCount": 6,
           "isTop": false,
           "isGroup": false
-         
+
         },
         {
           id: 2,

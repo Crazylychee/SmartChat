@@ -19,7 +19,7 @@ import { listenGlobalKeyDown } from '../utils/shortcutKey'
 import { getFriendList, getUserInfo } from '../api/manage'
 import useStore from '../store/index'
 const { useSystemStore, useChatStore, useAddressBookStore, useUserInfoStore } = useStore()
-import { listSortByPinyin } from '../utils/utils'
+import { listSortByPinyin } from '../utils/Utils'
 import ToolBar from './layout/ToolBar/Index.vue'
 import ListWrapper from './layout/ListWrapper/Index.vue'
 import BoxWrapper from './layout/BoxWrapper/Index.vue'

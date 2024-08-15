@@ -111,7 +111,7 @@ import {
   MessageOutlined,
   LoadingOutlined
 } from '@ant-design/icons-vue'
-import { friendTime } from '../../../utils/utils'
+import { friendTime } from '../../../utils/Utils'
 import RelativeBox from '../../../components/common/RelativeBox/Index.vue'
 import UserInfo from '../../../components/common/UserInfo/Index.vue'
 import useStore from '../../../store'

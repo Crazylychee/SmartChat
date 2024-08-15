@@ -27,14 +27,14 @@
               </a-tooltip>
               <i class="wechatfont wechat-folder"></i>
             </p>
-            
+
             <!-- <div class="file-list-box" v-else>
          <i class="wechatfont wechat-folder" title="发送文件"></i>
           <a-tooltip :title="chat.File.name">
             <span class="upload-name-view">{{ chat.File.name }}</span>
           </a-tooltip>
-  
-         
+
+
         </div> -->
           </div>
         </div>
@@ -115,7 +115,7 @@ import RelativeBox from '../../../components/common/RelativeBox/Index.vue'
 import UserInfo from '../../../components/common/UserInfo/Index.vue'
 import useStore from '../../../store'
 const { useChatStore, useContextMenuStore, useUserInfoStore, useRelativeBoxStore } = useStore()
-import { friendTime } from '../../../utils/utils'
+import { friendTime } from '../../../utils/Utils'
 import eventBus from '../../../utils/eventBus'
 // import BoxEmoji from "./BoxEmoji.vue"
 
