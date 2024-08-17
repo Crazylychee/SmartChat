@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Stream</title>
+    <style>
+        video {
+            width: 100%;
+            max-width: 640px;
+            border: 2px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<h1>Camera Stream</h1>
+<video id="camera-stream" autoplay playsinline></video>
+
+<script>
+    async function startCamera() {
+        try {
+            const constraints = {
+                video: true,
+                audio: false
+            };
+            const stream = await navigator.mediaDevices.getUserMedia(constraints);
+            const videoElement = document.getElementById('camera-stream');
+            videoElement.srcObject = stream;
+        } catch (error) {
+            console.error('Error accessing camera:', error);
+        }
+    }
+
+    startCamera();
+</script>
+</body>
+</html>
