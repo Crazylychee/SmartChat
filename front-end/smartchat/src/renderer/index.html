@@ -7,8 +7,9 @@
   <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
   <meta
     http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' ws://47.113.224.195:10510; style-src 'self' 'unsafe-inline'; img-src * data:;"
+    content="default-src 'self'; script-src 'self'; connect-src 'self' ws://47.113.224.195:10510; style-src 'self' http://at.alicdn.com 'unsafe-inline';font-src 'self' http://at.alicdn.com; img-src * data:;"
   />
+  <link rel="stylesheet" href="http://at.alicdn.com/t/c/font_4200334_7n3az5gz1m6.css">
 <!--  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdn.oaistatic.com/; ...">-->
   <style>
     .title-bar {
@@ -21,11 +22,15 @@
       -webkit-app-region: drag; /* 使这个区域可拖拽 */
       z-index: 1000; /* 确保标题栏在其他元素之上 */
     }
+
+
   </style>
 </head>
 <body>
 <div class="title-bar"></div>
-<div id="app"></div>
+<div id="app">
+
+</div>
 <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

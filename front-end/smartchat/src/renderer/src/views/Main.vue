@@ -144,7 +144,7 @@ watch(
 )
 </script>
 <style scoped>
-@import url(//at.alicdn.com/t/c/font_4200334_7n3az5gz1m6.css);
+
 
 #app {
   height: 100vh;

@@ -26,6 +26,10 @@ import BoxWrapper from './layout/BoxWrapper/Index.vue'
 import ContextMenu from './common/ContextMenu/Index.vue'
 import ResizeContainer from './common/ResizeContainer/Index.vue'
 
+
+
+
+
 // 监听全局键盘事件
 onMounted(() => {
   listenGlobalKeyDown()
@@ -222,6 +226,9 @@ if (useAddressBookStore.addressBookList.length === 0) {
 </script>
 
 <style lang="less" scoped>
+
+
+
 .wechat {
   position: fixed;
   display: flex;

@@ -116,6 +116,13 @@ import UserInfo from '../../../components/common/UserInfo/Index.vue'
 import useStore from '../../../store'
 const { useChatStore, useContextMenuStore, useUserInfoStore, useRelativeBoxStore } = useStore()
 import { friendTime } from '../../../utils/Utils'
+
+import 'ant-design-vue/dist/reset.css'
+import 'perfect-scrollbar/css/perfect-scrollbar.css'
+import '@/assets/icon/iconfont.css'
+import 'element-plus/dist/index.css'
+import '@/global.less'
+
 import eventBus from '../../../utils/eventBus'
 // import BoxEmoji from "./BoxEmoji.vue"
 
@@ -315,6 +322,8 @@ function onEmojiSelect(emoji) {
 </script>
 
 <style lang="less" scoped>
+
+
 .ps {
   height: 400px;
 }

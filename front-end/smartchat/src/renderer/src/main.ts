@@ -1,11 +1,18 @@
 import { createApp } from 'vue'
 import pinia from './store/pinia.js'
-import '@/assets/icon/iconfont.css'
+
 import App from './App.vue'
-import 'element-plus/dist/index.css'
+
 import Antd from 'ant-design-vue'
+
+
 import 'ant-design-vue/dist/reset.css'
+import 'perfect-scrollbar/css/perfect-scrollbar.css'
+import '@/assets/icon/iconfont.css'
+import 'element-plus/dist/index.css'
 import './global.less'
+// import '//at.alicdn.com/t/c/font_4200334_7n3az5gz1m6.css';
+
 import ui from '@/components/libs'
 import ElementPlus from 'element-plus'
 import router from '@/router'
@@ -13,7 +20,7 @@ import Utils from '@/utils/Utils'
 import Winbtn from '@/components/Winbtn.vue'
 //引入
 import PerfectScrollbar from 'vue3-perfect-scrollbar'
-import 'perfect-scrollbar/css/perfect-scrollbar.css'
+
 
 import Vue3EmojiPicker from 'vue3-emoji-picker'
 
