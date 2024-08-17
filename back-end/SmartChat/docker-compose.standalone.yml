@@ -105,9 +105,9 @@ services:
     ports:
       - "27017:27017"
     mem_limit: 2g
-#    volumes:
-#      - "./mongodb-router/data/db:/data/db"
-#      - "./mongodb-router/data/logs:/data/logs"
+    volumes:
+      - "./mongodb-router/data/db:/data/db"
+      - "./mongodb-router/data/logs:/data/logs"
 #    <<: *logging-mongo
 
   mongodb-setup:
