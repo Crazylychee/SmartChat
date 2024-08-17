@@ -7,8 +7,9 @@
   <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
   <meta
     http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src * data:;"
+    content="default-src 'self'; script-src 'self' ws://47.113.224.195:10510; style-src 'self' 'unsafe-inline'; img-src * data:;"
   />
+<!--  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdn.oaistatic.com/; ...">-->
   <style>
     .title-bar {
       position: absolute; /* 使标题栏绝对定位 */

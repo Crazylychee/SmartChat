@@ -138,14 +138,41 @@ client.messageService.addMessageListener(message => {
 });
 
 client.userService.login({
-  userId: '1',
+  userId: '2',
   password: '123'
 })
-  .then(response => {
-                console.log(`nearby users: ${JSON.stringify(response.data)}`);
-            }).catch(error => {
-              console.error(`login fail:`,error)
-            })
+  .then(() => {
+    client.userService.queryNearbyUsers({
+      latitude: 39.667651,
+      longitude: 35.792657,
+      maxCount: 10,
+      maxDistance: 1000
+    })
+      .then(response => {
+        console.log(`nearby users: ${JSON.stringify(response.data)}`);
+      });
+    client.messageService.sendMessage({
+      isGroupMessage: false,
+      targetId: '1',
+      deliveryDate: new Date(),
+      text: 'Hello Turms',
+      burnAfter: 30
+    })
+      .then(response => {
+        console.log(`message ${response.data} has been sent`);
+      });
+    client.groupService.createGroup({
+      name: 'Turms Developers Group',
+      intro: 'This is a group for the developers who are interested in Turms',
+      announcement: 'nope'
+    })
+      .then(response => {
+        console.log(`group ${response.data} has been created`);
+      });
+  })
+  .catch(reason => {
+    console.error(reason);
+  });
 
 
 const router = useRouter()
