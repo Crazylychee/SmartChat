@@ -491,6 +491,7 @@ function onEmojiSelect(emoji) {
   align-items: center;
   justify-content: center;
   width: 32px;
+  z-index: 999;
   background-color: transparent;
 }
 </style>
