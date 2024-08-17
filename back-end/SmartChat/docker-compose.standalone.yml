@@ -69,10 +69,10 @@ services:
       timeout: 5s
       retries: 5
     mem_limit: 2g
-#    volumes:
-#      - "./mongodb-config/data/db:/data/db"
-#      - "./mongodb-config/data/logs:/data/logs"
-#    <<: *logging-mongo
+    volumes:
+      - "/www/project/smartchat/mongodb-config/data/db:/data/db"
+      - "/www/project/smartchat/mongodb-config/data/logs:/data/logs"
+    <<: *logging-mongo
 
   mongodb-shard:
     image: mongo:6.0.14-jammy
@@ -86,10 +86,10 @@ services:
       timeout: 5s
       retries: 5
     mem_limit: 2g
-#    volumes:
-#      - "./mongodb-shard/data/db:/data/db"
-#      - "./mongodb-shard/data/logs:/data/logs"
-#    <<: *logging-mongo
+    volumes:
+      - "/www/project/smartchat/mongodb-shard/data/db:/data/db"
+      - "/www/project/smartchat/mongodb-shard/data/logs:/data/logs"
+    <<: *logging-mongo
 
   mongodb-router:
     image: mongo:6.0.14-jammy
@@ -106,9 +106,9 @@ services:
       - "27017:27017"
     mem_limit: 2g
     volumes:
-      - "./mongodb-router/data/db:/data/db"
-      - "./mongodb-router/data/logs:/data/logs"
-#    <<: *logging-mongo
+      - "/www/project/smartchat/mongodb-router/data/db:/data/db"
+      - "/www/project/smartchat/mongodb-router/data/logs:/data/logs"
+    <<: *logging-mongo
 
   mongodb-setup:
     image: mongo:6.0.14-jammy
@@ -143,10 +143,10 @@ services:
       retries: 5
     ports:
       - "6379:6379"
-#    volumes:
-#      - "./redis/data:/data"
-#      - "./redis/config/redis.conf:/usr/local/redis/config/redis.conf"
-#    <<: *logging
+    volumes:
+      - "/www/project/smartchat/redis/data:/data"
+      - "/www/project/smartchat/redis/config/redis.conf:/usr/local/redis/config/redis.conf"
+    <<: *logging
 
   # MinIO
   minio:
@@ -325,12 +325,12 @@ services:
       nofile:
         soft: 1048576
         hard: 1048576
-#    volumes:
-#      - "./container/turms-gateway/hprof:/opt/turms/turms-gateway/hprof"
-#      - "./container/turms-gateway/jfr:/opt/turms/turms-gateway/jfr"
-#      - "./container/turms-gateway/log:/opt/turms/turms-gateway/log"
-#      - "./container/turms-gateway/config:/opt/turms/turms-gateway/config" # Includes "application.yaml" and "jvm.options"
-#    <<: *logging-turms
+    volumes:
+      - "/www/project/smartchat/container/turms-gateway/hprof:/opt/turms/turms-gateway/hprof"
+      - "/www/project/smartchat/container/turms-gateway/jfr:/opt/turms/turms-gateway/jfr"
+      - "/www/project/smartchat/container/turms-gateway/log:/opt/turms/turms-gateway/log"
+#      - "/www/project/smartchat/container/turms-gateway/config:/opt/turms/turms-gateway/config" # Includes "application.yaml" and "jvm.options"
+    <<: *logging-turms
 
   turms-service:
     image: "ghcr.io/turms-im/turms-service"
@@ -394,12 +394,12 @@ services:
       nofile:
         soft: 65536
         hard: 65536
-    #    volumes:
-    #      - "./container/turms-service/hprof:/opt/turms/turms-service/hprof"
-    #      - "./container/turms-service/jfr:/opt/turms/turms-service/jfr"
-    #      - "./container/turms-service/log:/opt/turms/turms-service/log"
-    #      - "./container/turms-service/config:/opt/turms/turms-service/config" # Includes "application.yaml" and "jvm.options"
-#    <<: *logging-turms
+    volumes:
+      - "/www/project/smartchat/container/turms-service/hprof:/opt/turms/turms-service/hprof"
+      - "/www/project/smartchat/container/turms-service/jfr:/opt/turms/turms-service/jfr"
+      - "/www/project/smartchat/container/turms-service/log:/opt/turms/turms-service/log"
+#      - "/www/project/smartchat/container/turms-service/config:/opt/turms/turms-service/config" # Includes "application.yaml" and "jvm.options"
+    <<: *logging-turms
 
   # optional services for observability - metrics
 
@@ -500,4 +500,11 @@ services:
     privileged: true
     volumes:
       - /opt/opengauss2:/var/lib/opengauss/data
+    restart: always
+
+  webrtc-demo:
+    image: webrtc-demo:1.0
+    ports:
+      - 9121:9000
+    privileged: true
     restart: always
