@@ -1,1 +1,0 @@
-enum BuiltinSystemMessageType { normal, recallMessage }

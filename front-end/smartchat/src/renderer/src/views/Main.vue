@@ -22,74 +22,7 @@ const { useContextMenuStore, useSystemStore } = useStore()
 import WeChat from '@/components/WeChat.vue'
 import Winbtn from "../components/Winbtn.vue";
 
-///////////////////////////////////////////////
-// On the first tab of the same origin
-// The client will create a new WebSocket connection
-const client = new TurmsClient({
-  wsUrl: 'ws://47.113.224.195:10510',
-  connectionTimeout: 10000,
-  requestTimeout: 5000,
-  minRequestInterval: 100,
-  heartbeatInterval: 30000,
-  useSharedContext: false
-});
-// Initialize client
-// const client = new TurmsClient('http://playground.turms.im:1051'); // new TurmsClient('ws://any-turms-gateway-server.com');
 
-// Listen to the offline event
-client.userService.addOnOfflineListener(info => {
-  console.info(`onOffline: ${info.closeStatus}:${info.businessStatus}:${info.reason}`);
-});
-
-// Listen to inbound notifications
-client.notificationService.addNotificationListener(notification => {
-  console.info(`onNotification: Receive a notification from other users or server: ${JSON.stringify(notification)}`);
-});
-
-// Listen to inbound messages
-client.messageService.addMessageListener(message => {
-  console.info(`onMessage: Receive a message from other users or server: ${JSON.stringify(message)}`);
-});
-
-client.userService.login({
-  userId: '1',
-  password: '123'
-})
-  .then(() => {
-    client.userService.queryNearbyUsers({
-      latitude: 39.667651,
-      longitude: 35.792657,
-      maxCount: 10,
-      maxDistance: 1000
-    })
-      .then(response => {
-        console.log(`nearby users: ${JSON.stringify(response.data)}`);
-      });
-    client.messageService.sendMessage({
-      isGroupMessage: false,
-      targetId: '1',
-      deliveryDate: new Date(),
-      text: 'Hello Turms',
-      burnAfter: 30
-    })
-      .then(response => {
-        console.log(`message ${response.data} has been sent`);
-      });
-    client.groupService.createGroup({
-      name: 'Turms Developers Group',
-      intro: 'This is a group for the developers who are interested in Turms',
-      announcement: 'nope'
-    })
-      .then(response => {
-        console.log(`group ${response.data} has been created`);
-      });
-  })
-  .catch(reason => {
-    console.error(reason);
-  });
-
-
-//////////////////////////////////////////////
 
 const windowFocused = useWindowFocus()
 watch(windowFocused, (newVal) => {

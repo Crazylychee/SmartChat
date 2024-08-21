@@ -114,12 +114,15 @@ const { useContextMenuStore, useSystemStore } = useStore()
 
 const client = new TurmsClient({
   wsUrl: 'ws://47.113.224.195:10510',
+  // wsUrl: 'ws://localhost:10510',
+  // wsUrl: 'http://playground.turms.im:10510',
   connectionTimeout: 10000,
   requestTimeout: 5000,
   minRequestInterval: 100,
   heartbeatInterval: 30000,
   useSharedContext: false
 });
+
 
 
 // 当客户端离线时会触发
@@ -138,41 +141,36 @@ client.messageService.addMessageListener(message => {
 });
 
 client.userService.login({
-  userId: '2',
+  userId: '1',
   password: '123'
+}).then(()=>{
+  console.log("登录成功")
+}).catch(()=>{
+  console.log("登录失败")
 })
-  .then(() => {
-    client.userService.queryNearbyUsers({
-      latitude: 39.667651,
-      longitude: 35.792657,
-      maxCount: 10,
-      maxDistance: 1000
-    })
-      .then(response => {
-        console.log(`nearby users: ${JSON.stringify(response.data)}`);
-      });
-    client.messageService.sendMessage({
-      isGroupMessage: false,
-      targetId: '1',
-      deliveryDate: new Date(),
-      text: 'Hello Turms',
-      burnAfter: 30
-    })
-      .then(response => {
-        console.log(`message ${response.data} has been sent`);
-      });
-    client.groupService.createGroup({
-      name: 'Turms Developers Group',
-      intro: 'This is a group for the developers who are interested in Turms',
-      announcement: 'nope'
-    })
-      .then(response => {
-        console.log(`group ${response.data} has been created`);
-      });
-  })
-  .catch(reason => {
-    console.error(reason);
-  });
+
+client.userService.createFriendRelationship({
+
+})
+
+
+  // client.messageService.sendMessage({
+  //   isGroupMessage: false,
+  //   targetId: '2',
+  //   deliveryDate: new Date(),
+  //   text: 'Hello Turms',
+  //
+  // }).then(response => {
+  //   console.log(`message ${response.data} has been sent`);
+  // }).catch(error => {
+  //   console.error('Error sending message:', error);
+  //   // 你可以在这里添加更多的错误处理逻辑，比如显示错误信息给用户
+  // });
+
+
+
+
+
 
 
 const router = useRouter()
@@ -188,7 +186,6 @@ const errorMsg = ref()
 const rules = {
   title: [{ required: true, message: '请输入内容' }]
 }
-
 const changeOptype = () => {
   window.ipcRenderer.send('loginOrRegister', !isLogin.value) //往主线程发消息
   isLogin.value = !isLogin.value

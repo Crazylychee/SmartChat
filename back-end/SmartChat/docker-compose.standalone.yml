@@ -62,6 +62,10 @@ services:
 #    depends_on:
 #      - loki
     entrypoint: [ "mongod", "--port", "27017", "--configsvr", "--replSet", "rs-config", "--bind_ip_all" ]
+    privileged: true
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123
     healthcheck:
       # Use "mongo" instead of "mongosh" before v5.0
       test: [ "CMD", "mongosh", "--quiet", "--eval", "db.runCommand(\"ping\").ok" ]
@@ -72,13 +76,16 @@ services:
     volumes:
       - "/www/project/smartchat/mongodb-config/data/db:/data/db"
       - "/www/project/smartchat/mongodb-config/data/logs:/data/logs"
+#      - "/www/project/smartchat/mongodb-config/keyfile:/etc/mongo/keyfile"
+      - "/etc/localtime:/etc/localtime:ro"
     <<: *logging-mongo
 
   mongodb-shard:
     image: mongo:6.0.14-jammy
 #    depends_on:
 #      - loki
-    entrypoint: [ "mongod", "--port", "27017", "--shardsvr", "--replSet", "shard01", "--bind_ip_all" ]
+    entrypoint: [ "mongod", "--port", "27017", "--shardsvr", "--replSet", "shard01", "--bind_ip_all"]
+    privileged: true
     healthcheck:
       # Use "mongo" instead of "mongosh" before v5.0
       test: [ "CMD", "mongosh", "--quiet", "--eval", "db.runCommand(\"ping\").ok" ]
@@ -89,6 +96,8 @@ services:
     volumes:
       - "/www/project/smartchat/mongodb-shard/data/db:/data/db"
       - "/www/project/smartchat/mongodb-shard/data/logs:/data/logs"
+#      - "/www/project/smartchat/mongodb-shard/keyfile:/etc/mongo/keyfile"
+      - "/etc/localtime:/etc/localtime:ro"
     <<: *logging-mongo
 
   mongodb-router:
@@ -96,6 +105,7 @@ services:
 #    depends_on:
 #      - loki
     entrypoint: [ "mongos", "--port", "27017", "--configdb", "rs-config/mongodb-config:27017", "--bind_ip_all" ]
+    privileged: true
     healthcheck:
       # Use "mongo" instead of "mongosh" before v5.0
       test: [ "CMD", "mongosh", "--quiet", "--eval", "db.runCommand(\"ping\").ok" ]
@@ -108,6 +118,8 @@ services:
     volumes:
       - "/www/project/smartchat/mongodb-router/data/db:/data/db"
       - "/www/project/smartchat/mongodb-router/data/logs:/data/logs"
+#      - "/www/project/smartchat/mongodb-router/keyfile:/etc/mongo/keyfile"
+      - "/etc/localtime:/etc/localtime:ro"
     <<: *logging-mongo
 
   mongodb-setup:
@@ -121,6 +133,7 @@ services:
         condition: service_started
     # Wait 10s for the replica set to elect their primary
     # Use "mongo" instead of "mongosh" before v5.0
+    privileged: true
     entrypoint:
       - bash
       - -c
@@ -129,6 +142,7 @@ services:
         mongosh --host mongodb-shard:27017 --eval "rs.initiate({_id: 'shard01', version: 1, members: [ { _id: 0, host : 'mongodb-shard:27017' } ] })"
         sleep 10
         mongosh --host mongodb-router:27017 --eval "sh.addShard('shard01/mongodb-shard:27017')"
+#        mongosh --host mongodb-router:27017 --eval "db.getSiblingDB('admin').createUser({user: 'root', pwd: 'Qgstudio_123', roles: [{role: 'root', db: 'admin'}]})"
     restart: "no"
 
   # Redis
@@ -142,10 +156,11 @@ services:
       timeout: 5s
       retries: 5
     ports:
-      - "6379:6379"
+      - "6378:6379"
     volumes:
       - "/www/project/smartchat/redis/data:/data"
       - "/www/project/smartchat/redis/config/redis.conf:/usr/local/redis/config/redis.conf"
+      - "/etc/localtime:/etc/localtime:ro"
     <<: *logging
 
   # MinIO
@@ -330,6 +345,7 @@ services:
       - "/www/project/smartchat/container/turms-gateway/jfr:/opt/turms/turms-gateway/jfr"
       - "/www/project/smartchat/container/turms-gateway/log:/opt/turms/turms-gateway/log"
 #      - "/www/project/smartchat/container/turms-gateway/config:/opt/turms/turms-gateway/config" # Includes "application.yaml" and "jvm.options"
+      - "/etc/localtime:/etc/localtime:ro"
     <<: *logging-turms
 
   turms-service:
@@ -399,6 +415,7 @@ services:
       - "/www/project/smartchat/container/turms-service/jfr:/opt/turms/turms-service/jfr"
       - "/www/project/smartchat/container/turms-service/log:/opt/turms/turms-service/log"
 #      - "/www/project/smartchat/container/turms-service/config:/opt/turms/turms-service/config" # Includes "application.yaml" and "jvm.options"
+      - "/etc/localtime:/etc/localtime:ro"
     <<: *logging-turms
 
   # optional services for observability - metrics
@@ -478,17 +495,6 @@ services:
 #    ports:
 #      - "3100:3100"
 #    command: -config.file=/etc/loki/local-config.yaml
-  opengauss:
-    image: enmotech/opengauss:latest
-    environment:
-      GS_PASSWORD: Enmo@123
-      TZ: Asia/Shanghai
-    ports:
-      - 5432:5432
-    privileged: true
-    volumes:
-      - /opt/opengauss:/var/lib/opengauss/data
-    restart: always
 
   opengauss1:
     image: enmotech/opengauss:latest

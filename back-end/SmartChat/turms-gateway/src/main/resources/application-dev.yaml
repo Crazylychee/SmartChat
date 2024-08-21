@@ -11,7 +11,7 @@ turms:
         port-auto-increment: true
     shared-config:
       mongo:
-        uri: mongodb://localhost:27017/turms-config-dev
+        uri: mongodb://10.8.0.1:27017/turms-config-dev
   gateway:
     admin-api:
       debug:
@@ -26,9 +26,9 @@ turms:
       enabled: true
     mongo:
       admin:
-        uri: mongodb://localhost:27017/turms-dev
+        uri: mongodb://10.8.0.1:27017/turms-dev
       user:
-        uri: mongodb://localhost:27017/turms-dev
+        uri: mongodb://10.8.0.1:27017/turms-dev
   logging:
     console:
       enabled: true
