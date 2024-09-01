@@ -40,7 +40,7 @@ function setupClient(container, client, userId, password, targetId) {
         .then(() => {
             appendContainer(container, `login: User ${userId} has logged in`);
             client.messageService.queryMessagesWithTotal({
-                ids: ['1'],
+                ids: ['3'],
                 areGroupMessages:false
             })
                 .then(res => appendContainer(container, `Offline messages: ${beautify(res.data)}`))
@@ -78,8 +78,8 @@ function start() {
     const clientUserOne = new TurmsClient('ws://47.113.224.195:10510', 30 * 1000);
     const clientUserTwo = new TurmsClient('ws://47.113.224.195:10510', 30 * 1000);
 
-    const USER_ONE_ID = '1';
-    const USER_TWO_ID = '2';
+    const USER_ONE_ID = '3';
+    const USER_TWO_ID = '4';
     setupClient(userOneNotificationContainer, clientUserOne, USER_ONE_ID, '123', USER_TWO_ID);
     setupClient(userTwoNotificationContainer, clientUserTwo, USER_TWO_ID, '123', USER_ONE_ID);
 }

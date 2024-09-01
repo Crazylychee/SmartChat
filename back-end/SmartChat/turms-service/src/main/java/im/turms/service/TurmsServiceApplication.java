@@ -24,6 +24,8 @@ import im.turms.server.common.infra.application.Application;
 import im.turms.server.common.infra.cluster.node.NodeType;
 import im.turms.server.common.infra.lang.PackageConst;
 
+import java.util.Arrays;
+
 /**
  * @author James Chen
  */
@@ -34,6 +36,7 @@ import im.turms.server.common.infra.lang.PackageConst;
 public class TurmsServiceApplication extends BaseTurmsApplication {
 
     public static void main(String[] args) {
+        System.out.println(Arrays.toString(args));
         bootstrap(TurmsServiceApplication.class, args);
     }
 

@@ -77,7 +77,6 @@
 
     <modules>
         <!-- Aggregation -->
-        <module>turms-client-kotlin</module>
 
         <module>turms-plugin-demo</module>
 
@@ -99,6 +98,7 @@
 
         <!--二次开发-->
         <module>smartchat-webrtc</module>
+        <module>smartchat-auth</module>
     </modules>
 
     <dependencyManagement>

@@ -20,7 +20,6 @@ export const useChatStore = defineStore('chat', {
           "unReadCount": 6,
           "isTop": false,
           "isGroup": false
-
         },
         {
           id: 2,

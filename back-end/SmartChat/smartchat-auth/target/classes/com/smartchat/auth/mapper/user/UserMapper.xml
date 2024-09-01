@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smartchat.auth.mapper.user.UserMapper">
+
+    <select id="selectMySqlPage" resultType="com.smartchat.auth.domain.user.User">
+        select t1.*
+        from t_user t1
+        <where>
+            <if test="query.keyword != null and query.keyword != '' ">
+                and t1.id like concat('%', #{query.keyword}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>

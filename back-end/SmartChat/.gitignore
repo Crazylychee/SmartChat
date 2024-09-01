@@ -75,3 +75,11 @@ turms-docs/src/.vitepress/temp/
 turms-docs/src/.vitepress/cache/
 turms-docs/src/.vitepress/dist/
 turms-docs/node_modules/
+
+smartchat-auth/target/
+smartchat-webrtc/target/
+smartchat-ai/target/
+
+.env
+
+docker-compose.standalone.yml
