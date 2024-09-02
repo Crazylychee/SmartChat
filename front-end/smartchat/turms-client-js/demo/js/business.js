@@ -40,7 +40,8 @@ function setupClient(container, client, userId, password, targetId) {
         .then(() => {
             appendContainer(container, `login: User ${userId} has logged in`);
             client.messageService.queryMessagesWithTotal({
-                ids: ['3'],
+                // 意义不明的代码，暂时注释掉，如果传入ids ['3']，会导致查询不到离线消息
+                // ids: ['3'],
                 areGroupMessages:false
             })
                 .then(res => appendContainer(container, `Offline messages: ${beautify(res.data)}`))
