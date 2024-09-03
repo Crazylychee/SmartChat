@@ -1,4 +1,4 @@
-import { axios } from '../utils/request'
+import request  from '@/utils/request'
 
 const api = {
   userInfo: '/mock/api/userInfo',
@@ -11,7 +11,7 @@ export default api
 
 //post
 export function postAction(url, parameter) {
-  return axios({
+  return request({
     url: url,
     method: 'post',
     data: parameter
@@ -20,7 +20,7 @@ export function postAction(url, parameter) {
 
 //post method= {post | put}
 export function httpAction(url, parameter, method) {
-  return axios({
+  return request({
     url: url,
     method: method,
     data: parameter
@@ -29,7 +29,7 @@ export function httpAction(url, parameter, method) {
 
 //get
 export function getAction(url, parameter) {
-  return axios({
+  return request({
     url: url,
     method: 'get',
     params: parameter
@@ -38,7 +38,7 @@ export function getAction(url, parameter) {
 
 // 获取好友列表
 export function getUserInfo(parameter) {
-  return axios({
+  return request({
     url: api.userInfo,
     method: 'get',
     params: parameter
@@ -47,7 +47,7 @@ export function getUserInfo(parameter) {
 
 // 获取好友列表
 export function getFriendList(parameter) {
-  return axios({
+  return request({
     url: api.friend,
     method: 'get',
     params: parameter
@@ -56,7 +56,7 @@ export function getFriendList(parameter) {
 
 // 获取群组列表
 export function getGroupList(parameter) {
-  return axios({
+  return request({
     url: api.group,
     method: 'get',
     params: parameter
@@ -65,7 +65,7 @@ export function getGroupList(parameter) {
 
 // 获取收藏列表
 export function getCollectList(parameter) {
-  return axios({
+  return request({
     url: api.collect,
     method: 'get',
     params: parameter
