@@ -526,6 +526,9 @@ onMounted(() => {
 
   .check-code-panel {
     display: flex;
+    align-items: center;
+    justify-items: space-between;
+    gap: 5px;
 
     .check-code {
       cursor: pointer;
