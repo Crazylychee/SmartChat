@@ -1,23 +1,14 @@
 <template>
   <WeDragBox class="tool-bar">
     <div class="tool-box tool-top">
-      <img
-        :src="useUserInfoStore?.user?.avatar"
-        class="avatar no-drag"
-        @click.stop="handleAvatarClick"
-      />
+      <img :src="useUserInfoStore?.user?.avatar" class="avatar no-drag" @click.stop="handleAvatarClick" />
       <template v-for="menu in menuTop" :key="menu.icon">
         <a-badge :count="menu.unReadCount || 0" title="" :offset="[-16, 10]">
-          <i
-            class="wechatfont no-drag"
-            :title="menu.title"
-            :class="[
-              useSystemStore.activeMenu === menu.icon
-                ? `active wechat-${menu.icon}`
-                : `wechat-${menu.icon}`
-            ]"
-            @click="handleMenuClick(menu.icon)"
-          ></i>
+          <i class="wechatfont no-drag" :title="menu.title" :class="[
+        useSystemStore.activeMenu === menu.icon
+          ? `active wechat-${menu.icon}`
+          : `wechat-${menu.icon}`
+      ]" @click="handleMenuClick(menu.icon)"></i>
         </a-badge>
       </template>
       <!-- <i
@@ -34,22 +25,12 @@
       ></i> -->
     </div>
     <div class="tool-box tool-bottom">
-      <div
-        class="tool-bottom-item"
-        :class="[`tool-${menu.icon}`]"
-        v-for="menu in menuBottom"
-        :key="menu.icon"
-        @click="handleMenuClick(menu.icon)"
-      >
+      <div class="tool-bottom-item" :class="[`tool-${menu.icon}`]" v-for="menu in menuBottom" :key="menu.icon"
+        @click="handleMenuClick(menu.icon)">
         <i :class="[`no-drag wechatfont wechat-${menu.icon}`]" :title="menu.title"></i>
         <div class="tool-item-box" ref="toolHandler" v-if="activeToolBox === menu.icon">
           <template v-if="activeToolBox === 'applet'">
-            <img
-              src="https://tucdn.wpon.cn/2023/08/25/c4a2e28062909.png"
-              class="applet"
-              alt=""
-              srcset=""
-            />
+            <img src="https://tucdn.wpon.cn/2023/08/25/c4a2e28062909.png" class="applet" alt="" srcset="" />
             <!-- <img src="https://tucdn.wpon.cn/2023/08/25/dcc370d45d42f.png" class="applet" alt="" srcset=""> -->
             <p>使用微信 扫码体验</p>
           </template>
@@ -58,12 +39,7 @@
             <p class="phone phone-button"><i class="wechatfont wechat-files"></i>文件传输助手</p>
           </template>
           <template v-else>
-            <div
-              v-for="menu in menus"
-              class="menu-item"
-              :key="menu.value"
-              @click.stop="handleMenuClick(menu.value)"
-            >
+            <div v-for="menu in menus" class="menu-item" :key="menu.value" @click.stop="handleMenuClick(menu.value)">
               {{ menu.label }}
             </div>
           </template>
@@ -95,6 +71,9 @@ const handleAvatarClick = (e) => {
   infoVisible.value = true
   useRelativeBoxStore.showBox(e.clientY, e.clientX)
 }
+
+// 更新用户信息
+useUserInfoStore.getUserInfo()
 
 // 工具栏顶部菜单
 const menuTop = reactive([
@@ -326,20 +305,24 @@ const closeSettings = () => {
           line-height: 1.4;
           overflow: hidden;
           bottom: -36px;
+
           .phone-text {
             margin: 0 24px;
             padding: 20px 0;
             border-bottom: 1px solid #393939;
             text-align: center;
           }
+
           .phone-button {
             display: flex;
             align-items: center;
             padding: 16px 12px 12px;
             cursor: pointer;
+
             &:hover {
               background-color: #272728;
             }
+
             i {
               display: block;
               width: 40px;
@@ -364,6 +347,7 @@ const closeSettings = () => {
             padding-left: 12px;
             font-size: 14px;
             cursor: pointer;
+
             &:hover {
               background-color: #2f3033;
             }
@@ -379,8 +363,10 @@ const closeSettings = () => {
           color: #d5d5d5;
         }
       }
+
       &.tool-phone {
         margin-bottom: 10px;
+
         i {
           font-size: 22px;
         }
@@ -408,14 +394,17 @@ const closeSettings = () => {
       line-height: 16px !important;
       box-shadow: none !important;
       font-size: 12px !important;
+
       .ant-scroll-number-only,
       .ant-scroll-number-only-unit {
         height: 16px !important;
       }
     }
+
     .ant-badge-multiple-words {
       padding: 0 4px;
     }
+
     i {
       display: block;
       color: #979797;
