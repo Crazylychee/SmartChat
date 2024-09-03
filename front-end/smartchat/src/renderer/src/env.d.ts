@@ -10,7 +10,9 @@ declare module '*.vue' {
 }
 
 interface ImportMetaEnv {
-  // readonly VITE_TEST: string
+  readonly RENDERER_VITE_TURMS_WS_URL: string
+  readonly RENDERER_VITE_TURMS_USERNAME: string
+  readonly RENDERER_VITE_TURMS_PASSWORD: string
   // more env variables...
 }
 
