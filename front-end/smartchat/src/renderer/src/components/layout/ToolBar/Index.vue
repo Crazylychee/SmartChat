@@ -1,7 +1,7 @@
 <template>
   <WeDragBox class="tool-bar">
     <div class="tool-box tool-top">
-      <img :src="useUserInfoStore?.user?.avatar" class="avatar no-drag" @click.stop="handleAvatarClick" />
+      <img :src="useUserInfoStore?.user?.profilePicture" class="avatar no-drag" @click.stop="handleAvatarClick" />
       <template v-for="menu in menuTop" :key="menu.icon">
         <a-badge :count="menu.unReadCount || 0" title="" :offset="[-16, 10]">
           <i class="wechatfont no-drag" :title="menu.title" :class="[
@@ -73,8 +73,7 @@ const handleAvatarClick = (e) => {
 }
 
 // 更新用户信息
-useUserInfoStore.getUserInfo()
-// useUserInfoStore.updateUserInfo()
+useUserInfoStore.syncUserInfo()
 
 // 工具栏顶部菜单
 const menuTop = reactive([
