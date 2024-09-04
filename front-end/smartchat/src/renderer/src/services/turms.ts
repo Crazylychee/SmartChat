@@ -9,7 +9,6 @@ export async function useTurmsClient() {
       wsUrl: import.meta.env.RENDERER_VITE_TURMS_WS_URL,
       connectionTimeout: 10000,
       requestTimeout: 5000,
-      minRequestInterval: 100,
       heartbeatInterval: 30000,
       useSharedContext: false
     })
