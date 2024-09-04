@@ -8,6 +8,7 @@ import NotificationService from './service/notification-service';
 import StorageService from './service/storage-service';
 import UserService from './service/user-service';
 import ConferenceService from './service/conference-service';
+import { ParsedModel } from './model/parsed-model';
 
 class TurmsClient {
     static readonly version = version;
@@ -118,3 +119,4 @@ class TurmsClient {
 //     InputFileReader
 // };
 export default TurmsClient;
+export { ParsedModel };
