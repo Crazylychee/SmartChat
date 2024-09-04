@@ -8,11 +8,20 @@ export const useUserInfoStore = defineStore('userInfo', () => {
     avatar: 'https://avatars.githubusercontent.com/u/44367132'
   })
 
+  async function updateUserInfo(){
+    const { client } = await useTurmsClient()
+    const info = await client.userService.updateProfile({
+
+      // lastUpdatedDate: new Date()
+    })
+    console.log(info)
+}
+
   async function getUserInfo() {
     const { client } = await useTurmsClient()
 
     const info = await client.userService.queryUserProfiles({
-      userIds: ['5'],
+      userIds: ["6"],
       lastUpdatedDate: new Date()
     })
 
@@ -23,5 +32,6 @@ export const useUserInfoStore = defineStore('userInfo', () => {
     }
   }
 
-  return { user, getUserInfo }
-})
+  return { user, getUserInfo, updateUserInfo }
+}
+)

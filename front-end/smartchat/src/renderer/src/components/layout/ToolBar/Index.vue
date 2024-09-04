@@ -73,7 +73,8 @@ const handleAvatarClick = (e) => {
 }
 
 // 更新用户信息
-useUserInfoStore.getUserInfo()
+// useUserInfoStore.getUserInfo()
+// useUserInfoStore.updateUserInfo()
 
 // 工具栏顶部菜单
 const menuTop = reactive([

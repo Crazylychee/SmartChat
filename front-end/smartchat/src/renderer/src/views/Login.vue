@@ -110,48 +110,49 @@ import DeviceType from 'turms-client-js'
 import { useWindowFocus } from '@vueuse/core'
 import useStore from '@/store'
 
-const { useContextMenuStore, useSystemStore } = useStore()
+const { useContextMenuStore, useSystemStore, useUserInfoStore } = useStore()
 
-const client = new TurmsClient({
-  wsUrl: 'ws://47.113.224.195:10510',
-  // wsUrl: 'ws://localhost:10510',
-  // wsUrl: 'http://playground.turms.im:10510',
-  connectionTimeout: 10000,
-  requestTimeout: 5000,
-  minRequestInterval: 100,
-  heartbeatInterval: 30000,
-  useSharedContext: false
-});
 
+
+// const client = new TurmsClient({
+//   wsUrl: 'ws://47.113.224.195:10510',
+//   // wsUrl: 'ws://localhost:10510',
+//   // wsUrl: 'http://playground.turms.im:10510',
+//   connectionTimeout: 10000,
+//   requestTimeout: 5000,
+//   minRequestInterval: 100,
+//   heartbeatInterval: 30000,
+//   useSharedContext: false
+// });
 
 
 // 当客户端离线时会触发
-client.userService.addOnOfflineListener(info => {
-  console.info(`onOffline: ${info.closeStatus}:${info.businessStatus}:${info.reason}`);
-});
+// client.userService.addOnOfflineListener(info => {
+//   console.info(`onOffline: ${info.closeStatus}:${info.businessStatus}:${info.reason}`);
+// });
+//
+// // 接收来自其他用户或服务器的通知。
+// client.notificationService.addNotificationListener(notification => {
+//   console.info(`onNotification: Receive a notification from other users or server: ${JSON.stringify(notification)}`);
+// });
+//
+// // 用于接收来自其他用户或服务器的消息。
+// client.messageService.addMessageListener(message => {
+//   console.info(`onMessage: Receive a message from other users or server: ${JSON.stringify(message)}`);
+// });
+//
+// client.userService.login({
+//   userId: '6',
+//   password: '123'
+// }).then(()=>{
+//   console.log("登录成功")
+// }).catch(()=>{
+//   console.log("登录失败")
+// })
 
-// 接收来自其他用户或服务器的通知。
-client.notificationService.addNotificationListener(notification => {
-  console.info(`onNotification: Receive a notification from other users or server: ${JSON.stringify(notification)}`);
-});
-
-// 用于接收来自其他用户或服务器的消息。
-client.messageService.addMessageListener(message => {
-  console.info(`onMessage: Receive a message from other users or server: ${JSON.stringify(message)}`);
-});
-
-client.userService.login({
-  userId: '1',
-  password: '123'
-}).then(()=>{
-  console.log("登录成功")
-}).catch(()=>{
-  console.log("登录失败")
-})
-
-client.userService.createFriendRelationship({
-
-})
+// client.userService.createFriendRelationship({
+//
+// })
 
 
   // client.messageService.sendMessage({
@@ -177,6 +178,7 @@ const router = useRouter()
 const { proxy } = getCurrentInstance()
 
 import md5 from 'js-md5'
+import { getUserInfo } from "../api/manage";
 const formData = ref({
   email:"test@qq.com",
   password:"qqq@@222"
@@ -319,6 +321,8 @@ const init = ()=>{
   // window.ipcRenderer.send("setLocalStore",{key:'prodWsDomain',value:proxy.Api.prodWsDomain})
   // window.ipcRenderer.send("setLocalStore",{key:'devWsDomain',value:proxy.Api.devWsDomain})
   console.log("init")
+  useUserInfoStore.getUserInfo()
+  // useUserInfoStore.updateUserInfo()
 
 }
 onMounted(()=>{
