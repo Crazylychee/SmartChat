@@ -40,8 +40,7 @@ function setupClient(container, client, userId, password, targetId) {
         .then(() => {
             appendContainer(container, `login: User ${userId} has logged in`);
             client.messageService.queryMessagesWithTotal({
-                // 意义不明的代码，暂时注释掉，如果传入ids ['3']，会导致查询不到离线消息
-                // ids: ['3'],
+                ids: ['3'],
                 areGroupMessages:false
             })
                 .then(res => appendContainer(container, `Offline messages: ${beautify(res.data)}`))
@@ -60,6 +59,13 @@ function setupClient(container, client, userId, password, targetId) {
                     clearInterval(intervalId);
                 }
             }, 2000);
+
+            client.userService.queryUserProfiles({  // 查询用户信息
+                userIds: ['6', '7']
+            })
+                .then(res => appendContainer(container, `User profiles: ${beautify(res.data)}`))
+                .catch(error => appendContainer(container, `failed to query user profiles: ${beautify(error)}`, true));
+
             client.groupService.createGroup({
                 name: 'Turms Developers Group',
                 intro: 'This is a group for the developers who are interested in Turms',
@@ -79,8 +85,8 @@ function start() {
     const clientUserOne = new TurmsClient('ws://47.113.224.195:10510', 30 * 1000);
     const clientUserTwo = new TurmsClient('ws://47.113.224.195:10510', 30 * 1000);
 
-    const USER_ONE_ID = '3';
-    const USER_TWO_ID = '4';
+    const USER_ONE_ID = '6';
+    const USER_TWO_ID = '7';
     setupClient(userOneNotificationContainer, clientUserOne, USER_ONE_ID, '123', USER_TWO_ID);
     setupClient(userTwoNotificationContainer, clientUserTwo, USER_TWO_ID, '123', USER_ONE_ID);
 }
