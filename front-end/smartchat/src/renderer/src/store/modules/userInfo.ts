@@ -21,8 +21,9 @@ export const useUserInfoStore = defineStore('userInfo', () => {
     const { client } = await useTurmsClient()
 
     const info = await client.userService.queryUserProfiles({
-      userIds: ["6"],
-      lastUpdatedDate: new Date()
+      userIds: ["6"]
+      // 此处不应传入时间，否则会导致查询不到用户（服务器端会根据时间判断是否需要更新）
+      // lastUpdatedDate: new Date()
     })
 
     console.log(info)

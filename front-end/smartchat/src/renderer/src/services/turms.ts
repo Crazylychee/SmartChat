@@ -24,14 +24,18 @@ export async function useTurmsClient() {
       throw new Error('环境变量 TURMS_USERNAME 和 TURMS_PASSWORD 未设置')
     }
 
-    console.log('开始登录', import.meta.env.RENDERER_VITE_TURMS_USERNAME, import.meta.env.RENDERER_VITE_TURMS_PASSWORD)
+    console.log(
+      '开始登录',
+      import.meta.env.RENDERER_VITE_TURMS_USERNAME,
+      import.meta.env.RENDERER_VITE_TURMS_PASSWORD
+    )
 
     const result = await turmsClient.userService.login({
       userId: import.meta.env.RENDERER_VITE_TURMS_USERNAME,
       password: import.meta.env.RENDERER_VITE_TURMS_PASSWORD
     })
 
-    console.log('登录成功', result)
+    console.log('登录结束', result)
   }
 
   return { client: turmsClient }
