@@ -8,8 +8,9 @@ export function useTurmsClient() {
   if (!turmsClient) {
     turmsClient = new TurmsClient({
       wsUrl: import.meta.env.RENDERER_VITE_TURMS_WS_URL,
-      connectionTimeout: 10000,
-      requestTimeout: 5000,
+      connectionTimeout: 30000,
+      // requestTimeout: 5000,
+      // minRequestInterval: 100,
       heartbeatInterval: 30000,
       useSharedContext: false
     })

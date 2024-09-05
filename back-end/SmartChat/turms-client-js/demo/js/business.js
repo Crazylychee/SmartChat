@@ -85,8 +85,8 @@ function start() {
     const clientUserOne = new TurmsClient('ws://47.113.224.195:10510', 30 * 1000);
     const clientUserTwo = new TurmsClient('ws://47.113.224.195:10510', 30 * 1000);
 
-    const USER_ONE_ID = '6';
-    const USER_TWO_ID = '7';
+    const USER_ONE_ID = '8';
+    const USER_TWO_ID = '9';
     setupClient(userOneNotificationContainer, clientUserOne, USER_ONE_ID, '123', USER_TWO_ID);
     setupClient(userTwoNotificationContainer, clientUserTwo, USER_TWO_ID, '123', USER_ONE_ID);
 }
