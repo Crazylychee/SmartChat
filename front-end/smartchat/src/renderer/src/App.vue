@@ -56,6 +56,10 @@ const locale = zhCn
 const config = reactive({
   max:1
 })
+
+const baseApiUrl = import.meta.env.VITE_APP_BASE_API;
+console.log(import.meta.env);
+console.log(baseApiUrl); // 输出当前环境下的 API 基础 URL
 </script>
 
 <style lang="less">

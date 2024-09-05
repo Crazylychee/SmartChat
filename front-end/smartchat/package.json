@@ -6,7 +6,7 @@
   "author": "example.com",
   "homepage": "https://www.electronjs.org",
   "scripts": {
-     "server": "nodemon ./src/renderer/src/utils/server.js",
+    "server": "nodemon ./src/renderer/src/utils/server.js",
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts,.vue --fix",
     "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
@@ -67,6 +67,7 @@
     "express": "^4.18.2",
     "fluent-ffmpeg": "^2.1.2",
     "fs-extra": "^11.2.0",
+    "js-cookie": "^3.0.5",
     "js-md5": "^0.8.3",
     "js-pinyin": "^0.2.7",
     "lodash": "^4.17.21",
@@ -81,12 +82,12 @@
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
     "sqlite3": "5.1.6",
+    "turms-client-js": "./turms-client-js",
     "v-viewer": "^3.0.11",
     "vue-cookies": "^1.8.3",
     "vue-router": "^4.2.5",
     "vue3-emoji-picker": "^1.1.8",
-    "vue3-perfect-scrollbar": "^1.6.1",
-    "turms-client-js": "file:./turms-client-js"
+    "vue3-perfect-scrollbar": "^1.6.1"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config": "^1.0.1",

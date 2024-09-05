@@ -2,6 +2,7 @@ package com.smartchat.auth.controller.captcha;
 
 import com.google.code.kaptcha.Producer;
 import com.smartchat.auth.config.redis.RedisCache;
+import com.smartchat.auth.result.JSONResult;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FastByteArrayOutputStream;
@@ -30,7 +31,7 @@ public class CaptchaController {
 
 
     @GetMapping("/captchaImage")
-    public Object getCode()
+    public JSONResult getCode()
     {
         // 保存验证码信息
         String uuid = IdUtils.simpleUUID();
@@ -66,6 +67,6 @@ public class CaptchaController {
 
         ajax.put("uuid", uuid);
         ajax.put("img", Base64.encode(os.toByteArray()));
-        return ajax;
+        return JSONResult.success(ajax);
     }
 }
