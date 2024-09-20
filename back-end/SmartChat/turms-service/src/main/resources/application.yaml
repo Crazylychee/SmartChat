@@ -4,7 +4,7 @@ spring:
   netty:
     leak-detection: simple
   profiles:
-    active: dev
+    active: prod
     group:
       dev:
         - dev

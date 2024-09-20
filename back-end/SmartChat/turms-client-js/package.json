@@ -41,7 +41,8 @@
   },
   "homepage": "https://github.com/turms-im/turms#readme",
   "dependencies": {
-    "protobufjs": "^7.3.2"
+    "protobufjs": "^7.3.2",
+    "turms-client-js": "file:"
   },
   "devDependencies": {
     "@babel/core": "^7.24.8",
