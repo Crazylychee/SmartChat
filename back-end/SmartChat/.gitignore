@@ -83,3 +83,4 @@ smartchat-ai/target/
 .env
 
 docker-compose.standalone.yml
+front-end/smartchat/.env

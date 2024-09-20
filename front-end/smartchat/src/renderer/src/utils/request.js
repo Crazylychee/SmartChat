@@ -3,7 +3,7 @@ import {getToken} from "@/utils/auth";
 
 // create an axios instance
 const service = axios.create({
-  baseURL: "http://47.113.224.195:9216",
+  baseURL: import.meta.env.RENDERER_VITE_APP_BASE_API,
   // baseURL: "http://localhost:9216",
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 9000 // request timeout

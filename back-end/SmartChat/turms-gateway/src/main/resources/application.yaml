@@ -45,7 +45,7 @@ turms:
 # Spring configuration
 spring:
   profiles:
-    active: dev
+    active: prod
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration

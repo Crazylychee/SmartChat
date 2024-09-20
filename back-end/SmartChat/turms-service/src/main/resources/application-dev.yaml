@@ -11,7 +11,7 @@ turms:
         port-auto-increment: true
     shared-config:
       mongo:
-        uri: mongodb://10.8.0.1:27017/turms-config-dev
+        uri: ${MONGODB_URL2}
   logging:
     console:
       enabled: true
@@ -33,15 +33,15 @@ turms:
       check-if-target-active-and-not-deleted: false
     mongo:
       admin:
-        uri: mongodb://10.8.0.1:27017/turms-dev
+        uri: ${MONGODB_URL2}
       user:
-        uri: mongodb://10.8.0.1:27017/turms-dev
+        uri: ${MONGODB_URL2}
       group:
-        uri: mongodb://10.8.0.1:27017/turms-dev
+        uri: ${MONGODB_URL2}
       conversation:
-        uri: mongodb://10.8.0.1:27017/turms-dev
+        uri: ${MONGODB_URL2}
       message:
-        uri: mongodb://10.8.0.1:27017/turms-dev
+        uri: ${MONGODB_URL2}
         tiered-storage:
           enabled: true
           tiers:
