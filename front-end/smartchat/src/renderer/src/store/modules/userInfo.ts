@@ -22,9 +22,6 @@ const dedaultProfilePicture =
   'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMzYgMzYiPjxwYXRoIGZpbGw9IiNGRkNCNEMiIGQ9Ik0zNS41OTcgMTQuMjMyYzIuMDgzIDkuNzItNC4xMDggMTkuMjg5LTEzLjgyOCAyMS4zNzJTMi40OCAzMS40OTYuMzk3IDIxLjc3NlM0LjUwNiAyLjQ4NyAxNC4yMjUuNDA0YzkuNzItMi4wODQgMTkuMjg5IDQuMTA4IDIxLjM3MiAxMy44MjgiLz48cGF0aCBmaWxsPSIjRjRGN0Y5IiBkPSJNMjkuMjg0IDkuMDEyYTYuNzM0IDYuNzM0IDAgMSAxLTEzLjE2OSAyLjgyMWE2LjczNCA2LjczNCAwIDAgMSAxMy4xNjktMi44MjEiLz48Y2lyY2xlIGN4PSIyMi4zMDYiIGN5PSI5LjI5MSIgcj0iMi4wMzciIGZpbGw9IiMyOTJGMzMiLz48cGF0aCBmaWxsPSIjRjRGN0Y5IiBkPSJNMTQuMDg4IDE0LjI4MmEzLjkzOCAzLjkzOCAwIDEgMS03LjcgMS42NWEzLjkzOCAzLjkzOCAwIDAgMSA3LjctMS42NSIvPjxjaXJjbGUgY3g9IjEwLjIzOCIgY3k9IjE1Ljg1NyIgcj0iMS45NDIiIGZpbGw9IiMyOTJGMzMiIHRyYW5zZm9ybT0icm90YXRlKC0xMi4wOTUgMTAuMjM2IDE1Ljg1MykiLz48cGF0aCBmaWxsPSIjNjU0NzFCIiBkPSJNMTguNjI1IDIwLjkzN2MtMy41NDMuNzU5LTUuOTgxLjg1LTkuMDEuOTA4Yy0uNjkxLjAxNS0xLjk1NS40MTktMS41MzYgMi4zNzVjLjgzOCAzLjkxMSA2LjM3OSA3LjgzNyAxMi42NDIgNi40OTVjNi4yNjItMS4zNDIgOS43MDgtNy4xOTQgOC44Ny0xMS4xMDVjLS40MTktMS45NTYtMS43MzktMS44MDgtMi4zNzUtMS41MzZjLTIuNzg2IDEuMTg3LTUuMDQ4IDIuMTA0LTguNTkxIDIuODYzIi8+PHBhdGggZmlsbD0iI0U4NTk2RSIgZD0iTTExIDI0LjAwNHY2YzAgMyAyIDYgNiA2czYtMyA2LTZ2LTZ6Ii8+PHBhdGggZmlsbD0iI0REMkY0NSIgZD0iTTE3IDMxLjg4M2EuNTQ1LjU0NSAwIDAgMCAuNTQ1LS41NDV2LTYuMjk1aC0xLjA5MXY2LjI5NWEuNTQ2LjU0NiAwIDAgMCAuNTQ2LjU0NSIvPjxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0xMC4wMzQgMjMuODAxczMuMTQzLjM0OSA5LjAxLS45MDhzOC41OTEtMi44NjQgOC41OTEtMi44NjRzLTEuMTE3IDQuMzMtNy45NjIgNS43OTdzLTkuNjM5LTIuMDI1LTkuNjM5LTIuMDI1Ii8+PC9zdmc+'
 
 export const useUserInfoStore = defineStore('userInfo', () => {
-  // TODO：等到完成登录模块时直接写入 user 去除 userId
-  const userId = ref(import.meta.env.RENDERER_VITE_TURMS_USERNAME)
-
   const user = ref<UserInfo>({
     id: '',
     name: '',
@@ -57,15 +54,20 @@ export const useUserInfoStore = defineStore('userInfo', () => {
   async function syncUserInfo() {
     const { client } = await useTurmsClient()
 
+    if (!user.value.id) {
+      console.error('未登录，无法同步用户信息')
+      return
+    }
+
     try {
       const respond = await client.userService.queryUserProfiles({
-        userIds: [userId.value],
+        userIds: [user.value.id],
         lastUpdatedDate: user.value.lastUpadteDate
       })
 
       if (respond.code === 1000) {
         const userInfo = respond.data
-        console.log(`同步${userId.value}用户信息成功`, userInfo)
+        console.log(`同步${user.value.id}用户信息成功`, userInfo)
         if (userInfo.length > 0) {
           user.value = { ...user.value, ...userInfo[0], lastUpadteDate: new Date() }
           console.log(user.value)
