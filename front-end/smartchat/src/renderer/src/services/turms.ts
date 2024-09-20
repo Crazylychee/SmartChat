@@ -1,4 +1,5 @@
 import TurmsClient from 'turms-client-js'
+import { useUserInfoStore } from '@/store/modules/userInfo'
 
 // 全局唯一的 TurmsClient 实例
 let turmsClient: null | TurmsClient = null
@@ -12,30 +13,24 @@ export async function useTurmsClient() {
       heartbeatInterval: 30000,
       useSharedContext: false
     })
-    // 临时代码，一创建就登录
-
-    // 检查环境变量是否存在
-    if (
-      import.meta.env.RENDERER_VITE_TURMS_USERNAME === undefined ||
-      import.meta.env.RENDERER_VITE_TURMS_PASSWORD === undefined
-    ) {
-      console.warn('请设置环境变量 TURMS_USERNAME 和 TURMS_PASSWORD')
-      throw new Error('环境变量 TURMS_USERNAME 和 TURMS_PASSWORD 未设置')
-    }
-
-    console.log(
-      '开始登录',
-      import.meta.env.RENDERER_VITE_TURMS_USERNAME,
-      import.meta.env.RENDERER_VITE_TURMS_PASSWORD
-    )
-
-    const result = await turmsClient.userService.login({
-      userId: import.meta.env.RENDERER_VITE_TURMS_USERNAME,
-      password: import.meta.env.RENDERER_VITE_TURMS_PASSWORD
-    })
-
-    console.log('登录结束', result)
   }
 
   return { client: turmsClient }
+}
+
+export async function loginTurmsClient(userId: string, password: string) {
+  const { client } = await useTurmsClient()
+
+  console.log('开始登录', userId, password)
+
+  const result = await client.userService.login({
+    userId: userId,
+    password: password
+  })
+
+  const userInfo = useUserInfoStore()
+  userInfo.user.id = userId
+
+  console.log('登录结束', result)
+  return result
 }
