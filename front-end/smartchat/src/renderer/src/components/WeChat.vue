@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
 import _ from 'lodash'
 import dayjs from 'dayjs'
 import Mock from 'mockjs'
@@ -26,9 +26,13 @@ import BoxWrapper from './layout/BoxWrapper/Index.vue'
 import ContextMenu from './common/ContextMenu/Index.vue'
 import ResizeContainer from './common/ResizeContainer/Index.vue'
 
+// onMounted(() => {
 
-
-
+const removeListern = useChatStore.addListener()
+// })
+onUnmounted(() => {
+  removeListern()
+})
 
 // 监听全局键盘事件
 onMounted(() => {
@@ -226,9 +230,6 @@ if (useAddressBookStore.addressBookList.length === 0) {
 </script>
 
 <style lang="less" scoped>
-
-
-
 .wechat {
   position: fixed;
   display: flex;
