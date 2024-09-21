@@ -82,7 +82,7 @@
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
     "sqlite3": "5.1.6",
-    "turms-client-js": "file:A:/client-js/turms/turms-client-js",
+    "turms-client-js": "./turms-client-js",
     "v-viewer": "^3.0.11",
     "vue-cookies": "^1.8.3",
     "vue-router": "^4.2.5",

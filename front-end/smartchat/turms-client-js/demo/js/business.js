@@ -40,16 +40,16 @@ function setupClient(container, client, userId, password, targetId) {
         .then(() => {
             appendContainer(container, `login: User ${userId} has logged in`);
             client.messageService.queryMessagesWithTotal({
-                ids: ['1']
+                ids: ['3'],
+                areGroupMessages:false
             })
                 .then(res => appendContainer(container, `Offline messages: ${beautify(res.data)}`))
                 .catch(error => appendContainer(container, `failed to query offline messages ${beautify(error)}`, true));
             const intervalId = setInterval(() => {
                 if (client.driver.isConnected) {
                     client.messageService.sendMessage({
-                        isGroupMessage: false,
+                        areGroupMessages: false,
                         targetId,
-                        deliveryDate: new Date(),
                         text: "Hello Turms, My userId is " + userId,
                         burnAfter: 30
                     })
@@ -59,10 +59,18 @@ function setupClient(container, client, userId, password, targetId) {
                     clearInterval(intervalId);
                 }
             }, 2000);
+
+            client.userService.queryUserProfiles({  // 查询用户信息
+                userIds: ['6', '7']
+            })
+                .then(res => appendContainer(container, `User profiles: ${beautify(res.data)}`))
+                .catch(error => appendContainer(container, `failed to query user profiles: ${beautify(error)}`, true));
+
             client.groupService.createGroup({
                 name: 'Turms Developers Group',
                 intro: 'This is a group for the developers who are interested in Turms',
-                announcement: 'nope'
+                announcement: 'nope',
+                typeId:2045132651273928704
             })
                 .then(res => appendContainer(container, `group ${res.data} has been created`))
                 .catch(error => appendContainer(container, `failed to create group: ${beautify(error)}`, true));
@@ -71,10 +79,14 @@ function setupClient(container, client, userId, password, targetId) {
 }
 
 function start() {
-    const clientUserOne = new TurmsClient('ws://localhost:10510', 30 * 1000);
-    const clientUserTwo = new TurmsClient('ws://localhost:10510', 30 * 1000);
-    const USER_ONE_ID = '1';
-    const USER_TWO_ID = '2';
+    // const clientUserOne = new TurmsClient('ws://localhost:10510', 30 * 1000);
+    // const clientUserTwo = new TurmsClient('ws://localhost:10510', 30 * 1000);
+
+    const clientUserOne = new TurmsClient('ws://47.113.224.195:10510', 30 * 1000);
+    const clientUserTwo = new TurmsClient('ws://47.113.224.195:10510', 30 * 1000);
+
+    const USER_ONE_ID = '6';
+    const USER_TWO_ID = '7';
     setupClient(userOneNotificationContainer, clientUserOne, USER_ONE_ID, '123', USER_TWO_ID);
     setupClient(userTwoNotificationContainer, clientUserTwo, USER_TWO_ID, '123', USER_ONE_ID);
 }
