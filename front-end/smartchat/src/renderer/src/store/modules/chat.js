@@ -3,6 +3,7 @@ import dayjs from 'dayjs'
 import { guid } from '../../utils/Utils'
 import { message } from 'ant-design-vue'
 import { useTurmsClient } from '../../services/turms'
+// import { useUserInfoStore } from './userInfo'
 
 export const useChatStore = defineStore('chat', {
   state: () => {
@@ -239,7 +240,7 @@ export const useChatStore = defineStore('chat', {
       this.chatList.unshift(targetItem)
     },
     async addListener() {
-      const { client } = await useTurmsClient()
+      const { client } = useTurmsClient()
 
       const listener = (message, messageAddition) => {
         this.messageList.push(message)
@@ -252,6 +253,11 @@ export const useChatStore = defineStore('chat', {
       }
     }
   },
+  getters: {
+    latestMessages: (state) => {
+      return getLastestMessage(state.messageList)
+    }
+  },
   persist: {
     // enabled: true,
     strategies: [
@@ -261,3 +267,24 @@ export const useChatStore = defineStore('chat', {
     ]
   }
 })
+
+function getLastestMessage(messages) {
+  // 按发送者分组
+  const groupedMessages = messages.reduce((acc, message) => {
+    if (!acc[message.senderId]) {
+      acc[message.senderId] = []
+    }
+    acc[message.senderId].push(message)
+    return acc
+  }, {})
+
+  // 获取每个用户的最新消息
+  const latestMessages = Object.keys(groupedMessages).map((senderId) => {
+    const userMessages = groupedMessages[senderId]
+    // 按 deliveryDate 排序，获取最新的消息
+    userMessages.sort((a, b) => new Date(b.deliveryDate) - new Date(a.deliveryDate))
+    return userMessages[0]
+  })
+
+  return latestMessages
+}
