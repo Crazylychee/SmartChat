@@ -34,18 +34,38 @@ export const useUserInfoStore = defineStore('userInfo', () => {
     lastUpadteDate: new Date(0)
   })
 
+  const users = ref(new Map<string, UserInfo>())
+
   /**
-   * @param userIds
-   * @returns UserInfo[]
+   * @param userId
+   * @returns UserInfo
    * 获取用户信息
+   * 优先从本地缓存中获取，如果没有再从服务器获取
    */
-  async function getUserInfo(userIds: string[]) {
+  async function getUserInfo(userId: string) {
+    if (users.value.has(userId)) {
+      return users.value.get(userId)
+    }
+
+    const userIds = [userId]
+
     const { client } = await useTurmsClient()
 
-    return client.userService.queryUserProfiles({
+    const respond = await client.userService.queryUserProfiles({
       userIds
-      // 此处不应传入时间，否则会导致查询不到用户（服务器端会根据时间判断是否需要更新）
     })
+
+    if (respond.code === 1000) {
+      const userInfo = respond.data
+      console.log(`获取${userId}用户信息成功`, userInfo)
+      if (userInfo.length > 0) {
+        users.value.set(userId, { ...userInfo[0], lastUpadteDate: new Date(0) })
+        return userInfo[0]
+      }
+    }
+
+    console.error(`获取${userId}用户信息失败`)
+    return undefined
   }
 
   /**
