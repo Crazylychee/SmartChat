@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {getToken} from "@/utils/auth";
+import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
@@ -10,19 +10,21 @@ const service = axios.create({
 })
 
 // request interceptor
-service.interceptors.request.use(config => {
-
-  const token = getToken();
-  console.log(token)
-  if (token) {
-    config.headers['authorization'] = token;
+service.interceptors.request.use(
+  (config) => {
+    const token = getToken()
+    console.log(token)
+    if (token) {
+      config.headers['authorization'] = token
+    }
+    // 设置默认的 Content-Type 为 application/json
+    config.headers['Content-Type'] = 'application/json'
+    return config
+  },
+  (error) => {
+    return Promise.reject(error)
   }
-  // 设置默认的 Content-Type 为 application/json
-  config.headers['Content-Type'] = 'application/json';
-  return config;
-}, error => {
-  return Promise.reject(error);
-});
+)
 
 // response interceptor
 service.interceptors.response.use(
@@ -36,21 +38,18 @@ service.interceptors.response.use(
    * Here is just an example
    * You can also judge the status by HTTP Status Code
    */
-  response => {
-
+  (response) => {
     // try {
     const res = response.data
 
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 200) {
-
       /**
        * 403：认证状态失效，请重新登录！
        * 401：Token错误或失效！
        */
       if (res.code === 403 || res.code === 401) {
         // to re-login
-
       }
       return Promise.reject(new Error(res.message || 'Error'))
     } else if (res.code === 200 && res.showMessage) {
@@ -62,7 +61,7 @@ service.interceptors.response.use(
     //     console.log("数据格式有误")
     // }
   },
-  error => {
+  (error) => {
     console.log('err' + error) // for debug
     return Promise.reject(error)
   }

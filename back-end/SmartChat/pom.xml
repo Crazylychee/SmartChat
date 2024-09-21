@@ -99,6 +99,7 @@
         <!--二次开发-->
         <module>smartchat-webrtc</module>
         <module>smartchat-auth</module>
+<!--        <module>smartchat-gateway</module>-->
     </modules>
 
     <dependencyManagement>

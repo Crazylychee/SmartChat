@@ -35,7 +35,7 @@ export default {
     },
     methods: {
         updateProgress() {
-            this.$refs.progress.style.width = `${this.progress.toFixed()}%`;
+          // this.$refs.progress.style.width = `${this.progress.toFixed()}%`;
         }
     }
 };

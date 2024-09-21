@@ -139,12 +139,13 @@ public class TurmsApplicationContext {
         isProduction = !isDevOrLocalTest && !isInProfiles(testEnvs, activeProfiles);
         BuildProperties tempBuildProperties = getGitBuildProperties();
         if (tempBuildProperties == null) {
-            if (isProduction) {
-                throw new ResourceNotFoundException(
-                        "The file ("
-                                + BUILD_INFO_PROPS_PATH
-                                + ") must exist in production");
-            }
+            //TODO:允许非生产环境下不存在"git.properties"文件，以获得更好的开发体验
+//            if (isProduction) {
+//                throw new ResourceNotFoundException(
+//                        "The file ("
+//                                + BUILD_INFO_PROPS_PATH
+//                                + ") must exist in production");
+//            }
             // We allow "git.properties" not exist in non-production
             // environments for a better development experience
             LOGGER.warn("Could not find the file ("

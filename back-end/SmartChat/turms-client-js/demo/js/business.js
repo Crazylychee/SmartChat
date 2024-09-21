@@ -40,7 +40,7 @@ function setupClient(container, client, userId, password, targetId) {
         .then(() => {
             appendContainer(container, `login: User ${userId} has logged in`);
             client.messageService.queryMessagesWithTotal({
-                ids: ['3'],
+                ids: ['1'],
                 areGroupMessages:false
             })
                 .then(res => appendContainer(container, `Offline messages: ${beautify(res.data)}`))
@@ -61,7 +61,7 @@ function setupClient(container, client, userId, password, targetId) {
             }, 2000);
 
             client.userService.queryUserProfiles({  // 查询用户信息
-                userIds: ['6', '7']
+                userIds: ['1', '2']
             })
                 .then(res => appendContainer(container, `User profiles: ${beautify(res.data)}`))
                 .catch(error => appendContainer(container, `failed to query user profiles: ${beautify(error)}`, true));
@@ -82,11 +82,11 @@ function start() {
     // const clientUserOne = new TurmsClient('ws://localhost:10510', 30 * 1000);
     // const clientUserTwo = new TurmsClient('ws://localhost:10510', 30 * 1000);
 
-    const clientUserOne = new TurmsClient('ws://47.113.224.195:10510', 30 * 1000);
-    const clientUserTwo = new TurmsClient('ws://47.113.224.195:10510', 30 * 1000);
+    const clientUserOne = new TurmsClient('ws://47.113.224.195:31115', 30 * 1000);
+    const clientUserTwo = new TurmsClient('ws://47.113.224.195:31115', 30 * 1000);
 
-    const USER_ONE_ID = '8';
-    const USER_TWO_ID = '9';
+    const USER_ONE_ID = '1';
+    const USER_TWO_ID = '2';
     setupClient(userOneNotificationContainer, clientUserOne, USER_ONE_ID, '123', USER_TWO_ID);
     setupClient(userTwoNotificationContainer, clientUserTwo, USER_TWO_ID, '123', USER_ONE_ID);
 }
