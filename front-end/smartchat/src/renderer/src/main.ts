@@ -5,7 +5,6 @@ import App from './App.vue'
 
 import Antd from 'ant-design-vue'
 
-
 import 'ant-design-vue/dist/reset.css'
 import 'perfect-scrollbar/css/perfect-scrollbar.css'
 import '@/assets/icon/iconfont.css'
@@ -21,19 +20,18 @@ import Winbtn from '@/components/Winbtn.vue'
 //引入
 import PerfectScrollbar from 'vue3-perfect-scrollbar'
 
-
 import Vue3EmojiPicker from 'vue3-emoji-picker'
 
 const app = createApp(App)
 
-app.use(pinia)
 app.use(Antd)
 app.use(ElementPlus)
 app.use(ui)
 app.use(router)
 app.use(PerfectScrollbar)
+app.use(pinia)
 app.component('Vue3EmojiPicker', Vue3EmojiPicker)
-app.component('Winbtn',Winbtn)
+app.component('Winbtn', Winbtn)
 app.config.globalProperties.Utils = Utils
 app.config.globalProperties.Request = Request
 
