@@ -371,7 +371,6 @@ function onEmojiSelect(emoji) {
 .input-box {
   display: flex;
   flex-direction: column;
-  height: 160px;
   border-top: 1px solid #ececec;
 
   .input-control {
