@@ -263,7 +263,7 @@ function onEmojiSelect(emoji) {
 
 <style lang="less" scoped>
 .ps {
-  height: 400px;
+  height: 100%;
 }
 
 .chat-box {
@@ -398,6 +398,7 @@ function onEmojiSelect(emoji) {
   .input-area {
     flex: 1;
     padding: 0 18px;
+    min-height: 120px;
 
     :deep(.ant-input) {
       height: 100%;
