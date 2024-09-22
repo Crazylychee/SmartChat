@@ -357,9 +357,13 @@ export const useChatStore = defineStore('chat', {
 function getLastestMessage(messages) {
   const userInfoStore = useUserInfoStore()
 
+  // 奇怪的问题，userInfoStore.user.id 会变成一个 Proxy 对象？，所以需要转换成字符串
+  const myId = String(userInfoStore.user.id)
+  console.log('myId', myId)
+
   // 别人发送的消息按 senderId 分组，自己发送的消息按 recipientId 分组
   const groupedMessages = messages.reduce((acc, message) => {
-    if (message.senderId !== userInfoStore.user.id) {
+    if (message.senderId !== myId) {
       if (!acc[message.senderId]) {
         acc[message.senderId] = []
       }
@@ -373,13 +377,10 @@ function getLastestMessage(messages) {
     return acc
   }, {})
 
-  // 获取每个用户的最新消息
-  const latestMessages = Object.keys(groupedMessages).map((senderId) => {
-    const userMessages = groupedMessages[senderId]
-    // 按 deliveryDate 排序，获取最新的消息
-    const sortedMessages = userMessages.sort((a, b) => b.deliveryDate - a.deliveryDate)
-    return sortedMessages[0]
+  Object.keys(groupedMessages).forEach((key) => {
+    // 只保留数组的第一个元素
+    groupedMessages[key] = groupedMessages[key][0]
   })
 
-  return latestMessages
+  return groupedMessages
 }

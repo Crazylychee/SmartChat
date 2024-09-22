@@ -2,14 +2,18 @@
   <perfect-scrollbar>
     <div class="chat-list">
       <ListChatItem
-        v-for="chat in chatLists"
-        :key="chat.senderId"
-        :user-id="chat.senderId"
-        :context="chat.text"
-        :time="chat.deliveryDate"
+        v-for="(value, key) in chatLists"
+        :key="key"
+        :user-id="key"
+        :context="value.text"
+        :time="value.deliveryDate"
       />
     </div>
-    <WeNoData v-if="!chatLists.length" text="无结果" :image-style="{ color: '#ccc' }" />
+    <WeNoData
+      v-if="!Object.keys(chatLists).length"
+      text="无结果"
+      :image-style="{ color: '#ccc' }"
+    />
   </perfect-scrollbar>
 </template>
 
