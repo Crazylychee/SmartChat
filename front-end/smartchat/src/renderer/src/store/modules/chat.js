@@ -141,7 +141,7 @@ export const useChatStore = defineStore('chat', {
       messageList: [
         {
           id: '7494499223104360448',
-          deliveryDate: Date('2024-09-21T20:49:31.449'),
+          deliveryDate: new Date('2024-09-21T20:49:31.449'),
           text: '默认消息方便测试 1',
           records: [],
           senderId: '2',
@@ -150,7 +150,7 @@ export const useChatStore = defineStore('chat', {
         },
         {
           id: '7503506422367326208',
-          deliveryDate: Date('2024-09-21T20:49:33.457'),
+          deliveryDate: new Date('2024-09-21T20:49:33.457'),
           text: '默认消息方便测试 2',
           records: [],
           senderId: '2',
@@ -159,7 +159,7 @@ export const useChatStore = defineStore('chat', {
         },
         {
           id: '7512513621630259200',
-          deliveryDate: Date('2024-09-21T20:49:35.457'),
+          deliveryDate: new Date('2024-09-21T20:49:35.457'),
           text: '默认消息方便测试 3',
           records: [],
           senderId: '2',
@@ -315,8 +315,10 @@ function getLastestMessage(messages) {
   const latestMessages = Object.keys(groupedMessages).map((senderId) => {
     const userMessages = groupedMessages[senderId]
     // 按 deliveryDate 排序，获取最新的消息
-    userMessages.sort((a, b) => new Date(b.deliveryDate) - new Date(a.deliveryDate))
-    return userMessages[0]
+    const sortedMessages = userMessages.sort(
+      (a, b) => new Date(b.deliveryDate) - new Date(a.deliveryDate)
+    )
+    return sortedMessages[0]
   })
 
   return latestMessages
