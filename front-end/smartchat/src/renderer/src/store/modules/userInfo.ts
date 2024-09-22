@@ -50,10 +50,14 @@ export const useUserInfoStore = defineStore('userInfo', () => {
   async function getUserInfo(userId: string) {
     if (users[userId]) {
       const { lastUpadteDate } = users[userId]
-      if (lastUpadteDate - Date() < CacheTime) {
-        console.log(`从缓存获取${userId}用户信息成功`, users[userId])
+      if (new Date() - lastUpadteDate < CacheTime) {
+        console.debug(`当前时间: ${Date()},从缓存获取 ${userId} 用户信息成功`, users[userId])
         return users[userId]
+      } else {
+        console.debug(`当前时间: ${Date()},获取 ${userId} 用户信息，缓存过期`)
       }
+    } else {
+      console.debug(`当前时间: ${Date()},查询 ${userId} 信息，缓存不命中`)
     }
 
     const { client } = useTurmsClient()
@@ -66,7 +70,7 @@ export const useUserInfoStore = defineStore('userInfo', () => {
       const userInfo = respond.data
       console.log(`从服务器获取${userId}用户信息成功`, userInfo)
       if (userInfo.length > 0) {
-        users[userId] = { ...userInfo[0], lastUpadteDate: new Date(0) }
+        users[userId] = { ...userInfo[0], lastUpadteDate: new Date() }
         return users[userId]
       }
     }
