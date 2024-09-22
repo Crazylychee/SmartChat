@@ -283,7 +283,7 @@ export const useChatStore = defineStore('chat', {
     getMessageListBySenderId(senderId) {
       return this.messageList
         .filter((message) => message.senderId === senderId)
-        .sort((a, b) => new Date(b.deliveryDate) - new Date(a.deliveryDate))
+        .sort((a, b) => new Date(a.deliveryDate) - new Date(b.deliveryDate))
     }
   },
   getters: {
