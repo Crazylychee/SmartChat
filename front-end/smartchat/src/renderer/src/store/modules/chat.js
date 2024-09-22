@@ -138,7 +138,35 @@ export const useChatStore = defineStore('chat', {
           }
         ]
       },
-      messageList: [],
+      messageList: [
+        {
+          id: '7494499223104360448',
+          deliveryDate: Date('2024-09-21T20:49:31.449'),
+          text: '默认消息方便测试 1',
+          records: [],
+          senderId: '2',
+          recipientId: '1',
+          customAttributes: []
+        },
+        {
+          id: '7503506422367326208',
+          deliveryDate: Date('2024-09-21T20:49:33.457'),
+          text: '默认消息方便测试 2',
+          records: [],
+          senderId: '2',
+          recipientId: '1',
+          customAttributes: []
+        },
+        {
+          id: '7512513621630259200',
+          deliveryDate: Date('2024-09-21T20:49:35.457'),
+          text: '默认消息方便测试 3',
+          records: [],
+          senderId: '2',
+          recipientId: '1',
+          customAttributes: []
+        }
+      ],
       // 聊天记录
       activeChat: '', // 当前聚焦的聊天对象id
       isFocusSendArea: false,
@@ -251,6 +279,9 @@ export const useChatStore = defineStore('chat', {
       return () => {
         client.messageService.removeMessageListener({ listener })
       }
+    },
+    getMessageListBySenderId(senderId) {
+      return this.messageList.filter((message) => message.senderId === senderId)
     }
   },
   getters: {

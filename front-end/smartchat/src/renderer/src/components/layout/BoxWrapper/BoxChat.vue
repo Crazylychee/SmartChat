@@ -3,41 +3,13 @@
   <template v-else>
     <perfect-scrollbar ref="perfectScrollbarRef">
       <div class="chat-box">
-        <div
-          class="chat-item"
-          :class="[chat.type === 'send' ? 'chat-send' : 'chat-receive']"
-          v-for="(chat, index) in chatContent"
-          :key="index"
-        >
-          <div class="chat-time">
-            <span>{{ friendTime(chat.createTime, 'datetime') }}</span>
-          </div>
-          <div class="chat-info">
-            <img v-if="chat.type !== 'send'" v-lazyload="friendInfo.avatar" @click="showSendInfo" />
-            <img v-else v-lazyload="useUserInfoStore?.user?.avatar" @click="showUserInfo(e)" />
-            <p class="chat-content" @contextmenu.stop="handleContentContextmenu" v-if="!chat.File">
-              {{ chat.content }}
-            </p>
-            <!-- <p class="chat-image" v-else-if="chat.base64Url">
-              <img src="chat.base64Url?chat.base64Url:''" alt="">
-            </p> -->
-            <p class="chat-content" v-else>
-              <a-tooltip :title="chat.File.name">
-                <span class="upload-name-view">{{ chat.File.name }}</span>
-              </a-tooltip>
-              <i class="wechatfont wechat-folder"></i>
-            </p>
-
-            <!-- <div class="file-list-box" v-else>
-         <i class="wechatfont wechat-folder" title="发送文件"></i>
-          <a-tooltip :title="chat.File.name">
-            <span class="upload-name-view">{{ chat.File.name }}</span>
-          </a-tooltip>
-
-
-        </div> -->
-          </div>
-        </div>
+        <ChatItem
+          v-for="message in messageList"
+          :key="message.id"
+          :user-id="message.senderId"
+          :type="message.senderId === useUserInfoStore.user.id ? 'send' : 'receive'"
+          :content="message.text"
+        />
       </div>
     </perfect-scrollbar>
     <div class="input-box">
@@ -115,7 +87,7 @@ import RelativeBox from '../../../components/common/RelativeBox/Index.vue'
 import UserInfo from '../../../components/common/UserInfo/Index.vue'
 import useStore from '../../../store'
 const { useChatStore, useContextMenuStore, useUserInfoStore, useRelativeBoxStore } = useStore()
-import { friendTime } from '../../../utils/Utils'
+import ChatItem from '@/components/common/ChatItem.vue'
 
 import 'ant-design-vue/dist/reset.css'
 import 'perfect-scrollbar/css/perfect-scrollbar.css'
@@ -126,36 +98,23 @@ import '@/global.less'
 import eventBus from '../../../utils/eventBus'
 // import BoxEmoji from "./BoxEmoji.vue"
 
-// const chatContent = ref([
-//   {
-//     id: 1,
-//     type: "send",
-//     content: "你是谁",
-//     createTime: "2023-08-10 12:12:12",
-//   },
-//   {
-//     id: 2,
-//     type: "receive",
-//     content: "我是Vite",
-//     createTime: "2023-08-10 12:15:12",
-//   },
-// ]);
+const messageList = ref([])
 
 // 点击头像展示信息
 const infoVisible = ref(false)
 const userInfo = ref({})
 
-const showSendInfo = (e) => {
-  infoVisible.value = true
-  userInfo.value = friendInfo.value
-  useRelativeBoxStore.showBox(e.clientY, e.clientX)
-}
+// const showSendInfo = (e) => {
+//   infoVisible.value = true
+//   userInfo.value = friendInfo.value
+//   useRelativeBoxStore.showBox(e.clientY, e.clientX)
+// }
 
-const showUserInfo = (e) => {
-  infoVisible.value = true
-  userInfo.value = useUserInfoStore.user
-  useRelativeBoxStore.showBox(e.clientY, e.clientX)
-}
+// const showUserInfo = (e) => {
+//   infoVisible.value = true
+//   userInfo.value = useUserInfoStore.user
+//   useRelativeBoxStore.showBox(e.clientY, e.clientX)
+// }
 
 // 右键聊天文本
 // const handleContentContextmenu = (e) => {
@@ -187,15 +146,6 @@ const showUserInfo = (e) => {
 const perfectScrollbarRef = ref(null)
 onMounted(() => {
   autoScrollBottom()
-  // setInterval(() => {
-  //   chatContent.value.push({
-  //     id: 4,
-  //     type: Math.random() > 0.5 ? 'receive' : 'send',
-  //     content: '132456',
-  //     createTime: '2023-08-10 12:17:12'
-  //   })
-  //   autoScrollBottom()
-  // }, 6000)
 })
 
 // 自动滚动至底部
@@ -209,29 +159,19 @@ const autoScrollBottom = () => {
 
 // 监听当聊天对象切换时，展示对应的聊天内容
 const noSelect = ref(true)
-const chatContent = ref([])
+// const chatContent = ref([])
 const input = ref()
 const { focused: inputFocus } = useFocus(input, { initialValue: true })
-const friendInfo = ref({})
+
+// const friendInfo = ref({})
+
 watch(
   () => useChatStore.activeChat,
-  (newVal) => {
-    noSelect.value = !newVal
+  (activeChat) => {
+    noSelect.value = !activeChat
     inputFocus.value = true
-    if (newVal) {
-      //   console.log(newVal,"newVal")
-      //   console.log(useChatStore.chatInfos[newVal])
-      //   console.log(chatContent.value)
-      chatContent.value = useChatStore.chatInfos[newVal]
-      const findChatByFriendId = (friendId) => {
-        for (const chat of useChatStore.chatList) {
-          if (chat.friendId === friendId) {
-            return chat // 如果找到匹配的 friendId，返回该对象
-          }
-        }
-        return null // 如果没有找到，返回 null
-      }
-      friendInfo.value = findChatByFriendId(newVal)
+    if (activeChat) {
+      messageList.value = useChatStore.getMessageListBySenderId(activeChat)
     }
     autoScrollBottom()
   },
@@ -322,8 +262,6 @@ function onEmojiSelect(emoji) {
 </script>
 
 <style lang="less" scoped>
-
-
 .ps {
   height: 400px;
 }
