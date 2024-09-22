@@ -167,7 +167,7 @@ const { focused: inputFocus } = useFocus(input, { initialValue: true })
 
 watch(
   [
-  () => useChatStore.activeChat,
+    () => useChatStore.activeChat,
     () => useChatStore.getMessageListBySenderId(useChatStore.activeChat)
   ],
   ([activeChat]) => {
@@ -198,10 +198,12 @@ const sendMsg = () => {
   if (!inputText.value) {
     return
   }
-  // 将文本添加至聊天记录
-  useChatStore.sendChatMsg(useChatStore.activeChat, inputText.value)
-  // 将聊天前移
-  useChatStore.forwardChat(useChatStore.activeChat, inputText.value)
+  useChatStore.sendMessage({
+    isGroupMessage: false,
+    targetId: useChatStore.activeChat,
+    deliveryDate: new Date(),
+    text: inputText.value
+  })
   // 清空输入框
   inputText.value = ''
   // 聊天记录自动滚动到底部

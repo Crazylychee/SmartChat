@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 import { guid } from '../../utils/Utils'
 import { message } from 'ant-design-vue'
 import { useTurmsClient } from '../../services/turms'
-// import { useUserInfoStore } from './userInfo'
+import { useUserInfoStore } from './userInfo'
 
 export const useChatStore = defineStore('chat', {
   state: () => {
@@ -140,6 +140,15 @@ export const useChatStore = defineStore('chat', {
       },
       messageList: [
         {
+          id: '7503506422367326208',
+          deliveryDate: new Date('2024-09-21T20:49:33.457'),
+          text: '默认消息方便测试 2',
+          records: [],
+          senderId: '2',
+          recipientId: '1',
+          customAttributes: []
+        },
+        {
           id: '7494499223104360448',
           deliveryDate: new Date('2024-09-21T20:49:31.449'),
           text: '默认消息方便测试 1',
@@ -149,12 +158,12 @@ export const useChatStore = defineStore('chat', {
           customAttributes: []
         },
         {
-          id: '7503506422367326208',
-          deliveryDate: new Date('2024-09-21T20:49:33.457'),
-          text: '默认消息方便测试 2',
+          id: '2954871144030208000',
+          deliveryDate: new Date('2024-09-22T20:14:01.550'),
+          text: '默认消息方便测试 我发送的消息',
           records: [],
-          senderId: '2',
-          recipientId: '1',
+          senderId: '1',
+          recipientId: '2',
           customAttributes: []
         },
         {
@@ -282,8 +291,52 @@ export const useChatStore = defineStore('chat', {
     },
     getMessageListBySenderId(senderId) {
       return this.messageList
-        .filter((message) => message.senderId === senderId)
-        .sort((a, b) => new Date(a.deliveryDate) - new Date(b.deliveryDate))
+        .filter((message) => message.senderId === senderId || message.recipientId === senderId)
+        .sort((a, b) => a.deliveryDate - b.deliveryDate)
+    },
+    sendMessage({
+      isGroupMessage,
+      targetId,
+      deliveryDate,
+      text,
+      records,
+      burnAfter,
+      preMessageId
+    }) {
+      const { client } = useTurmsClient()
+      console.log('sendMessage', {
+        isGroupMessage,
+        targetId,
+        deliveryDate,
+        text,
+        records,
+        burnAfter,
+        preMessageId
+      })
+      client.messageService
+        .sendMessage({
+          isGroupMessage,
+          targetId,
+          deliveryDate,
+          text,
+          records,
+          burnAfter,
+          preMessageId
+        })
+        .then((result) => {
+          const id = result.data
+          const userInfoStore = useUserInfoStore()
+          const message = {
+            id,
+            deliveryDate: new Date(),
+            text: text + new Date(),
+            records,
+            senderId: userInfoStore.user.id,
+            recipientId: targetId
+          }
+          console.log('发送消息成功', message)
+          this.messageList.push(message)
+        })
     }
   },
   getters: {
@@ -302,12 +355,21 @@ export const useChatStore = defineStore('chat', {
 })
 
 function getLastestMessage(messages) {
-  // 按发送者分组
+  const userInfoStore = useUserInfoStore()
+
+  // 别人发送的消息按 senderId 分组，自己发送的消息按 recipientId 分组
   const groupedMessages = messages.reduce((acc, message) => {
-    if (!acc[message.senderId]) {
-      acc[message.senderId] = []
+    if (message.senderId !== userInfoStore.user.id) {
+      if (!acc[message.senderId]) {
+        acc[message.senderId] = []
+      }
+      acc[message.senderId].push(message)
+    } else {
+      if (!acc[message.recipientId]) {
+        acc[message.recipientId] = []
+      }
+      acc[message.recipientId].push(message)
     }
-    acc[message.senderId].push(message)
     return acc
   }, {})
 
@@ -315,9 +377,7 @@ function getLastestMessage(messages) {
   const latestMessages = Object.keys(groupedMessages).map((senderId) => {
     const userMessages = groupedMessages[senderId]
     // 按 deliveryDate 排序，获取最新的消息
-    const sortedMessages = userMessages.sort(
-      (a, b) => new Date(b.deliveryDate) - new Date(a.deliveryDate)
-    )
+    const sortedMessages = userMessages.sort((a, b) => b.deliveryDate - a.deliveryDate)
     return sortedMessages[0]
   })
 
