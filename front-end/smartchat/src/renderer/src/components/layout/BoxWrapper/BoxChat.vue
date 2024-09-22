@@ -166,8 +166,11 @@ const { focused: inputFocus } = useFocus(input, { initialValue: true })
 // const friendInfo = ref({})
 
 watch(
+  [
   () => useChatStore.activeChat,
-  (activeChat) => {
+    () => useChatStore.getMessageListBySenderId(useChatStore.activeChat)
+  ],
+  ([activeChat]) => {
     noSelect.value = !activeChat
     inputFocus.value = true
     if (activeChat) {
