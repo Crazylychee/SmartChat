@@ -85,6 +85,7 @@
     "turms-client-js": "./turms-client-js",
     "v-viewer": "^3.0.11",
     "vue-cookies": "^1.8.3",
+    "vue-request": "^2.0.4",
     "vue-router": "^4.2.5",
     "vue3-emoji-picker": "^1.1.8",
     "vue3-perfect-scrollbar": "^1.6.1"
