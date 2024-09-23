@@ -329,7 +329,7 @@ export const useChatStore = defineStore('chat', {
           const message = {
             id,
             deliveryDate: new Date(),
-            text: text + new Date(),
+            text: text,
             records,
             senderId: userInfoStore.user.id,
             recipientId: targetId

@@ -7,6 +7,7 @@ const NODE_ENV = process.env.NODE_ENV
 import { onLoginOrRegister, onLoginSuccess, winTitleOp,onGetLocalStore,onSetLocalStore } from './ipc'
 import Tray = electron.Tray;
 import Menu = electron.Menu;
+import { loginSqlite3Client } from './db/message';
 
 //electro窗体大小
 const login_width = 300;
@@ -46,6 +47,8 @@ function createWindow(): void {
       contextIsolation: false//上下文隔离
     }
   })
+
+  loginSqlite3Client()
 
 
   //托盘

@@ -21,7 +21,7 @@ const setUserDate =(key,value)=>{
 }
 
 const getUserDate = ()=>{
-  return getDate(userId+key)
+  return getDate(userId)
 }
 
 const deleteUserDate = (key)=>{
