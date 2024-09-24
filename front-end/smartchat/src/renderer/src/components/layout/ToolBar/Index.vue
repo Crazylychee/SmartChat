@@ -1,14 +1,23 @@
 <template>
   <WeDragBox class="tool-bar">
     <div class="tool-box tool-top">
-      <img :src="useUserInfoStore?.user?.profilePicture" class="avatar no-drag" @click.stop="handleAvatarClick" />
+      <img
+        :src="useUserInfoStore?.user?.profilePicture"
+        class="avatar no-drag"
+        @click.stop="handleAvatarClick"
+      />
       <template v-for="menu in menuTop" :key="menu.icon">
         <a-badge :count="menu.unReadCount || 0" title="" :offset="[-16, 10]">
-          <i class="wechatfont no-drag" :title="menu.title" :class="[
-        useSystemStore.activeMenu === menu.icon
-          ? `active wechat-${menu.icon}`
-          : `wechat-${menu.icon}`
-      ]" @click="handleMenuClick(menu.icon)"></i>
+          <i
+            class="wechatfont no-drag"
+            :title="menu.title"
+            :class="[
+              useSystemStore.activeMenu === menu.icon
+                ? `active wechat-${menu.icon}`
+                : `wechat-${menu.icon}`
+            ]"
+            @click="handleMenuClick(menu.icon)"
+          ></i>
         </a-badge>
       </template>
       <!-- <i
@@ -25,12 +34,22 @@
       ></i> -->
     </div>
     <div class="tool-box tool-bottom">
-      <div class="tool-bottom-item" :class="[`tool-${menu.icon}`]" v-for="menu in menuBottom" :key="menu.icon"
-        @click="handleMenuClick(menu.icon)">
+      <div
+        class="tool-bottom-item"
+        :class="[`tool-${menu.icon}`]"
+        v-for="menu in menuBottom"
+        :key="menu.icon"
+        @click="handleMenuClick(menu.icon)"
+      >
         <i :class="[`no-drag wechatfont wechat-${menu.icon}`]" :title="menu.title"></i>
         <div class="tool-item-box" ref="toolHandler" v-if="activeToolBox === menu.icon">
           <template v-if="activeToolBox === 'applet'">
-            <img src="https://tucdn.wpon.cn/2023/08/25/c4a2e28062909.png" class="applet" alt="" srcset="" />
+            <img
+              src="https://tucdn.wpon.cn/2023/08/25/c4a2e28062909.png"
+              class="applet"
+              alt=""
+              srcset=""
+            />
             <!-- <img src="https://tucdn.wpon.cn/2023/08/25/dcc370d45d42f.png" class="applet" alt="" srcset=""> -->
             <p>使用微信 扫码体验</p>
           </template>
@@ -39,7 +58,12 @@
             <p class="phone phone-button"><i class="wechatfont wechat-files"></i>文件传输助手</p>
           </template>
           <template v-else>
-            <div v-for="menu in menus" class="menu-item" :key="menu.value" @click.stop="handleMenuClick(menu.value)">
+            <div
+              v-for="menu in menus"
+              class="menu-item"
+              :key="menu.value"
+              @click.stop="handleMenuClick(menu.value)"
+            >
               {{ menu.label }}
             </div>
           </template>
@@ -87,7 +111,7 @@ const menuTop = reactive([
   },
   {
     icon: 'collect',
-    title: '收藏'
+    title: 'AI助手'
   },
   {
     icon: 'files',
@@ -163,9 +187,11 @@ const menus = reactive([
 const timelineVisible = ref(false)
 // 点击工具栏icon
 const handleMenuClick = (type) => {
-  if (['chat', 'users', 'collect'].includes(type)) {
+  if (['chat', 'users'].includes(type)) {
     // 打开对应面板
     useSystemStore.activeMenu = type
+  } else if (type === 'collect') {
+    useSystemStore.activeMenu = 'ai'
   } else if (type === 'timeline') {
     // 打开朋友圈
     timelineVisible.value = true

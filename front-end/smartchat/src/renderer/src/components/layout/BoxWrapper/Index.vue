@@ -6,6 +6,7 @@
     <BoxChat v-else-if="useSystemStore.activeMenu === 'chat'" />
     <BoxAddressBook v-else-if="useSystemStore.activeMenu === 'users'" />
     <BoxCollect v-else-if="useSystemStore.activeMenu === 'collect'" />
+    <BoxAIChat v-else-if="useSystemStore.activeMenu === 'ai'" />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import BoxAddressBook from './BoxAddressBook.vue'
 import BoxCollect from './BoxCollect.vue'
 import BoxLocked from './BoxLocked.vue'
 import BoxLoading from './BoxLoading.vue'
+import BoxAIChat from './BoxAIChat.vue'
 
 import useStore from '../../../store'
 const { useSystemStore } = useStore()

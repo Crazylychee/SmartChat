@@ -27,11 +27,17 @@
         @click="handleAddFriend"
         v-if="useSystemStore.activeMenu === 'users'"
       ></i>
+      <i
+        class="wechatfont wechat-add no-drag"
+        @click="handleAddAIChat"
+        v-if="useSystemStore.activeMenu === 'ai'"
+      ></i>
     </WeDragBox>
     <div class="list-box">
       <ListChat v-show="useSystemStore.activeMenu === 'chat'" />
       <ListAddressBook v-show="useSystemStore.activeMenu === 'users'" />
       <ListCollect v-show="useSystemStore.activeMenu === 'collect'" />
+      <ListAIChat v-show="useSystemStore.activeMenu === 'ai'" />
     </div>
   </div>
 </template>
@@ -42,11 +48,14 @@ import { SearchOutlined, CloseCircleOutlined } from '@ant-design/icons-vue'
 import ListChat from './ListChat.vue'
 import ListAddressBook from './ListAddressBook.vue'
 import ListCollect from './ListCollect.vue'
+import ListAIChat from './ListAIChat.vue'
 import useStore from '../../../store'
 const { useSystemStore } = useStore()
 import { toast } from '../../../utils/feedback'
 import useDetectOutsideClick from '../../../hooks/useDetectOutsideClick'
+import { useAIStore } from '@/store/modules/ai'
 
+const AIStore = useAIStore()
 const isSearching = ref(false)
 // 搜索框文本修改时
 const handleSearchChange = (e) => {
@@ -90,6 +99,14 @@ const handleAddFriend = () => {
   toast({
     content: '添加好友'
   })
+}
+
+// 添加新AI对话
+const handleAddAIChat = () => {
+  toast({
+    content: '添加新AI对话'
+  })
+  AIStore.createChat()
 }
 </script>
 
