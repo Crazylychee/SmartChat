@@ -20,11 +20,11 @@
 
 <script setup>
 import { ref, watch } from 'vue'
-import useStore from '../../../store'
+import useStore from '@/store'
 const { useContextMenuStore, useChatStore } = useStore()
-import { toast } from '../../../utils/feedback'
-import { contextEnums, contextMenus } from '../../../utils/contextMenu'
-import Confirm from '../../../components/libs/confirm'
+import { toast } from '@/utils/feedback'
+import { contextEnums, contextMenus } from '@/utils/contextMenu'
+import Confirm from '@/components/libs/confirm'
 
 // 点击菜单条目
 const handleMenuClick = (type) => {

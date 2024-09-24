@@ -23,7 +23,7 @@ import { listSortByPinyin } from '../utils/Utils'
 import ToolBar from './layout/ToolBar/Index.vue'
 import ListWrapper from './layout/ListWrapper/Index.vue'
 import BoxWrapper from './layout/BoxWrapper/Index.vue'
-import ContextMenu from './common/ContextMenu/Index.vue'
+import ContextMenu from './common/ContextMenu.vue'
 import ResizeContainer from './common/ResizeContainer/Index.vue'
 
 // onMounted(() => {
