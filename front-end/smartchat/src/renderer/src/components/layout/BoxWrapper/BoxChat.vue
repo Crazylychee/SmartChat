@@ -1,17 +1,8 @@
 <template>
   <WeNoData v-if="noSelect" />
   <template v-else>
-    <perfect-scrollbar ref="perfectScrollbarRef">
-      <div class="chat-box">
-        <ChatItem
-          v-for="message in messageList"
-          :key="message.id"
-          :user-id="message.senderId"
-          :type="message.senderId === useUserInfoStore.user.id ? 'send' : 'receive'"
-          :content="message.text"
-        />
-      </div>
-    </perfect-scrollbar>
+    <ChatContainer :messageListToCheck="messageList"
+    :autoScrollBottom = "AutoScrollBottom"/>
     <div class="input-box">
       <div class="input-control">
         <div>
@@ -86,9 +77,8 @@ import { useFocus } from '@vueuse/core'
 import RelativeBox from '../../../components/common/RelativeBox/Index.vue'
 import UserInfo from '../../../components/common/UserInfo/Index.vue'
 import useStore from '../../../store'
-const { useChatStore, useContextMenuStore, useUserInfoStore, useRelativeBoxStore } = useStore()
-import ChatItem from '@/components/common/ChatItem.vue'
-
+const { useChatStore, useContextMenuStore, useUserInfoStore } = useStore()
+import ChatContainer from '@/components/common/ChatContainer.vue'
 import 'ant-design-vue/dist/reset.css'
 import 'perfect-scrollbar/css/perfect-scrollbar.css'
 import '@/assets/icon/iconfont.css'
@@ -144,17 +134,14 @@ const userInfo = ref({})
 // }
 
 const perfectScrollbarRef = ref(null)
+const AutoScrollBottom = ref(false)
 onMounted(() => {
   autoScrollBottom()
 })
 
 // 自动滚动至底部
 const autoScrollBottom = () => {
-  nextTick(() => {
-    if (perfectScrollbarRef?.value?.$el?.scrollHeight) {
-      perfectScrollbarRef.value.$el.scrollTop = perfectScrollbarRef.value.$el.scrollHeight
-    }
-  })
+  AutoScrollBottom.value = AutoScrollBottom.value ? false : true;
 }
 
 // 监听当聊天对象切换时，展示对应的聊天内容
@@ -253,6 +240,9 @@ function onEmojiSelect(emoji) {
   }
   onClose()
 }
+
+
+
 
 // const handlePressEnter = (e) => {
 //   if (!e.ctrlKey && useChatStore.sendMethods === "enter") {
