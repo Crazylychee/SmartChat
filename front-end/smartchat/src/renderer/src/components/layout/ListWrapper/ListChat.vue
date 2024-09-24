@@ -18,11 +18,13 @@
 </template>
 
 <script setup>
+import { watch } from 'vue'
 import useStore from '@/store'
 const { useChatStore } = useStore()
 import ListChatItem from '@/components/common/ListChatItem.vue'
 
 const chatLists = useChatStore.latestMessages
+watch(() => useChatStore.latestMessages)
 </script>
 
 <style lang="less" scoped>

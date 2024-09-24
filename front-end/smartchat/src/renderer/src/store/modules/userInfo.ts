@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { useTurmsClient } from '@/services/turms'
+import { useTurmsClient, loginVerifier } from '@/services/turms'
 import { reactive, ref } from 'vue'
 import type { ParsedModel } from 'turms-client-js'
 
@@ -62,9 +62,11 @@ export const useUserInfoStore = defineStore('userInfo', () => {
 
     const { client } = useTurmsClient()
 
-    const respond = await client.userService.queryUserProfiles({
-      userIds: [userId]
-    })
+    const respond = await loginVerifier(() =>
+      client.userService.queryUserProfiles({
+        userIds: [userId]
+      })
+    )
 
     if (respond.code === 1000) {
       const userInfo = respond.data
@@ -89,10 +91,16 @@ export const useUserInfoStore = defineStore('userInfo', () => {
     }
 
     try {
-      const respond = await client.userService.queryUserProfiles({
-        userIds: [user.value.id],
-        lastUpdatedDate: user.value.lastUpadteDate
-      })
+      const respond = await loginVerifier(() =>
+        client.userService.queryUserProfiles({
+          userIds: [user.value.id],
+          lastUpdatedDate: user.value.lastUpadteDate
+        })
+      )
+      // const respond = await client.userService.queryUserProfiles({
+      //   userIds: [user.value.id],
+      //   lastUpdatedDate: user.value.lastUpadteDate
+      // })
 
       if (respond.code === 1000) {
         const userInfo = respond.data

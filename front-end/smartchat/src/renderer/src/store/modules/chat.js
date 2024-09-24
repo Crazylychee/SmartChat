@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import dayjs from 'dayjs'
 import { guid } from '../../utils/Utils'
 import { message } from 'ant-design-vue'
-import { useTurmsClient } from '../../services/turms'
+import { useTurmsClient, loginVerifier } from '../../services/turms'
 import { useUserInfoStore } from './userInfo'
 
 export const useChatStore = defineStore('chat', {
@@ -282,8 +282,7 @@ export const useChatStore = defineStore('chat', {
       const listener = (message, messageAddition) => {
         this.messageList.push(message)
       }
-
-      client.messageService.addMessageListener(listener)
+      loginVerifier(() => client.messageService.addMessageListener(listener))
 
       return () => {
         client.messageService.removeMessageListener({ listener })
@@ -313,30 +312,33 @@ export const useChatStore = defineStore('chat', {
         burnAfter,
         preMessageId
       })
-      client.messageService
-        .sendMessage({
-          isGroupMessage,
-          targetId,
-          deliveryDate,
-          text,
-          records,
-          burnAfter,
-          preMessageId
-        })
-        .then((result) => {
-          const id = result.data
-          const userInfoStore = useUserInfoStore()
-          const message = {
-            id,
-            deliveryDate: new Date(),
-            text: text + new Date(),
+
+      loginVerifier(() => {
+        client.messageService
+          .sendMessage({
+            isGroupMessage,
+            targetId,
+            deliveryDate,
+            text,
             records,
-            senderId: userInfoStore.user.id,
-            recipientId: targetId
-          }
-          console.log('发送消息成功', message)
-          this.messageList.push(message)
-        })
+            burnAfter,
+            preMessageId
+          })
+          .then((result) => {
+            const id = result.data
+            const userInfoStore = useUserInfoStore()
+            const message = {
+              id,
+              deliveryDate: new Date(),
+              text: text + new Date(),
+              records,
+              senderId: userInfoStore.user.id,
+              recipientId: targetId
+            }
+            console.log('发送消息成功', message)
+            this.messageList.push(message)
+          })
+      })
     }
   },
   getters: {
