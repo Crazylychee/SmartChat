@@ -29,31 +29,32 @@ import Confirm from '../../../components/libs/confirm'
 // 点击菜单条目
 const handleMenuClick = (type) => {
   const carryEntryInfo = useContextMenuStore.carryEntryInfo
-  if (type === 'toTop') {
-    useChatStore.chatList.map((item) => {
-      if (item.friendId === carryEntryInfo.friendId) {
-        item['isTop'] = true
-      }
-    })
-  } else if (type === 'unTop') {
-    useChatStore.chatList.map((item) => {
-      if (item.friendId === carryEntryInfo.friendId) {
-        item['isTop'] = false
-      }
-    })
-  } else if (type === 'unRead') {
-    useChatStore.chatList.map((item) => {
-      if (item.friendId === carryEntryInfo.friendId) {
-        item['unReadCount'] = 1
-      }
-    })
-  } else if (type === 'hasRead') {
-    useChatStore.chatList.map((item) => {
-      if (item.friendId === carryEntryInfo.friendId) {
-        item['unReadCount'] = 0
-      }
-    })
-  } else if (type === 'deleteChat') {
+  // if (type === 'toTop') {
+  //   useChatStore.chatList.map((item) => {
+  //     if (item.friendId === carryEntryInfo.friendId) {
+  //       item['isTop'] = true
+  //     }
+  //   })
+  // } else if (type === 'unTop') {
+  //   useChatStore.chatList.map((item) => {
+  //     if (item.friendId === carryEntryInfo.friendId) {
+  //       item['isTop'] = false
+  //     }
+  //   })
+  // } else if (type === 'unRead') {
+  //   useChatStore.chatList.map((item) => {
+  //     if (item.friendId === carryEntryInfo.friendId) {
+  //       item['unReadCount'] = 1
+  //     }
+  //   })
+  // } else if (type === 'hasRead') {
+  //   useChatStore.chatList.map((item) => {
+  //     if (item.friendId === carryEntryInfo.friendId) {
+  //       item['unReadCount'] = 0
+  //     }
+  //   })
+  // } else if (type === 'deleteChat') {
+  if (type === 'deleteChat') {
     // 删除聊天
     Confirm({
       text: '删除聊天后，将同时删除聊天记录，包括聊天中的文件、图片、视频等内容。',
@@ -62,16 +63,13 @@ const handleMenuClick = (type) => {
       confirmColor: '#FF3333'
     })
       .then(() => {
+        console.log('删除聊天', carryEntryInfo)
         // 执行删除
         if (useChatStore.activeChat === carryEntryInfo.friendId) {
           // 如果当前删除的聊天是打开的聊天，关闭高亮
           useChatStore.activeChat = ''
         }
-        delete useChatStore.chatInfos[carryEntryInfo.friendId]
-        useChatStore.chatList.splice(
-          useChatStore.chatList.findIndex((item) => item.friendId === carryEntryInfo.friendId),
-          1
-        )
+        useChatStore.deleteChatByUserId(carryEntryInfo.friendId)
       })
       .catch(() => {})
   } else if (type === 'hideChat') {

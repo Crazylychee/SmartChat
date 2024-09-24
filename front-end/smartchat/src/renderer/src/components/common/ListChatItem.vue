@@ -44,7 +44,7 @@ const props = defineProps({
 })
 
 const userInfoStore = useUserInfoStore()
-const { useChatStore, useSystemStore, useContextMenuStore } = useStore()
+const { useChatStore, useContextMenuStore } = useStore()
 
 // 点击聊天列表
 // TODO: 完成未读消息对接
@@ -65,7 +65,9 @@ const handleChatClick = () => {
 // 点击右键展示自定义菜单
 const rightClicked = (e) => {
   e.preventDefault()
-  // useContextMenuStore.showContextMenu(e.clientX, e.clientY, 'chat', chat)
+  useContextMenuStore.showContextMenu(e.clientX, e.clientY, 'chat', {
+    friendId: props.userId
+  })
 }
 
 const { data, error, loading } = useRequest<UserInfo>(() => userInfoStore.getUserInfo(props.userId))

@@ -337,6 +337,12 @@ export const useChatStore = defineStore('chat', {
           console.log('发送消息成功', message)
           this.messageList.push(message)
         })
+    },
+    deleteChatByUserId(userId) {
+      console.log('deleteChaByUserId', userId)
+      this.messageList = this.messageList.filter(
+        (item) => item.senderId !== userId && item.recipientId !== userId
+      )
     }
   },
   getters: {
