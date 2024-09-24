@@ -4,6 +4,7 @@ import { guid } from '../../utils/Utils'
 import { message } from 'ant-design-vue'
 import { useTurmsClient } from '../../services/turms'
 import { useUserInfoStore } from './userInfo'
+import { beautify } from '../../utils/Utils'
 
 export const useChatStore = defineStore('chat', {
   state: () => {
@@ -217,10 +218,9 @@ export const useChatStore = defineStore('chat', {
             })
           }
 
-          const that = this
-          async function setBase64Url(file) {
+          function setBase64Url(file) {
             try {
-              const base64Url = await getBase64(file)
+              const base64Url = getBase64(file)
               // 由于使用了 await，base64Url 现在包含了结果
               console.log(base64Url)
               that.chatInfos[activeChat].push({
@@ -245,7 +245,7 @@ export const useChatStore = defineStore('chat', {
             createTime: dayjs().format('YYYY-MM-DD HH:mm:ss')
           })
         }
-        console.log(this.chatInfos[activeChat], 'this.chatInfos[activeChat]')
+
 
         this.chatInfos[activeChat].push({
           id: guid(),
@@ -253,7 +253,7 @@ export const useChatStore = defineStore('chat', {
           File: content,
           createTime: dayjs().format('YYYY-MM-DD HH:mm:ss')
         })
-        console.log(this.chatInfos[activeChat], 'this.chatInfos[activeChat]')
+
       } else {
         this.chatInfos[activeChat].push({
           id: guid(),
@@ -262,8 +262,34 @@ export const useChatStore = defineStore('chat', {
           createTime: dayjs().format('YYYY-MM-DD HH:mm:ss')
         })
       }
-      console.log(this.chatInfos[activeChat], 'this.chatInfos[activeChat]')
+
     },
+
+
+    /**
+     * 获取离线消息
+     * @param maxCount 最大消息数量(不填只能获取一条消息)
+     * @param areGroupMessages(是否群聊消息，用于区分群聊和私聊消息)
+     */
+    async getOfflineMessages(maxCount, areGroupMessages) {
+      const { client } = useTurmsClient();
+      try {
+        const res = await client.messageService.queryMessagesWithTotal({
+          areGroupMessages: areGroupMessages,
+          maxCount: maxCount
+        });
+
+        for (let i = 0; i < res.data.length; i++) {
+          this.messageList= this.messageList.concat(res.data[i].messages)
+        }
+
+      } catch (error) {
+        console.log(`Failed to query offline messages ${beautify(error)}`);
+      }
+    },
+
+
+
     /**
      * 将聊天前移
      * @param {string} activeChat 当前聊天

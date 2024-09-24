@@ -38,7 +38,7 @@ const onClose = () => {
 function handletextareaBlur(event) {
   // 更新文本区域内容
   const currentText = event.target.value
-  console.log(event.target.value)
+
   inputRef.value = currentText
 }
 function onEmojiSelect(emoji) {

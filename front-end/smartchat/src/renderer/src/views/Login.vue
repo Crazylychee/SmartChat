@@ -123,6 +123,8 @@
 import { ref, reactive, getCurrentInstance, nextTick, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { loginTurmsClient } from '@/services/turms'
+import useStore from '@/store'
+const { useChatStore } = useStore()
 
 const router = useRouter()
 const { proxy } = getCurrentInstance()
@@ -210,8 +212,9 @@ const submit = async () => {
           const { userId, password } = res.data
 
           showLoading.value = true
-
           console.log('正在登录。。。')
+
+
 
           // 登录成功后跳转到主页
           loginTurmsClient(userId, password).then(() => {
@@ -230,6 +233,8 @@ const submit = async () => {
             }
 
             router.push('/main')
+            //获取私聊离线历史消息
+            useChatStore.getOfflineMessages(import.meta.env.RENDERER_VITE_MAX_OFFLINE_MESSAGES_NUM, false)
           })
 
           // 延迟两秒再结束加载动画
