@@ -215,16 +215,20 @@ const submit = async () => {
 
           // 登录成功后跳转到主页
           loginTurmsClient(userId, password).then(() => {
-            // 数据没有实际意义，只是不想动
-            window.ipcRenderer.send('openChat', {
-              email: formData.value.email,
-              token: 'token',
-              userId: 1,
-              nickName: 1,
-              admin: 1,
-              screenWidth: window.screen.width,
-              screenHeight: window.screen.height
-            })
+            // 在electron环境下，调整窗口大小
+            if (navigator.userAgent.toLowerCase().indexOf('electron') > -1) {
+              // 数据没有实际意义，只是不想动
+              window.ipcRenderer.send('openChat', {
+                email: formData.value.email,
+                token: 'token',
+                userId: 1,
+                nickName: 1,
+                admin: 1,
+                screenWidth: window.screen.width,
+                screenHeight: window.screen.height
+              })
+            }
+
             router.push('/main')
           })
 
