@@ -40,8 +40,8 @@ function setupClient(container, client, userId, password, targetId) {
         .then(() => {
             appendContainer(container, `login: User ${userId} has logged in`);
             client.messageService.queryMessagesWithTotal({
-                ids: ['1'],
-                areGroupMessages:false
+                areGroupMessages:false,
+              maxCount: 10
             })
                 .then(res => appendContainer(container, `Offline messages: ${beautify(res.data)}`))
                 .catch(error => appendContainer(container, `failed to query offline messages ${beautify(error)}`, true));
@@ -59,6 +59,8 @@ function setupClient(container, client, userId, password, targetId) {
                     clearInterval(intervalId);
                 }
             }, 2000);
+
+
 
             client.userService.queryUserProfiles({  // 查询用户信息
                 userIds: ['1', '2']
