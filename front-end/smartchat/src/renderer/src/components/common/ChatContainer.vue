@@ -1,5 +1,6 @@
 <template>
   <perfect-scrollbar ref="perfectScrollbarRef">
+    <div ref="topSentinel" class="scroll-trigger"></div>
     <div class="chat-box">
       <ChatItem
         v-for="message in messageListToCheck"
@@ -24,6 +25,12 @@ import ChatItem from './ChatItem.vue'; // 假设 ChatItem 组件已经定义
 const {useUserInfoStore } = useStore();
 const perfectScrollbarRef = ref(null);
 
+const topSentinel = ref(null);
+const chatContainer = ref(null);
+let observer = null;
+let timeoutId = null;
+
+const emit = defineEmits(['trigger']);
 
 const props = defineProps({
   messageListToCheck: {
@@ -36,10 +43,40 @@ const props = defineProps({
   },
 });
 
-onMounted(() => {
-  autoScrollBottomFunction()
-})
 
+
+onMounted(() => {
+
+  autoScrollBottomFunction();
+  if (topSentinel.value) {
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // 当元素进入视口时，设置一个 1 秒的定时器
+        timeoutId = setTimeout(() => {
+          emit('trigger'); // 触发 'trigger' 事件
+        }, 1000);
+      } else {
+        // 当元素离开视口时，清除定时器
+        clearTimeout(timeoutId);
+      }
+    });
+  }, {
+    threshold: 0.5, // 当元素的 50% 进入视口时触发
+  });
+
+  observer.observe(topSentinel.value);
+  }
+
+});
+
+
+
+onUnmounted(() => {
+  if (observer) {
+    observer.disconnect();
+  }
+});
 
 // 监听 autoScrollBottom 属性的变化
 watch(() => props.autoScrollBottom, (newValue) => {
@@ -160,5 +197,22 @@ const autoScrollBottomFunction = () => {
       }
     }
   }
+}
+
+
+.scroll-trigger {
+  padding: 20px;
+  background-color: #f0f0f0;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.2em;
+  color: #333;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.scroll-trigger:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
 }
 </style>

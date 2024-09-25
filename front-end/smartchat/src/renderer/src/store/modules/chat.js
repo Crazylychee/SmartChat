@@ -274,9 +274,14 @@ export const useChatStore = defineStore('chat', {
     async getOfflineMessages(maxCount, areGroupMessages) {
       const { client } = useTurmsClient();
       try {
+        const day = new Date();
         const res = await client.messageService.queryMessagesWithTotal({
+          fromIds: ["1","2"],
           areGroupMessages: areGroupMessages,
-          maxCount: maxCount
+          maxCount: maxCount,
+          deliveryDateStart: new Date(day.setDate(day.getDate() - 1)),
+          deliveryDateEnd: new Date(),
+          descending: true,
         });
 
         for (let i = 0; i < res.data.length; i++) {
@@ -319,6 +324,18 @@ export const useChatStore = defineStore('chat', {
       return this.messageList
         .filter((message) => message.senderId === senderId || message.recipientId === senderId)
         .sort((a, b) => a.deliveryDate - b.deliveryDate)
+    },
+    loadMoreMessages(WatchNum,senderId) {
+      console.log('WatchNum', WatchNum)
+      console.log('senderId', senderId)
+      let messageList = this.getMessageListBySenderId(senderId)
+      console.log('messageList', messageList)
+      let messageListres = messageList.reverse().
+      slice(0,WatchNum+15).reverse()
+
+      console.log('messageList', messageListres)
+
+      return messageListres;
     },
     sendMessage({
       isGroupMessage,

@@ -1,8 +1,9 @@
 <template>
   <WeNoData v-if="noSelect" />
   <template v-else>
-    <ChatContainer :messageListToCheck="messageList"
-    :autoScrollBottom = "AutoScrollBottom"/>
+    <ChatContainer :messageListToCheck="messageListToSee"
+    :autoScrollBottom = "AutoScrollBottom"
+    @trigger="loadMoreMessages"/>
     <div class="input-box">
       <div class="input-control">
         <div>
@@ -89,7 +90,8 @@ import eventBus from '../../../utils/eventBus'
 // import BoxEmoji from "./BoxEmoji.vue"
 
 const messageList = ref([])
-
+const messageListToSee = ref([])
+const messageWatchNum = ref(0)
 // 点击头像展示信息
 const infoVisible = ref(false)
 const userInfo = ref({})
@@ -137,6 +139,7 @@ const perfectScrollbarRef = ref(null)
 const AutoScrollBottom = ref(false)
 onMounted(() => {
   autoScrollBottom()
+  loadMoreMessages()
 })
 
 // 自动滚动至底部
@@ -152,6 +155,17 @@ const { focused: inputFocus } = useFocus(input, { initialValue: true })
 
 // const friendInfo = ref({})
 
+const loadMoreMessages = () => {
+  messageListToSee.value = useChatStore.loadMoreMessages(messageWatchNum.value,useChatStore.activeChat)
+  messageWatchNum.value = messageListToSee.value.length
+}
+
+async function asyncloadMoreMessages() {
+  await loadMoreMessages()
+  autoScrollBottom()
+}
+
+
 watch(
   [
     () => useChatStore.activeChat,
@@ -161,7 +175,7 @@ watch(
     noSelect.value = !activeChat
     inputFocus.value = true
     if (activeChat) {
-      messageList.value = useChatStore.getMessageListBySenderId(activeChat)
+      asyncloadMoreMessages()
     }
     autoScrollBottom()
   },
@@ -178,6 +192,12 @@ watch(
 // const handletextareaBlur = () => {
 //   useChatStore.isFocusSendArea = false;
 // }
+
+
+
+
+
+
 
 // 发送聊天信息
 const inputText = ref('')
@@ -240,7 +260,6 @@ function onEmojiSelect(emoji) {
   }
   onClose()
 }
-
 
 
 
