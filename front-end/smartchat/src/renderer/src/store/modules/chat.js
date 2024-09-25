@@ -4,7 +4,7 @@ import { guid } from '../../utils/Utils'
 import { message } from 'ant-design-vue'
 import { useTurmsClient } from '../../services/turms'
 import { useUserInfoStore } from './userInfo'
-import { beautify } from '../../utils/Utils'
+
 
 export const useChatStore = defineStore('chat', {
   state: () => {
@@ -140,42 +140,6 @@ export const useChatStore = defineStore('chat', {
         ]
       },
       messageList: [
-        {
-          id: '7503506422367326208',
-          deliveryDate: new Date('2024-09-21T20:49:33.457'),
-          text: '默认消息方便测试 2',
-          records: [],
-          senderId: '2',
-          recipientId: '1',
-          customAttributes: []
-        },
-        {
-          id: '7494499223104360448',
-          deliveryDate: new Date('2024-09-21T20:49:31.449'),
-          text: '默认消息方便测试 1',
-          records: [],
-          senderId: '2',
-          recipientId: '1',
-          customAttributes: []
-        },
-        {
-          id: '2954871144030208000',
-          deliveryDate: new Date('2024-09-22T20:14:01.550'),
-          text: '默认消息方便测试 我发送的消息',
-          records: [],
-          senderId: '1',
-          recipientId: '2',
-          customAttributes: []
-        },
-        {
-          id: '7512513621630259200',
-          deliveryDate: new Date('2024-09-21T20:49:35.457'),
-          text: '默认消息方便测试 3',
-          records: [],
-          senderId: '2',
-          recipientId: '1',
-          customAttributes: []
-        }
       ],
       // 聊天记录
       activeChat: '', // 当前聚焦的聊天对象id
