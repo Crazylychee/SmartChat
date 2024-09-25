@@ -39,43 +39,45 @@ function setupClient(container, client, userId, password, targetId) {
     })
         .then(() => {
             appendContainer(container, `login: User ${userId} has logged in`);
-            client.messageService.queryMessagesWithTotal({
-                areGroupMessages:false,
-              maxCount: 10
+            client.messageService.queryMessages({
+              areGroupMessages:false,
+              fromIds: ["1","2"],
+              maxCount: 1000,
+              descending:true
             })
                 .then(res => appendContainer(container, `Offline messages: ${beautify(res.data)}`))
                 .catch(error => appendContainer(container, `failed to query offline messages ${beautify(error)}`, true));
-            const intervalId = setInterval(() => {
-                if (client.driver.isConnected) {
-                    client.messageService.sendMessage({
-                        areGroupMessages: false,
-                        targetId,
-                        text: "Hello Turms, My userId is " + userId,
-                        burnAfter: 30
-                    })
-                        .then(res => appendContainer(container, `message ${res.data} has been sent`))
-                        .catch(error => appendContainer(container, `failed to send message: ${beautify(error)}`, true));
-                } else {
-                    clearInterval(intervalId);
-                }
-            }, 2000);
+            // const intervalId = setInterval(() => {
+            //     if (client.driver.isConnected) {
+            //         client.messageService.sendMessage({
+            //             areGroupMessages: false,
+            //             targetId,
+            //             text: "Hello Turms, My userId is " + userId,
+            //             burnAfter: 30
+            //         })
+            //             .then(res => appendContainer(container, `message ${res.data} has been sent`))
+            //             .catch(error => appendContainer(container, `failed to send message: ${beautify(error)}`, true));
+            //     } else {
+            //         clearInterval(intervalId);
+            //     }
+            // }, 2000);
 
 
 
-            client.userService.queryUserProfiles({  // 查询用户信息
-                userIds: ['1', '2']
-            })
-                .then(res => appendContainer(container, `User profiles: ${beautify(res.data)}`))
-                .catch(error => appendContainer(container, `failed to query user profiles: ${beautify(error)}`, true));
-
-            client.groupService.createGroup({
-                name: 'Turms Developers Group',
-                intro: 'This is a group for the developers who are interested in Turms',
-                announcement: 'nope',
-                typeId:2045132651273928704
-            })
-                .then(res => appendContainer(container, `group ${res.data} has been created`))
-                .catch(error => appendContainer(container, `failed to create group: ${beautify(error)}`, true));
+            // client.userService.queryUserProfiles({  // 查询用户信息
+            //     userIds: ['1', '2']
+            // })
+            //     .then(res => appendContainer(container, `User profiles: ${beautify(res.data)}`))
+            //     .catch(error => appendContainer(container, `failed to query user profiles: ${beautify(error)}`, true));
+            //
+            // client.groupService.createGroup({
+            //     name: 'Turms Developers Group',
+            //     intro: 'This is a group for the developers who are interested in Turms',
+            //     announcement: 'nope',
+            //     typeId:2045132651273928704
+            // })
+            //     .then(res => appendContainer(container, `group ${res.data} has been created`))
+            //     .catch(error => appendContainer(container, `failed to create group: ${beautify(error)}`, true));
         })
         .catch(reason => appendContainer(container, `failed to log in ${beautify(reason)}`, true));
 }
