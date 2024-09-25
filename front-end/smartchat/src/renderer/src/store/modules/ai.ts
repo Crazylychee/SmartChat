@@ -10,6 +10,8 @@ type Chat = {
   id: string
   update: Date
   model: string
+  type: 'chat' | 'chathistory'
+  isLoading: boolean
 }
 
 type ChatConfig = {
@@ -18,6 +20,7 @@ type ChatConfig = {
   id?: string
   update?: Date
   model?: string
+  type?: 'chat' | 'chathistory'
 }
 
 type Chats = Record<string, Chat>
@@ -35,18 +38,26 @@ export const useAIStore = defineStore('ai', () => {
       title: 'AI Chat',
       id: '1',
       update: new Date(),
-      model: defaultModel
+      model: defaultModel,
+      type: 'chat',
+      isLoading: false
     }
   })
 
+  const chat = () => {
+    return chats[activeChatId.value]
+  }
+
   const createChat = async (config?: ChatConfig) => {
     const chatId = Date.now().toString()
-    const defaultConfig = {
+    const defaultConfig: Chat = {
       messages: [...defaultMessages],
       title: '新的聊天',
       id: chatId,
       update: new Date(),
-      model: defaultModel
+      model: defaultModel,
+      type: 'chat',
+      isLoading: false
     }
     const chat: Chat = { ...defaultConfig, ...config }
     chats[chat.id] = chat
@@ -68,6 +79,7 @@ export const useAIStore = defineStore('ai', () => {
     const chat = chats[chatId]
     chat.messages.push({ role: 'user', content })
     console.log('chatWithAI messages', chat.messages[chatId])
+    chat.isLoading = true
     ai.chat.completions
       .create({
         model: defaultModel,
@@ -78,8 +90,13 @@ export const useAIStore = defineStore('ai', () => {
         console.log('chatWithAI message', message)
         chat.messages.push(message)
         chat.update = new Date()
+        chat.isLoading = false
+      })
+      .catch((error) => {
+        console.error('chatWithAI error', error)
+        chat.isLoading = false
       })
   }
 
-  return { activeChatId, chats, createChat, chatWithAI, activeChat }
+  return { activeChatId, chats, chat, createChat, chatWithAI, activeChat }
 })

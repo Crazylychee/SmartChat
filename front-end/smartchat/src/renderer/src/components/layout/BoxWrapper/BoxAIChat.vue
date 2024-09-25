@@ -3,12 +3,12 @@
   <template v-else>
     <perfect-scrollbar ref="perfectScrollbarRef">
       <div class="chat-box">
-        <AIChatItem
-          v-for="(message, index) in messageList"
-          :key="index"
-          :type="message.role"
-          :content="message.content"
-        />
+        <AIChatItem v-for="(message, index) in messageList" :key="index" :type="message.role">
+          {{ message.content }}
+        </AIChatItem>
+        <AIChatItem v-if="AIStore.chats[AIStore.activeChatId].isLoading" :type="assistant"
+          ><a-spin :indicator="indicator"
+        /></AIChatItem>
       </div>
     </perfect-scrollbar>
     <div class="input-box">
@@ -88,7 +88,6 @@ import useStore from '../../../store'
 import { useAIStore } from '@/store/modules/ai'
 const AIStore = useAIStore()
 const { useChatStore, useContextMenuStore, useUserInfoStore, useRelativeBoxStore } = useStore()
-import ChatItem from '@/components/common/ChatItem.vue'
 
 import 'ant-design-vue/dist/reset.css'
 import 'perfect-scrollbar/css/perfect-scrollbar.css'
@@ -96,8 +95,15 @@ import '@/assets/icon/iconfont.css'
 import 'element-plus/dist/index.css'
 import '@/global.less'
 
-import eventBus from '../../../utils/eventBus'
 import AIChatItem from '@/components/common/AIChatItem.vue'
+import { LoadingOutlined } from '@ant-design/icons-vue'
+import { h } from 'vue'
+const indicator = h(LoadingOutlined, {
+  style: {
+    fontSize: '14px'
+  },
+  spin: true
+})
 // import BoxEmoji from "./BoxEmoji.vue"
 
 const messageList = ref([])
