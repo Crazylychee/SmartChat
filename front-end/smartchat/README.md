@@ -8,13 +8,21 @@ An Electron application with Vue and TypeScript
 
 ## Project Setup
 
-### Install
+### 先编译 turms-client-js
+
+```shell
+cd turms-client-js
+npm run quick-build
+
+```
+
+### Install 主项目依赖
 
 ```bash
 $ npm install
 ```
 
-### Development
+### 运行开发版 Development
 
 ```bash
 $ npm run dev
