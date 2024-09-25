@@ -57,7 +57,7 @@
       </div>
       <div class="input-btn">
         <a-tooltip placement="topRight" trigger="click">
-          <template #title v-if="!inputText">不能发送空白信息</template>
+          <template #title v-if="!inputText.trim()">不能发送空白信息</template>
           <button @click="sendMsg">发送(S)</button>
         </a-tooltip>
       </div>
@@ -194,7 +194,7 @@ watch(
 // 发送聊天信息
 const inputText = ref('')
 const sendMsg = () => {
-  if (!inputText.value) {
+  if (!inputText.value.trim()) {
     return
   }
   // useChatStore.sendMessage({
