@@ -41,7 +41,8 @@ const onClick: MenuProps['onClick'] = async ({ key }) => {
 
       AIStore.createChat({
         title: '根据聊天向AI提问',
-        messages: [chatToPrompt(chat)]
+        messages: [chatToPrompt(chat)],
+        type: 'chathistory'
       }).then((chatId) => {
         AIStore.activeChat(chatId)
       })
@@ -49,7 +50,8 @@ const onClick: MenuProps['onClick'] = async ({ key }) => {
     case '总结对话':
       AIStore.createChat({
         title: '总结对话',
-        messages: [chatToPrompt(chat)]
+        messages: [chatToPrompt(chat)],
+        type: 'chathistory'
       }).then((chatId) => {
         AIStore.activeChat(chatId)
         AIStore.chatWithAI('总结对话')
@@ -58,7 +60,8 @@ const onClick: MenuProps['onClick'] = async ({ key }) => {
     case '生成回复':
       AIStore.createChat({
         title: '生成回复',
-        messages: [chatToPrompt(chat)]
+        messages: [chatToPrompt(chat)],
+        type: 'chathistory'
       }).then((chatId) => {
         AIStore.activeChat(chatId)
         AIStore.chatWithAI('生成回复')

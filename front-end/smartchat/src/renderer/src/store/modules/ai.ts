@@ -12,6 +12,7 @@ type Chat = {
   model: string
   type: 'chat' | 'chathistory'
   isLoading: boolean
+  customAttributes: object
 }
 
 type ChatConfig = {
@@ -39,8 +40,9 @@ export const useAIStore = defineStore('ai', () => {
       id: '1',
       update: new Date(),
       model: defaultModel,
-      type: 'chat',
-      isLoading: false
+      type: 'chathistory',
+      isLoading: false,
+      customAttributes: { chathistoryId: '1', chathistoryName: '管理员' }
     }
   })
 
@@ -57,7 +59,8 @@ export const useAIStore = defineStore('ai', () => {
       update: new Date(),
       model: defaultModel,
       type: 'chat',
-      isLoading: false
+      isLoading: false,
+      customAttributes: {}
     }
     const chat: Chat = { ...defaultConfig, ...config }
     chats[chat.id] = chat
