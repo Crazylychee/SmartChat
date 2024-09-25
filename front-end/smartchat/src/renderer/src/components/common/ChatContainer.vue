@@ -200,19 +200,5 @@ const autoScrollBottomFunction = () => {
 }
 
 
-.scroll-trigger {
-  padding: 20px;
-  background-color: #f0f0f0;
-  border: 2px dashed #ccc;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 1.2em;
-  color: #333;
-  transition: background-color 0.3s, transform 0.3s;
-}
 
-.scroll-trigger:hover {
-  background-color: #e0e0e0;
-  transform: scale(1.05);
-}
 </style>
