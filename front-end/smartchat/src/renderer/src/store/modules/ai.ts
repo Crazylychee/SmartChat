@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
 import { ai, defaultMessages, defaultModel } from '@/ai/openai'
 import type { AIMessage } from '@/ai/openai'
+import { useSystemStore } from './system'
 
 type Chat = {
   messages: AIMessage[]
@@ -11,9 +12,19 @@ type Chat = {
   model: string
 }
 
+type ChatConfig = {
+  messages?: AIMessage[]
+  title?: string
+  id?: string
+  update?: Date
+  model?: string
+}
+
 type Chats = Record<string, Chat>
 
 export const useAIStore = defineStore('ai', () => {
+  const systemStore = useSystemStore()
+
   const activeChatId = ref('1')
   const chats = reactive<Chats>({
     '1': {
@@ -28,15 +39,23 @@ export const useAIStore = defineStore('ai', () => {
     }
   })
 
-  const createChat = async (title = '新的聊天') => {
-    const chat: Chat = {
+  const createChat = async (config?: ChatConfig) => {
+    const chatId = Date.now().toString()
+    const defaultConfig = {
       messages: [...defaultMessages],
-      title,
-      id: Date.now().toString(),
+      title: '新的聊天',
+      id: chatId,
       update: new Date(),
       model: defaultModel
     }
+    const chat: Chat = { ...defaultConfig, ...config }
     chats[chat.id] = chat
+    return chatId
+  }
+
+  const activeChat = (chatId: string) => {
+    systemStore.activeMenu = 'ai'
+    activeChatId.value = chatId
   }
 
   const chatWithAI = async (content) => {
@@ -62,5 +81,5 @@ export const useAIStore = defineStore('ai', () => {
       })
   }
 
-  return { activeChatId, chats, createChat, chatWithAI }
+  return { activeChatId, chats, createChat, chatWithAI, activeChat }
 })

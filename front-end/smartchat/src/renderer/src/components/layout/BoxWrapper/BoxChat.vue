@@ -1,9 +1,11 @@
 <template>
   <WeNoData v-if="noSelect" />
   <template v-else>
-    <ChatContainer :messageListToCheck="messageListToSee"
-    :autoScrollBottom = "AutoScrollBottom"
-    @trigger="loadMoreMessages"/>
+    <ChatContainer
+      :messageListToCheck="messageListToSee"
+      :autoScrollBottom="AutoScrollBottom"
+      @trigger="loadMoreMessages"
+    />
     <div class="input-box">
       <div class="input-control">
         <div>
@@ -27,6 +29,11 @@
           <a-button class="file-btn">
             <i class="wechatfont wechat-history_message" title="聊天记录"></i
           ></a-button>
+          <AIButton>
+            <a-button class="file-btn">
+              <i class="wechatfont wechat-collect" title="AI助手"></i>
+            </a-button>
+          </AIButton>
         </div>
         <div>
           <a-button class="file-btn">
@@ -87,6 +94,7 @@ import 'element-plus/dist/index.css'
 import '@/global.less'
 
 import eventBus from '../../../utils/eventBus'
+import AIButton from '@/components/common/AIButton.vue'
 // import BoxEmoji from "./BoxEmoji.vue"
 
 const messageList = ref([])
@@ -144,7 +152,7 @@ onMounted(() => {
 
 // 自动滚动至底部
 const autoScrollBottom = () => {
-  AutoScrollBottom.value = AutoScrollBottom.value ? false : true;
+  AutoScrollBottom.value = AutoScrollBottom.value ? false : true
 }
 
 // 监听当聊天对象切换时，展示对应的聊天内容
@@ -156,7 +164,10 @@ const { focused: inputFocus } = useFocus(input, { initialValue: true })
 // const friendInfo = ref({})
 
 const loadMoreMessages = () => {
-  messageListToSee.value = useChatStore.loadMoreMessages(messageWatchNum.value,useChatStore.activeChat)
+  messageListToSee.value = useChatStore.loadMoreMessages(
+    messageWatchNum.value,
+    useChatStore.activeChat
+  )
   messageWatchNum.value = messageListToSee.value.length
 }
 
@@ -164,7 +175,6 @@ async function asyncloadMoreMessages() {
   await loadMoreMessages()
   autoScrollBottom()
 }
-
 
 watch(
   [
@@ -192,12 +202,6 @@ watch(
 // const handletextareaBlur = () => {
 //   useChatStore.isFocusSendArea = false;
 // }
-
-
-
-
-
-
 
 // 发送聊天信息
 const inputText = ref('')
@@ -260,8 +264,6 @@ function onEmojiSelect(emoji) {
   }
   onClose()
 }
-
-
 
 // const handlePressEnter = (e) => {
 //   if (!e.ctrlKey && useChatStore.sendMethods === "enter") {
