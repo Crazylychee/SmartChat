@@ -31,6 +31,8 @@ turms:
       enabled: false
     message:
       check-if-target-active-and-not-deleted: false
+      use-conversation-id: true
+
     mongo:
       admin:
         uri: ${MONGODB_URL2}

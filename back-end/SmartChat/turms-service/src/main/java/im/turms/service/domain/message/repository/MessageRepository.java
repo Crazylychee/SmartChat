@@ -198,14 +198,17 @@ public class MessageRepository extends BaseRepository<Message, Long> {
                 .inIfNotNull(Message.Fields.CONVERSATION_ID, conversationIds)
                 .eqIfNotNull(Message.Fields.IS_GROUP_MESSAGE, areGroupMessages)
                 .eqIfNotNull(Message.Fields.IS_SYSTEM_MESSAGE, areSystemMessages)
-                .addBetweenIfNotNull(Message.Fields.DELIVERY_DATE, deliveryDateRange)
-                .inIfNotNull(Message.Fields.SENDER_ID, senderIds)
-                .inIfNotNull(Message.Fields.TARGET_ID, targetIds);
+                .addBetweenIfNotNull(Message.Fields.DELIVERY_DATE, deliveryDateRange);
+
+
+
+
         if (deletionDateRange == DateRange.NULL) {
             filter.eq(Message.Fields.DELETION_DATE, null);
         } else {
             filter.addBetweenIfNotNull(Message.Fields.DELETION_DATE, deletionDateRange);
         }
+
         if (recallDateRange == DateRange.NULL) {
             filter.eq(Message.Fields.RECALL_DATE, null);
         } else {
@@ -217,7 +220,16 @@ public class MessageRepository extends BaseRepository<Message, Long> {
             options.sort(ascending, Message.Fields.DELIVERY_DATE);
         }
         filter.inIfNotNull(DomainFieldName.ID, messageIds);
-        return mongoClient.findMany(entityClass, filter, options);
+
+        Filter filterres = filter.or(Filter.newBuilder(1).inIfNotNull(Message.Fields.SENDER_ID, senderIds),
+                Filter.newBuilder(1).inIfNotNull(Message.Fields.TARGET_ID, targetIds));
+
+
+
+        String str = filter.toBsonDocument().toString();
+        System.out.println(str);
+
+        return mongoClient.findMany(entityClass, filterres, options);
     }
 
     public Mono<Message> findIsGroupMessageAndTargetId(Long messageId, Long senderId) {
