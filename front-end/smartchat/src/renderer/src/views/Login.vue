@@ -1,6 +1,6 @@
 <template>
   <div class="login-panel">
-    <div class="title drag">SmartChat</div>
+    <div class="title drag">ChatGenius</div>
     <div v-if="showLoading" class="loading-panel">
       <img src="@/assets/img/loading1.gif" />
     </div>
