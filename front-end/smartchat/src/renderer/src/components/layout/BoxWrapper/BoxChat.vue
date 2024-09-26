@@ -36,12 +36,13 @@
           </AIButton>
         </div>
         <div>
-          <a-button class="file-btn">
+          <a-button class="file-btn" @click="handleAudioButtonClick">
             <i class="wechatfont wechat-audio_chat" title="语音聊天"></i
           ></a-button>
-          <a-button class="file-btn">
+          <a-button class="file-btn" @click="handleVideoButtonClick">
             <i class="wechatfont wechat-video_chat" title="视频聊天"></i
           ></a-button>
+          <AudioVideoModel v-model:open="openAudioVideoModel" />
         </div>
       </div>
       <div class="input-area">
@@ -95,6 +96,8 @@ import '@/global.less'
 
 import eventBus from '../../../utils/eventBus'
 import AIButton from '@/components/common/AIButton.vue'
+import AudioVideoModel from '@/components/common/AudioVideoModel.vue'
+
 // import BoxEmoji from "./BoxEmoji.vue"
 
 const messageList = ref([])
@@ -142,6 +145,14 @@ const userInfo = ref({})
 //     selection.addRange(range); // 添加新的选择范围
 //   }
 // }
+
+const openAudioVideoModel = ref(false)
+const handleAudioButtonClick = () => {
+  openAudioVideoModel.value = true
+}
+const handleVideoButtonClick = () => {
+  openAudioVideoModel.value = true
+}
 
 const perfectScrollbarRef = ref(null)
 const AutoScrollBottom = ref(false)
