@@ -1,36 +1,7 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SmartChat</title>
-  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-<!--  <meta-->
-<!--    http-equiv="Content-Security-Policy"-->
-<!--    content="default-src 'self'; script-src 'self'; connect-src 'self' ws://47.113.224.195:10510; style-src 'self' http://at.alicdn.com 'unsafe-inline';font-src 'self' http://at.alicdn.com; img-src * data:;"-->
-<!--  />-->
-  <link rel="stylesheet" href="http://at.alicdn.com/t/c/font_4200334_7n3az5gz1m6.css">
-<!--  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdn.oaistatic.com/; ...">-->
-  <style>
-    .title-bar {
-      position: absolute; /* 使标题栏绝对定位 */
-      top: 0;
-      left: 0;
-      width: 84%; /* 仅占用80px宽度 */
-      height: 30px;
-      background-color: transparent; /* 使背景透明 */
-      -webkit-app-region: drag; /* 使这个区域可拖拽 */
-      z-index: 1000; /* 确保标题栏在其他元素之上 */
-    }
-
-
-  </style>
-</head>
-<body>
-<div class="title-bar"></div>
-<div id="app">
-
-</div>
-<script type="module" src="/src/main.ts"></script>
-</body>
+<html>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>
