@@ -49,7 +49,7 @@ Turn off the built-in identity and access management mechanism, and allow any us
 
 #### 2. Password-based authentication
 
-User authentication is based on the password in the `user` collection in the MongoDB built by the Turms server. Authorization implementation is not currently supported.
+com.smartchat.framework.starter.common.request. authentication is based on the password in the `user` collection in the MongoDB built by the Turms server. Authorization implementation is not currently supported.
 
 ##### Related Properties
 
@@ -173,7 +173,7 @@ in:
 | turms.gateway.session.identity-access-management.jwt.verification.issuer |                           | When the value is not empty, verify whether the issuer of the JWT is equal to this value |
 | turms.gateway.session.identity-access-management.jwt.verification.audience |                           | When the value is not empty, verify whether the receiver of the JWT contains this value |
 | turms.gateway.session.identity-access-management.jwt.verification.custom-payload-claims |                           | When the value is not empty, verify that the private claims in the JWT match this value |
-| turms.gateway.session.identity-access-management.jwt.authentication.expectation.custom-payload-claims | { "authenticated": true } | Match this value in the JWT's private claim, if the match is successful, it indicates that the User has been authenticated |
+| turms.gateway.session.identity-access-management.jwt.authentication.expectation.custom-payload-claims | { "authenticated": true } | Match this value in the JWT's private claim, if the match is successful, it indicates that the com.smartchat.framework.starter.common.request. has been authenticated |
 | turms.gateway.session.identity-access-management.jwt.algorithm.hmac256.file-path |                           | key file path. Developers only need to configure this key or a group in P12 below |
 | turms.gateway.session.identity-access-management.jwt.algorithm.hmac256.p12.file-path |                           | PKCS#12 file path                                            |
 | turms.gateway.session.identity-access-management.jwt.algorithm.hmac256.p12.password |                           | PKCS#12 key                                                  |

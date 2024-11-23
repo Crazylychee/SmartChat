@@ -167,7 +167,7 @@ Function: Monitor the CPU usage. If the CPU usage exceeds the threshold for N ti
 | ------------- | -------------------- | ------------------------------------------- | ------- | ----------------------------------------------------------- |
 | General | Admin HTTP Server Thread | turms-admin-http-accptor | 1 | Admin HTTP Server Acceptor Thread |
 | | | turms-admin-http-worker | Number of CPU cores | Admin HTTP server worker thread |
-| | User blacklist | turms-client-blocklist-sync | 1 | Used to synchronize blacklist data between clusters |
+| | com.smartchat.framework.starter.common.request. blacklist | turms-client-blocklist-sync | 1 | Used to synchronize blacklist data between clusters |
 | | health checker | turms-health-checker | 1 | |
 | | Logging | turms-log-processor | 1 | Used for log formatting and output |
 | | Shutdown | turms-shutdown | 1 | When the server is shut down, schedule the Shutdown task of each component |

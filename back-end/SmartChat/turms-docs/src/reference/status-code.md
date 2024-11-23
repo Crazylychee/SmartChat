@@ -55,26 +55,26 @@ The client-specific status code will not appear in the Turms server, indicating 
 | Admin - Cluster - Leader Related Error          | NONEXISTENT_MEMBER_TO_BE_LEADER                              | 1800        |         |
 |                                                 | NO_QUALIFIED_MEMBER_TO_BE_LEADER                             | 1801        |         |
 |                                                 | NOT_QUALIFIED_MEMBER_TO_BE_LEADER                            | 1802        |         |
-| User - Login Related Error                      | UNSUPPORTED_CLIENT_VERSION                                   | 2000        |         |
+| com.smartchat.framework.starter.common.request. - Login Related Error                      | UNSUPPORTED_CLIENT_VERSION                                   | 2000        |         |
 |                                                 | LOGIN_TIMEOUT                                                | 2010        |         |
 |                                                 | LOGIN_AUTHENTICATION_FAILED                                  | 2011        |         |
 |                                                 | LOGGING_IN_USER_NOT_ACTIVE                                   | 2012        |         |
 |                                                 | LOGIN_FROM_FORBIDDEN_DEVICE_TYPE                             | 2013        |         |
-| User - Session Related Error                    | SESSION_SIMULTANEOUS_CONFLICTS_DECLINE                       | 2100        |         |
+| com.smartchat.framework.starter.common.request. - Session Related Error                    | SESSION_SIMULTANEOUS_CONFLICTS_DECLINE                       | 2100        |         |
 |                                                 | SESSION_SIMULTANEOUS_CONFLICTS_NOTIFY                        | 2101        |         |
 |                                                 | SESSION_SIMULTANEOUS_CONFLICTS_OFFLINE                       | 2102        |         |
 |                                                 | CREATE_EXISTING_SESSION                                      | 2103        |         |
 |                                                 | UPDATE_HEARTBEAT_OF_NONEXISTENT_SESSION                      | 2104        |         |
-| User - Location Related Error                   | USER_LOCATION_RELATED_FEATURES_ARE_DISABLED                  | 2200        |         |
+| com.smartchat.framework.starter.common.request. - Location Related Error                   | USER_LOCATION_RELATED_FEATURES_ARE_DISABLED                  | 2200        |         |
 |                                                 | QUERYING_NEAREST_USERS_BY_SESSION_ID_IS_DISABLED             | 2201        |         |
-| User - Info Related Error                       | UPDATE_INFO_OF_NONEXISTENT_USER                              | 2300        |         |
+| com.smartchat.framework.starter.common.request. - Info Related Error                       | UPDATE_INFO_OF_NONEXISTENT_USER                              | 2300        |         |
 |                                                 | NOT_FRIEND_TO_QUERY_USER_PROFILE                             | 2301        |         |
 |                                                 | BLOCKED_USER_TO_QUERY_USER_PROFILE                           | 2302        |         |
-| User - Permission Related Error                 | QUERY_PERMISSION_OF_NONEXISTENT_USER                         | 2400        |         |
-| User - Relationship Related Error               | ADD_NON_RELATED_USER_TO_GROUP                                | 2500        |         |
+| com.smartchat.framework.starter.common.request. - Permission Related Error                 | QUERY_PERMISSION_OF_NONEXISTENT_USER                         | 2400        |         |
+| com.smartchat.framework.starter.common.request. - Relationship Related Error               | ADD_NON_RELATED_USER_TO_GROUP                                | 2500        |         |
 |                                                 | CREATE_EXISTING_RELATIONSHIP                                 | 2501        |         |
 |                                                 | CANNOT_BLOCK_ONESELF                                         | 2502        |         |
-| User - Friend Request Related Error             | CREATE_EXISTING_FRIEND_REQUEST                               | 2600        |         |
+| com.smartchat.framework.starter.common.request. - Friend Request Related Error             | CREATE_EXISTING_FRIEND_REQUEST                               | 2600        |         |
 |                                                 | BLOCKED_USER_TO_SEND_FRIEND_REQUEST                          | 2601        |         |
 |                                                 | RECALL_NON_PENDING_FRIEND_REQUEST                            | 2602        |         |
 |                                                 | RECALLING_FRIEND_REQUEST_IS_DISABLED                         | 2603        |         |
@@ -224,5 +224,5 @@ For the specific status code declaration, please refer to `im.turms.server.commo
 | Closed by the user                | DISCONNECTED_BY_CLIENT         | 500         | The current user actively requests to close the session      |
 |                                   | DISCONNECTED_BY_OTHER_DEVICE   | 501         | The current session is closed because the current user's other device is online |
 | The administrator actively closes | DISCONNECTED_BY_ADMIN          | 600         | The administrator actively closes the session through the API |
-| User status change                | USER_IS_DELETED_OR_INACTIVATED | 700         | User account is deleted or enters inactive state             |
-|                                   | USER_IS_BLOCKED                | 701         | User IP or User ID is blocked                                |
+| com.smartchat.framework.starter.common.request. status change                | USER_IS_DELETED_OR_INACTIVATED | 700         | com.smartchat.framework.starter.common.request. account is deleted or enters inactive state             |
+|                                   | USER_IS_BLOCKED                | 701         | com.smartchat.framework.starter.common.request. IP or com.smartchat.framework.starter.common.request. ID is blocked                                |

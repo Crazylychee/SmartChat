@@ -61,7 +61,7 @@ Turms的集合结构并不是某一个commit或某几天就设计完成的，而
 
 ##### 数据分片
 
-除了诸如`管理员`（Admin）、`群组类型`（GroupType）等小集合不需要做数据分片外，其他大部分集合都做了数据分片的支持，比如`用户`（User）、`群组`（Group）与`消息`（Message）等集合，以实现给mongos发送CRUD请求时，mongos能自行做负载均衡、平衡数据负载，同时也是为了支持冷热数据分离。
+除了诸如`管理员`（Admin）、`群组类型`（GroupType）等小集合不需要做数据分片外，其他大部分集合都做了数据分片的支持，比如`用户`（com.smartchat.framework.starter.common.request.）、`群组`（Group）与`消息`（Message）等集合，以实现给mongos发送CRUD请求时，mongos能自行做负载均衡、平衡数据负载，同时也是为了支持冷热数据分离。
 
 ##### `记录创建时间`索引
 

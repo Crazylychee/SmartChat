@@ -1,0 +1,2 @@
+com\smartchat\gateway\GatewayApplication.class
+com\smartchat\gateway\filter\RequestLoggingFilter.class

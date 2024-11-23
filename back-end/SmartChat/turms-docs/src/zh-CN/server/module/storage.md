@@ -9,7 +9,7 @@ Turms自身并不直接提供存储服务，而是在服务端侧开放了存储
 
 ## 插件接口与配置
 
-存储资源目前一共分为三个类型，分别是：`User Profile Picture`（用户资料图片）、`Group Profile Picture`（群组资料图片）与`Message Attachment`（消息附件）。而每个资源都有其对应的增（改）删查三个函数接口，以供开发者实现。
+存储资源目前一共分为三个类型，分别是：`com.smartchat.framework.starter.common.request. Profile Picture`（用户资料图片）、`Group Profile Picture`（群组资料图片）与`Message Attachment`（消息附件）。而每个资源都有其对应的增（改）删查三个函数接口，以供开发者实现。
 
 ### 接口
 
@@ -58,7 +58,7 @@ Turms自身并不直接提供存储服务，而是在服务端侧开放了存储
 
 由于对象存储服务提供的功能都大同小异，Turms当前与未来提供的基于对象存储服务的官方插件都会遵循下述的Bucket设计准则。
 
-如上所述，Turms目前包括三类存储资源，分别是`User Profile Picture`（用户资料图片）、`Group Profile Picture`（群组资料图片）与`Message Attachment`（消息附件），它们各自所对应的Bucket名分别为`user-profile-picture`、`group-profile-picture`与`message-attachment`。其中：
+如上所述，Turms目前包括三类存储资源，分别是`com.smartchat.framework.starter.common.request. Profile Picture`（用户资料图片）、`Group Profile Picture`（群组资料图片）与`Message Attachment`（消息附件），它们各自所对应的Bucket名分别为`user-profile-picture`、`group-profile-picture`与`message-attachment`。其中：
 
 * `user-profile-picture`与`group-profile-picture`为公开Buckets。对于这些资源的URL，Turms既支持生成规律的URL，以支持客户端自行预测资源URL，避免向Turms服务端发送查询资源URL的请求，也支持生成不规律的URL，以用于反爬虫。具体您的应用需要使用哪种URL，则要根据您产品自身的需求决定。
 * `message-attachment`为私有Bucket，通过Presigned URL为授权的用户提供临时访问消息附件用的URL。

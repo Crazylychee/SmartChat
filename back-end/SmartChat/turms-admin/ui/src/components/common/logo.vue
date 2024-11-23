@@ -12,7 +12,7 @@ export default {
 .logo {
     height: 42px;
     margin: 12px;
-    background-image: url("../../assets/img/logo.svg");
+    background-image: url("../../assets/img/logo.png");
     background-repeat: no-repeat;
     background-position: center;
 }

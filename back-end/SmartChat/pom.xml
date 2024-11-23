@@ -70,6 +70,8 @@
         <spotless-maven-plugin.eclipse.version>4.31</spotless-maven-plugin.eclipse.version>
         <spring-boot-thin-layout.version>1.0.31.RELEASE</spring-boot-thin-layout.version>
 
+        <hutool-all.version>5.8.27</hutool-all.version>
+        <redisson.version>3.27.2</redisson.version>
         <!-- Configs -->
         <skipITs>false</skipITs>
         <skipUTs>false</skipUTs>
@@ -96,10 +98,6 @@
 
         <module>turms-server-test</module>
 
-        <!--二次开发-->
-        <module>smartchat-webrtc</module>
-        <module>smartchat-auth</module>
-<!--        <module>smartchat-gateway</module>-->
     </modules>
 
     <dependencyManagement>
@@ -241,6 +239,26 @@
                 <artifactId>playwright</artifactId>
                 <version>${playwright.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool-all.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson2.version}</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 

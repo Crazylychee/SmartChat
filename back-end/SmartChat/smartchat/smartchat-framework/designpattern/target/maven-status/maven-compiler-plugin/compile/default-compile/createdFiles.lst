@@ -1,0 +1,7 @@
+com\smartchat\framework\designpattern\chain\AbstractChainHandler.class
+com\smartchat\framework\designpattern\chain\AbstractChainContext.class
+com\smartchat\framework\designpattern\strategy\AbstractExecuteStrategy.class
+com\smartchat\framework\designpattern\strategy\AbstractStrategyChoose.class
+com\smartchat\framework\designpattern\config\DesignPatternAutoConfiguration.class
+com\smartchat\framework\designpattern\builder\Builder.class
+com\smartchat\framework\designpattern\singleton\Singleton.class

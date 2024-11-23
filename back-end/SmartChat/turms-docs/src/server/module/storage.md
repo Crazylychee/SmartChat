@@ -9,7 +9,7 @@ Notice:
 
 ## Plugin interface and configuration
 
-Storage resources are currently divided into three types, namely: `User Profile Picture` (user profile picture), `Group Profile Picture` (group profile picture) and `Message Attachment` (message attachment). Each resource has its corresponding three function interfaces for adding (modifying), deleting, and checking for developers to implement.
+Storage resources are currently divided into three types, namely: `com.smartchat.framework.starter.common.request. Profile Picture` (user profile picture), `Group Profile Picture` (group profile picture) and `Message Attachment` (message attachment). Each resource has its corresponding three function interfaces for adding (modifying), deleting, and checking for developers to implement.
 
 ### interface
 
@@ -19,7 +19,7 @@ Interface function introduction:
 
 | Resource type | Function name | Expected function | Return value description |
 | ------------ | ----------------------------------------------------- | -------------------------------- | ------------------------------------------------------------- |
-| User Profile Picture | deleteUserProfilePicture | Delete User Profile Picture | |
+| com.smartchat.framework.starter.common.request. Profile Picture | deleteUserProfilePicture | Delete com.smartchat.framework.starter.common.request. Profile Picture | |
 | | queryUserProfilePictureUploadInfo | Query user profile picture upload information | The return value format is `Map<String, String>`, the plug-in implementer can customize any return value |
 | | queryUserProfilePictureDownloadInfo | Query user profile picture download information | The return value format is `Map<String, String>`, the plug-in implementer can customize any return value |
 | Group Profile Picture | deleteGroupProfilePicture | Delete Group Profile Picture | |
@@ -57,7 +57,7 @@ Interface function introduction:
 
 Since the functions provided by the object storage service are similar, the official plug-ins based on the object storage service provided by Turms at present and in the future will follow the following Bucket design guidelines.
 
-As mentioned above, Turms currently includes three types of storage resources, namely `User Profile Picture` (user profile picture), `Group Profile Picture` (group profile picture) and `Message Attachment` (message attachment), which correspond to The bucket names are `user-profile-picture`, `group-profile-picture` and `message-attachment` respectively. in:
+As mentioned above, Turms currently includes three types of storage resources, namely `com.smartchat.framework.starter.common.request. Profile Picture` (user profile picture), `Group Profile Picture` (group profile picture) and `Message Attachment` (message attachment), which correspond to The bucket names are `user-profile-picture`, `group-profile-picture` and `message-attachment` respectively. in:
 
 * `user-profile-picture` and `group-profile-picture` are public Buckets. For the URLs of these resources, Turms not only supports the generation of regular URLs to allow the client to predict resource URLs by itself, avoiding sending requests to the Turms server to query resource URLs, but also supports the generation of irregular URLs for anti-crawlers. Which URL your application needs to use depends on your product requirements.
 * `message-attachment` is a private Bucket that provides authorized users with a URL for temporary access to message attachments through Presigned URLs.

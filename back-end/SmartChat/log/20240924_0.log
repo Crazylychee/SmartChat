@@ -1,0 +1,251 @@
+2024-09-24 08:40:31.684  INFO S ukopjwff                     main im.turms.service.TurmsServiceApplication : Starting TurmsServiceApplication using Java 21.0.4 with PID 30580 (A:\usr\SmartChat\back-end\SmartChat\turms-service\target\classes started by usr in A:\usr\SmartChat\back-end\SmartChat)
+2024-09-24 08:40:31.756  INFO S ukopjwff                     main im.turms.service.TurmsServiceApplication : The following 2 profiles are active: "prod", "prod-latest"
+2024-09-24 08:40:35.617  WARN S ukopjwff                     main      o.s.c.a.AnnotationBeanNameGenerator : Support for convention-based stereotype names is deprecated and will be removed in a future version of the framework. Please annotate the 'value' attribute in @im.turms.server.common.access.admin.web.annotation.RestController with @AliasFor(annotation=Component.class) to declare an explicit alias for @Component's 'value' attribute.
+2024-09-24 08:40:59.887  WARN S ukopjwff                     main      i.t.s.c.i.a.TurmsApplicationContext : The property "spring.config.location" is empty
+2024-09-24 08:40:59.890  WARN S ukopjwff                     main      i.t.s.c.i.a.TurmsApplicationContext : Could not find the file (git.properties), fall back to the default version 0.0.0 in non-production environments. Fix it by running "mvn compile"
+2024-09-24 08:40:59.890  INFO S ukopjwff                     main      i.t.s.c.i.a.TurmsApplicationContext : The local node with the build properties {version=0.0.0, commitId=, buildTime=} is running in a production environment
+2024-09-24 08:41:00.693  INFO S ukopjwff                     main                org.mongodb.driver.client : MongoClient with metadata {"driver": {"name": "mongo-java-driver|reactive-streams", "version": "5.0.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./21.0.4+7-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=NettyTransportSettings{eventLoopGroup=io.netty.channel.nio.NioEventLoopGroup@d325518, socketChannelClass=class io.netty.channel.socket.nio.NioSocketChannel, allocator=PooledByteBufAllocator(directByDefault: true), sslContext=null}, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DocumentCodecProvider{}, MapCodecProvider{}, IterableCodecProvider{}, Jsr310CodecProvider{}, BsonCodecProvider{}, im.turms.server.common.storage.mongo.codec.MongoCodecProvider@3b481bf5]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[192.168.73.123:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[im.turms.server.common.storage.mongo.MongoContext$1@2233cac0]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-09-24 08:41:00.775  INFO S ukopjwff                     cluster-ClusterId{value='66f27b1ca287a945fa0283ea', description='null'}-192.168.73.123:27017               org.mongodb.driver.cluster : Monitor thread successfully connected to server with description ServerDescription{address=192.168.73.123:27017, type=SHARD_ROUTER, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=17, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=41462800}
+2024-09-24 08:41:00.838  INFO S ukopjwff                     main                org.mongodb.driver.client : MongoClient with metadata {"driver": {"name": "mongo-java-driver|reactive-streams", "version": "5.0.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./21.0.4+7-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=NettyTransportSettings{eventLoopGroup=io.netty.channel.nio.NioEventLoopGroup@32256e68, socketChannelClass=class io.netty.channel.socket.nio.NioSocketChannel, allocator=PooledByteBufAllocator(directByDefault: true), sslContext=null}, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DocumentCodecProvider{}, MapCodecProvider{}, IterableCodecProvider{}, Jsr310CodecProvider{}, BsonCodecProvider{}, im.turms.server.common.storage.mongo.codec.MongoCodecProvider@3b481bf5]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[im.turms.server.common.storage.mongo.MongoContext$1@5e7abaf7]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-09-24 08:41:00.854  INFO S ukopjwff                     cluster-ClusterId{value='66f27b1ca287a945fa0283eb', description='null'}-localhost:27017               org.mongodb.driver.cluster : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=15031400}
+2024-09-24 08:41:01.029  INFO S ukopjwff                     main     i.t.s.s.m.MongoCollectionInitializer : Start creating collections
+2024-09-24 08:41:01.262  INFO S ukopjwff                     mongo-event-loop-1-4     i.t.s.s.m.MongoCollectionInitializer : All collections are created
+2024-09-24 08:41:01.501  WARN S ukopjwff                     main             i.t.s.c.i.h.CpuHealthChecker : The CPU health checker cannot work because the recent cpu usage for the whole operating environment is unavailable
+2024-09-24 08:41:01.505  WARN S ukopjwff                     main          i.t.s.c.i.h.MemoryHealthChecker : The max available memory (31066MB) is larger than the total of the available direct memory (7767MB), the max heap memory (8176MB), and the estimated max non-heap memory (256MB), which indicates that some memory will never be used by the server
+2024-09-24 08:41:01.513  INFO S ukopjwff                     main                       i.t.s.c.i.c.n.Node : The local node version is: 0.0.0
+2024-09-24 08:41:01.630  WARN S ukopjwff                     main         i.t.s.c.i.c.s.c.ConnectionServer : Failed to bind on the port: 7510. Trying to bind on the next port: 7511
+reactor.netty.ChannelBindException: Failed to bind on [0.0.0.0:7510]
+
+	suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:146)
+		at reactor.core.publisher.Mono.block(Mono.java:1807)
+		at reactor.netty.transport.ServerTransport.bindNow(ServerTransport.java:149)
+		at im.turms.server.common.infra.cluster.service.connection.ConnectionServer.blockUntilConnect(ConnectionServer.java:99)
+		at im.turms.server.common.infra.cluster.service.connection.ConnectionService.setupServer(ConnectionService.java:246)
+		at im.turms.server.common.infra.cluster.service.connection.ConnectionService.<init>(ConnectionService.java:149)
+		at im.turms.server.common.infra.cluster.node.Node.<init>(Node.java:148)
+		at im.turms.server.common.infra.cluster.ClusterConfig.node(ClusterConfig.java:47)
+		at im.turms.server.common.infra.cluster.ClusterConfig$$SpringCGLIB$$0.CGLIB$node$0(<generated>)
+		at im.turms.server.common.infra.cluster.ClusterConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+		at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+		at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:348)
+		at im.turms.server.common.infra.cluster.ClusterConfig$$SpringCGLIB$$0.node(<generated>)
+		at jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+		at java.lang.reflect.Method.invoke(Method.java:580)
+		at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140)
+		at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644)
+		at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1337)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1167)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+		at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+		at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+		at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+		at org.springframework.context.annotation.ContextAnnotationAutowireCandidateResolver$1.getTarget(ContextAnnotationAutowireCandidateResolver.java:103)
+		at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
+		at im.turms.server.common.infra.cluster.node.Node$$SpringCGLIB$$0.getSharedProperties(<generated>)
+		at im.turms.server.common.infra.property.TurmsPropertiesManager.getGlobalProperties(TurmsPropertiesManager.java:96)
+		at im.turms.service.access.admin.throttle.AdminApiRateLimitingManager.<init>(AdminApiRateLimitingManager.java:36)
+		at jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+		at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+		at java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+		at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:208)
+		at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:111)
+		at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:315)
+		at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:306)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1357)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+		at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+		at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+		at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+		at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+		at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+		at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+		at im.turms.server.common.BaseTurmsApplication.bootstrap(BaseTurmsApplication.java:53)
+		at im.turms.service.TurmsServiceApplication.main(TurmsServiceApplication.java:40)
+
+2024-09-24 08:41:01.658  WARN S ukopjwff                     main         i.t.s.c.i.c.s.c.ConnectionServer : Failed to bind on the port: 7511. Trying to bind on the next port: 7512
+reactor.netty.ChannelBindException: Failed to bind on [0.0.0.0:7511]
+
+	suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:146)
+		at reactor.core.publisher.Mono.block(Mono.java:1807)
+		at reactor.netty.transport.ServerTransport.bindNow(ServerTransport.java:149)
+		at im.turms.server.common.infra.cluster.service.connection.ConnectionServer.blockUntilConnect(ConnectionServer.java:99)
+		at im.turms.server.common.infra.cluster.service.connection.ConnectionService.setupServer(ConnectionService.java:246)
+		at im.turms.server.common.infra.cluster.service.connection.ConnectionService.<init>(ConnectionService.java:149)
+		at im.turms.server.common.infra.cluster.node.Node.<init>(Node.java:148)
+		at im.turms.server.common.infra.cluster.ClusterConfig.node(ClusterConfig.java:47)
+		at im.turms.server.common.infra.cluster.ClusterConfig$$SpringCGLIB$$0.CGLIB$node$0(<generated>)
+		at im.turms.server.common.infra.cluster.ClusterConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+		at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+		at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:348)
+		at im.turms.server.common.infra.cluster.ClusterConfig$$SpringCGLIB$$0.node(<generated>)
+		at jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+		at java.lang.reflect.Method.invoke(Method.java:580)
+		at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140)
+		at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644)
+		at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1337)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1167)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+		at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+		at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+		at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+		at org.springframework.context.annotation.ContextAnnotationAutowireCandidateResolver$1.getTarget(ContextAnnotationAutowireCandidateResolver.java:103)
+		at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
+		at im.turms.server.common.infra.cluster.node.Node$$SpringCGLIB$$0.getSharedProperties(<generated>)
+		at im.turms.server.common.infra.property.TurmsPropertiesManager.getGlobalProperties(TurmsPropertiesManager.java:96)
+		at im.turms.service.access.admin.throttle.AdminApiRateLimitingManager.<init>(AdminApiRateLimitingManager.java:36)
+		at jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+		at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+		at java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+		at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:208)
+		at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:111)
+		at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:315)
+		at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:306)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1357)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+		at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+		at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+		at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+		at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+		at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+		at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+		at im.turms.server.common.BaseTurmsApplication.bootstrap(BaseTurmsApplication.java:53)
+		at im.turms.service.TurmsServiceApplication.main(TurmsServiceApplication.java:40)
+
+2024-09-24 08:41:01.681  INFO S ukopjwff                     main         i.t.s.c.i.c.s.c.ConnectionServer : The local node server started on: 0.0.0.0:7512
+2024-09-24 08:41:01.706  INFO S ukopjwff                     main                org.mongodb.driver.client : MongoClient with metadata {"driver": {"name": "mongo-java-driver|reactive-streams", "version": "5.0.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./21.0.4+7-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=NettyTransportSettings{eventLoopGroup=io.netty.channel.nio.NioEventLoopGroup@14d8e132, socketChannelClass=class io.netty.channel.socket.nio.NioSocketChannel, allocator=PooledByteBufAllocator(directByDefault: true), sslContext=null}, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DocumentCodecProvider{}, MapCodecProvider{}, IterableCodecProvider{}, Jsr310CodecProvider{}, BsonCodecProvider{}, im.turms.server.common.storage.mongo.codec.MongoCodecProvider@3b481bf5]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[192.168.73.123:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[im.turms.server.common.storage.mongo.MongoContext$1@7f4a1cac]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-09-24 08:41:01.732  INFO S ukopjwff                     cluster-ClusterId{value='66f27b1da287a945fa0283ec', description='null'}-192.168.73.123:27017               org.mongodb.driver.cluster : Monitor thread successfully connected to server with description ServerDescription{address=192.168.73.123:27017, type=SHARD_ROUTER, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=17, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=24030000}
+2024-09-24 08:41:01.819  INFO S ukopjwff                     mongo-event-loop-15-3       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "leader": {"renewDate": 1}
+2024-09-24 08:41:01.824  INFO S ukopjwff                     mongo-event-loop-15-3       i.t.s.c.s.m.o.TurmsMongoOperations : Indexed the collection "member": {"_id.nodeId": 1}, {"status.lastHeartbeatDate": 1}
+2024-09-24 08:41:01.837  INFO S ukopjwff                     mongo-event-loop-15-3       i.t.s.c.s.m.o.TurmsMongoOperations : Enabled sharding the database: "turms-standalone"
+2024-09-24 08:41:01.945  INFO S ukopjwff                     main    i.t.s.c.i.c.s.c.SharedPropertyService : Fetching shared properties
+2024-09-24 08:41:02.117  INFO S ukopjwff                     mongo-event-loop-15-4    i.t.s.c.i.c.s.c.SharedPropertyService : Fetched shared properties
+2024-09-24 08:41:02.158  INFO S ukopjwff                     main         i.t.s.c.i.c.s.d.DiscoveryService : A new member has been added: Member(key=Member.Key(clusterId=turms, nodeId=pftdqvwh), zone=, name=pftdqvwh, nodeVersion=0.0.0, nodeType=SERVICE, isSeed=false, registrationDate=Mon Sep 23 13:16:39 UTC 2024, isLeaderEligible=true, priority=0, memberHost=192.168.2.150, memberPort=7511, adminApiAddress=http://192.168.2.150:8510, wsAddress=null, tcpAddress=null, udpAddress=null, status=Member.MemberStatus(hasJoinedCluster=false, isHealthy=true, isActive=true, lastHeartbeatDate=Tue Sep 24 08:40:58 UTC 2024))
+2024-09-24 08:41:02.158  INFO S ukopjwff                     main         i.t.s.c.i.c.s.d.DiscoveryService : A new member has been added: Member(key=Member.Key(clusterId=turms, nodeId=ygcpcvjl), zone=, name=ygcpcvjl, nodeVersion=0.0.0, nodeType=GATEWAY, isSeed=false, registrationDate=Mon Sep 23 13:15:59 UTC 2024, isLeaderEligible=false, priority=0, memberHost=192.168.2.150, memberPort=7510, adminApiAddress=http://192.168.2.150:9510, wsAddress=ws://192.168.2.150:10510, tcpAddress=192.168.2.150:11510, udpAddress=null, status=Member.MemberStatus(hasJoinedCluster=false, isHealthy=true, isActive=true, lastHeartbeatDate=Tue Sep 24 08:40:52 UTC 2024))
+2024-09-24 08:41:02.158  INFO S ukopjwff                     main         i.t.s.c.i.c.s.d.DiscoveryService : A new member has been added: Member(key=Member.Key(clusterId=turms, nodeId=ukopjwff), zone=, name=ukopjwff, nodeVersion=0.0.0, nodeType=SERVICE, isSeed=false, registrationDate=Tue Sep 24 08:41:01 UTC 2024, isLeaderEligible=true, priority=0, memberHost=192.168.2.150, memberPort=7512, adminApiAddress=http://192.168.2.150:8510, wsAddress=null, tcpAddress=null, udpAddress=null, status=Member.MemberStatus(hasJoinedCluster=false, isHealthy=true, isActive=true, lastHeartbeatDate=Tue Sep 24 08:41:01 UTC 2024))
+2024-09-24 08:41:02.159  INFO S ukopjwff                     main   i.t.s.c.i.c.s.d.LocalNodeStatusManager : Registering the local node as a member
+2024-09-24 08:41:02.209  INFO S ukopjwff                     mongo-event-loop-15-6   i.t.s.c.i.c.s.d.LocalNodeStatusManager : Registered the local node as a member
+2024-09-24 08:41:02.833  INFO S ukopjwff                     main    i.t.s.c.d.b.m.BlocklistServiceManager : Starting resetting and synchronizing blocked clients
+2024-09-24 08:41:02.853  INFO S ukopjwff                     lettuce-nioEventLoop-24-1    i.t.s.c.d.b.m.BlocklistServiceManager : Reset and synchronized blocked clients
+2024-09-24 08:41:02.854  INFO S ukopjwff                     main    i.t.s.c.d.b.m.BlocklistServiceManager : Starting resetting and synchronizing blocked clients
+2024-09-24 08:41:02.855  INFO S ukopjwff                     lettuce-nioEventLoop-27-1    i.t.s.c.d.b.m.BlocklistServiceManager : Reset and synchronized blocked clients
+2024-09-24 08:41:03.133  INFO S ukopjwff                     main             i.t.s.d.g.s.GroupTypeService : Loading all group types
+2024-09-24 08:41:03.144  INFO S ukopjwff                     main             i.t.s.d.g.s.GroupTypeService : Loaded all group types
+2024-09-24 08:41:03.277  INFO S ukopjwff                     main   i.t.s.d.u.s.UserPermissionGroupService : Loading all user permission groups and adding the default user permission group
+2024-09-24 08:41:03.284  INFO S ukopjwff                     main   i.t.s.d.u.s.UserPermissionGroupService : Loaded all user permission groups and added the default user permission group
+2024-09-24 08:41:03.401  INFO S ukopjwff                     main       i.t.s.c.d.a.s.BaseAdminRoleService : Loading all admin roles
+2024-09-24 08:41:03.408  INFO S ukopjwff                     main       i.t.s.c.d.a.s.BaseAdminRoleService : Loaded all admin roles
+2024-09-24 08:41:03.411  INFO S ukopjwff                     main           i.t.s.c.d.a.s.BaseAdminService : Loading all admins
+2024-09-24 08:41:03.553  INFO S ukopjwff                     main           i.t.s.c.d.a.s.BaseAdminService : Loaded all admins
+2024-09-24 08:41:03.612  WARN S ukopjwff                     main           i.t.s.c.d.d.a.a.s.DebugService : API debug is enabled
+2024-09-24 08:41:04.019  WARN S ukopjwff                     main s.c.a.AnnotationConfigApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'httpRequestDispatcher' defined in file [A:\usr\SmartChat\back-end\SmartChat\turms-server-common\target\classes\im\turms\server\common\access\admin\web\HttpRequestDispatcher.class]: Failed to instantiate [im.turms.server.common.access.admin.web.HttpRequestDispatcher]: Constructor threw exception
+2024-09-24 08:41:04.034  INFO S ukopjwff                     main  s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-09-24 08:41:04.070 ERROR S ukopjwff                     main                  o.s.b.SpringApplication : Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'httpRequestDispatcher' defined in file [A:\usr\SmartChat\back-end\SmartChat\turms-server-common\target\classes\im\turms\server\common\access\admin\web\HttpRequestDispatcher.class]: Failed to instantiate [im.turms.server.common.access.admin.web.HttpRequestDispatcher]: Constructor threw exception
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:318)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:306)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1357)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at im.turms.server.common.BaseTurmsApplication.bootstrap(BaseTurmsApplication.java:53)
+	at im.turms.service.TurmsServiceApplication.main(TurmsServiceApplication.java:40)
+
+caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [im.turms.server.common.access.admin.web.HttpRequestDispatcher]: Constructor threw exception
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:221)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:111)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:315)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:306)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1357)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at im.turms.server.common.BaseTurmsApplication.bootstrap(BaseTurmsApplication.java:53)
+	at im.turms.service.TurmsServiceApplication.main(TurmsServiceApplication.java:40)
+
+caused by: reactor.netty.ChannelBindException: Failed to bind on [0.0.0.0:8510]
+
+	suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:146)
+		at reactor.core.publisher.Mono.block(Mono.java:1807)
+		at reactor.netty.transport.ServerTransport.bindNow(ServerTransport.java:149)
+		at im.turms.server.common.access.admin.web.HttpRequestDispatcher.<init>(HttpRequestDispatcher.java:177)
+		at jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+		at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+		at java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+		at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:208)
+		at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:111)
+		at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:315)
+		at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:306)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1357)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+		at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+		at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+		at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+		at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+		at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+		at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+		at im.turms.server.common.BaseTurmsApplication.bootstrap(BaseTurmsApplication.java:53)
+		at im.turms.service.TurmsServiceApplication.main(TurmsServiceApplication.java:40)
+

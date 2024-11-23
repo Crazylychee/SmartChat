@@ -65,28 +65,28 @@ Note: The administration interface is not for end-users, but for your team to ma
 | Type                      | Controller              | Path                   | Supported Servers |
 | :------------------------ | :---------------------- | ---------------------- | ----------------- |
 | IP Blocklist Management   | IpBlocklistController   | /blocked-clients/ips   | turms-service     |
-| User Blocklist Management | UserBlocklistController | /blocked-clients/users | turms-service     |
+| com.smartchat.framework.starter.common.request. Blocklist Management | UserBlocklistController | /blocked-clients/users | turms-service     |
 
-#### User Session
+#### com.smartchat.framework.starter.common.request. Session
 
 | Type                    | Controller        | Path      | Supported Servers |
 | :---------------------- | :---------------- | --------- | ----------------- |
-| User Session Management | SessionController | /sessions | turms-gateway     |
+| com.smartchat.framework.starter.common.request. Session Management | SessionController | /sessions | turms-gateway     |
 
 ### Business-related Categories
 
 All API ports in the following table exist only on the turms-service server side. These API ports are not available on the turms-gateway server side.
 
-#### User
+#### com.smartchat.framework.starter.common.request.
 
 | Type                               | Controller                      | Path                                 |
 | :--------------------------------- | :------------------------------ | ------------------------------------ |
-| User Information Management        | UserController                  | /users                               |
-| User Online Info Management        | UserOnlineInfoController        | /users/online-infos                  |
-| User Permission Group Management   | UserPermissionGroupController   | /users/permission-groups             |
-| User Relationship Management       | UserRelationshipController      | /users/relationships                 |
-| User Relationship Group Management | UserRelationshipGroupController | /users/relationships/groups          |
-| User Friend Request Management     | UserFriendRequestController     | /users/relationships/friend-requests |
+| com.smartchat.framework.starter.common.request. Information Management        | UserController                  | /users                               |
+| com.smartchat.framework.starter.common.request. Online Info Management        | UserOnlineInfoController        | /users/online-infos                  |
+| com.smartchat.framework.starter.common.request. Permission Group Management   | UserPermissionGroupController   | /users/permission-groups             |
+| com.smartchat.framework.starter.common.request. Relationship Management       | UserRelationshipController      | /users/relationships                 |
+| com.smartchat.framework.starter.common.request. Relationship Group Management | UserRelationshipGroupController | /users/relationships/groups          |
+| com.smartchat.framework.starter.common.request. Friend Request Management     | UserFriendRequestController     | /users/relationships/friend-requests |
 
 #### Group
 
