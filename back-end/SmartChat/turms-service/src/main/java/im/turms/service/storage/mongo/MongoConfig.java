@@ -91,7 +91,7 @@ public class MongoConfig extends BaseMongoConfig {
         UserMongoProperties.WriteConcernProperties writeConcern = properties.getWriteConcern();
         TurmsMongoClient mongoClient = getMongoClient(properties,
                 "user",
-                Set.of(ClusterType.SHARDED, ClusterType.LOAD_BALANCED));
+                Set.of(ClusterType.SHARDED, ClusterType.STANDALONE));
         mongoClient.registerEntitiesByOptions(
                 MongoCollectionOptions.of(User.class, writeConcern.getUser()),
                 MongoCollectionOptions.of(UserFriendRequest.class,
@@ -117,7 +117,7 @@ public class MongoConfig extends BaseMongoConfig {
         GroupMongoProperties.WriteConcernProperties writeConcern = properties.getWriteConcern();
         TurmsMongoClient mongoClient = getMongoClient(properties,
                 "group",
-                Set.of(ClusterType.SHARDED, ClusterType.LOAD_BALANCED));
+                Set.of(ClusterType.SHARDED, ClusterType.STANDALONE));
         mongoClient.registerEntitiesByOptions(
                 MongoCollectionOptions.of(Group.class, writeConcern.getGroup()),
                 MongoCollectionOptions.of(GroupBlockedUser.class,
@@ -143,7 +143,7 @@ public class MongoConfig extends BaseMongoConfig {
                 properties.getWriteConcern();
         TurmsMongoClient mongoClient = getMongoClient(properties,
                 "conversation",
-                Set.of(ClusterType.SHARDED, ClusterType.LOAD_BALANCED));
+                Set.of(ClusterType.SHARDED, ClusterType.STANDALONE));
         mongoClient.registerEntitiesByOptions(
                 MongoCollectionOptions.of(PrivateConversation.class,
                         writeConcern.getConversation()),
@@ -160,7 +160,7 @@ public class MongoConfig extends BaseMongoConfig {
         MessageMongoProperties.WriteConcernProperties writeConcern = properties.getWriteConcern();
         TurmsMongoClient mongoClient = getMongoClient(properties,
                 "message",
-                Set.of(ClusterType.SHARDED, ClusterType.LOAD_BALANCED));
+                Set.of(ClusterType.SHARDED, ClusterType.STANDALONE));
         mongoClient.registerEntitiesByOptions(
                 MongoCollectionOptions.of(Message.class, writeConcern.getMessage()));
         return mongoClient;
@@ -180,7 +180,7 @@ public class MongoConfig extends BaseMongoConfig {
         //这里我用docker-compose部署的mongo，所以就需要改为standalone
         TurmsMongoClient mongoClient = getMongoClient(properties,
                 "conference",
-                Set.of(ClusterType.STANDALONE, ClusterType.LOAD_BALANCED));
+                Set.of(ClusterType.SHARDED, ClusterType.STANDALONE));
 
 
         mongoClient.registerEntitiesByOptions(

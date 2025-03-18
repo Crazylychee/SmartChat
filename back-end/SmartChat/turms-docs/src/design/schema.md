@@ -61,7 +61,7 @@ The following content is just a basic theory. As we mentioned in `How the collec
 
 ##### Data Fragmentation
 
-Except for small collections such as `Admin` (Admin), `GroupType` (GroupType) and other small collections that do not need data sharding, most other collections support data sharding, such as `User` (User), `Group` (Group) and `Message` (Message) are combined to realize that when sending CRUD requests to mongos, mongos can do load balancing and balance data load by itself, and it is also to support the separation of hot and cold data.
+Except for small collections such as `Admin` (Admin), `GroupType` (GroupType) and other small collections that do not need data sharding, most other collections support data sharding, such as `com.smartchat.framework.starter.common.request.` (com.smartchat.framework.starter.common.request.), `Group` (Group) and `Message` (Message) are combined to realize that when sending CRUD requests to mongos, mongos can do load balancing and balance data load by itself, and it is also to support the separation of hot and cold data.
 
 ##### `record creation time` index
 

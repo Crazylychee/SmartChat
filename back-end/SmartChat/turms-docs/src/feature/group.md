@@ -69,7 +69,7 @@ remind:
 
 ## Scene introduction
 
-### User joins a group
+### com.smartchat.framework.starter.common.request. joins a group
 
 1. The client queries the group information of the specified group through `turmsClient.groupService.queryGroups(...)`.
 

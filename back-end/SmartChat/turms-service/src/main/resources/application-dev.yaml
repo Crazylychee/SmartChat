@@ -49,18 +49,18 @@ turms:
             hot:
               days: 30
               shards:
-                - shard01
+                - rs_shard1
             warm:
               days: 60
               shards:
-                - shard01
+                - rs_shard1
             cold:
               days: 270
               shards:
-                - shard01
+                - rs_shard1
             frozen:
               shards:
-                - shard01
+                - rs_shard1
 turms-plugin:
   minio:
     retry:

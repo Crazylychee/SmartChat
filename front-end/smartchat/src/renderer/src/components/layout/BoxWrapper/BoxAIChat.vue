@@ -4,11 +4,25 @@
     <perfect-scrollbar ref="perfectScrollbarRef">
       <div class="chat-box">
         <AIChatItem
-          v-for="(message, index) in messageList"
-          :key="index"
-          :type="message.role"
-          :content="message.content"
-        />
+          v-if="AIStore.chats[AIStore.activeChatId].type === 'chathistory'"
+          :type="'user'"
+        >
+          <a-card>
+            <p>
+              与
+              <span style="text-decoration-line: underline" @click="handleChatHistoryCard"
+                >@{{ AIStore.chats[AIStore.activeChatId].customAttributes.chathistoryName }}</span
+              >
+              的聊天记录
+            </p>
+          </a-card>
+        </AIChatItem>
+        <AIChatItem v-for="(message, index) in messageList" :key="index" :type="message.role">
+          {{ message.content }}
+        </AIChatItem>
+        <AIChatItem v-if="AIStore.chats[AIStore.activeChatId].isLoading" :type="'assistant'"
+          ><a-spin :indicator="indicator"
+        /></AIChatItem>
       </div>
     </perfect-scrollbar>
     <div class="input-box">
@@ -87,8 +101,8 @@ import UserInfo from '../../../components/common/UserInfo/Index.vue'
 import useStore from '../../../store'
 import { useAIStore } from '@/store/modules/ai'
 const AIStore = useAIStore()
-const { useChatStore, useContextMenuStore, useUserInfoStore, useRelativeBoxStore } = useStore()
-import ChatItem from '@/components/common/ChatItem.vue'
+const { useChatStore, useContextMenuStore, useUserInfoStore, useRelativeBoxStore, useSystemStore } =
+  useStore()
 
 import 'ant-design-vue/dist/reset.css'
 import 'perfect-scrollbar/css/perfect-scrollbar.css'
@@ -96,8 +110,15 @@ import '@/assets/icon/iconfont.css'
 import 'element-plus/dist/index.css'
 import '@/global.less'
 
-import eventBus from '../../../utils/eventBus'
 import AIChatItem from '@/components/common/AIChatItem.vue'
+import { LoadingOutlined } from '@ant-design/icons-vue'
+import { h } from 'vue'
+const indicator = h(LoadingOutlined, {
+  style: {
+    fontSize: '14px'
+  },
+  spin: true
+})
 // import BoxEmoji from "./BoxEmoji.vue"
 
 const messageList = ref([])
@@ -144,6 +165,11 @@ const userInfo = ref({})
 //     selection.addRange(range); // 添加新的选择范围
 //   }
 // }
+
+const handleChatHistoryCard = () => {
+  useChatStore.activeChat = AIStore.chats[AIStore.activeChatId].customAttributes.chathistoryId
+  useSystemStore.activeMenu = 'chat'
+}
 
 const perfectScrollbarRef = ref(null)
 onMounted(() => {

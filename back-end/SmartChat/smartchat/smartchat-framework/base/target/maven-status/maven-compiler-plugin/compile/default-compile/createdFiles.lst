@@ -1,0 +1,4 @@
+com\smartchat\framework\starter\base\config\ApplicationBaseAutoConfiguration.class
+com\smartchat\framework\starter\base\init\ApplicationInitializingEvent.class
+com\smartchat\framework\starter\base\init\ApplicationContentPostProcessor.class
+com\smartchat\framework\starter\base\ApplicationContextHolder.class

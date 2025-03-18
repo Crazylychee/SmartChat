@@ -10,7 +10,7 @@ For security reasons, this article does not describe CC attacks for which Turms 
 
 When turms-gateway detects that a new IP or user ID is blocked, it will first send a shutdown notification of the Turms business layer to the established and blocked session. The notification has the `USER_IS_BLOCKED` status code, telling the client that it is Banned. After the data is flushed, the Turms server automatically disconnects the underlying TCP connection.
 
-When turms-gateway checks that the peer IP of the newly established TCP connection has been banned, or detects that the user ID sending the login request has been banned, by default, turms-gateway will directly close the TCP connection with it, and will not A notification of the reason for connection closure will be sent, such as "Your IP/User ID has been blocked for XX time".
+When turms-gateway checks that the peer IP of the newly established TCP connection has been banned, or detects that the user ID sending the login request has been banned, by default, turms-gateway will directly close the TCP connection with it, and will not A notification of the reason for connection closure will be sent, such as "Your IP/com.smartchat.framework.starter.common.request. ID has been blocked for XX time".
 
 There are two points to note:
 
@@ -135,7 +135,7 @@ other:
 * Turms does not currently support assigning different weights to different types of requests. For example, a login request requires 3 tokens, and a message request requires 1 token
 * turms-gateway supports the configuration of the runtime zero-downtime update token bucket algorithm
 
-## User Information Security
+## com.smartchat.framework.starter.common.request. Information Security
 
 For most domestic groups with a little Internet age, unless they have a strong sense of security, their plaintext passwords are very likely to have been leaked (the specific content can be found out through `social engineering database`). Combined with the fact that the passwords used by most users are relatively fixed, so no matter how encrypted the server is, the security of the "password" is still relatively low.
 

@@ -1,1 +1,5 @@
 .vscode/*
+target
+log
+.idea
+back-end/webrtc/.env

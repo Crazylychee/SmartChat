@@ -70,6 +70,7 @@
     "js-cookie": "^3.0.5",
     "js-md5": "^0.8.3",
     "js-pinyin": "^0.2.7",
+    "livekit-client": "^2.5.4",
     "lodash": "^4.17.21",
     "mitt": "^3.0.1",
     "mockjs": "^1.1.0",

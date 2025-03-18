@@ -152,7 +152,7 @@ Reminder: After you compile the `turms/turms-gateway` server project locally, th
 | Statistics        | StatisticsProperties   | statistics   | Statistics related configuration                     |                                                              |
 | Notification      | NotificationProperties | notification | Notification related configuration                   |                                                              |
 | File storage      | StorageProperties      | storage      | Storage related configuration                        |                                                              |
-| Business behavior | UserProperties         | user         | User-related configuration                           |                                                              |
+| Business behavior | UserProperties         | user         | com.smartchat.framework.starter.common.request.-related configuration                           |                                                              |
 |                   | GroupProperties        | group        | Group related configuration                          |                                                              |
 |                   | ConversationProperties | conversation | Message conversation service related configuration   |                                                              |
 |                   | MessageProperties      | message      | Message service related configuration                |                                                              |
@@ -181,11 +181,11 @@ Reminder: After you compile the `turms/turms-gateway` server project locally, th
 | ClusterProperties     | cluster     | Cluster related configuration. Including configuring current running node information, service discovery registration information, configuration center information, RPC parameters |
 | HealthCheckProperties | healthCheck | Monitor node health status                                   |
 | IpProperties          | ip          | Public network IP detection related configuration            |
-| LocationProperties    | location    | User coordinate related configuration                        |
+| LocationProperties    | location    | com.smartchat.framework.starter.common.request. coordinate related configuration                        |
 | LoggingProperties     | logging     | Basic logging configuration                                  |
 | PluginProperties      | plugin      | Plugin related configuration                                 |
-| SecurityProperties    | security    | User and administrator password encryption related configuration |
-| UserStatusProperties  | userStatus  | User session (connection) status related configuration       |
+| SecurityProperties    | security    | com.smartchat.framework.starter.common.request. and administrator password encryption related configuration |
+| UserStatusProperties  | userStatus  | com.smartchat.framework.starter.common.request. session (connection) status related configuration       |
 
 ##### The configuration of the plugin itself
 

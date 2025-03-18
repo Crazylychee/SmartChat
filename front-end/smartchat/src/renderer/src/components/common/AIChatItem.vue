@@ -7,9 +7,7 @@
     <div class="chat-info">
       <chat-avatar v-if="props.type === 'user'" :user-id="userInfoStore.user.id" />
       <img v-else :src="robot" />
-      <p class="chat-content">
-        {{ props.content }}
-      </p>
+      <p class="chat-content"><slot></slot></p>
     </div>
   </div>
 </template>
@@ -24,10 +22,6 @@ const userInfoStore = useUserInfoStore()
 
 const props = defineProps({
   type: {
-    type: String,
-    required: true
-  },
-  content: {
     type: String,
     required: true
   }

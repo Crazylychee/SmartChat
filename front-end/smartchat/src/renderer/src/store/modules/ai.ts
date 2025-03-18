@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
 import { ai, defaultMessages, defaultModel } from '@/ai/openai'
 import type { AIMessage } from '@/ai/openai'
+import { useSystemStore } from './system'
 
 type Chat = {
   messages: AIMessage[]
@@ -9,11 +10,25 @@ type Chat = {
   id: string
   update: Date
   model: string
+  type: 'chat' | 'chathistory'
+  isLoading: boolean
+  customAttributes: object
+}
+
+type ChatConfig = {
+  messages?: AIMessage[]
+  title?: string
+  id?: string
+  update?: Date
+  model?: string
+  type?: 'chat' | 'chathistory'
 }
 
 type Chats = Record<string, Chat>
 
 export const useAIStore = defineStore('ai', () => {
+  const systemStore = useSystemStore()
+
   const activeChatId = ref('1')
   const chats = reactive<Chats>({
     '1': {
@@ -24,19 +39,37 @@ export const useAIStore = defineStore('ai', () => {
       title: 'AI Chat',
       id: '1',
       update: new Date(),
-      model: defaultModel
+      model: defaultModel,
+      type: 'chathistory',
+      isLoading: false,
+      customAttributes: { chathistoryId: '1', chathistoryName: '管理员' }
     }
   })
 
-  const createChat = async (title = '新的聊天') => {
-    const chat: Chat = {
+  const chat = () => {
+    return chats[activeChatId.value]
+  }
+
+  const createChat = async (config?: ChatConfig) => {
+    const chatId = Date.now().toString()
+    const defaultConfig: Chat = {
       messages: [...defaultMessages],
-      title,
-      id: Date.now().toString(),
+      title: '新的聊天',
+      id: chatId,
       update: new Date(),
-      model: defaultModel
+      model: defaultModel,
+      type: 'chat',
+      isLoading: false,
+      customAttributes: {}
     }
+    const chat: Chat = { ...defaultConfig, ...config }
     chats[chat.id] = chat
+    return chatId
+  }
+
+  const activeChat = (chatId: string) => {
+    systemStore.activeMenu = 'ai'
+    activeChatId.value = chatId
   }
 
   const chatWithAI = async (content) => {
@@ -49,6 +82,7 @@ export const useAIStore = defineStore('ai', () => {
     const chat = chats[chatId]
     chat.messages.push({ role: 'user', content })
     console.log('chatWithAI messages', chat.messages[chatId])
+    chat.isLoading = true
     ai.chat.completions
       .create({
         model: defaultModel,
@@ -59,8 +93,13 @@ export const useAIStore = defineStore('ai', () => {
         console.log('chatWithAI message', message)
         chat.messages.push(message)
         chat.update = new Date()
+        chat.isLoading = false
+      })
+      .catch((error) => {
+        console.error('chatWithAI error', error)
+        chat.isLoading = false
       })
   }
 
-  return { activeChatId, chats, createChat, chatWithAI }
+  return { activeChatId, chats, chat, createChat, chatWithAI, activeChat }
 })

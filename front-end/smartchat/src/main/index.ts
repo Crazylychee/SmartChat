@@ -12,24 +12,12 @@ import { loginSqlite3Client } from './db/message';
 //electro窗体大小
 const login_width = 300;
 const login_height = 370;
-const register_height = 490;
+const register_height = 490
 
 
 
 function createWindow(): void {
-  // Create the browser window.
-  // const mainWindow = new BrowserWindow({
-  //   width: 900,
-  //   height: 670,
-  //   show: false,
-  //   frame: false,
-  //   autoHideMenuBar: true,
-  //   ...(process.platform === 'linux' ? { icon } : {}),
-  //   webPreferences: {
-  //     preload: join(__dirname, '../preload/index.js'),
-  //     sandbox: false
-  //   }
-  // })
+
 
   const mainWindow = new BrowserWindow({
     icon: icon,

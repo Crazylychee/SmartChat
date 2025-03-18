@@ -10,7 +10,7 @@
 
 当turms-gateway检测到有新的IP或用户ID被封禁时，会首先向已建立且被封禁的会话发送Turms业务层的关闭通知，该通知带有`USER_IS_BLOCKED`状态码，告知客户端它被封禁了。当数据Flush之后，Turms服务端再自动断开底层TCP连接。
 
-当turms-gateway检查到新建立的TCP连接的对端IP已被封禁，或检测到发送登录请求的用户ID已被封禁，则在默认情况下turms-gateway会直接关闭与其的TCP连接，并且不会发送连接关闭原因的通知，如“您的IP/User ID已被封禁XX时间”。
+当turms-gateway检查到新建立的TCP连接的对端IP已被封禁，或检测到发送登录请求的用户ID已被封禁，则在默认情况下turms-gateway会直接关闭与其的TCP连接，并且不会发送连接关闭原因的通知，如“您的IP/com.smartchat.framework.starter.common.request. ID已被封禁XX时间”。
 
 其中有两点需要注意：
 

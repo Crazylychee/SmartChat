@@ -1,7 +1,7 @@
 <template>
   <WeDragBox>
     <div class="box-no-selected">
-      <i class="wechatfont wechat-weixin" :style="{ ...defaultImageStyle, ...imageStyle }"></i>
+      <i class="wechatfont " :style="{ ...defaultImageStyle, ...imageStyle }"></i>
       <p :style="textStyle">{{ text }}</p>
     </div>
   </WeDragBox>

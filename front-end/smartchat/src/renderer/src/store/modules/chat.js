@@ -20,7 +20,7 @@ export const useChatStore = defineStore('chat', {
             'https://gd-hbimg.huaban.com/031f5d3bd63f279dad59f01c60a55c663f2a697b1717d-WCfqyf_fw480webp',
           lastChatTime: '2024-08-02T15:20:00Z',
           lastChatContent: '你好，很高兴认识你！',
-          unReadCount: 6,
+          unReadCount: 0,
           isTop: false,
           isGroup: false
         },
@@ -46,7 +46,7 @@ export const useChatStore = defineStore('chat', {
             'https://gd-hbimg.huaban.com/e9a8611330775adc688738ecbfde875bc2c2e6fc13348-2VJc6U_fw480webp',
           lastChatTime: '2024-08-02T15:22:00Z',
           lastChatContent: '你好，很高兴认识你！',
-          unReadCount: 9,
+          unReadCount: 0,
           isTop: false,
           isGroup: true
         },
@@ -60,86 +60,122 @@ export const useChatStore = defineStore('chat', {
             'https://gd-hbimg.huaban.com/8424977b522ffcf85937b1d68a1352954198e8f03b4ee-rMEHQM_fw480webp',
           lastChatTime: '2024-08-02T15:23:00Z',
           lastChatContent: '你好，很高兴认识你！',
-          unReadCount: 4,
+          unReadCount: 0,
           isTop: false,
           isGroup: false
         }
       ], // 聊天列表
       chatInfos: {
-        user123: [
-          {
-            id: 1,
-            type: 'send',
-            content: '你是谁',
-            createTime: '2023-08-10 12:12:12'
-          },
-          {
-            id: 2,
-            type: 'receive',
-            content: '我是Vite',
-            createTime: '2023-08-10 12:15:12'
-          },
-          {
-            id: 3,
-            type: 'send',
-            content: '你是谁',
-            createTime: '2023-08-10 12:12:12'
-          },
-          {
-            id: 4,
-            type: 'receive',
-            content: '我是Vite',
-            createTime: '2023-08-10 12:15:12'
-          },
-          {
-            id: 5,
-            type: 'send',
-            content: '你是谁',
-            createTime: '2023-08-10 12:12:12'
-          },
-          {
-            id: 6,
-            type: 'receive',
-            content: '最新信息',
-            createTime: '2023-08-10 12:15:12'
-          }
-        ],
-        user124: [
-          {
-            id: 1,
-            type: 'send',
-            content: '很高兴认识你',
-            createTime: '2023-08-10 12:12:12'
-          },
-          {
-            id: 2,
-            type: 'receive',
-            content: '我也是！'
-          }
-        ],
-        user125: [
-          {
-            id: 1,
-            type: 'send',
-            content: '大家好',
-            createTime: '2023-08-10 12:12:12'
-          },
-          {
-            id: 2,
-            type: 'receive',
-            content: '大家好'
-          }
-        ],
-        user126: [
-          {
-            id: 1,
-            type: 'send',
-            content: '你好',
-            createTime: '2023-08-10 12:12:12'
-          }
-        ]
+        // user123: [
+        //   {
+        //     id: 1,
+        //     type: 'send',
+        //     content: '你是谁',
+        //     createTime: '2023-08-10 12:12:12'
+        //   },
+        //   {
+        //     id: 2,
+        //     type: 'receive',
+        //     content: '我是Vite',
+        //     createTime: '2023-08-10 12:15:12'
+        //   },
+        //   {
+        //     id: 3,
+        //     type: 'send',
+        //     content: '你是谁',
+        //     createTime: '2023-08-10 12:12:12'
+        //   },
+        //   {
+        //     id: 4,
+        //     type: 'receive',
+        //     content: '我是Vite',
+        //     createTime: '2023-08-10 12:15:12'
+        //   },
+        //   {
+        //     id: 5,
+        //     type: 'send',
+        //     content: '你是谁',
+        //     createTime: '2023-08-10 12:12:12'
+        //   },
+        //   {
+        //     id: 6,
+        //     type: 'receive',
+        //     content: '最新信息',
+        //     createTime: '2023-08-10 12:15:12'
+        //   }
+        // ],
+        // user124: [
+        //   {
+        //     id: 1,
+        //     type: 'send',
+        //     content: '很高兴认识你',
+        //     createTime: '2023-08-10 12:12:12'
+        //   },
+        //   {
+        //     id: 2,
+        //     type: 'receive',
+        //     content: '我也是！'
+        //   }
+        // ],
+        // user125: [
+        //   {
+        //     id: 1,
+        //     type: 'send',
+        //     content: '大家好',
+        //     createTime: '2023-08-10 12:12:12'
+        //   },
+        //   {
+        //     id: 2,
+        //     type: 'receive',
+        //     content: '大家好'
+        //   }
+        // ],
+        // user126: [
+        //   {
+        //     id: 1,
+        //     type: 'send',
+        //     content: '你好',
+        //     createTime: '2023-08-10 12:12:12'
+        //   }
+        // ]
       },
       messageList: [
+        {
+          id: '7503506422367326208',
+          deliveryDate: new Date('2024-09-21T20:49:33.457'),
+          text: '早上好，Bob！今天的工作安排你有什么想法吗？',
+          records: [],
+          senderId: '2',
+          recipientId: '1',
+          customAttributes: []
+        },
+        {
+          id: '7494499223104360448',
+          deliveryDate: new Date('2024-09-21T20:49:31.449'),
+          text: '早上好，Alice！我建议我们今天先处理客户反馈的问题，然后再进行新功能的开发。你觉得怎么样？',
+          records: [],
+          senderId: '1',
+          recipientId: '2',
+          customAttributes: []
+        },
+        {
+          id: '2954871144030208000',
+          deliveryDate: new Date('2024-09-22T20:14:01.550'),
+          text: '听起来不错。客户反馈的问题确实需要优先处理。那我们上午先开个会讨论一下具体方案，下午再开始开发新功能。',
+          records: [],
+          senderId: '2',
+          recipientId: '1',
+          customAttributes: []
+        },
+        {
+          id: '7512513621630259200',
+          deliveryDate: new Date('2024-09-21T20:49:35.457'),
+          text: '好的，我会准备会议材料。下午我们再一起讨论开发计划。',
+          records: [],
+          senderId: '1',
+          recipientId: '2',
+          customAttributes: []
+        }
       ],
       // 聊天记录
       activeChat: '', // 当前聚焦的聊天对象id

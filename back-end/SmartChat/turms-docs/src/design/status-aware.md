@@ -7,7 +7,7 @@ Since the specific implementation of state awareness is closely related to speci
 1. Determine whether the product demand is reasonable. Usually unreasonable requirements, such as: there can be 10,000 users in a group, when a user sends a message, it is necessary to ensure that the message can be 100% sent to other 9999 users, and the user can pull a few years ago Chat information.
 2. Distinguish primary and secondary requirements, and try to strike a balance between quality attributes. There are many details in the implementation of IM services. Is it really necessary to design a large number of back-and-forth strategies (such as message session-level auto-increment IDs) in order to be compatible with extreme situations, which not only greatly increases the development cost and failure points, but also makes the overall server throughput drops.
 
-## User online status awareness
+## com.smartchat.framework.starter.common.request. online status awareness
 
 In short, Turms detects the health status of the user's TCP connection through the heartbeat packet and judges whether the user is "online". Also, if you don't care about the underlying implementation, you only need to read: [Client API - Session Lifecycle](https://turms-im.github.io/docs/client/api#%E4%BC%9A%E8%AF%9D%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F).
 
