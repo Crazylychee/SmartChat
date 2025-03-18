@@ -1,0 +1,13 @@
+{
+  "name": "server",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts"
+  },
+  "dependencies": {
+    "hono": "^4.6.3",
+    "livekit-server-sdk": "^2.6.2"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
