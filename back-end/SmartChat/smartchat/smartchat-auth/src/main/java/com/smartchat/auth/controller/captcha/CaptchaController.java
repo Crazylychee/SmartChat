@@ -4,6 +4,9 @@ import com.google.code.kaptcha.Producer;
 
 import com.smartchat.auth.utils.RedisCache;
 
+import com.smartchat.framework.starter.common.captcha.Base64;
+import com.smartchat.framework.starter.common.captcha.Constants;
+import com.smartchat.framework.starter.common.captcha.IdUtils;
 import com.smartchat.framework.starter.common.web.JSONResult;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +22,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
-import static com.smartchat.auth.controller.captcha.Constants.CAPTCHA_CODE_KEY;
+import static com.smartchat.framework.starter.common.captcha.Constants.CAPTCHA_CODE_KEY;
 
 
 @Slf4j
