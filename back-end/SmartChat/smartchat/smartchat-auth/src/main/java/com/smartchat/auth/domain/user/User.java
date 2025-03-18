@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.smartchat.framework.starter.common.domain.base.BaseDomain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
@@ -19,7 +18,7 @@ import java.util.Objects;
  */
 @TableName("t_user")
 @ApiModel(value="t_user 表对应的实体对象", description="")
-public class User extends BaseDomain implements Serializable {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

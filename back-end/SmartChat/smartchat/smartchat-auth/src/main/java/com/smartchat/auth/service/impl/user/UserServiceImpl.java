@@ -18,7 +18,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.smartchat.auth.utils.FeignUserService;
 import com.smartchat.auth.utils.RedisCache;
 
-import com.smartchat.auth.controller.captcha.Constants;
+import com.smartchat.framework.starter.common.captcha.Constants;
 import com.smartchat.framework.starter.common.constant.RedisKeyConstant;
 import com.smartchat.framework.starter.common.exception.CaptchaException;
 import com.smartchat.framework.starter.common.exception.CaptchaExpireException;

@@ -1,2 +1,2 @@
 com.smartchat.framework.starter.common.config.WebAutoConfiguration
-com.smartchat.auth.controller.captcha.CaptchaAutoConfiguration
+com.smartchat.framework.starter.common.captcha.CaptchaAutoConfiguration
