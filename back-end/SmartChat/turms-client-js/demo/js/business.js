@@ -82,8 +82,8 @@ function start() {
     // const clientUserOne = new TurmsClient('ws://localhost:10510', 30 * 1000);
     // const clientUserTwo = new TurmsClient('ws://localhost:10510', 30 * 1000);
 
-    const clientUserOne = new TurmsClient('ws://47.113.224.195:31115', 30 * 1000);
-    const clientUserTwo = new TurmsClient('ws://47.113.224.195:31115', 30 * 1000);
+    const clientUserOne = new TurmsClient('ws://localhost:10510', 30 * 1000);
+    const clientUserTwo = new TurmsClient('ws://localhost:10510', 30 * 1000);
 
     const USER_ONE_ID = '1';
     const USER_TWO_ID = '2';

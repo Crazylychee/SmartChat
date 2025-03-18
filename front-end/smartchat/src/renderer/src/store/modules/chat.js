@@ -20,7 +20,7 @@ export const useChatStore = defineStore('chat', {
             'https://gd-hbimg.huaban.com/031f5d3bd63f279dad59f01c60a55c663f2a697b1717d-WCfqyf_fw480webp',
           lastChatTime: '2024-08-02T15:20:00Z',
           lastChatContent: '你好，很高兴认识你！',
-          unReadCount: 6,
+          unReadCount: 0,
           isTop: false,
           isGroup: false
         },
